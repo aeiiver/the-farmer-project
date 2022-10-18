@@ -1,13 +1,14 @@
 # Cahier des charges
 ## BDD
 * Outil de gestion et d'optimisation de livraison
-* Producteur : (__SIRET__, Adresse, NomProprio, PrenomProprio, NumTelephone, GPS, MotPasse)
-* Client : (__NumClient__, Nom, Prenom, Adresse, NumTelephone)
-* Véhicule : (__Immat__, #Producteur, poids Max)
-* Commande : (__NumCom__, #Client, #Producteur, libellé, poids, horaireDeb, horaireFin)
-* Tournée : (__NumTournée__, Véhicule, HoraireDeb, HoraireFin, poids)
-* Possède : (#NumCom, #NumTournée)
-* Admin : (__IDUser__, Pseudo, MotPasse, ImageProfil)
+* Producteur : (__siret__, #idadresse, nom, prenom, numTel, gps, mdp)
+* Client : (__idClient__, nom, prenom, #idadresse, numTel)
+* Vehicule : (__immat__, #siret, poidsMax)
+* Commande : (__numCom__, #idclient, #siret, libelle, poids, heureDeb, heureFin)
+* Tournée : (__numTournee__, #immat, heureDeb, heureFin, poids)
+* Possède : (#numCom, #numTournee)
+* Admin : (__idUser__, pseudo, mdp, photoProfil)
+* Adresse : (__idAdresse__, pays, codePost, voie, nom, numero, (biséarité?), complement) 
 
 ### Utilisations
 * Visualisation des tournées : OSM
@@ -21,3 +22,4 @@
 * Est-ce qu'un producteur peut être un administrateur ?
 * Est-ce qu'une gestion des stocks pourraient être intéressantes ?
 * Est-ce qu'on peut proposer un itinéraire ?
+* Quels osnt les utilités des données gps et de l'adresse ?
