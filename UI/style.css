@@ -1,0 +1,116 @@
+body {
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    background-color: #C6E1F5;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #5F6C75;
+}
+
+.Bar {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    list-style: none;
+    background-color: inherit;
+}
+
+.Visu {
+    position: fixed;
+    top: 250px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    list-style: none;
+    background-color: #B2C9DB;
+    padding: 0 0 20px 20px;
+}
+
+nav ul {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    list-style: none;
+    flex-direction: row;
+    font-size: 20px;
+    color: #DDDDDD;
+}
+
+nav li {
+    margin: 0 50px 0 0;
+}
+
+.Tournee {
+    width: 78%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    list-style: none;
+    flex-direction: column;
+}
+
+.editV {
+    width: 2%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    flex-direction: column;
+}
+
+.agenda {
+    padding: 0px;
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    list-style: none;
+    flex-direction: column;
+    border: 1px solid black;
+}
+
+.Visu commande {
+    width: 25%;
+    height: 98%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    list-style: none;
+    flex-direction: column;
+}
+
+.editH {
+    width: 100%;
+    height: 5%;
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    flex-direction: row;
+}
+
+.OSM {
+    width: 80%;
+    height: 100%;
+    margin: 0 0 0 50px;
+}
+
+.fa-solid {
+    font-size: 30px;
+}
