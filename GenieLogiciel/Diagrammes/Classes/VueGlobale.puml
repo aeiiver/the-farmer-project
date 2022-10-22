@@ -1,4 +1,4 @@
-@startuml classes
+@startuml VueGlobale
 /' Settings '/
 skinparam classAttributeIconSize 0
 skinparam genericDisplay old

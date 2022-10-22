@@ -12,7 +12,7 @@
 
 ## Séquence
 
-- Authentification: [raw](./Sequence/authentification.puml)
+- Authentification: [png](./Sequence/SequenceAuthentification.png) | [puml](./Sequence/SequenceAuthentification.puml)
 - Gestion de compte (producteur) par un admin (ajouter, modifier, supprimer)
 - Gestion espace producteur
 - Gestion d'une commande (créer, modifier, consulter, valider)
@@ -21,4 +21,4 @@
 
 ## Classes
 
-- [raw](./Classes/globalView.puml)
+- Vue globale: [png](./Classes/VueGlobale.png) | [puml](./Classes/VueGlobale.puml)

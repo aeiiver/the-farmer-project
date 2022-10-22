@@ -1,4 +1,4 @@
-@startuml authentification
+@startuml SequenceAuthentification
 /' Settings '/
 !theme plain
 hide footbox
