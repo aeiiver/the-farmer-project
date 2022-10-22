@@ -1,0 +1,58 @@
+@startuml authentification
+/' Settings '/
+!theme plain
+hide footbox
+skinparam {
+    SequenceMessageAlign center
+    SequenceBoxBorderColor #808080
+    SequenceGroupBorderColor #808080
+}
+
+/' Metadata '/
+title Authentification
+
+/' Participants '/
+actor User
+box "GUI" #D8F8F8
+    participant HomeMenu
+    participant LoginMenu
+end box
+box "BusinessLogic" #F8D8B8
+    participant SessionManager
+end box
+box "MySQL" #D8D8F8
+    database DBMS
+end box
+
+/' Lifelines & Messages '/
+User -> LoginMenu: openLoginMenu()
+User -> LoginMenu: login(id, password, mode)
+
+LoginMenu -> SessionManager: askForAuthentification(id, password, mode)
+
+alt#C0FFC0 mode == "admin"
+    SessionManager -> DBMS: //<<makeQuery>>// getAdminPasswordHash(id)
+else mode == "producteur"
+    SessionManager -> DBMS: //<<makeQuery>>// getProdPasswordHash(id)
+end
+
+DBMS -> DBMS: //<<executeQuery>>//
+
+alt#C0FFC0 hash found
+    DBMS --> SessionManager: //<<queryResult>>// hash
+else hash not found
+    DBMS --> SessionManager: //<<queryEmptyResult>>// hash
+end
+
+SessionManager -> SessionManager: checkPassword(password, hash)
+
+alt#C0FFC0 password and hash matches
+    SessionManager --> LoginMenu: user login input is correct
+    LoginMenu ->> LoginMenu: hideMenu()
+    LoginMenu ->> HomeMenu: showHomeMenu()
+else password and hash don't match
+    SessionManager --> LoginMenu: user login input is incorrect
+    LoginMenu ->> LoginMenu: showError("id or password is incorrect")
+end
+LoginMenu -->> User:
+@enduml

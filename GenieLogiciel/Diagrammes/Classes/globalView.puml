@@ -1,0 +1,117 @@
+@startuml classes
+/' Settings '/
+skinparam classAttributeIconSize 0
+skinparam genericDisplay old
+
+/' Diagram '/
+package Store {
+    package Model {
+        abstract Utilisateur {
+            -pseudo: String
+            -mdp: String
+        }
+        class Admin {
+            -idUser: int
+            -photoProfil: String
+        }
+        class Adresse {
+            -idAdresse: int
+            -pays: String
+            -codePost: String
+            -voie: String
+            -nom: String
+            -numero: int
+            -bisearite: String
+            -complement: String
+        }
+        class Client {
+            -idClient: int
+            -nom: String
+            -prenom: String
+            -adresse: Adresse
+            -numTel: String
+        }
+        class Commande {
+            -numCom: int
+            -destinataire: Client
+            -destinateur: Producteur
+            -libelle: String
+            -poids: double
+            -heureDeb: int
+            -heureFin: int
+        }
+        class Producteur {
+            -siret: String
+            -adresse: Adresse
+            -nom: String
+            -prenom: String
+            -numTel: String
+            -gps: String
+        }
+        class Tournee {
+            -numTournee: int
+            -vehicule: Vehicule
+            -heureDeb: int
+            -heureFin: int
+            -poids: double
+            -commandes: Commande[]
+        }
+        class Vehicule {
+            -immat: String
+            -proprietaire: Producteur
+            -poidsMax: double
+        }
+        Admin ---|> Utilisateur
+        Producteur -|> Utilisateur
+
+        Client -- Adresse
+        Producteur - Adresse
+
+        Commande "0..n" --* "1" Client
+        Commande "0..n" --* "1" Producteur
+        Vehicule "1..n" ---* "1" Producteur
+
+        Tournee o-- Vehicule
+        Tournee "1" o-- "1..n" Commande
+    }
+
+    package DAO {
+        interface DAO<T> {
+            +getAll(): List<T>
+            +getById(int): T
+            +getByName(String): List<T>
+            +insert(T): boolean
+            +update(T): boolean
+            +delete(T): boolean
+        }
+        class AdminDAO<Admin>
+        class AdresseDAO<Adresse>
+        class ClientDAO<Client>
+        class CommandeDAO<Commande>
+        class ProducteurDAO<Producteur>
+        class TourneeDAO<Tournee>
+        class VehiculeDAO<Vehicule>
+
+        ProducteurDAO .up.|> DAO
+        ClientDAO .up.|> DAO
+        VehiculeDAO .down.|> DAO
+        TourneeDAO .down.|> DAO
+        CommandeDAO .down.|> DAO
+        AdminDAO .right.|> DAO
+        AdresseDAO .left.|> DAO
+    }
+}
+
+package App {
+    package GUI {
+        class LoginMenu
+        class HomeMenu
+    }
+    package BusinessLogic {
+        class SessionManager
+    }
+
+    LoginMenu -up-> SessionManager
+    HomeMenu o- LoginMenu
+}
+@enduml
