@@ -33,4 +33,3 @@
 > Rendre la suite du document : Fiche de configuration, Bilan de l'application, des tests
 * Bilan de l'application (ce qui fonctionne/ce qui ne fonctionne pas)
 * Bilan des tests
-* 
