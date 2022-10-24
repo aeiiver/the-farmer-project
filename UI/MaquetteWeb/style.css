@@ -195,3 +195,45 @@ nav li {
     opacity: 1;
     transition: 0.3s opacity ease-in-out;
 }
+
+.check-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-size: 18px;
+}
+
+.check {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
+.check input {
+    margin-right: 5px;
+    width: 30px;
+}
+
+.AddForm select {
+    margin-bottom: 15px;
+}
+
+.AddForm {
+    width: 20%;
+    height: 80%;
+    z-index: 10;
+    position: absolute;
+    top: 10%;
+    left: 40%;
+    background-color: #B2C9DB;
+    border: 1px solid gray;
+    shadow: 0 0 10px black;
+    border-radius: 15px;
+    padding: 10px;
+    opacity: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
