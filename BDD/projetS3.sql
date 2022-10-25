@@ -1,7 +1,7 @@
 CREATE TABLE Adresse(
    idAdresse INT NOT NULL AUTO_INCREMENT,
    pays VARCHAR(50),
-   codePost VARCHAR(5),
+   codePost CHAR(5),
    voie VARCHAR(15),
    nom VARCHAR(100),
    numero SMALLINT,
@@ -14,8 +14,8 @@ CREATE TABLE Client(
    idClient INT NOT NULL AUTO_INCREMENT,
    nom VARCHAR(30),
    prenom VARCHAR(30),
-   numTel VARCHAR(10),
-   gps VARCHAR(50),
+   numTel VARCHAR(31),
+   gps VARCHAR(21),
    idAdresse INT NOT NULL,
    PRIMARY KEY(idClient),
    FOREIGN KEY(idAdresse) REFERENCES Adresse(idAdresse)
@@ -25,20 +25,23 @@ CREATE TABLE Admin(
    idAdmin INT NOT NULL AUTO_INCREMENT,
    pseudo VARCHAR(30),
    mdp VARCHAR(255),
-   profilPic blob,
-   PRIMARY KEY(idAdmin)
+   idImage INT,
+   PRIMARY KEY(idAdmin),
+   FOREIGN KEY (idImage) REFERENCES Image(idImage)
 );
 
 CREATE TABLE Producteur(
    SIRET VARCHAR(14) NOT NULL,
    nomProducteur VARCHAR(30) NOT NULL,
    prenomProducteur VARCHAR(30) NOT NULL,
-   numTel VARCHAR(10) NOT NULL,
+   numTel VARCHAR(31) NOT NULL,
    mdp VARCHAR(255) NOT NULL,
    idAdresse INT NOT NULL,
+   idImage INT,
    PRIMARY KEY(SIRET),
    UNIQUE(numTel),
-   FOREIGN KEY(idAdresse) REFERENCES Adresse(idAdresse)
+   FOREIGN KEY(idAdresse) REFERENCES Adresse(idAdresse),
+   FOREIGN KEY (idImage) REFERENCES Image(idImage)
 );
 
 CREATE TABLE Commande(
@@ -88,12 +91,12 @@ CREATE TABLE Effectue(
 
 /*
 Adresse = (__idAdresse__ INT, pays VARCHAR(50), codePost VARCHAR(5), voie VARCHAR(15), nom VARCHAR(100), numero SMALLINT, mention VARCHAR(10), complement VARCHAR(100));
-Client = (__idClient__ INT, nom VARCHAR(30), prenom VARCHAR(30), numTel VARCHAR(10), gps VARCHAR(50), #idAdresse);
+Client = (__idClient__ INT, nom VARCHAR(30), prenom VARCHAR(30), numTel VARCHAR(10), gps VARCHAR(21), #idAdresse);
 Admin = (__idAdmin__ INT, pseudo VARCHAR(30), mdp VARCHAR(255), #idImage);
 Producteur = (__SIRET__ VARCHAR(14), nomProducteur VARCHAR(30), prenomProducteur VARCHAR(30), numTel VARCHAR(10), mdp VARCHAR(255), #idAdresse, #idImage);
 Commande = (__numCom__ INT, libelle VARCHAR(50), poids SMALLINT, heureDeb TIME, heureFin TIME, #SIRET, #idClient);
 Vehicule = (__immat__ VARCHAR(9), poidsMax SMALLINT, #SIRET);
 Tournee = (__numTournee__ INT, horaireFin TIME, horaireDeb TIME, poids INT, #immat);
 Image = (__idImage__ INT, picture BLOB);
-Effectue = (#numTournee_1, #numCom_1);
-*/
+Effectue = (__#numTournee__, __#numCom__);
+*/ 
