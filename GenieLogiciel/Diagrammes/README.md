@@ -37,7 +37,7 @@ Authentification utilisateur :
 
 Gestion de compte producteur par un admin :
 
-- [x] Ajouter un producteur
+- [ ] Ajouter un producteur
 - [ ] Consulter les détails d'un producteur
 - [ ] Modifier un producteur
 - [ ] Supprimer un producteur
@@ -52,14 +52,14 @@ Gestion de compte producteur par le producteur lui-même :
 
 Gestion d'une commande par le producteur :
 
-- [x] Ajouter une commande
+- [ ] Ajouter une commande
 - [ ] Consulter les détails d'une commande
 - [ ] Modifier une commande
 - [ ] Supprimer une commande
 
 Gestion d'une tournée par le producteur :
 
-- [x] Ajouter une tournée
+- [ ] Ajouter une tournée
 - [ ] Ajouter une commande existante à la tournée
 - [ ] Visualiser sur une carte la tournée
 - [ ] Vérifier si la tournée est valide (poids, horaire)
@@ -68,7 +68,7 @@ Gestion d'une tournée par le producteur :
 
 Gestion des informations client par le producteur :
 
-- [x] Ajouter un client
+- [ ] Ajouter un client
 - [ ] Consulter les détails d'un clients
 - [ ] Modifier un client
 - [ ] Supprimer un client
