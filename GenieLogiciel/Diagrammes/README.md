@@ -38,6 +38,7 @@ Authentification utilisateur :
 Gestion de compte producteur par un admin :
 
 - [x] Ajouter un producteur
+- [ ] Consulter les détails d'un producteur
 - [ ] Modifier un producteur
 - [ ] Supprimer un producteur
 
@@ -71,13 +72,6 @@ Gestion des informations client par le producteur :
 - [ ] Consulter les détails d'un clients
 - [ ] Modifier un client
 - [ ] Supprimer un client
-
-Gestion des informations producteur par l'administateur :
-
-- [x] Ajouter un producteur
-- [ ] Consulter les détails d'un producteur
-- [ ] Modifier un producteur
-- [ ] Supprimer un producteur
 
 # Diagrammes d'état (TODO)
 
