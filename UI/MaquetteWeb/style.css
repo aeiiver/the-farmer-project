@@ -67,7 +67,7 @@ nav li {
     justify-content: flex-start;
     align-items: flex-start;
     list-style: none;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .editV {
@@ -236,4 +236,29 @@ nav li {
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
+}
+
+.CommandCard {
+    width: 220px;
+    height: auto;
+    background-color: #B2C9DB;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    margin: 20px;
+    border: 1px solid black;
+    border-radius: 15px;
+}
+
+.CommandCard h3, .CommandCard p {
+    margin: 5px;
+    padding: 0;
+}
+
+.add {
+    text-align: end;
+}
+
+.selected {
+    background-color : #5F6C75;
 }
