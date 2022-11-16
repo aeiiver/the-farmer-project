@@ -20,7 +20,7 @@ Gestion de compte producteur par un admin :
 Gestion de compte producteur par le producteur lui-même :
 
 - [ ] Modifier ses information de producteur
-- [ ] Ajouter un véhicule
+- [x] Ajouter un véhicule
 - [ ] Supprimer un véhicule
 
 Gestion d'une commande par le producteur :
