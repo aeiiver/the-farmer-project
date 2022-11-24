@@ -13,18 +13,20 @@
 # Outil
 
 Pour [dessiner du l'UML](https://www.reddit.com/r/ProgrammerHumor/comments/b3okry/uml_is_love_uml_is_life/),
-on va utiliser [diagrams.net](https://app.diagrams.net/) car il ne requiert pas d'installation sur la machine,
-et c'est bien de ne pas polluer sa machine.
+on va utiliser ~~[diagrams.net](https://app.diagrams.net/) car il ne requiert pas d'installation sur la machine,
+et c'est bien de ne pas polluer sa machine~~ [StarUML](https://staruml.io/).
 
-# [Diagramme de cas d'utilisation](./CasUtilisation.drawio.png) (OK)
+# [Diagramme de cas d'utilisation](./diagramme-cas-utilisation/CasUtilisation.drawio.png) (OK)
 
-# [Diagramme de classes](./Classes.png) (WIP)
+# [Diagramme de classes](./diagramme-classe/Main.png) (WIP...)
+
+Les diagrammes de classes peuvent être trouvés dans `diagramme-classe`.
 
 # Diagramme de séquences (WIP)
 
 Les diagrammes de séquence peuvent être trouvés dans `diagrammes-de-sequence`.
 
-Cette liste des diagrammes de séquence a été déduite du [diagramme des cas d'utilisation](#diagramme-de-cas-dutilisation).
+Cette liste des diagrammes de séquence a été déduite du diagramme des cas d'utilisation.
 
 ## Admin & Producteur
 
