@@ -16,9 +16,9 @@ Pour [dessiner du l'UML](https://www.reddit.com/r/ProgrammerHumor/comments/b3okr
 on va utiliser ~~[diagrams.net](https://app.diagrams.net/) car il ne requiert pas d'installation sur la machine,
 et c'est bien de ne pas polluer sa machine~~ [StarUML](https://staruml.io/).
 
-# [Diagramme de cas d'utilisation](./diagramme-cas-utilisation/CasUtilisation.drawio.png) (OK)
+# [Diagramme de cas d'utilisation](diagramme-cas-utilisation/CasUtilisation.drawio.png) (OK)
 
-# [Diagramme de classes](./diagramme-classe/Main.png) (WIP...)
+# [Diagramme de classes](diagramme-classe/Main.png) (WIP...)
 
 Les diagrammes de classes peuvent être trouvés dans `diagramme-classe`.
 
