@@ -20,14 +20,6 @@ public class ListeVehicules {
     // ----------- >>
     private ArrayList<Vehicule> vehicules;
 
-    private ArrayList<Vehicule> getVehicules() {
-        return vehicules;
-    }
-
-    private void setVehicules(ArrayList<Vehicule> vehicules) {
-        this.vehicules = vehicules;
-    }
-
     // ----------- << method.annotations@AAAAAAGEtgkbpg2UbRQ= >>
     // ----------- >>
     public ListeVehicules() {
@@ -39,7 +31,13 @@ public class ListeVehicules {
     public ArrayList<Vehicule> getVehicules() {
     // ----------- << method.body@AAAAAAGEtgkqXBDjc1U= >>
     // ----------- >>
+        return vehicules;
     }
+
+    private void setVehicules(ArrayList<Vehicule> vehicules) {
+        this.vehicules = vehicules;
+    }
+
     /**
     * @param v
     */

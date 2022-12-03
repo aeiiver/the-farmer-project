@@ -20,14 +20,6 @@ public class ListeTournees {
     // ----------- >>
     private ArrayList<Tournee> tournees;
 
-    private ArrayList<Tournee> getTournees() {
-        return tournees;
-    }
-
-    private void setTournees(ArrayList<Tournee> tournees) {
-        this.tournees = tournees;
-    }
-
     // ----------- << method.annotations@AAAAAAGEs6IJLNHTkzI= >>
     // ----------- >>
     public ListeTournees() {
@@ -39,12 +31,21 @@ public class ListeTournees {
     public ArrayList<Tournee> getTournees() {
     // ----------- << method.body@AAAAAAGEs6JeQNQTpnI= >>
     // ----------- >>
+        return tournees;
     }
+
+    private void setTournees(ArrayList<Tournee> tournees) {
+        this.tournees = tournees;
+    }
+
     // ----------- << method.annotations@AAAAAAGEs11f9cEqA50= >>
     // ----------- >>
     public ArrayList<Tournee> getTourneesCourantes() {
     // ----------- << method.body@AAAAAAGEs11f9cEqA50= >>
     // ----------- >>
+
+        // dummy return
+        return null;
     }
     /**
     * @param t

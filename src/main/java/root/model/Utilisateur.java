@@ -24,14 +24,6 @@ public abstract class Utilisateur {
     // ----------- >>
     private String mdp;
 
-    private String getMail() {
-        return mail;
-    }
-
-    private String getMdp() {
-        return mdp;
-    }
-
     private void setMail(String mail) {
         this.mail = mail;
     }
@@ -48,12 +40,14 @@ public abstract class Utilisateur {
     public String getMail() {
     // ----------- << method.body@AAAAAAGEw2KsUDSYFWg= >>
     // ----------- >>
+        return mail;
     }
     // ----------- << method.annotations@AAAAAAGEw2Ku2DXWrd4= >>
     // ----------- >>
     public String getMdp() {
     // ----------- << method.body@AAAAAAGEw2Ku2DXWrd4= >>
     // ----------- >>
+        return mdp;
     }
 // ----------- << class.extras@AAAAAAGEqnMZcd7iGQI= >>
 // ----------- >>

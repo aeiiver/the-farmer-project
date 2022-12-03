@@ -82,6 +82,9 @@ public class Producteur extends Utilisateur {
     public boolean verifieIdentifiants() {
     // ----------- << method.body@AAAAAAGEqnneEd+REYE= >>
     // ----------- >>
+
+        // dummy return
+        return false;
     }
 // ----------- << class.extras@AAAAAAGEqm6and3xDM8= >>
 // ----------- >>

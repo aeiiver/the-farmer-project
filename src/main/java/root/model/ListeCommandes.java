@@ -20,10 +20,6 @@ public class ListeCommandes {
     // ----------- >>
     private ArrayList<Commande> commandes;
 
-    private ArrayList<Commande> getCommandes() {
-        return commandes;
-    }
-
     private void setCommandes(ArrayList<Commande> commandes) {
         this.commandes = commandes;
     }
@@ -39,6 +35,7 @@ public class ListeCommandes {
     public ArrayList<Commande> getCommandes() {
     // ----------- << method.body@AAAAAAGEs6PbaeOn+3s= >>
     // ----------- >>
+        return commandes;
     }
     /**
     * @param c

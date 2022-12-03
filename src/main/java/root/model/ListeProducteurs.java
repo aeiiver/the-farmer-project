@@ -20,14 +20,6 @@ public class ListeProducteurs {
     // ----------- >>
     private ArrayList<Producteur> producteurs;
 
-    private ArrayList<Producteur> getProducteurs() {
-        return producteurs;
-    }
-
-    private void setProducteurs(ArrayList<Producteur> producteurs) {
-        this.producteurs = producteurs;
-    }
-
     // ----------- << method.annotations@AAAAAAGEs4i4FOOTofo= >>
     // ----------- >>
     public void ListeProducteur() {
@@ -39,10 +31,12 @@ public class ListeProducteurs {
     public ArrayList<Producteur> getProducteurs() {
     // ----------- << method.body@AAAAAAGEs6RzzOhxE9c= >>
     // ----------- >>
+        return producteurs;
     }
-    /**
-    * @param p
-    */
+
+    private void setProducteurs(ArrayList<Producteur> producteurs) {
+        this.producteurs = producteurs;
+    }
 
     // ----------- << method.annotations@AAAAAAGEs4jmAuRsl8A= >>
     // ----------- >>

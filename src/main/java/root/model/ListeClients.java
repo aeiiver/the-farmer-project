@@ -20,10 +20,6 @@ public class ListeClients {
     // ----------- >>
     private ArrayList<Client> clients;
 
-    private ArrayList<Client> getClients() {
-        return clients;
-    }
-
     private void setClients(ArrayList<Client> clients) {
         this.clients = clients;
     }
@@ -39,6 +35,7 @@ public class ListeClients {
     public ArrayList<Client> getClients() {
     // ----------- << method.body@AAAAAAGEs6MJ+9zAbHE= >>
     // ----------- >>
+        return clients;
     }
     /**
     * @param c

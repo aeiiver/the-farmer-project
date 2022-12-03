@@ -105,6 +105,9 @@ public class Tournee {
     public boolean estValide() {
     // ----------- << method.body@AAAAAAGEqpVftBW/7i4= >>
     // ----------- >>
+
+        // dummy return
+        return false;
     }
     /**
     * @param c

@@ -6,6 +6,7 @@
 package root.controller;
 
 
+import root.view.ConnexionView;
 import root.view.TableaudebordView;
 // ----------- << imports@AAAAAAGEqtk7LQW54k0= >>
 // ----------- >>
@@ -15,22 +16,22 @@ import root.view.TableaudebordView;
 public class ConnexionCtrl {
     // ----------- << attribute.annotations@AAAAAAGEqvcyTLf8M4k= >>
     // ----------- >>
-    private void connexionView ConnexionView;
+    private ConnexionView connexionView;
 
     // ----------- << attribute.annotations@AAAAAAGEqv73bd1ipyg= >>
     // ----------- >>
     private TableaudebordView tableaudebordView;
 
-    private void getConnexionView ConnexionView() {
-        return connexionView ConnexionView;
+    private ConnexionView getConnexionView() {
+        return connexionView;
     }
 
     private TableaudebordView getTableaudebordView() {
         return tableaudebordView;
     }
 
-    private void setConnexionView ConnexionView(void connexionView ConnexionView) {
-        this.connexionView ConnexionView = connexionView ConnexionView;
+    private void setConnexionView(ConnexionView connexionView) {
+        this.connexionView = connexionView;
     }
 
     private void setTableaudebordView(TableaudebordView tableaudebordView) {
@@ -54,6 +55,8 @@ public class ConnexionCtrl {
     private boolean valideIdentifiant() {
     // ----------- << method.body@AAAAAAGEw13e3TFo6Og= >>
     // ----------- >>
+        // dummy return, waiting for implementation...
+        return false;
     }
 // ----------- << class.extras@AAAAAAGEqtk7LQW54k0= >>
 // ----------- >>
