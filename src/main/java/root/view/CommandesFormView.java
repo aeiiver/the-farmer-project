@@ -3,10 +3,14 @@
 *
 * Drop us a line or two at feedback@archetypesoftware.com: we would love to hear from you!
 */
+
 package root.view;
 
-import javafx.scene.control.*;
-
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 
 
@@ -15,199 +19,202 @@ import javafx.scene.control.*;
 
 // ----------- << class.annotations@AAAAAAGEsum/IQ6qlW8= >>
 // ----------- >>
+/**
+ * Classe de vue pour le formulaire d'ajout d'une commande.
+ */
 public class CommandesFormView {
-    // ----------- << attribute.annotations@AAAAAAGEterHw/yKrnY= >>
-    // ----------- >>
-    private Label libelleLabel;
+  // ----------- << attribute.annotations@AAAAAAGEterHw/yKrnY= >>
+  // ----------- >>
+  private Label libelleLabel;
 
-    // ----------- << attribute.annotations@AAAAAAGEteqZUPyBBU4= >>
-    // ----------- >>
-    private TextField libelle;
+  // ----------- << attribute.annotations@AAAAAAGEteqZUPyBBU4= >>
+  // ----------- >>
+  private TextField libelle;
 
-    // ----------- << attribute.annotations@AAAAAAGEsum/IQ6n7kI= >>
-    // ----------- >>
-    private Label poidsLabel;
+  // ----------- << attribute.annotations@AAAAAAGEsum/IQ6n7kI= >>
+  // ----------- >>
+  private Label poidsLabel;
 
-    // ----------- << attribute.annotations@AAAAAAGEsum/IQ6ofRs= >>
-    // ----------- >>
-    private TextField poids;
+  // ----------- << attribute.annotations@AAAAAAGEsum/IQ6ofRs= >>
+  // ----------- >>
+  private TextField poids;
 
-    // ----------- << attribute.annotations@AAAAAAGEsum/IQ6hYqU= >>
-    // ----------- >>
-    private Label clientLabel;
+  // ----------- << attribute.annotations@AAAAAAGEsum/IQ6hYqU= >>
+  // ----------- >>
+  private Label clientLabel;
 
-    // ----------- << attribute.annotations@AAAAAAGEsum/IQ6jy/s= >>
-    // ----------- >>
-    private Label LblVoiture;
+  // ----------- << attribute.annotations@AAAAAAGEsum/IQ6jy/s= >>
+  // ----------- >>
+  private Label lblVoiture;
 
-    // ----------- << attribute.annotations@AAAAAAGEsum/IQ6iCeU= >>
-    // ----------- >>
-    private ChoiceBox client;
+  // ----------- << attribute.annotations@AAAAAAGEsum/IQ6iCeU= >>
+  // ----------- >>
+  private ChoiceBox client;
 
-    // ----------- << attribute.annotations@AAAAAAGEsum/IQ6k2xc= >>
-    // ----------- >>
-    private ChoiceBox VoitureForm;
+  // ----------- << attribute.annotations@AAAAAAGEsum/IQ6k2xc= >>
+  // ----------- >>
+  private ChoiceBox voitureForm;
 
-    // ----------- << attribute.annotations@AAAAAAGEsum/IQ6l4AY= >>
-    // ----------- >>
-    private Label dateLabel;
+  // ----------- << attribute.annotations@AAAAAAGEsum/IQ6l4AY= >>
+  // ----------- >>
+  private Label dateLabel;
 
-    // ----------- << attribute.annotations@AAAAAAGEsum/IQ6m/EY= >>
-    // ----------- >>
-    private DatePicker date;
+  // ----------- << attribute.annotations@AAAAAAGEsum/IQ6m/EY= >>
+  // ----------- >>
+  private DatePicker date;
 
-    // ----------- << attribute.annotations@AAAAAAGEtexTD/zXkLs= >>
-    // ----------- >>
-    private Label heureDebLabel;
+  // ----------- << attribute.annotations@AAAAAAGEtexTD/zXkLs= >>
+  // ----------- >>
+  private Label heureDebLabel;
 
-    // ----------- << attribute.annotations@AAAAAAGEteu/pvy/wns= >>
-    // ----------- >>
-    private TextField heureDeb;
+  // ----------- << attribute.annotations@AAAAAAGEteu/pvy/wns= >>
+  // ----------- >>
+  private TextField heureDeb;
 
-    // ----------- << attribute.annotations@AAAAAAGEtfceZP4K1OA= >>
-    // ----------- >>
-    private Label heureFinLabel;
+  // ----------- << attribute.annotations@AAAAAAGEtfceZP4K1OA= >>
+  // ----------- >>
+  private Label heureFinLabel;
 
-    // ----------- << attribute.annotations@AAAAAAGEtev87/zGNf8= >>
-    // ----------- >>
-    private TextField heureFin;
+  // ----------- << attribute.annotations@AAAAAAGEtev87/zGNf8= >>
+  // ----------- >>
+  private TextField heureFin;
 
-    // ----------- << attribute.annotations@AAAAAAGEsum/IQ6prjQ= >>
-    // ----------- >>
-    private Button enregistrer;
+  // ----------- << attribute.annotations@AAAAAAGEsum/IQ6prjQ= >>
+  // ----------- >>
+  private Button enregistrer;
 
-    // ----------- << attribute.annotations@AAAAAAGEteoaO/x5+80= >>
-    // ----------- >>
-    private Button annuler;
+  // ----------- << attribute.annotations@AAAAAAGEteoaO/x5+80= >>
+  // ----------- >>
+  private Button annuler;
 
-    private Label getLibelleLabel() {
-        return libelleLabel;
-    }
+  private Label getLibelleLabel() {
+    return libelleLabel;
+  }
 
-    private TextField getLibelle() {
-        return libelle;
-    }
+  private TextField getLibelle() {
+    return libelle;
+  }
 
-    private Label getPoidsLabel() {
-        return poidsLabel;
-    }
+  private Label getPoidsLabel() {
+    return poidsLabel;
+  }
 
-    private TextField getPoids() {
-        return poids;
-    }
+  private TextField getPoids() {
+    return poids;
+  }
 
-    private Label getClientLabel() {
-        return clientLabel;
-    }
+  private Label getClientLabel() {
+    return clientLabel;
+  }
 
-    private Label getLblVoiture() {
-        return LblVoiture;
-    }
+  private Label getLblVoiture() {
+    return lblVoiture;
+  }
 
-    private ChoiceBox getClient() {
-        return client;
-    }
+  private ChoiceBox getClient() {
+    return client;
+  }
 
-    private ChoiceBox getVoitureForm() {
-        return VoitureForm;
-    }
+  private ChoiceBox getVoitureForm() {
+    return voitureForm;
+  }
 
-    private Label getDateLabel() {
-        return dateLabel;
-    }
+  private Label getDateLabel() {
+    return dateLabel;
+  }
 
-    private DatePicker getDate() {
-        return date;
-    }
+  private DatePicker getDate() {
+    return date;
+  }
 
-    private Label getHeureDebLabel() {
-        return heureDebLabel;
-    }
+  private Label getHeureDebLabel() {
+    return heureDebLabel;
+  }
 
-    private TextField getHeureDeb() {
-        return heureDeb;
-    }
+  private TextField getHeureDeb() {
+    return heureDeb;
+  }
 
-    private Label getHeureFinLabel() {
-        return heureFinLabel;
-    }
+  private Label getHeureFinLabel() {
+    return heureFinLabel;
+  }
 
-    private TextField getHeureFin() {
-        return heureFin;
-    }
+  private TextField getHeureFin() {
+    return heureFin;
+  }
 
-    private Button getEnregistrer() {
-        return enregistrer;
-    }
+  private Button getEnregistrer() {
+    return enregistrer;
+  }
 
-    private Button getAnnuler() {
-        return annuler;
-    }
+  private Button getAnnuler() {
+    return annuler;
+  }
 
-    private void setLibelleLabel(Label libelleLabel) {
-        this.libelleLabel = libelleLabel;
-    }
+  private void setLibelleLabel(Label libelleLabel) {
+    this.libelleLabel = libelleLabel;
+  }
 
-    private void setLibelle(TextField libelle) {
-        this.libelle = libelle;
-    }
+  private void setLibelle(TextField libelle) {
+    this.libelle = libelle;
+  }
 
-    private void setPoidsLabel(Label poidsLabel) {
-        this.poidsLabel = poidsLabel;
-    }
+  private void setPoidsLabel(Label poidsLabel) {
+    this.poidsLabel = poidsLabel;
+  }
 
-    private void setPoids(TextField poids) {
-        this.poids = poids;
-    }
+  private void setPoids(TextField poids) {
+    this.poids = poids;
+  }
 
-    private void setClientLabel(Label clientLabel) {
-        this.clientLabel = clientLabel;
-    }
+  private void setClientLabel(Label clientLabel) {
+    this.clientLabel = clientLabel;
+  }
 
-    private void setLblVoiture(Label LblVoiture) {
-        this.LblVoiture = LblVoiture;
-    }
+  private void setLblVoiture(Label lblVoiture) {
+    this.lblVoiture = lblVoiture;
+  }
 
-    private void setClient(ChoiceBox client) {
-        this.client = client;
-    }
+  private void setClient(ChoiceBox client) {
+    this.client = client;
+  }
 
-    private void setVoitureForm(ChoiceBox VoitureForm) {
-        this.VoitureForm = VoitureForm;
-    }
+  private void setVoitureForm(ChoiceBox voitureForm) {
+    this.voitureForm = voitureForm;
+  }
 
-    private void setDateLabel(Label dateLabel) {
-        this.dateLabel = dateLabel;
-    }
+  private void setDateLabel(Label dateLabel) {
+    this.dateLabel = dateLabel;
+  }
 
-    private void setDate(DatePicker date) {
-        this.date = date;
-    }
+  private void setDate(DatePicker date) {
+    this.date = date;
+  }
 
-    private void setHeureDebLabel(Label heureDebLabel) {
-        this.heureDebLabel = heureDebLabel;
-    }
+  private void setHeureDebLabel(Label heureDebLabel) {
+    this.heureDebLabel = heureDebLabel;
+  }
 
-    private void setHeureDeb(TextField heureDeb) {
-        this.heureDeb = heureDeb;
-    }
+  private void setHeureDeb(TextField heureDeb) {
+    this.heureDeb = heureDeb;
+  }
 
-    private void setHeureFinLabel(Label heureFinLabel) {
-        this.heureFinLabel = heureFinLabel;
-    }
+  private void setHeureFinLabel(Label heureFinLabel) {
+    this.heureFinLabel = heureFinLabel;
+  }
 
-    private void setHeureFin(TextField heureFin) {
-        this.heureFin = heureFin;
-    }
+  private void setHeureFin(TextField heureFin) {
+    this.heureFin = heureFin;
+  }
 
-    private void setEnregistrer(Button enregistrer) {
-        this.enregistrer = enregistrer;
-    }
+  private void setEnregistrer(Button enregistrer) {
+    this.enregistrer = enregistrer;
+  }
 
-    private void setAnnuler(Button annuler) {
-        this.annuler = annuler;
-    }
+  private void setAnnuler(Button annuler) {
+    this.annuler = annuler;
+  }
 
-// ----------- << class.extras@AAAAAAGEsum/IQ6qlW8= >>
-// ----------- >>
+  // ----------- << class.extras@AAAAAAGEsum/IQ6qlW8= >>
+  // ----------- >>
 }
