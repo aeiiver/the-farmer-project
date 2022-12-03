@@ -6,42 +6,18 @@
 package root.data;
 
 import java.util.*;
-// ----------- << imports@AAAAAAGEqwbBWvs36Cc= >>
+import java.sql.Connection;
+// ----------- << imports@AAAAAAGEqwZobfq55PA= >>
 // ----------- >>
 
-// ----------- << class.annotations@AAAAAAGEqwbBWvs36Cc= >>
+// ----------- << class.annotations@AAAAAAGEqwZobfq55PA= >>
 // ----------- >>
-public class VehiculeDAO<Model, IdType> extends DAO {
+public class CommandeDao<Model, IdType> extends Dao {
     /**
      * @param connexion
      */
-    public VehiculeDAO(Connection connexion) {
+    public CommandeDao(Connection connexion) {
         super(connexion);
-    }
-
-    /**
-    * @param model
-    */
-
-    @Override
-    // ----------- << method.annotations@AAAAAAGEqwsK/vvtcX0= >>
-    // ----------- >>
-    public boolean insert(Object model) {
-    // ----------- << method.body@AAAAAAGEqwsK/vvtcX0= >>
-    // ----------- >>
-        return false;
-    }
-    /**
-    * @param id
-    */
-
-    @Override
-    // ----------- << method.annotations@AAAAAAGEqxPR7/3rnfY= >>
-    // ----------- >>
-    public Model get(Object id) {
-    // ----------- << method.body@AAAAAAGEqxPR7/3rnfY= >>
-    // ----------- >>
-        return null;
     }
 
     /**
@@ -72,20 +48,19 @@ public class VehiculeDAO<Model, IdType> extends DAO {
     /**
      * @param o
      */
-    public boolean update(Model o) {
+    @Override
+    public boolean update(Object o) {
         return false;
     }
 
     /**
      * @param o
      */
-    public boolean delete(Model o) {
+    @Override
+    public boolean delete(Object o) {
         return false;
     }
 
-    /**
-    * @param model
-    */
-// ----------- << class.extras@AAAAAAGEqwbBWvs36Cc= >>
+// ----------- << class.extras@AAAAAAGEqwZobfq55PA= >>
 // ----------- >>
 }

@@ -4,10 +4,7 @@
 * Drop us a line or two at feedback@archetypesoftware.com: we would love to hear from you!
 */
 package root.data;
-
-import java.util.*;
-import java.time.*;
-
+import java.sql.Connection;
 
 
 // ----------- << imports@AAAAAAGEq15KwNjntgw= >>
@@ -31,6 +28,7 @@ public class SingleConnection {
     public static Connection getInstance() {
     // ----------- << method.body@AAAAAAGEszylo/RWLfA= >>
     // ----------- >>
+        return null;
     }
 // ----------- << class.extras@AAAAAAGEq15KwNjntgw= >>
 // ----------- >>

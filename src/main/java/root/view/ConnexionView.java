@@ -5,9 +5,8 @@
 */
 package root.view;
 
-import java.util.*;
-import java.time.*;
 
+import javafx.scene.control.*;
 
 
 // ----------- << imports@AAAAAAGEsum/IA6CD5o= >>
@@ -52,7 +51,7 @@ public class ConnexionView {
         return identifiantLabel;
     }
 
-    private TextField getIdentifiant() {
+    private TextField getIdentifiantForm() {
         return identifiant;
     }
 
@@ -117,18 +116,21 @@ public class ConnexionView {
     public String getIdentifiant() {
     // ----------- << method.body@AAAAAAGEw1ypqDFEVPI= >>
     // ----------- >>
+        return null;
     }
     // ----------- << method.annotations@AAAAAAGEw1yuFTFKf9M= >>
     // ----------- >>
     public String getMdp() {
     // ----------- << method.body@AAAAAAGEw1yuFTFKf9M= >>
     // ----------- >>
+        return null;
     }
     // ----------- << method.annotations@AAAAAAGEw1ziYzFZ4cs= >>
     // ----------- >>
     public String getConnexionMode() {
     // ----------- << method.body@AAAAAAGEw1ziYzFZ4cs= >>
     // ----------- >>
+        return null;
     }
     // ----------- << method.annotations@AAAAAAGEw16Q2DF7rPA= >>
     // ----------- >>
