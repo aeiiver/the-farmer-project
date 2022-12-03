@@ -6,16 +6,20 @@
 package root.data;
 
 import java.util.*;
-
-
-import root.data.DAO.IdType;
-import root.data.DAO.Model;
+import root.model.*;
 // ----------- << imports@AAAAAAGEqwarqPsNKxY= >>
 // ----------- >>
 
 // ----------- << class.annotations@AAAAAAGEqwarqPsNKxY= >>
 // ----------- >>
-public class TourneeDAO extends DAO {
+public class TourneeDAO<Model, IdType> extends DAO {
+    /**
+     * @param connexion
+     */
+    public TourneeDAO(Connection connexion) {
+        super(connexion);
+    }
+
     /**
     * @param model
     */
@@ -26,6 +30,7 @@ public class TourneeDAO extends DAO {
     public boolean insert(Model model) {
     // ----------- << method.body@AAAAAAGEqwsK/vvtcX0= >>
     // ----------- >>
+        return false;
     }
     /**
     * @param id
@@ -37,14 +42,50 @@ public class TourneeDAO extends DAO {
     public Model get(IdType id) {
     // ----------- << method.body@AAAAAAGEqxPR7/3rnfY= >>
     // ----------- >>
+        return null;
     }
+
+    /**
+     * @param o
+     */
+    @Override
+    public boolean insert(Object o) {
+        return false;
+    }
+
+    /**
+     * @param id
+     */
+    @Override
+    public Object get(Object id) {
+        return null;
+    }
+
     @Override
     // ----------- << method.annotations@AAAAAAGEqwsRWPv5vW8= >>
     // ----------- >>
     public ArrayList<Model> getAll() {
     // ----------- << method.body@AAAAAAGEqwsRWPv5vW8= >>
     // ----------- >>
+        return null;
     }
+
+    /**
+     * @param o
+     */
+    @Override
+    public boolean update(Object o) {
+        return false;
+    }
+
+    /**
+     * @param o
+     */
+    @Override
+    public boolean delete(Object o) {
+        return false;
+    }
+
     /**
     * @param model
     */
@@ -55,6 +96,7 @@ public class TourneeDAO extends DAO {
     public boolean update(Model model) {
     // ----------- << method.body@AAAAAAGEqwsStvv//Eo= >>
     // ----------- >>
+        return false;
     }
     /**
     * @param model
@@ -66,6 +108,7 @@ public class TourneeDAO extends DAO {
     public boolean delete(Model model) {
     // ----------- << method.body@AAAAAAGEqw1CdPwvL+Y= >>
     // ----------- >>
+        return false;
     }
 // ----------- << class.extras@AAAAAAGEqwarqPsNKxY= >>
 // ----------- >>

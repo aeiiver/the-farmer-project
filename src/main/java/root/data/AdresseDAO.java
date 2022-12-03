@@ -6,16 +6,21 @@
 package root.data;
 
 import java.util.*;
+import root.model.*;
 
-
-import root.data.DAO.IdType;
-import root.data.DAO.Model;
 // ----------- << imports@AAAAAAGEqwY/BPplz+E= >>
 // ----------- >>
 
 // ----------- << class.annotations@AAAAAAGEqwY/BPplz+E= >>
 // ----------- >>
-public class AdresseDAO extends DAO {
+public class AdresseDAO<Model, IdType> extends DAO {
+    /**
+     * @param connexion
+     */
+    public AdresseDAO(Connection connexion) {
+        super(connexion);
+    }
+
     /**
     * @param model
     */
@@ -26,6 +31,7 @@ public class AdresseDAO extends DAO {
     public boolean insert(Model model) {
     // ----------- << method.body@AAAAAAGEqwsK/vvtcX0= >>
     // ----------- >>
+        return false;
     }
     /**
     * @param id
@@ -37,7 +43,25 @@ public class AdresseDAO extends DAO {
     public Model get(IdType id) {
     // ----------- << method.body@AAAAAAGEqxPR7/3rnfY= >>
     // ----------- >>
+        return null;
     }
+
+    /**
+     * @param o
+     */
+    @Override
+    public boolean insert(Object o) {
+        return false;
+    }
+
+    /**
+     * @param id
+     */
+    @Override
+    public Object get(Object id) {
+        return null;
+    }
+
     @Override
     // ----------- << method.annotations@AAAAAAGEqwsRWPv5vW8= >>
     // ----------- >>
@@ -45,6 +69,23 @@ public class AdresseDAO extends DAO {
     // ----------- << method.body@AAAAAAGEqwsRWPv5vW8= >>
     // ----------- >>
     }
+
+    /**
+     * @param o
+     */
+    @Override
+    public boolean update(Object o) {
+        return false;
+    }
+
+    /**
+     * @param o
+     */
+    @Override
+    public boolean delete(Object o) {
+        return false;
+    }
+
     /**
     * @param model
     */
@@ -55,6 +96,7 @@ public class AdresseDAO extends DAO {
     public boolean update(Model model) {
     // ----------- << method.body@AAAAAAGEqwsStvv//Eo= >>
     // ----------- >>
+        return false;
     }
     /**
     * @param model
@@ -66,6 +108,7 @@ public class AdresseDAO extends DAO {
     public boolean delete(Model model) {
     // ----------- << method.body@AAAAAAGEqw1CdPwvL+Y= >>
     // ----------- >>
+        return false;
     }
 // ----------- << class.extras@AAAAAAGEqwY/BPplz+E= >>
 // ----------- >>

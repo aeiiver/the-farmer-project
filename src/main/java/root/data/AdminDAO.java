@@ -6,16 +6,20 @@
 package root.data;
 
 import java.util.*;
-
-
-import root.data.DAO.IdType;
-import root.data.DAO.Model;
+import root.model.*;
 // ----------- << imports@AAAAAAGEq0cXHNRwSs0= >>
 // ----------- >>
 
 // ----------- << class.annotations@AAAAAAGEq0cXHNRwSs0= >>
 // ----------- >>
-public class AdminDAO extends DAO {
+public class AdminDAO<Model, IdType> extends DAO<Model, IdType> {
+    /**
+     * @param connexion
+     */
+    public AdminDAO(Connection connexion) {
+        super(connexion);
+    }
+
     /**
     * @param model
     */
@@ -26,6 +30,7 @@ public class AdminDAO extends DAO {
     public boolean insert(Model model) {
     // ----------- << method.body@AAAAAAGEqwsK/vvtcX0= >>
     // ----------- >>
+        return false;
     }
     /**
     * @param id
@@ -37,6 +42,7 @@ public class AdminDAO extends DAO {
     public Model get(IdType id) {
     // ----------- << method.body@AAAAAAGEqxPR7/3rnfY= >>
     // ----------- >>
+        return null;
     }
     @Override
     // ----------- << method.annotations@AAAAAAGEqwsRWPv5vW8= >>
@@ -44,6 +50,7 @@ public class AdminDAO extends DAO {
     public ArrayList<Model> getAll() {
     // ----------- << method.body@AAAAAAGEqwsRWPv5vW8= >>
     // ----------- >>
+        return null;
     }
     /**
     * @param model
@@ -55,6 +62,7 @@ public class AdminDAO extends DAO {
     public boolean update(Model model) {
     // ----------- << method.body@AAAAAAGEqwsStvv//Eo= >>
     // ----------- >>
+        return false;
     }
     /**
     * @param model
@@ -66,6 +74,7 @@ public class AdminDAO extends DAO {
     public boolean delete(Model model) {
     // ----------- << method.body@AAAAAAGEqw1CdPwvL+Y= >>
     // ----------- >>
+        return false;
     }
 // ----------- << class.extras@AAAAAAGEq0cXHNRwSs0= >>
 // ----------- >>
