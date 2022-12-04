@@ -2,14 +2,13 @@ package root.data;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import root.model.Vehicule;
 
 /**
  * Cette classe est utilisée pour accéder à la table Véhicule.
- *
- * @param <Model> Modèle utilisé pour la table
- * @param <IdType> Type de l'identifiant de la table
  */
-public class VehiculeDao<Model, IdType> extends Dao {
+public class VehiculeDao extends Dao<Vehicule, String> {
+
   /**
    * Constructeur.
    *
@@ -19,7 +18,6 @@ public class VehiculeDao<Model, IdType> extends Dao {
     super(connexion);
   }
 
-
   /**
    * Insertion d'un nouvel enregistrement dans la table.
    *
@@ -27,7 +25,7 @@ public class VehiculeDao<Model, IdType> extends Dao {
    * @return true si la mise à jour a réussi, false sinon
    */
   @Override
-  public boolean insert(Object o) {
+  public boolean insert(Vehicule o) {
     return false;
   }
 
@@ -38,7 +36,7 @@ public class VehiculeDao<Model, IdType> extends Dao {
    * @return Modèle correspondant à l'enregistrement
    */
   @Override
-  public Object get(Object id) {
+  public Vehicule get(String id) {
     return null;
   }
 
@@ -48,7 +46,7 @@ public class VehiculeDao<Model, IdType> extends Dao {
    * @return Liste des enregistrements
    */
   @Override
-  public ArrayList<Model> getAll() {
+  public ArrayList<Vehicule> getAll() {
     return null;
   }
 
@@ -59,7 +57,7 @@ public class VehiculeDao<Model, IdType> extends Dao {
    * @return true si la mise à jour a réussi, false sinon
    */
   @Override
-  public boolean update(Object o) {
+  public boolean update(Vehicule o) {
     return false;
   }
 
@@ -70,7 +68,8 @@ public class VehiculeDao<Model, IdType> extends Dao {
    * @return true si la mise à jour a réussi, false sinon
    */
   @Override
-  public boolean delete(Object o) {
+  public boolean delete(Vehicule o) {
     return false;
   }
+
 }
