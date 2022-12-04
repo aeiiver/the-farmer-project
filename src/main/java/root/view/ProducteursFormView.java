@@ -1,6 +1,5 @@
 package root.view;
 
-
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -9,6 +8,7 @@ import javafx.scene.control.TextField;
  * Classe de vue pour l'ajout de producteurs.
  */
 public class ProducteursFormView {
+
   private Label siretLabel;
   private TextField siret;
   private Label nomLabel;
@@ -17,113 +17,50 @@ public class ProducteursFormView {
   private TextField prenom;
   private Label numTelLabel;
   private TextField numTel;
-  private TextField adresseVoie;
   private Label adresseLabel;
   private TextField adresse;
+  private Label villeLabel;
+  private TextField ville;
+  private Label codePostLabel;
+  private TextField codePost;
+  private Label message;
   private Button enregistrer;
   private Button annuler;
 
-  private Label getSiretLabel() {
-    return siretLabel;
+  public ProducteursFormView() {
+
   }
 
-  private TextField getSiret() {
-    return siret;
+  public String getSiret() {
+    return null;
   }
 
-  private Label getNomLabel() {
-    return nomLabel;
+  public String getNom() {
+    return null;
   }
 
-  private TextField getNom() {
-    return nom;
+  public String getPrenom() {
+    return null;
   }
 
-  private Label getPrenomLabel() {
-    return prenomLabel;
+  public String getNumTel() {
+    return null;
   }
 
-  private TextField getPrenom() {
-    return prenom;
+  public String getAdresse() {
+    return null;
   }
 
-  private Label getNumTelLabel() {
-    return numTelLabel;
+  public String getVille() {
+    return null;
   }
 
-  private TextField getNumTel() {
-    return numTel;
+  public String getCodePost() {
+    return null;
   }
 
-  private TextField getAdresseVoie() {
-    return adresseVoie;
+  public void setMessage(String msg) {
+    this.message.setText(msg);
   }
 
-  private Label getAdresseLabel() {
-    return adresseLabel;
-  }
-
-  private TextField getAdresse() {
-    return adresse;
-  }
-
-  private Button getEnregistrer() {
-    return enregistrer;
-  }
-
-  private Button getAnnuler() {
-    return annuler;
-  }
-
-  private void setSiretLabel(Label siretLabel) {
-    this.siretLabel = siretLabel;
-  }
-
-  private void setSiret(TextField siret) {
-    this.siret = siret;
-  }
-
-  private void setNomLabel(Label nomLabel) {
-    this.nomLabel = nomLabel;
-  }
-
-  private void setNom(TextField nom) {
-    this.nom = nom;
-  }
-
-  private void setPrenomLabel(Label prenomLabel) {
-    this.prenomLabel = prenomLabel;
-  }
-
-  private void setPrenom(TextField prenom) {
-    this.prenom = prenom;
-  }
-
-  private void setNumTelLabel(Label numTelLabel) {
-    this.numTelLabel = numTelLabel;
-  }
-
-  private void setNumTel(TextField numTel) {
-    this.numTel = numTel;
-  }
-
-  private void setAdresseVoie(TextField adresseVoie) {
-    this.adresseVoie = adresseVoie;
-  }
-
-  private void setAdresseLabel(Label adresseLabel) {
-    this.adresseLabel = adresseLabel;
-  }
-
-  private void setAdresse(TextField adresse) {
-    this.adresse = adresse;
-  }
-
-  private void setEnregistrer(Button enregistrer) {
-    this.enregistrer = enregistrer;
-  }
-
-  private void setAnnuler(Button annuler) {
-    this.annuler = annuler;
-  }
 }

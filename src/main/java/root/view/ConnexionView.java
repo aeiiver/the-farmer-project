@@ -10,77 +10,18 @@ import javafx.scene.control.TextField;
  * Classe de vue pour la connexion.
  */
 public class ConnexionView {
+
   private Label identifiantLabel;
   private TextField identifiant;
   private Label motdepasseLabel;
   private PasswordField motdepasse;
   private Label modeLabel;
   private CheckBox mode;
-  private Label messageErreur;
-  private Button seConnecter;
+  private Label message;
+  private Button connexionButton;
 
-  private Label getIdentifiantLabel() {
-    return identifiantLabel;
-  }
+  public ConnexionView() {
 
-  private TextField getIdentifiantForm() {
-    return identifiant;
-  }
-
-  private Label getMotdepasseLabel() {
-    return motdepasseLabel;
-  }
-
-  private PasswordField getMotdepasse() {
-    return motdepasse;
-  }
-
-  private Label getModeLabel() {
-    return modeLabel;
-  }
-
-  private CheckBox getMode() {
-    return mode;
-  }
-
-  private Label getMessageErreur() {
-    return messageErreur;
-  }
-
-  private Button getSeConnecter() {
-    return seConnecter;
-  }
-
-  private void setIdentifiantLabel(Label identifiantLabel) {
-    this.identifiantLabel = identifiantLabel;
-  }
-
-  private void setIdentifiant(TextField identifiant) {
-    this.identifiant = identifiant;
-  }
-
-  private void setMotdepasseLabel(Label motdepasseLabel) {
-    this.motdepasseLabel = motdepasseLabel;
-  }
-
-  private void setMotdepasse(PasswordField motdepasse) {
-    this.motdepasse = motdepasse;
-  }
-
-  private void setModeLabel(Label modeLabel) {
-    this.modeLabel = modeLabel;
-  }
-
-  private void setMode(CheckBox mode) {
-    this.mode = mode;
-  }
-
-  private void setMessageErreur(Label messageErreur) {
-    this.messageErreur = messageErreur;
-  }
-
-  private void setSeConnecter(Button seConnecter) {
-    this.seConnecter = seConnecter;
   }
 
   /**
@@ -109,4 +50,9 @@ public class ConnexionView {
   public String getConnexionMode() {
     return null;
   }
+
+  public void setMessage(String msg) {
+    this.message.setText(msg);
+  }
+
 }

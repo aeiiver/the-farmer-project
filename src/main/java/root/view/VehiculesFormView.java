@@ -9,58 +9,29 @@ import javafx.scene.control.TextField;
  * Classe de vue pour l'ajout de véhicules.
  */
 public class VehiculesFormView {
+
   private Label immatLabel;
   private TextField immat;
-  private Label poidsLabel;
-  private TextField poids;
+  private Label capacitePoidsLabel;
+  private TextField capacitePoids;
+  private Label message;
   private Button enregistrer;
   private Button annuler;
 
-  private Label getImmatLabel() {
-    return immatLabel;
+  public VehiculesFormView() {
+
   }
 
-  private TextField getImmat() {
-    return immat;
+  public String getImmat() {
+    return null;
   }
 
-  private Label getPoidsLabel() {
-    return poidsLabel;
+  public String getCapacitePoids() {
+    return null;
   }
 
-  private TextField getPoids() {
-    return poids;
+  public void setMessage(String msg) {
+    this.message.setText(msg);
   }
 
-  private Button getEnregistrer() {
-    return enregistrer;
-  }
-
-  private Button getAnnuler() {
-    return annuler;
-  }
-
-  private void setImmatLabel(Label immatLabel) {
-    this.immatLabel = immatLabel;
-  }
-
-  private void setImmat(TextField immat) {
-    this.immat = immat;
-  }
-
-  private void setPoidsLabel(Label poidsLabel) {
-    this.poidsLabel = poidsLabel;
-  }
-
-  private void setPoids(TextField poids) {
-    this.poids = poids;
-  }
-
-  private void setEnregistrer(Button enregistrer) {
-    this.enregistrer = enregistrer;
-  }
-
-  private void setAnnuler(Button annuler) {
-    this.annuler = annuler;
-  }
 }
