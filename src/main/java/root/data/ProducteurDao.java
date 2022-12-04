@@ -24,6 +24,7 @@ public class ProducteurDao<Model, IdType> extends Dao {
    * Insertion d'un nouvel enregistrement dans la table.
    *
    * @param o Modèle à insérer
+   * @return true si la mise à jour a réussi, false sinon
    */
   @Override
   public boolean insert(Object o) {
@@ -34,6 +35,7 @@ public class ProducteurDao<Model, IdType> extends Dao {
    * Récupération d'un enregistrement de la table.
    *
    * @param id Identifiant de l'enregistrement à récupérer
+   * @return Modèle correspondant à l'enregistrement
    */
   @Override
   public Object get(Object id) {
@@ -54,6 +56,7 @@ public class ProducteurDao<Model, IdType> extends Dao {
    * Mise à jour d'un enregistrement de la table.
    *
    * @param o Modèle à mettre à jour
+   * @return true si la mise à jour a réussi, false sinon
    */
   @Override
   public boolean update(Object o) {

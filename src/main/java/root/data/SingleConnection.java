@@ -7,6 +7,10 @@ import java.sql.Connection;
  */
 public class SingleConnection {
   private static Connection connexion;
+
+  /**
+   * Constructeur.
+   */
   private SingleConnection() {
   }
 

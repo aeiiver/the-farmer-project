@@ -12,10 +12,20 @@ import java.util.ArrayList;
 public abstract class Dao<Model, IdType> {
   private Connection connexion;
 
+  /**
+   * Getter de connexion.
+   *
+   * @return connexion Connection à la base de données
+   */
   private Connection getConnexion() {
     return connexion;
   }
 
+  /**
+   * Setter de connexion.
+   *
+   * @param connexion Connection à la base de données
+   */
   private void setConnexion(Connection connexion) {
     this.connexion = connexion;
   }
@@ -23,7 +33,7 @@ public abstract class Dao<Model, IdType> {
   /**
    * Constructeur.
    *
-   * @param connexion Connexion à la base de données
+   * @param connexion Connection à la base de données
    */
   public Dao(Connection connexion) {
   }
@@ -32,6 +42,7 @@ public abstract class Dao<Model, IdType> {
    * Insertion d'un nouvel enregistrement dans la table.
    *
    * @param model Modèle à insérer
+   * @return true si la mise à jour a réussi, false sinon
    */
   public abstract boolean insert(Model model);
 
@@ -39,11 +50,14 @@ public abstract class Dao<Model, IdType> {
    * Récupération d'un enregistrement de la table.
    *
    * @param id Identifiant de l'enregistrement à récupérer
+   * @return Modèle correspondant à l'enregistrement
    */
   public abstract Model get(IdType id);
 
   /**
    * Récupération de tous les enregistrements de la table.
+   *
+   * @return Liste des enregistrements
    */
   public abstract ArrayList<Model> getAll();
 
@@ -52,6 +66,7 @@ public abstract class Dao<Model, IdType> {
    * Mise à jour d'un enregistrement de la table.
    *
    * @param model Modèle à mettre à jour
+   * @return true si la mise à jour a réussi, false sinon
    */
 
   public abstract boolean update(Model model);
@@ -61,6 +76,7 @@ public abstract class Dao<Model, IdType> {
    * Suppression d'un enregistrement de la table.
    *
    * @param model Modèle à supprimer
+   * @return true si la mise à jour a réussi, false sinon
    */
   public abstract boolean delete(Model model);
 

@@ -4,14 +4,14 @@ package root.model;
  * Classe de modèle pour les Producteurs.
  */
 public class Producteur extends Utilisateur {
-  private String siret;
+  private String Siret;
   private String nom;
   private String prenom;
   private String numTel;
   private Adresse adresse;
 
   private String getSiret() {
-    return siret;
+    return Siret;
   }
 
   private String getNom() {
@@ -31,7 +31,7 @@ public class Producteur extends Utilisateur {
   }
 
   private void setSiret(String siret) {
-    this.siret = siret;
+    this.Siret = siret;
   }
 
   private void setNom(String nom) {

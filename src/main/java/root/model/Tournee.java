@@ -13,7 +13,6 @@ public class Tournee {
   private Producteur producteur;
   private Vehicule vehicule;
   private ArrayList<Commande> commandes;
-
   private int getNumTournee() {
     return numTournee;
   }
