@@ -8,13 +8,26 @@ import java.util.ArrayList;
 public class ListeVehicules {
   private ArrayList<Vehicule> vehicules;
 
+  /**
+   * Constructeur.
+   */
   public ListeVehicules() {
   }
 
+  /**
+   * Getter de la liste des vehicules.
+   *
+   * @return vehicules la liste des vehicules
+   */
   public ArrayList<Vehicule> getVehicules() {
     return vehicules;
   }
 
+  /**
+   * Setter de la liste des vehicules.
+   *
+   * @param vehicules la liste des vehicules
+   */
   private void setVehicules(ArrayList<Vehicule> vehicules) {
     this.vehicules = vehicules;
   }

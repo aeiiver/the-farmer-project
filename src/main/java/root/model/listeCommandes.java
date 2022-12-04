@@ -8,10 +8,18 @@ import java.util.ArrayList;
 public class listeCommandes {
   private ArrayList<Commande> commandes;
 
+  /**
+   * Setter de la liste des commandes.
+   *
+   * @param commandes la liste des commandes
+   */
   private void setCommandes(ArrayList<Commande> commandes) {
     this.commandes = commandes;
   }
 
+  /**
+   * Constructeur.
+   */
   public listeCommandes() {
   }
 

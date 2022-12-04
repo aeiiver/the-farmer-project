@@ -8,18 +8,36 @@ import java.util.ArrayList;
 public class listeTournees {
   private ArrayList<Tournee> tournees;
 
+  /**
+   * Constructeur.
+   */
   public listeTournees() {
   }
 
+  /**
+   * Getter de la liste des tournees.
+   *
+   * @return tournees la liste des tournees
+   */
   public ArrayList<Tournee> getTournees() {
     return tournees;
   }
 
+  /**
+   * Setter de la liste des tournees.
+   *
+   * @param tournees la liste des tournees
+   */
   private void setTournees(ArrayList<Tournee> tournees) {
     this.tournees = tournees;
   }
 
 
+  /**
+   * Méthode pour trouver les tournées dont les dates ne sont pas encore passées.
+   *
+   * @return tournees la liste des tournées dont les dates ne sont pas encore passées
+   */
   public ArrayList<Tournee> getTourneesCourantes() {
     return null;
   }

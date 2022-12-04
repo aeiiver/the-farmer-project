@@ -8,10 +8,18 @@ import java.util.ArrayList;
 public class listeClients {
   private ArrayList<Client> clients;
 
+  /**
+   * Setter de la liste des clients.
+   *
+   * @param clients la liste des clients
+   */
   private void setClients(ArrayList<Client> clients) {
     this.clients = clients;
   }
 
+  /**
+   * Constructeur.
+   */
   public listeClients() {
   }
 

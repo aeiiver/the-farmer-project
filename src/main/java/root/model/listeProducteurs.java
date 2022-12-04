@@ -8,14 +8,26 @@ import java.util.ArrayList;
 public class listeProducteurs {
   private ArrayList<Producteur> producteurs;
 
+  /**
+   * Constructeur.
+   */
   public void listeProducteur() {
   }
 
-
+  /**
+   * Getter de la liste des producteurs.
+   *
+   * @return producteurs la liste des producteurs
+   */
   public ArrayList<Producteur> getProducteurs() {
     return producteurs;
   }
 
+  /**
+   * Setter de la liste des producteurs.
+   *
+   * @param producteurs la liste des producteurs
+   */
   private void setProducteurs(ArrayList<Producteur> producteurs) {
     this.producteurs = producteurs;
   }
