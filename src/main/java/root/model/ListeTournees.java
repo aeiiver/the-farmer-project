@@ -5,13 +5,15 @@ import java.util.ArrayList;
 /**
  * Classe de modèle pour la liste des Tournees.
  */
-public class listeTournees {
+public class ListeTournees {
+
   private ArrayList<Tournee> tournees;
 
   /**
    * Constructeur.
    */
-  public listeTournees() {
+  public ListeTournees() {
+    tournees = new ArrayList<>();
   }
 
   /**
@@ -22,16 +24,6 @@ public class listeTournees {
   public ArrayList<Tournee> getTournees() {
     return tournees;
   }
-
-  /**
-   * Setter de la liste des tournees.
-   *
-   * @param tournees la liste des tournees
-   */
-  private void setTournees(ArrayList<Tournee> tournees) {
-    this.tournees = tournees;
-  }
-
 
   /**
    * Méthode pour trouver les tournées dont les dates ne sont pas encore passées.
@@ -45,24 +37,25 @@ public class listeTournees {
   /**
    * Méthode pour ajouter une tournée à la liste des tournées.
    *
-   * @param t tournée à ajouter
+   * @param tournee tournée à ajouter
    */
-  public void ajouter(Tournee t) {
+  public void ajouter(Tournee tournee) {
   }
 
   /**
    * Méthode pour supprimer une tournée de la liste des tournées.
    *
-   * @param t tournée à supprimer
+   * @param tournee tournée à supprimer
    */
-  public void supprimer(Tournee t) {
+  public void supprimer(Tournee tournee) {
   }
 
   /**
    * Méthode pour modifier une tournée de la liste des tournées.
    *
-   * @param t tournée à modifier
+   * @param tournee tournée à modifier
    */
-  public void editer(Tournee t) {
+  public void editer(Tournee tournee) {
   }
+
 }

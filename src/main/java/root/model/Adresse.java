@@ -4,6 +4,7 @@ package root.model;
  * Classe de modèle pour les Adresses.
  */
 public class Adresse {
+
   private int idAdresse;
   private String pays;
   private String codePost;
@@ -14,11 +15,35 @@ public class Adresse {
   private String complement;
 
   /**
+   * Constructeur de classe.
+   *
+   * @param idAdresse  Un identifiant pour l'adresse.
+   * @param pays       Un nom de pays.
+   * @param codePost   Le code postal lié à l'adresse.
+   * @param voie       La dénomination de la voie (rue, boulevard, chemin, ...).
+   * @param nom        Le nom lié l'adresse.
+   * @param numero     Le numéro de l'adresse.
+   * @param mention    La mention de l'adresse.
+   * @param complement Le complément de l'adresse (bât., étage, ...)
+   */
+  public Adresse(int idAdresse, String pays, String codePost, String voie, String nom, int numero,
+                 String mention, String complement) {
+    this.idAdresse = idAdresse;
+    this.pays = pays;
+    this.codePost = codePost;
+    this.voie = voie;
+    this.nom = nom;
+    this.numero = numero;
+    this.mention = mention;
+    this.complement = complement;
+  }
+
+  /**
    * Getter de l'identifiant de l'adresse.
    *
    * @return idAdresse l'identifiant de l'adresse.
    */
-  private int getIdAdresse() {
+  public int getIdAdresse() {
     return idAdresse;
   }
 
@@ -27,7 +52,7 @@ public class Adresse {
    *
    * @return pays le pays de l'adresse.
    */
-  private String getPays() {
+  public String getPays() {
     return pays;
   }
 
@@ -36,7 +61,7 @@ public class Adresse {
    *
    * @return codePost le code postal de l'adresse.
    */
-  private String getCodePost() {
+  public String getCodePost() {
     return codePost;
   }
 
@@ -45,7 +70,7 @@ public class Adresse {
    *
    * @return voie la voie de l'adresse.
    */
-  private String getVoie() {
+  public String getVoie() {
     return voie;
   }
 
@@ -54,34 +79,34 @@ public class Adresse {
    *
    * @return nom le nom de l'adresse.
    */
-  private String getNom() {
+  public String getNom() {
     return nom;
   }
 
   /**
    * Getter du numéro de l'adresse.
    *
-   * @return
+   * @return Le numéro de l'adresse.
    */
-  private int getNumero() {
+  public int getNumero() {
     return numero;
   }
 
   /**
    * Getter de la mention de l'adresse.
    *
-   * @return
+   * @return La mention de l'adresse.
    */
-  private String getMention() {
+  public String getMention() {
     return mention;
   }
 
   /**
    * Getter du complément de l'adresse.
    *
-   * @return
+   * @return Le complément de l'adresse.
    */
-  private String getComplement() {
+  public String getComplement() {
     return complement;
   }
 
@@ -90,7 +115,7 @@ public class Adresse {
    *
    * @param idAdresse l'identifiant de l'adresse.
    */
-  private void setIdAdresse(int idAdresse) {
+  public void setIdAdresse(int idAdresse) {
     this.idAdresse = idAdresse;
   }
 
@@ -99,7 +124,7 @@ public class Adresse {
    *
    * @param pays le pays de l'adresse.
    */
-  private void setPays(String pays) {
+  public void setPays(String pays) {
     this.pays = pays;
   }
 
@@ -108,7 +133,7 @@ public class Adresse {
    *
    * @param codePost le code postal de l'adresse.
    */
-  private void setCodePost(String codePost) {
+  public void setCodePost(String codePost) {
     this.codePost = codePost;
   }
 
@@ -117,7 +142,7 @@ public class Adresse {
    *
    * @param voie la voie de l'adresse.
    */
-  private void setVoie(String voie) {
+  public void setVoie(String voie) {
     this.voie = voie;
   }
 
@@ -126,7 +151,7 @@ public class Adresse {
    *
    * @param nom le nom de l'adresse.
    */
-  private void setNom(String nom) {
+  public void setNom(String nom) {
     this.nom = nom;
   }
 
@@ -135,7 +160,7 @@ public class Adresse {
    *
    * @param numero le numéro de l'adresse.
    */
-  private void setNumero(int numero) {
+  public void setNumero(int numero) {
     this.numero = numero;
   }
 
@@ -144,7 +169,7 @@ public class Adresse {
    *
    * @param mention la mention de l'adresse.
    */
-  private void setMention(String mention) {
+  public void setMention(String mention) {
     this.mention = mention;
   }
 
@@ -153,7 +178,8 @@ public class Adresse {
    *
    * @param complement le complément de l'adresse.
    */
-  private void setComplement(String complement) {
+  public void setComplement(String complement) {
     this.complement = complement;
   }
+
 }

@@ -6,6 +6,7 @@ import java.util.ArrayList;
  * Classe de modèle pour la tournée.
  */
 public class Tournee {
+
   private int numTournee;
   private String libelle;
   private int heureMin;
@@ -15,11 +16,32 @@ public class Tournee {
   private ArrayList<Commande> commandes;
 
   /**
+   * Construsteur.
+   *
+   * @param numTournee Le numéro de la tournée.
+   * @param libelle    Le libellé de la tournée.
+   * @param heureMin   L'heure minimal pour la réalisation de la tournée.
+   * @param heureMax   L'heure maximal pour la réalisation de la tournée.
+   * @param producteur Le producteur qui réalise la tournée.
+   * @param vehicule   Le véhicule avec lequel la tournée sera réalisé.
+   */
+  public Tournee(int numTournee, String libelle, int heureMin, int heureMax, Producteur producteur,
+                 Vehicule vehicule) {
+    this.numTournee = numTournee;
+    this.libelle = libelle;
+    this.heureMin = heureMin;
+    this.heureMax = heureMax;
+    this.producteur = producteur;
+    this.vehicule = vehicule;
+    this.commandes = new ArrayList<>();
+  }
+
+  /**
    * Getter du numéro de la tournée.
    *
    * @return numTournee le numéro de la tournée
    */
-  private int getNumTournee() {
+  public int getNumTournee() {
     return numTournee;
   }
 
@@ -28,7 +50,7 @@ public class Tournee {
    *
    * @return libelle le libellé de la tournée
    */
-  private String getLibelle() {
+  public String getLibelle() {
     return libelle;
   }
 
@@ -37,7 +59,7 @@ public class Tournee {
    *
    * @return heureMin l'heure minimale de la tournée
    */
-  private int getHeureMin() {
+  public int getHeureMin() {
     return heureMin;
   }
 
@@ -46,7 +68,7 @@ public class Tournee {
    *
    * @return heureMax l'heure maximale de la tournée
    */
-  private int getHeureMax() {
+  public int getHeureMax() {
     return heureMax;
   }
 
@@ -55,7 +77,7 @@ public class Tournee {
    *
    * @return producteur le producteur de la tournée
    */
-  private Producteur getProducteur() {
+  public Producteur getProducteur() {
     return producteur;
   }
 
@@ -64,7 +86,7 @@ public class Tournee {
    *
    * @return vehicule le véhicule de la tournée
    */
-  private Vehicule getVehicule() {
+  public Vehicule getVehicule() {
     return vehicule;
   }
 
@@ -73,7 +95,7 @@ public class Tournee {
    *
    * @return commandes les commandes de la tournée
    */
-  private ArrayList<Commande> getCommandes() {
+  public ArrayList<Commande> getCommandes() {
     return commandes;
   }
 
@@ -82,7 +104,7 @@ public class Tournee {
    *
    * @param numTournee le numéro de la tournée
    */
-  private void setNumTournee(int numTournee) {
+  public void setNumTournee(int numTournee) {
     this.numTournee = numTournee;
   }
 
@@ -91,7 +113,7 @@ public class Tournee {
    *
    * @param libelle le libellé de la tournée
    */
-  private void setLibelle(String libelle) {
+  public void setLibelle(String libelle) {
     this.libelle = libelle;
   }
 
@@ -100,7 +122,7 @@ public class Tournee {
    *
    * @param heureMin l'heure minimale de la tournée
    */
-  private void setHeureMin(int heureMin) {
+  public void setHeureMin(int heureMin) {
     this.heureMin = heureMin;
   }
 
@@ -109,11 +131,16 @@ public class Tournee {
    *
    * @param heureMax l'heure maximale de la tournée
    */
-  private void setHeureMax(int heureMax) {
+  public void setHeureMax(int heureMax) {
     this.heureMax = heureMax;
   }
 
-  private void setProducteur(Producteur producteur) {
+  /**
+   * Setter du producteur de la tournée.
+   *
+   * @param producteur le producteur de la tournée
+   */
+  public void setProducteur(Producteur producteur) {
     this.producteur = producteur;
   }
 
@@ -122,7 +149,7 @@ public class Tournee {
    *
    * @param vehicule le véhicule de la tournée
    */
-  private void setVehicule(Vehicule vehicule) {
+  public void setVehicule(Vehicule vehicule) {
     this.vehicule = vehicule;
   }
 
@@ -131,7 +158,7 @@ public class Tournee {
    *
    * @param commandes les commandes de la tournée
    */
-  private void setCommandes(ArrayList<Commande> commandes) {
+  public void setCommandes(ArrayList<Commande> commandes) {
     this.commandes = commandes;
   }
 
@@ -149,16 +176,17 @@ public class Tournee {
   /**
    * Méthode pour ajouter une commande à la tournée.
    *
-   * @param c commande à ajouter
+   * @param commande commande à ajouter
    */
-  public void ajouteCommande(Commande c) {
+  public void ajouteCommande(Commande commande) {
   }
 
   /**
    * Méthode pour supprimer une commande de la tournée.
    *
-   * @param c commande à supprimer
+   * @param commande commande à supprimer
    */
-  public void retireCommande(Commande c) {
+  public void retireCommande(Commande commande) {
   }
+
 }

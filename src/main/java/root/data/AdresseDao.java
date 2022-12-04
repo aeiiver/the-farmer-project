@@ -21,11 +21,11 @@ public class AdresseDao extends Dao<Adresse, Integer> {
   /**
    * Insertion d'un nouvel enregistrement dans la table.
    *
-   * @param o Modèle à insérer
+   * @param adresse Modèle à insérer
    * @return true si la mise à jour a réussi, false sinon
    */
   @Override
-  public boolean insert(Adresse o) {
+  public boolean insert(Adresse adresse) {
     return false;
   }
 
@@ -53,22 +53,22 @@ public class AdresseDao extends Dao<Adresse, Integer> {
   /**
    * Suppression d'un enregistrement de la table.
    *
-   * @param o Modèle à supprimer
+   * @param adresse Modèle à supprimer
    * @return true si la mise à jour a réussi, false sinon
    */
   @Override
-  public boolean delete(Adresse o) {
+  public boolean delete(Adresse adresse) {
     return false;
   }
 
   /**
    * Mise à jour d'un enregistrement de la table.
    *
-   * @param o Modèle à mettre à jour
+   * @param adresse Modèle à mettre à jour
    * @return true si la mise à jour a réussi, false sinon
    */
   @Override
-  public boolean update(Adresse o) {
+  public boolean update(Adresse adresse) {
     return false;
   }
   

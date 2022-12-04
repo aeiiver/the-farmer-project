@@ -5,24 +5,22 @@ import java.util.ArrayList;
 /**
  * Classe de modèle pour la liste des Clients.
  */
-public class listeClients {
-  private ArrayList<Client> clients;
+public class ListeClients {
 
-  /**
-   * Setter de la liste des clients.
-   *
-   * @param clients la liste des clients
-   */
-  private void setClients(ArrayList<Client> clients) {
-    this.clients = clients;
-  }
+  private ArrayList<Client> clients;
 
   /**
    * Constructeur.
    */
-  public listeClients() {
+  public ListeClients() {
+    clients = new ArrayList<>();
   }
 
+  /**
+   * Getter de la liste des clients.
+   *
+   * @return La liste des clients.
+   */
   public ArrayList<Client> getClients() {
     return clients;
   }
@@ -30,24 +28,25 @@ public class listeClients {
   /**
    * Méthode pour ajouter un client à la liste des clients.
    *
-   * @param c client à ajouter
+   * @param client client à ajouter
    */
-  public void ajouter(Client c) {
+  public void ajouter(Client client) {
   }
 
   /**
    * Méthode pour supprimer un client de la liste des clients.
    *
-   * @param c client à supprimer
+   * @param client client à supprimer
    */
-  public void supprimer(Client c) {
+  public void supprimer(Client client) {
   }
 
   /**
    * Méthode pour modifier un client de la liste des clients.
    *
-   * @param c client à modifier
+   * @param client client à modifier
    */
-  public void editer(Client c) {
+  public void editer(Client client) {
   }
+
 }

@@ -1,10 +1,10 @@
 package root.model;
 
-
 /**
  * Classe de modèle pour les Commandes.
  */
 public class Commande {
+
   private int numCom;
   private String libelle;
   private int poids;
@@ -15,11 +15,35 @@ public class Commande {
   private Client client;
 
   /**
+   * Constructeur de classe.
+   *
+   * @param numCom     Le numéro de la commande.
+   * @param libelle    Le libéllé.
+   * @param poids      Le poids, en kg.
+   * @param dateCom    La date à laquelle la commande devra être livrée, sous la forme "AAAA-MM-JJ".
+   * @param heureDeb   L'heure minimal de livraison
+   * @param heureFin   L'heure maximal de livraison
+   * @param producteur Le producteur qui a envoyé la commande.
+   * @param client     Le client auquel la commande est destiné.
+   */
+  public Commande(int numCom, String libelle, int poids, String dateCom, int heureDeb, int heureFin,
+                  Producteur producteur, Client client) {
+    this.numCom = numCom;
+    this.libelle = libelle;
+    this.poids = poids;
+    this.dateCom = dateCom;
+    this.heureDeb = heureDeb;
+    this.heureFin = heureFin;
+    this.producteur = producteur;
+    this.client = client;
+  }
+
+  /**
    * Getter du numéro de la commande.
    *
    * @return numCom le numéro de la commande
    */
-  private int getNumCom() {
+  public int getNumCom() {
     return numCom;
   }
 
@@ -28,7 +52,7 @@ public class Commande {
    *
    * @return libelle le libellé de la commande
    */
-  private String getLibelle() {
+  public String getLibelle() {
     return libelle;
   }
 
@@ -37,7 +61,7 @@ public class Commande {
    *
    * @return poids le poids de la commande
    */
-  private int getPoids() {
+  public int getPoids() {
     return poids;
   }
 
@@ -46,7 +70,7 @@ public class Commande {
    *
    * @return dateCom la date de la commande
    */
-  private String getDateCom() {
+  public String getDateCom() {
     return dateCom;
   }
 
@@ -55,7 +79,7 @@ public class Commande {
    *
    * @return heureDeb l'heure de début de la commande
    */
-  private int getHeureDeb() {
+  public int getHeureDeb() {
     return heureDeb;
   }
 
@@ -64,7 +88,7 @@ public class Commande {
    *
    * @return heureFin l'heure de fin de la commande
    */
-  private int getHeureFin() {
+  public int getHeureFin() {
     return heureFin;
   }
 
@@ -73,7 +97,7 @@ public class Commande {
    *
    * @return producteur le producteur de la commande
    */
-  private Producteur getProducteur() {
+  public Producteur getProducteur() {
     return producteur;
   }
 
@@ -82,7 +106,7 @@ public class Commande {
    *
    * @return client le client de la commande
    */
-  private Client getClient() {
+  public Client getClient() {
     return client;
   }
 
@@ -91,7 +115,7 @@ public class Commande {
    *
    * @param numCom le numéro de la commande
    */
-  private void setNumCom(int numCom) {
+  public void setNumCom(int numCom) {
     this.numCom = numCom;
   }
 
@@ -100,7 +124,7 @@ public class Commande {
    *
    * @param libelle le libellé de la commande
    */
-  private void setLibelle(String libelle) {
+  public void setLibelle(String libelle) {
     this.libelle = libelle;
   }
 
@@ -109,7 +133,7 @@ public class Commande {
    *
    * @param poids le poids de la commande
    */
-  private void setPoids(int poids) {
+  public void setPoids(int poids) {
     this.poids = poids;
   }
 
@@ -118,7 +142,7 @@ public class Commande {
    *
    * @param dateCom la date de la commande
    */
-  private void setDateCom(String dateCom) {
+  public void setDateCom(String dateCom) {
     this.dateCom = dateCom;
   }
 
@@ -127,7 +151,7 @@ public class Commande {
    *
    * @param heureDeb l'heure de début de la commande
    */
-  private void setHeureDeb(int heureDeb) {
+  public void setHeureDeb(int heureDeb) {
     this.heureDeb = heureDeb;
   }
 
@@ -136,7 +160,7 @@ public class Commande {
    *
    * @param heureFin l'heure de fin de la commande
    */
-  private void setHeureFin(int heureFin) {
+  public void setHeureFin(int heureFin) {
     this.heureFin = heureFin;
   }
 
@@ -145,7 +169,7 @@ public class Commande {
    *
    * @param producteur le producteur de la commande
    */
-  private void setProducteur(Producteur producteur) {
+  public void setProducteur(Producteur producteur) {
     this.producteur = producteur;
   }
 
@@ -154,7 +178,8 @@ public class Commande {
    *
    * @param client le client de la commande
    */
-  private void setClient(Client client) {
+  public void setClient(Client client) {
     this.client = client;
   }
+
 }

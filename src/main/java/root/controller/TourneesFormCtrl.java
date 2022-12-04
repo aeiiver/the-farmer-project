@@ -1,6 +1,6 @@
 package root.controller;
 
-import root.model.listeTournees;
+import root.model.ListeTournees;
 import root.view.TourneesFormView;
 
 /**
@@ -8,7 +8,7 @@ import root.view.TourneesFormView;
  */
 public class TourneesFormCtrl {
 
-  private listeTournees model;
+  private ListeTournees model;
   private TourneesFormView view;
 
   /**
@@ -17,7 +17,7 @@ public class TourneesFormCtrl {
    * @param model Le modèle à associer.
    * @param view  La vue à associer.
    */
-  public TourneesFormCtrl(listeTournees model, TourneesFormView view) {
+  public TourneesFormCtrl(ListeTournees model, TourneesFormView view) {
     this.model = model;
     this.view = view;
   }
@@ -40,7 +40,7 @@ public class TourneesFormCtrl {
    *
    * @return Le modèle.
    */
-  public listeTournees getModel() {
+  public ListeTournees getModel() {
     return model;
   }
 
@@ -49,7 +49,7 @@ public class TourneesFormCtrl {
    *
    * @param model Le modèle nouveau.
    */
-  public void setModel(listeTournees model) {
+  public void setModel(ListeTournees model) {
     this.model = model;
   }
 

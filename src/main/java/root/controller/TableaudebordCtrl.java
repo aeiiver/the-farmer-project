@@ -1,6 +1,8 @@
 package root.controller;
 
 
+import root.model.ListeCommandes;
+import root.model.ListeTournees;
 import root.view.ClientsView;
 import root.view.CommandesView;
 import root.view.CompteView;
@@ -13,8 +15,8 @@ import root.view.VehiculesView;
  */
 public class TableaudebordCtrl {
 
-  private root.model.listeTournees listeTournees;
-  private root.model.listeCommandes listeCommandes;
+  private ListeTournees listeTournees;
+  private ListeCommandes listeCommandes;
 
   private TableaudebordView tableaudebordView;
   private CommandesView commandesView;
@@ -39,7 +41,7 @@ public class TableaudebordCtrl {
    * @param clientsView       La vue sur la liste des clients.
    * @param vehiculesView     La vue sur la liste des véhicules.
    */
-  public TableaudebordCtrl(root.model.listeTournees listeTournees, root.model.listeCommandes listeCommandes,
+  public TableaudebordCtrl(ListeTournees listeTournees, ListeCommandes listeCommandes,
                            TableaudebordView tableaudebordView, CommandesView commandesView,
                            TourneesView tourneesView, CompteView compteView,
                            ClientsView clientsView, VehiculesView vehiculesView) {

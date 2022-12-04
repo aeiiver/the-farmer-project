@@ -21,12 +21,12 @@ public class AdminDao extends Dao<Admin, String> {
   /**
    * Insertion d'un nouvel enregistrement dans la table.
    *
-   * @param model Modèle à insérer
+   * @param admin Modèle à insérer
    * @return True si l'insertion a réussi, false sinon
    */
 
   @Override
-  public boolean insert(Admin model) {
+  public boolean insert(Admin admin) {
     return false;
   }
 
@@ -54,22 +54,22 @@ public class AdminDao extends Dao<Admin, String> {
   /**
    * Mise à jour d'un enregistrement de la table.
    *
-   * @param model Modèle à mettre à jour
+   * @param admin Modèle à mettre à jour
    * @return true si la mise à jour a réussi, false sinon
    */
   @Override
-  public boolean update(Admin model) {
+  public boolean update(Admin admin) {
     return false;
   }
 
   /**
    * Suppression d'un enregistrement de la table.
    *
-   * @param model Modèle à supprimer
+   * @param admin Modèle à supprimer
    * @return true si la suppression a réussi, false sinon
    */
   @Override
-  public boolean delete(Admin model) {
+  public boolean delete(Admin admin) {
     return false;
   }
 

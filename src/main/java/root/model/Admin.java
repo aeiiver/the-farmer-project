@@ -4,24 +4,40 @@ package root.model;
  * Classe de modèle pour les administrateurs.
  */
 public class Admin extends Utilisateur {
+
   private int idAdmin;
   private String pseudo;
+
+  /**
+   * Constructeur de classe.
+   *
+   * @param mail    Une adresse email.
+   * @param mdp     Un mot de passe.
+   * @param idAdmin Un numéro d'identification.
+   * @param pseudo  Un pseudo.
+   */
+  public Admin(String mail, String mdp, int idAdmin, String pseudo) {
+    super(mail, mdp);
+    this.idAdmin = idAdmin;
+    this.pseudo = pseudo;
+  }
 
   /**
    * Getter de l'identifiant de l'administrateur.
    *
    * @return idAdmin Identifiant de l'administrateur
    */
-  private int getIdAdmin() {
+  public int getIdAdmin() {
     return idAdmin;
   }
 
-  /** Getter du pseudo de l'administrateur.
+  /**
+   * Getter du pseudo de l'administrateur.
    *
    * @return pseudo Pseudo de l'administrateur
    */
 
-  private String getPseudo() {
+  public String getPseudo() {
     return pseudo;
   }
 
@@ -30,7 +46,7 @@ public class Admin extends Utilisateur {
    *
    * @param idAdmin Identifiant de l'administrateur
    */
-  private void setIdAdmin(int idAdmin) {
+  public void setIdAdmin(int idAdmin) {
     this.idAdmin = idAdmin;
   }
 
@@ -39,7 +55,7 @@ public class Admin extends Utilisateur {
    *
    * @param pseudo Pseudo de l'administrateur
    */
-  private void setPseudo(String pseudo) {
+  public void setPseudo(String pseudo) {
     this.pseudo = pseudo;
   }
 
@@ -52,4 +68,5 @@ public class Admin extends Utilisateur {
   public boolean verifieIdentifiants() {
     return false;
   }
+
 }

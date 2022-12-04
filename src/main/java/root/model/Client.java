@@ -4,6 +4,7 @@ package root.model;
  * Classe de modèle pour les Clients.
  */
 public class Client {
+
   private int idClient;
   private String nom;
   private String prenom;
@@ -12,11 +13,31 @@ public class Client {
   private Adresse adresse;
 
   /**
+   * Constructeur de classe.
+   *
+   * @param idClient L'identifiant du client.
+   * @param nom      Le nom du client.
+   * @param prenom   Le prénom du client.
+   * @param numTel   Le numéro de téléphone du client.
+   * @param gps      Les coordonnées GPS du client, sous la forme d'une chaîne "latitude;longitude".
+   * @param adresse  L'adresse du client, représenté par un objet Adresse.
+   */
+  public Client(int idClient, String nom, String prenom, String numTel, String gps,
+                Adresse adresse) {
+    this.idClient = idClient;
+    this.nom = nom;
+    this.prenom = prenom;
+    this.numTel = numTel;
+    this.gps = gps;
+    this.adresse = adresse;
+  }
+
+  /**
    * Getter de l'id du client.
    *
    * @return idClient l'id du client.
    */
-  private int getIdClient() {
+  public int getIdClient() {
     return idClient;
   }
 
@@ -25,7 +46,7 @@ public class Client {
    *
    * @return nom le nom du client
    */
-  private String getNom() {
+  public String getNom() {
     return nom;
   }
 
@@ -34,7 +55,7 @@ public class Client {
    *
    * @return prenom le prénom du client
    */
-  private String getPrenom() {
+  public String getPrenom() {
     return prenom;
   }
 
@@ -43,7 +64,7 @@ public class Client {
    *
    * @return numTel le numéro de téléphone du client
    */
-  private String getNumTel() {
+  public String getNumTel() {
     return numTel;
   }
 
@@ -52,7 +73,7 @@ public class Client {
    *
    * @return gps les coordonnées GPS du client
    */
-  private String getGps() {
+  public String getGps() {
     return gps;
   }
 
@@ -61,7 +82,7 @@ public class Client {
    *
    * @return adresse l'adresse du client
    */
-  private Adresse getAdresse() {
+  public Adresse getAdresse() {
     return adresse;
   }
 
@@ -70,7 +91,7 @@ public class Client {
    *
    * @param idClient l'id du client
    */
-  private void setIdClient(int idClient) {
+  public void setIdClient(int idClient) {
     this.idClient = idClient;
   }
 
@@ -79,7 +100,7 @@ public class Client {
    *
    * @param nom le nom du client
    */
-  private void setNom(String nom) {
+  public void setNom(String nom) {
     this.nom = nom;
   }
 
@@ -88,7 +109,7 @@ public class Client {
    *
    * @param prenom le prénom du client
    */
-  private void setPrenom(String prenom) {
+  public void setPrenom(String prenom) {
     this.prenom = prenom;
   }
 
@@ -97,7 +118,7 @@ public class Client {
    *
    * @param numTel le numéro de téléphone du client
    */
-  private void setNumTel(String numTel) {
+  public void setNumTel(String numTel) {
     this.numTel = numTel;
   }
 
@@ -106,7 +127,7 @@ public class Client {
    *
    * @param gps les coordonnées GPS du client
    */
-  private void setGps(String gps) {
+  public void setGps(String gps) {
     this.gps = gps;
   }
 
@@ -115,7 +136,8 @@ public class Client {
    *
    * @param adresse l'adresse du client
    */
-  private void setAdresse(Adresse adresse) {
+  public void setAdresse(Adresse adresse) {
     this.adresse = adresse;
   }
+
 }

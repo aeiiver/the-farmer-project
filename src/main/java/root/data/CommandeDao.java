@@ -21,11 +21,11 @@ public class CommandeDao extends Dao<Commande, Integer> {
   /**
    * Insertion d'un nouvel enregistrement dans la table.
    *
-   * @param o Modèle à insérer
+   * @param commande Modèle à insérer
    * @return true si la mise à jour a réussi, false sinon
    */
   @Override
-  public boolean insert(Commande o) {
+  public boolean insert(Commande commande) {
     return false;
   }
 
@@ -53,22 +53,22 @@ public class CommandeDao extends Dao<Commande, Integer> {
   /**
    * Mise à jour d'un enregistrement de la table.
    *
-   * @param o Modèle à mettre à jour
+   * @param commande Modèle à mettre à jour
    * @return true si la mise à jour a réussi, false sinon
    */
   @Override
-  public boolean update(Commande o) {
+  public boolean update(Commande commande) {
     return false;
   }
 
   /**
    * Suppression d'un enregistrement de la table.
    *
-   * @param o Modèle à supprimer
+   * @param commande Modèle à supprimer
    * @return true si la mise à jour a réussi, false sinon
    */
   @Override
-  public boolean delete(Commande o) {
+  public boolean delete(Commande commande) {
     return false;
   }
   

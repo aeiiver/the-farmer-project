@@ -6,12 +6,14 @@ import java.util.ArrayList;
  * Classe de modèle pour la liste des Vehicules.
  */
 public class ListeVehicules {
+
   private ArrayList<Vehicule> vehicules;
 
   /**
    * Constructeur.
    */
   public ListeVehicules() {
+    vehicules = new ArrayList<>();
   }
 
   /**
@@ -24,35 +26,27 @@ public class ListeVehicules {
   }
 
   /**
-   * Setter de la liste des vehicules.
-   *
-   * @param vehicules la liste des vehicules
-   */
-  private void setVehicules(ArrayList<Vehicule> vehicules) {
-    this.vehicules = vehicules;
-  }
-
-  /**
    * Méthode pour ajouter un véhicule à la liste des véhicules.
    *
-   * @param v véhicule à ajouter
+   * @param vehicule véhicule à ajouter
    */
-  public void ajouter(Vehicule v) {
+  public void ajouter(Vehicule vehicule) {
   }
 
   /**
    * Méthode pour supprimer un véhicule de la liste des véhicules.
    *
-   * @param v véhicule à supprimer
+   * @param vehicule véhicule à supprimer
    */
-  public void supprimer(Vehicule v) {
+  public void supprimer(Vehicule vehicule) {
   }
 
   /**
    * Méthode pour modifier un véhicule de la liste des véhicules.
    *
-   * @param v véhicule à modifier
+   * @param vehicule véhicule à modifier
    */
-  public void editer(Vehicule v) {
+  public void editer(Vehicule vehicule) {
   }
+
 }

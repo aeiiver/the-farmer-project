@@ -21,11 +21,11 @@ public class ClientDao extends Dao<Client, Integer> {
   /**
    * Insertion d'un nouvel enregistrement dans la table.
    *
-   * @param o Modèle à insérer
+   * @param client Modèle à insérer
    * @return true si la mise à jour a réussi, false sinon
    */
   @Override
-  public boolean insert(Client o) {
+  public boolean insert(Client client) {
     return false;
   }
 
@@ -53,22 +53,22 @@ public class ClientDao extends Dao<Client, Integer> {
   /**
    * Mise à jour d'un enregistrement de la table.
    *
-   * @param o Modèle à mettre à jour
+   * @param client Modèle à mettre à jour
    * @return true si la mise à jour a réussi, false sinon
    */
   @Override
-  public boolean update(Client o) {
+  public boolean update(Client client) {
     return false;
   }
 
   /**
    * Suppression d'un enregistrement de la table.
    *
-   * @param o Modèle à supprimer
+   * @param client Modèle à supprimer
    * @return true si la mise à jour a réussi, false sinon
    */
   @Override
-  public boolean delete(Client o) {
+  public boolean delete(Client client) {
     return false;
   }
 

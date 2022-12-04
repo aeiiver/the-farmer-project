@@ -4,15 +4,21 @@ package root.model;
  * Classe de modèle pour les utilisateurs.
  */
 public abstract class Utilisateur {
+
   private String mail;
   private String mdp;
+
+  public Utilisateur(String mail, String mdp) {
+    this.mail = mail;
+    this.mdp = mdp;
+  }
 
   /**
    * Setter pour l'attribut mail.
    *
    * @param mail mail de l'utilisateur
    */
-  private void setMail(String mail) {
+  public void setMail(String mail) {
     this.mail = mail;
   }
 
@@ -21,7 +27,7 @@ public abstract class Utilisateur {
    *
    * @param mdp mot de passe de l'utilisateur
    */
-  private void setMdp(String mdp) {
+  public void setMdp(String mdp) {
     this.mdp = mdp;
   }
 

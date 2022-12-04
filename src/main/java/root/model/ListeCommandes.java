@@ -5,24 +5,22 @@ import java.util.ArrayList;
 /**
  * Classe de modèle pour la liste des Commandes.
  */
-public class listeCommandes {
-  private ArrayList<Commande> commandes;
+public class ListeCommandes {
 
-  /**
-   * Setter de la liste des commandes.
-   *
-   * @param commandes la liste des commandes
-   */
-  private void setCommandes(ArrayList<Commande> commandes) {
-    this.commandes = commandes;
-  }
+  private ArrayList<Commande> commandes;
 
   /**
    * Constructeur.
    */
-  public listeCommandes() {
+  public ListeCommandes() {
+    commandes = new ArrayList<>();
   }
 
+  /**
+   * Getter de la liste des commandes.
+   *
+   * @return La liste des commandes.
+   */
   public ArrayList<Commande> getCommandes() {
     return commandes;
   }
@@ -30,24 +28,25 @@ public class listeCommandes {
   /**
    * Méthode pour ajouter une commande à la liste des commandes.
    *
-   * @param c commande à ajouter
+   * @param commande commande à ajouter
    */
-  public void ajouter(Commande c) {
+  public void ajouter(Commande commande) {
   }
 
   /**
    * Méthode pour supprimer une commande de la liste des commandes.
    *
-   * @param c commande à supprimer
+   * @param commande commande à supprimer
    */
-  public void supprimer(Commande c) {
+  public void supprimer(Commande commande) {
   }
 
   /**
    * Méthode pour modifier une commande de la liste des commandes.
    *
-   * @param c commande à modifier
+   * @param commande commande à modifier
    */
-  public void editer(Commande c) {
+  public void editer(Commande commande) {
   }
+
 }

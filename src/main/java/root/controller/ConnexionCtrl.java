@@ -70,7 +70,7 @@ public class ConnexionCtrl {
    *
    * @return true si les identifiants sont valides, false sinon.
    */
-  private boolean valideIdentifiants() {
+  public boolean valideIdentifiants() {
     // dummy return
     return false;
   }
@@ -80,7 +80,7 @@ public class ConnexionCtrl {
    *
    * @return La vue de l'écran de connexion.
    */
-  private ConnexionView getConnexionView() {
+  public ConnexionView getConnexionView() {
     return connexionView;
   }
 
@@ -89,7 +89,7 @@ public class ConnexionCtrl {
    *
    * @param view La vue nouvelle.
    */
-  private void setConnexionView(ConnexionView connexionView) {
+  public void setConnexionView(ConnexionView connexionView) {
     this.connexionView = connexionView;
   }
 
@@ -98,7 +98,7 @@ public class ConnexionCtrl {
    *
    * @return La vue du tableau de bord.
    */
-  private TableaudebordView getTableaudebordView() {
+  public TableaudebordView getTableaudebordView() {
     return tableaudebordView;
   }
 
@@ -107,7 +107,7 @@ public class ConnexionCtrl {
    *
    * @param view La vue nouvelle.
    */
-  private void setTableaudebordView(TableaudebordView tableaudebordView) {
+  public void setTableaudebordView(TableaudebordView tableaudebordView) {
     this.tableaudebordView = tableaudebordView;
   }
 

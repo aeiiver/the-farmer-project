@@ -21,11 +21,11 @@ public class ProducteurDao extends Dao<Producteur, String> {
   /**
    * Insertion d'un nouvel enregistrement dans la table.
    *
-   * @param o Modèle à insérer
+   * @param producteur Modèle à insérer
    * @return true si la mise à jour a réussi, false sinon
    */
   @Override
-  public boolean insert(Producteur o) {
+  public boolean insert(Producteur producteur) {
     return false;
   }
 
@@ -53,22 +53,22 @@ public class ProducteurDao extends Dao<Producteur, String> {
   /**
    * Mise à jour d'un enregistrement de la table.
    *
-   * @param o Modèle à mettre à jour
+   * @param producteur Modèle à mettre à jour
    * @return true si la mise à jour a réussi, false sinon
    */
   @Override
-  public boolean update(Producteur o) {
+  public boolean update(Producteur producteur) {
     return false;
   }
 
   /**
    * Suppression d'un enregistrement de la table.
    *
-   * @param o Modèle à supprimer
+   * @param producteur Modèle à supprimer
    * @return true si la suppression a réussi, false sinon
    */
   @Override
-  public boolean delete(Producteur o) {
+  public boolean delete(Producteur producteur) {
     return false;
   }
 

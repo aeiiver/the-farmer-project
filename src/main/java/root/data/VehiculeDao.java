@@ -21,22 +21,22 @@ public class VehiculeDao extends Dao<Vehicule, String> {
   /**
    * Insertion d'un nouvel enregistrement dans la table.
    *
-   * @param o Modèle à insérer
+   * @param vehicule Modèle à insérer
    * @return true si la mise à jour a réussi, false sinon
    */
   @Override
-  public boolean insert(Vehicule o) {
+  public boolean insert(Vehicule vehicule) {
     return false;
   }
 
   /**
    * Récupération d'un enregistrement de la table.
    *
-   * @param id Identifiant de l'enregistrement à récupérer
+   * @param immat Identifiant de l'enregistrement à récupérer
    * @return Modèle correspondant à l'enregistrement
    */
   @Override
-  public Vehicule get(String id) {
+  public Vehicule get(String immat) {
     return null;
   }
 
@@ -53,22 +53,22 @@ public class VehiculeDao extends Dao<Vehicule, String> {
   /**
    * Mise à jour d'un enregistrement de la table.
    *
-   * @param o Modèle à mettre à jour
+   * @param vehicule Modèle à mettre à jour
    * @return true si la mise à jour a réussi, false sinon
    */
   @Override
-  public boolean update(Vehicule o) {
+  public boolean update(Vehicule vehicule) {
     return false;
   }
 
   /**
    * Suppression d'un enregistrement de la table.
    *
-   * @param o Modèle à supprimer
+   * @param vehicule Modèle à supprimer
    * @return true si la mise à jour a réussi, false sinon
    */
   @Override
-  public boolean delete(Vehicule o) {
+  public boolean delete(Vehicule vehicule) {
     return false;
   }
 

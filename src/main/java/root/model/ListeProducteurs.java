@@ -5,13 +5,15 @@ import java.util.ArrayList;
 /**
  * Classe de modèle pour la liste des Producteurs.
  */
-public class listeProducteurs {
+public class ListeProducteurs {
+
   private ArrayList<Producteur> producteurs;
 
   /**
    * Constructeur.
    */
-  public void listeProducteur() {
+  public ListeProducteurs() {
+    producteurs = new ArrayList<>();
   }
 
   /**
@@ -24,35 +26,27 @@ public class listeProducteurs {
   }
 
   /**
-   * Setter de la liste des producteurs.
-   *
-   * @param producteurs la liste des producteurs
-   */
-  private void setProducteurs(ArrayList<Producteur> producteurs) {
-    this.producteurs = producteurs;
-  }
-
-  /**
    * Méthode pour ajouter un producteur à la liste des producteurs.
    *
-   * @param p producteur à ajouter
+   * @param producteur producteur à ajouter
    */
-  public void ajouter(Producteur p) {
+  public void ajouter(Producteur producteur) {
   }
 
   /**
    * Méthode pour supprimer un producteur de la liste des producteurs.
    *
-   * @param p producteur à supprimer
+   * @param producteur producteur à supprimer
    */
-  public void supprimer(Producteur p) {
+  public void supprimer(Producteur producteur) {
   }
 
   /**
    * Méthode pour modifier un producteur de la liste des producteurs.
    *
-   * @param p producteur à modifier
+   * @param producteur producteur à modifier
    */
-  public void editer(Producteur p) {
+  public void editer(Producteur producteur) {
   }
+
 }

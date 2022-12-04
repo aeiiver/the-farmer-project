@@ -4,19 +4,41 @@ package root.model;
  * Classe de modèle pour les Producteurs.
  */
 public class Producteur extends Utilisateur {
-  private String Siret;
+
+  private String siret;
   private String nom;
   private String prenom;
   private String numTel;
   private Adresse adresse;
 
   /**
+   * Constructeur.
+   *
+   * @param mail    L'adresse email du producteur.
+   * @param mdp     Son mot de passe.
+   * @param siret   Le numéro SIRET auquel le producteur est associé.
+   * @param nom     Le nom du producteur.
+   * @param prenom  Le prénom du producteur.
+   * @param numTel  Le numéro de téléphone du producteur.
+   * @param adresse L'adresse du producteur, représenté par un objet Adresse.
+   */
+  public Producteur(String mail, String mdp, String siret, String nom, String prenom, String numTel,
+                    Adresse adresse) {
+    super(mail, mdp);
+    this.siret = siret;
+    this.nom = nom;
+    this.prenom = prenom;
+    this.numTel = numTel;
+    this.adresse = adresse;
+  }
+
+  /**
    * Getter du numéro Siret du producteur.
    *
    * @return Siret le numéro Siret du producteur
    */
-  private String getSiret() {
-    return Siret;
+  public String getSiret() {
+    return siret;
   }
 
   /**
@@ -24,7 +46,7 @@ public class Producteur extends Utilisateur {
    *
    * @return nom le nom du producteur
    */
-  private String getNom() {
+  public String getNom() {
     return nom;
   }
 
@@ -33,7 +55,7 @@ public class Producteur extends Utilisateur {
    *
    * @return prenom le prénom du producteur
    */
-  private String getPrenom() {
+  public String getPrenom() {
     return prenom;
   }
 
@@ -42,7 +64,7 @@ public class Producteur extends Utilisateur {
    *
    * @return numTel le numéro de téléphone du producteur
    */
-  private String getNumTel() {
+  public String getNumTel() {
     return numTel;
   }
 
@@ -51,7 +73,7 @@ public class Producteur extends Utilisateur {
    *
    * @return adresse l'adresse du producteur
    */
-  private Adresse getAdresse() {
+  public Adresse getAdresse() {
     return adresse;
   }
 
@@ -60,8 +82,8 @@ public class Producteur extends Utilisateur {
    *
    * @param siret le numéro Siret du producteur
    */
-  private void setSiret(String siret) {
-    this.Siret = siret;
+  public void setSiret(String siret) {
+    this.siret = siret;
   }
 
   /**
@@ -69,7 +91,7 @@ public class Producteur extends Utilisateur {
    *
    * @param nom le nom du producteur
    */
-  private void setNom(String nom) {
+  public void setNom(String nom) {
     this.nom = nom;
   }
 
@@ -78,7 +100,7 @@ public class Producteur extends Utilisateur {
    *
    * @param prenom le prénom du producteur
    */
-  private void setPrenom(String prenom) {
+  public void setPrenom(String prenom) {
     this.prenom = prenom;
   }
 
@@ -87,7 +109,7 @@ public class Producteur extends Utilisateur {
    *
    * @param numTel le numéro de téléphone du producteur
    */
-  private void setNumTel(String numTel) {
+  public void setNumTel(String numTel) {
     this.numTel = numTel;
   }
 
@@ -96,7 +118,7 @@ public class Producteur extends Utilisateur {
    *
    * @param adresse l'adresse du producteur
    */
-  private void setAdresse(Adresse adresse) {
+  public void setAdresse(Adresse adresse) {
     this.adresse = adresse;
   }
 
@@ -111,4 +133,5 @@ public class Producteur extends Utilisateur {
     // dummy return
     return false;
   }
+
 }

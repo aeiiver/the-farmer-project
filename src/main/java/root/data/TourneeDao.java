@@ -21,11 +21,11 @@ public class TourneeDao extends Dao<Tournee, Integer> {
   /**
    * Insertion d'un nouvel enregistrement dans la table.
    *
-   * @param o Modèle à insérer
+   * @param tournee Modèle à insérer
    * @return true si la mise à jour a réussi, false sinon
    */
   @Override
-  public boolean insert(Tournee o) {
+  public boolean insert(Tournee tournee) {
     return false;
   }
 
@@ -53,23 +53,23 @@ public class TourneeDao extends Dao<Tournee, Integer> {
   /**
    * Mise à jour d'un enregistrement de la table.
    *
-   * @param o Modèle à mettre à jour
+   * @param tournee Modèle à mettre à jour
    * @return true si la mise à jour a réussi, false sinon
    */
   @Override
-  public boolean update(Tournee o) {
+  public boolean update(Tournee tournee) {
     return false;
   }
 
   /**
    * Suppression d'un enregistrement de la table.
    *
-   * @param o Modèle à supprimer
+   * @param tournee Modèle à supprimer
    * @return true si la mise à jour a réussi, false sinon
    */
   @Override
-  public boolean delete(Tournee o) {
+  public boolean delete(Tournee tournee) {
     return false;
   }
-  
+
 }
