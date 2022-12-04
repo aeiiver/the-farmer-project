@@ -2,14 +2,13 @@ package root.data;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import root.model.Admin;
 
 /**
  * Cette classe est utilisée pour accéder à la table Admin.
- *
- * @param <Model> Model utilisé pour la table
- * @param <IdType> Type de l'identifiant de la table
  */
-public class AdminDao<Model, IdType> extends Dao<Model, IdType> {
+public class AdminDao extends Dao<Admin, String> {
+
   /**
    * Constructeur.
    *
@@ -27,7 +26,7 @@ public class AdminDao<Model, IdType> extends Dao<Model, IdType> {
    */
 
   @Override
-  public boolean insert(Model model) {
+  public boolean insert(Admin model) {
     return false;
   }
 
@@ -37,9 +36,8 @@ public class AdminDao<Model, IdType> extends Dao<Model, IdType> {
    * @param id Identifiant de l'enregistrement à récupérer
    * @return Modèle correspondant à l'enregistrement
    */
-
   @Override
-  public Model get(IdType id) {
+  public Admin get(String id) {
     return null;
   }
 
@@ -49,7 +47,7 @@ public class AdminDao<Model, IdType> extends Dao<Model, IdType> {
    * @return Liste des enregistrements
    */
   @Override
-  public ArrayList<Model> getAll() {
+  public ArrayList<Admin> getAll() {
     return null;
   }
 
@@ -60,7 +58,7 @@ public class AdminDao<Model, IdType> extends Dao<Model, IdType> {
    * @return true si la mise à jour a réussi, false sinon
    */
   @Override
-  public boolean update(Model model) {
+  public boolean update(Admin model) {
     return false;
   }
 
@@ -71,7 +69,8 @@ public class AdminDao<Model, IdType> extends Dao<Model, IdType> {
    * @return true si la suppression a réussi, false sinon
    */
   @Override
-  public boolean delete(Model model) {
+  public boolean delete(Admin model) {
     return false;
   }
+
 }

@@ -3,10 +3,13 @@ package root.data;
 import java.sql.Connection;
 
 /**
- * Singleton pour la connexion à la base de données.
+ * Cette classe encapsule un objet Connection dans un singleton.
+ *
+ * <p>Cette objet Connection correspond à une connexion à la base de données.</p>
  */
 public class SingleConnection {
-  private static Connection connexion;
+
+  private static Connection connexion = null;
 
   /**
    * Constructeur.
@@ -20,6 +23,10 @@ public class SingleConnection {
    * @return Connexion à la base de données
    */
   public static Connection getInstance() {
-    return null;
+    if (connexion == null) {
+      // do stuff that make so connexion is no longer null
+    }
+    return connexion;
   }
+
 }

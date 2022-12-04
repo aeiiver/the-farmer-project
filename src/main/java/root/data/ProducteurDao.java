@@ -2,14 +2,12 @@ package root.data;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import root.model.Producteur;
 
 /**
  * Cette classe est utilisée pour accéder à la table Producteur.
- *
- * @param <Model> Modèle utilisé pour la table
- * @param <IdType> Type de l'identifiant de la table
  */
-public class ProducteurDao<Model, IdType> extends Dao {
+public class ProducteurDao extends Dao<Producteur, String> {
 
   /**
    * Constructeur.
@@ -27,7 +25,7 @@ public class ProducteurDao<Model, IdType> extends Dao {
    * @return true si la mise à jour a réussi, false sinon
    */
   @Override
-  public boolean insert(Object o) {
+  public boolean insert(Producteur o) {
     return false;
   }
 
@@ -38,7 +36,7 @@ public class ProducteurDao<Model, IdType> extends Dao {
    * @return Modèle correspondant à l'enregistrement
    */
   @Override
-  public Object get(Object id) {
+  public Producteur get(String id) {
     return null;
   }
 
@@ -48,7 +46,7 @@ public class ProducteurDao<Model, IdType> extends Dao {
    * @return Liste des enregistrements
    */
   @Override
-  public ArrayList getAll() {
+  public ArrayList<Producteur> getAll() {
     return null;
   }
 
@@ -59,7 +57,7 @@ public class ProducteurDao<Model, IdType> extends Dao {
    * @return true si la mise à jour a réussi, false sinon
    */
   @Override
-  public boolean update(Object o) {
+  public boolean update(Producteur o) {
     return false;
   }
 
@@ -70,7 +68,7 @@ public class ProducteurDao<Model, IdType> extends Dao {
    * @return true si la suppression a réussi, false sinon
    */
   @Override
-  public boolean delete(Object o) {
+  public boolean delete(Producteur o) {
     return false;
   }
 

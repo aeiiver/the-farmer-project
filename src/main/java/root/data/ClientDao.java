@@ -2,14 +2,13 @@ package root.data;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import root.model.Client;
 
 /**
  * Cette classe est utilisée pour accéder à la classe Client.
- *
- * @param <Model> Model utilisé pour la table
- * @param <IdType> Type de l'identifiant de la table
  */
-public class ClientDao<Model, IdType> extends Dao {
+public class ClientDao extends Dao<Client, Integer> {
+
   /**
    * Constructeur.
    *
@@ -26,7 +25,7 @@ public class ClientDao<Model, IdType> extends Dao {
    * @return true si la mise à jour a réussi, false sinon
    */
   @Override
-  public boolean insert(Object o) {
+  public boolean insert(Client o) {
     return false;
   }
 
@@ -37,7 +36,7 @@ public class ClientDao<Model, IdType> extends Dao {
    * @return Modèle correspondant à l'enregistrement
    */
   @Override
-  public Object get(Object id) {
+  public Client get(Integer id) {
     return null;
   }
 
@@ -47,7 +46,7 @@ public class ClientDao<Model, IdType> extends Dao {
    * @return Liste des enregistrements
    */
   @Override
-  public ArrayList<Model> getAll() {
+  public ArrayList<Client> getAll() {
     return null;
   }
 
@@ -58,7 +57,7 @@ public class ClientDao<Model, IdType> extends Dao {
    * @return true si la mise à jour a réussi, false sinon
    */
   @Override
-  public boolean update(Object o) {
+  public boolean update(Client o) {
     return false;
   }
 
@@ -69,7 +68,8 @@ public class ClientDao<Model, IdType> extends Dao {
    * @return true si la mise à jour a réussi, false sinon
    */
   @Override
-  public boolean delete(Object o) {
+  public boolean delete(Client o) {
     return false;
   }
+
 }

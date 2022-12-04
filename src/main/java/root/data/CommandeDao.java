@@ -2,14 +2,13 @@ package root.data;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import root.model.Commande;
 
 /**
  * Cette classe est utilisée pour accéder à la table Commande.
- *
- * @param <Model> Model utilisé pour la table
- * @param <IdType> Type de l'identifiant de la table
  */
-public class CommandeDao<Model, IdType> extends Dao {
+public class CommandeDao extends Dao<Commande, Integer> {
+
   /**
    * Constructeur.
    *
@@ -26,7 +25,7 @@ public class CommandeDao<Model, IdType> extends Dao {
    * @return true si la mise à jour a réussi, false sinon
    */
   @Override
-  public boolean insert(Object o) {
+  public boolean insert(Commande o) {
     return false;
   }
 
@@ -36,7 +35,7 @@ public class CommandeDao<Model, IdType> extends Dao {
    * @param id Identifiant de l'enregistrement à récupérer
    */
   @Override
-  public Object get(Object id) {
+  public Commande get(Integer id) {
     return null;
   }
 
@@ -47,7 +46,7 @@ public class CommandeDao<Model, IdType> extends Dao {
    * @return Liste des enregistrements
    */
   @Override
-  public ArrayList<Model> getAll() {
+  public ArrayList<Commande> getAll() {
     return null;
   }
 
@@ -58,7 +57,7 @@ public class CommandeDao<Model, IdType> extends Dao {
    * @return true si la mise à jour a réussi, false sinon
    */
   @Override
-  public boolean update(Object o) {
+  public boolean update(Commande o) {
     return false;
   }
 
@@ -69,7 +68,8 @@ public class CommandeDao<Model, IdType> extends Dao {
    * @return true si la mise à jour a réussi, false sinon
    */
   @Override
-  public boolean delete(Object o) {
+  public boolean delete(Commande o) {
     return false;
   }
+  
 }
