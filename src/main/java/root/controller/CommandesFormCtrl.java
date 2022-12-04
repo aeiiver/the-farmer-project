@@ -1,6 +1,6 @@
 package root.controller;
 
-import root.model.ListeCommandes;
+import root.model.listeCommandes;
 import root.view.CommandesFormView;
 
 /**
@@ -8,7 +8,7 @@ import root.view.CommandesFormView;
  */
 public class CommandesFormCtrl {
 
-  private ListeCommandes model;
+  private listeCommandes model;
   private CommandesFormView view;
 
   /**
@@ -17,7 +17,7 @@ public class CommandesFormCtrl {
    * @param model Le modèle à associer.
    * @param view  La vue à associer.
    */
-  public CommandesFormCtrl(ListeCommandes model, CommandesFormView view) {
+  public CommandesFormCtrl(listeCommandes model, CommandesFormView view) {
     this.model = model;
     this.view = view;
   }
@@ -40,7 +40,7 @@ public class CommandesFormCtrl {
    *
    * @return Le modèle.
    */
-  public ListeCommandes getModel() {
+  public listeCommandes getModel() {
     return model;
   }
 
@@ -49,7 +49,7 @@ public class CommandesFormCtrl {
    *
    * @param model Le modèle nouveau.
    */
-  public void setModel(ListeCommandes model) {
+  public void setModel(listeCommandes model) {
     this.model = model;
   }
 

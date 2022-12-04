@@ -1,6 +1,6 @@
 package root.controller;
 
-import root.model.ListeClients;
+import root.model.listeClients;
 import root.view.ClientsFormView;
 
 /**
@@ -8,7 +8,7 @@ import root.view.ClientsFormView;
  */
 public class ClientsFormCtrl {
 
-  private ListeClients model;
+  private listeClients model;
   private ClientsFormView view;
 
   /**
@@ -17,7 +17,7 @@ public class ClientsFormCtrl {
    * @param model Le modèle à associer.
    * @param view  La vue à associer.
    */
-  public ClientsFormCtrl(ListeClients model, ClientsFormView view) {
+  public ClientsFormCtrl(listeClients model, ClientsFormView view) {
     this.model = model;
     this.view = view;
   }
@@ -40,7 +40,7 @@ public class ClientsFormCtrl {
    *
    * @return Le modèle.
    */
-  public ListeClients getModel() {
+  public listeClients getModel() {
     return model;
   }
 
@@ -49,7 +49,7 @@ public class ClientsFormCtrl {
    *
    * @param model Le modèle nouveau.
    */
-  public void setModel(ListeClients model) {
+  public void setModel(listeClients model) {
     this.model = model;
   }
 

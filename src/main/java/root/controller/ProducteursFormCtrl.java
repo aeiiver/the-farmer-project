@@ -1,6 +1,6 @@
 package root.controller;
 
-import root.model.ListeProducteurs;
+import root.model.listeProducteurs;
 import root.view.ProducteursFormView;
 
 /**
@@ -8,7 +8,7 @@ import root.view.ProducteursFormView;
  */
 public class ProducteursFormCtrl {
 
-  private ListeProducteurs model;
+  private listeProducteurs model;
   private ProducteursFormView view;
 
   /**
@@ -17,7 +17,7 @@ public class ProducteursFormCtrl {
    * @param model Le modèle à associer.
    * @param view  La vue à associer.
    */
-  public ProducteursFormCtrl(ListeProducteurs model, ProducteursFormView view) {
+  public ProducteursFormCtrl(listeProducteurs model, ProducteursFormView view) {
     this.model = model;
     this.view = view;
   }
@@ -40,7 +40,7 @@ public class ProducteursFormCtrl {
    *
    * @return Le modèle.
    */
-  public ListeProducteurs getModel() {
+  public listeProducteurs getModel() {
     return model;
   }
 
@@ -49,7 +49,7 @@ public class ProducteursFormCtrl {
    *
    * @param model Le modèle nouveau.
    */
-  public void setModel(ListeProducteurs model) {
+  public void setModel(listeProducteurs model) {
     this.model = model;
   }
 
