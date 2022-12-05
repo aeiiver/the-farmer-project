@@ -4,6 +4,7 @@ package root.model;
  * Classe de modèle pour les Véhicules.
  */
 public class Vehicule {
+
   private String immat;
   private int poidsMax;
   private Producteur proprietaire;
@@ -13,7 +14,7 @@ public class Vehicule {
    *
    * @return immat l'immatriculation du véhicule
    */
-  private String getImmat() {
+  public String getImmat() {
     return immat;
   }
 
@@ -22,7 +23,7 @@ public class Vehicule {
    *
    * @return poidsMax le poids maximal du véhicule
    */
-  private int getPoidsMax() {
+  public int getPoidsMax() {
     return poidsMax;
   }
 
@@ -31,7 +32,7 @@ public class Vehicule {
    *
    * @return proprietaire le propriétaire du véhicule
    */
-  private Producteur getProprietaire() {
+  public Producteur getProprietaire() {
     return proprietaire;
   }
 
@@ -40,7 +41,7 @@ public class Vehicule {
    *
    * @param immat l'immatriculation du véhicule
    */
-  private void setImmat(String immat) {
+  public void setImmat(String immat) {
     this.immat = immat;
   }
 
@@ -49,7 +50,7 @@ public class Vehicule {
    *
    * @param poidsMax le poids maximal du véhicule
    */
-  private void setPoidsMax(int poidsMax) {
+  public void setPoidsMax(int poidsMax) {
     this.poidsMax = poidsMax;
   }
 
@@ -58,7 +59,8 @@ public class Vehicule {
    *
    * @param proprietaire le propriétaire du véhicule
    */
-  private void setProprietaire(Producteur proprietaire) {
+  public void setProprietaire(Producteur proprietaire) {
     this.proprietaire = proprietaire;
   }
+
 }

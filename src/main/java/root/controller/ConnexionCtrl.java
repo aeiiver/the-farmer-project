@@ -87,7 +87,7 @@ public class ConnexionCtrl {
   /**
    * Change la vue courante de l'écran de connexion avec une nouvelle.
    *
-   * @param view La vue nouvelle.
+   * @param connexionView La vue nouvelle.
    */
   public void setConnexionView(ConnexionView connexionView) {
     this.connexionView = connexionView;
@@ -105,7 +105,7 @@ public class ConnexionCtrl {
   /**
    * Change la vue courante du tableau de bord avec une nouvelle.
    *
-   * @param view La vue nouvelle.
+   * @param tableaudebordView La vue nouvelle.
    */
   public void setTableaudebordView(TableaudebordView tableaudebordView) {
     this.tableaudebordView = tableaudebordView;

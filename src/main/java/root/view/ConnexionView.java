@@ -5,6 +5,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import root.controller.ConnexionCtrl;
 
 /**
  * Classe de vue pour la connexion.
@@ -20,8 +21,15 @@ public class ConnexionView {
   private Label message;
   private Button connexionButton;
 
-  public ConnexionView() {
+  private ConnexionCtrl ctrl;
 
+  /**
+   * Constructeur de classe.
+   *
+   * @param ctrl Le contrôleur de cette vue.
+   */
+  public ConnexionView(ConnexionCtrl ctrl) {
+    this.ctrl = ctrl;
   }
 
   /**
@@ -51,6 +59,11 @@ public class ConnexionView {
     return null;
   }
 
+  /**
+   * Change le contenu du message à afficher en cas d'erreur.
+   *
+   * @param msg Le message à afficher.
+   */
   public void setMessage(String msg) {
     this.message.setText(msg);
   }
