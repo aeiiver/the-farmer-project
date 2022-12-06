@@ -4,7 +4,7 @@ import root.model.Utilisateur;
 import root.view.CompteView;
 
 /**
- * Classe contrôleuse pour la vue et modèle de le compte de l'utilisateur.
+ * Classe contrôleuse pour la vue et modèle du compte de l'utilisateur.
  */
 public class CompteCtrl {
 
