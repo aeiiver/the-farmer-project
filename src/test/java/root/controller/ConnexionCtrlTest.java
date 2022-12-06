@@ -1,32 +1,17 @@
 package root.controller;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.*;
 
 class ConnexionCtrlTest {
 
-  @Test
-  void verifieIdentifiants() {
-  }
-
+  /**
+   * Ce test doit vérifier si la validation des identifiants renvoie bien
+   * true si les identifiants sont valides, ou false sinon.
+   */
   @Test
   void valideIdentifiants() {
   }
 
-  @Test
-  void getConnexionView() {
-  }
-
-  @Test
-  void setConnexionView() {
-  }
-
-  @Test
-  void getTableaudebordView() {
-  }
-
-  @Test
-  void setTableaudebordView() {
-  }
 }

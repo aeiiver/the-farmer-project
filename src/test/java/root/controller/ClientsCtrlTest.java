@@ -2,33 +2,38 @@ package root.controller;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.*;
+
 class ClientsCtrlTest {
 
-  @org.junit.jupiter.api.Test
+  /**
+   * Ce test doit vérifier que l'ajout d'un client est effectif dans la liste des clients.
+   *
+   * <p>Après ajout, on peut vérifier si dans la liste des clients, on retrouve bien
+   * le client.</p>
+   */
+  @Test
   void ajouterClient() {
   }
 
-  @org.junit.jupiter.api.Test
+  /**
+   * Ce test doit vérifier que la suppression d'un client est effective dans la liste des clients.
+   *
+   * <p>Après suppression, on peut vérifier si dans la liste des clients, on ne retrouve pas
+   * le client.</p>
+   */
+  @Test
   void supprimerClient() {
   }
 
-  @org.junit.jupiter.api.Test
+  /**
+   * Ce test doit vérifier que la modification d'un client est effective dans la liste des clients.
+   *
+   * <p>Après modification, on peut vérifier si dans la liste des clients, on retrouve bien
+   * le client avec les modifications apportées.</p>
+   */
+  @Test
   void editerClient() {
   }
 
-  @org.junit.jupiter.api.Test
-  void getModel() {
-  }
-
-  @org.junit.jupiter.api.Test
-  void setModel() {
-  }
-
-  @org.junit.jupiter.api.Test
-  void getView() {
-  }
-
-  @org.junit.jupiter.api.Test
-  void setView() {
-  }
 }
