@@ -123,9 +123,17 @@ public class Producteur extends Utilisateur {
   }
 
   /**
-   * Méthode vérifiant les identifiants du producteur.
+   * Vérification des informations de connexion.
    *
-   * @return true si les identifiants sont corrects, false sinon
+   * <p>La vérification se fait en invoquant un objet "ProducteurDAO" pour qu'il nous retourne
+   * un autre objet "Producteur" et pour qu'on puisse comparer le mot de passe de l'instance
+   * courante à celui de cet autre objet.
+   * </p>
+   *
+   * <p>Si ProducteurDAO retourne null à la place d'un objet Producteur, alors on sait directement
+   * que les identifiants sont incorrectes.</p>
+   *
+   * @return true si les informations sont correctes, false sinon.
    */
   @Override
   public boolean verifieIdentifiants() {

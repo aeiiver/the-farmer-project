@@ -35,10 +35,10 @@ public class ConnexionCtrl {
    * s'arrête et on indiquera à l'utilisateur que les champs sont invalides.
    * </p>
    *
-   * <p>Après validation des champs, il faut établir une connexion à la base de
-   * données et récupérer les données concernant l'utilisateur. La case à cocher
-   * "Administrateur" permettra de savoir quel DAO invoquer (AdminDAO ou
-   * ProducteurDAO).
+   * <p>Après validation des champs, le travail de vérification est délégué à un objet
+   * "Producteur" ou "Admin" (selon si la case "Administrateur" est coché ou non), créé avec
+   * les valeurs des champs. L'objet créé peut nous renvoyer un boolean, indiquant si oui ou non
+   * les identifiants sont correctes et qu'il y a correspondance.
    * </p>
    *
    * <p>S'il y a bien une correspondance (les mots de passes sont les mêmes),

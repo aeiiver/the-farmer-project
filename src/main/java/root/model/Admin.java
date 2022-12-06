@@ -62,7 +62,15 @@ public class Admin extends Utilisateur {
   /**
    * Vérification des informations de connexion.
    *
-   * @return true si les informations sont correctes, false sinon
+   * <p>La vérification se fait en invoquant un objet "AdminDAO" pour qu'il nous retourne
+   * un autre objet "Admin" et pour qu'on puisse comparer le mot de passe de l'instance courante
+   * à celui de cet autre objet.
+   * </p>
+   *
+   * <p>Si AdminDAO retourne null à la place d'un Admin, alors on sait directement que
+   * les identifiants sont incorrectes.</p>
+   *
+   * @return true si les informations sont correctes, false sinon.
    */
   @Override
   public boolean verifieIdentifiants() {
