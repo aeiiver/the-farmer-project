@@ -10,12 +10,30 @@ import root.controller.TourneesCtrl;
  */
 public class TourneesView {
 
+  /**
+   * Menu de navigation sur la fênetre.
+   */
   private MenuBar menu;
+  /**
+   * Liste pour afficher la liste des tournées existantes.
+   */
   private ListView listeTournees;
+  /**
+   * Bouton pour ajouter une nouvelle tournée.
+   */
   private Button ajouterTournee;
+  /**
+   * Bouton pour supprimer une tournée déjà existante.
+   */
   private Button supprimerTournee;
+  /**
+   * Bouton pour modifier une tournée déjà existante.
+   */
   private Button editerTournee;
 
+  /**
+   * TODO
+   */
   private TourneesCtrl ctrl;
 
   /**

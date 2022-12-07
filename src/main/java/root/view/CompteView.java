@@ -12,14 +12,38 @@ import root.controller.CompteCtrl;
  */
 public class CompteView {
 
+  /**
+   * Menu de navigation sur la fênetre.
+   */
   private MenuBar menu;
-  private TextField email;
+  /**
+   * Texte à côté du champ de texte pour modifier l'adresse mail.
+   */
   private Label emailLabel;
+  /**
+   * Champ de texte pour modifier l'adresse mail.
+   */
+  private TextField email;
+  /**
+   * Texte à côté du champ à mot de passe pour modifier le mot de passe.
+   */
   private Label motdepasseLabel;
+  /**
+   * Champ à mot de passe pour modifier le mot de passe.
+   */
   private PasswordField motdepasse;
+  /**
+   * Bouton pour enregistrer les données.
+   */
   private Button enregistrer;
+  /**
+   * Bouton pour annuler les modifications.
+   */
   private Button annuler;
 
+  /**
+   * TODO
+   */
   private CompteCtrl ctrl;
 
   /**

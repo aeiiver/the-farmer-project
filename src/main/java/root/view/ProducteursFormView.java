@@ -10,24 +10,92 @@ import root.controller.ProducteursFormCtrl;
  */
 public class ProducteursFormView {
 
+  /**
+   * Texte à côté du champ de texte pour le numéro SIRET du producteur.
+   */
   private Label siretLabel;
+  /**
+   * Champ de texte pour écrire le numéro SIRET du producteur.
+   *
+   * @see ProducteursFormView#getSiret()
+   */
   private TextField siret;
+  /**
+   * Texte à côté du champ de texte pour le nom du producteur.
+   */
   private Label nomLabel;
+  /**
+   * Champ de texte pour écrire le nom du producteur.
+   *
+   * @see ProducteursFormView#getNom()
+   */
   private TextField nom;
+  /**
+   * Texte à côté du champ de texte pour le prénom du producteur.
+   */
   private Label prenomLabel;
+  /**
+   * Champ de texte pour écrire le prénom du producteur.
+   *
+   * @see ProducteursFormView#getPrenom()
+   */
   private TextField prenom;
+  /**
+   * Texte à côté du champ de texte pour le numéro de téléphone du producteur.
+   */
   private Label numTelLabel;
+  /**
+   * Champ de texte pour écrire le numéro téléphone du producteur.
+   *
+   * @see ProducteursFormView#getNumTel()
+   */
   private TextField numTel;
+  /**
+   * Texte à côté du champ de texte pour l'adresse du producteur.
+   */
   private Label adresseLabel;
+  /**
+   * Champ de texte pour écrire l'adresse du producteur.
+   *
+   * @see ProducteursFormView#getAdresse()
+   */
   private TextField adresse;
+  /**
+   * Texte à côté du champ de texte pour la ville du producteur.
+   */
   private Label villeLabel;
+  /**
+   * Champ de texte pour écrire la ville du producteur.
+   *
+   * @see ProducteursFormView#getVille()
+   */
   private TextField ville;
+  /**
+   * Texte à côté du champ de texte pour le code postal du producteur.
+   */
   private Label codePostLabel;
+  /**
+   * Champ de texte pour écrire le code postal du producteur.
+   *
+   * @see ProducteursFormView#getCodePost()
+   */
   private TextField codePost;
+  /**
+   * TODO
+   */
   private Label message;
+  /**
+   * Bouton pour enregistrer les champs du formulaire.
+   */
   private Button enregistrer;
+  /**
+   * Bouton pour annuler le formulaire.
+   */
   private Button annuler;
 
+  /**
+   * Permet d'afficher le message d'erreur.
+   */
   private ProducteursFormCtrl ctrl;
 
   /**

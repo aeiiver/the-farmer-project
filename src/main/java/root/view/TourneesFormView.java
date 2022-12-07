@@ -16,18 +16,62 @@ import root.model.Vehicule;
  */
 public class TourneesFormView {
 
+  /**
+   * Texte à côté du champ de texte pour le libelle de la tournée.
+   */
   private Label libelleLabel;
+  /**
+   * Champ de texte pour écrire le libelle de la tournée.
+   *
+   * @see TourneesFormView#getLibelle()
+   */
   private TextField libelle;
+  /**
+   * Texte à côté du calendrier pour la date de la tournée.
+   */
   private Label dateLabel;
+  /**
+   * Calendrier pour choisir la date de la tournée.
+   *
+   * @see TourneesFormView#getDate()
+   */
   private DatePicker date;
+  /**
+   * Texte à côté du menu déroulant pour le véhicule à utiliser pour la tournée.
+   */
   private Label vehiculeLabel;
+  /**
+   * Menu déroulant pour choisir un véhicule pour la tournée.
+   *
+   * @see TourneesFormView#getVehicule()
+   */
   private ChoiceBox vehicule;
+  /**
+   * Texte à côté de la liste des commandes à mettre dans la tournée.
+   */
   private Label commandesLabel;
+  /**
+   * Liste des commandes à choisir pour la tournée.
+   *
+   * @see TourneesFormView#getCommandes()
+   */
   private ListView commandes;
+  /**
+   * Permet d'afficher le message d'erreur.
+   */
   private Label message;
+  /**
+   * Bouton pour enregistrer les champs du formulaire.
+   */
   private Button enregistrer;
+  /**
+   * Bouton pour annuler le formulaire.
+   */
   private Button annuler;
 
+  /**
+   * TODO
+   */
   private TourneesFormCtrl ctrl;
 
   /**

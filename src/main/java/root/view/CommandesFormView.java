@@ -13,22 +13,82 @@ import root.controller.CommandesFormCtrl;
  */
 public class CommandesFormView {
 
+  /**
+   * Texte à côté du champ de texte pour le libelle.
+   */
   private Label libelleLabel;
+  /**
+   * Champ de texte pour écrire le nom de la commande.
+   *
+   * @see CommandesFormView#getLibelle()
+   */
   private TextField libelle;
+  /**
+   * Texte à côté du champ de texte pour le poids.
+   */
   private Label poidsLabel;
+  /**
+   * Champ de texte pour écrire le poids maximum de la commande.
+   *
+   * @see CommandesFormView#getPoids()
+   */
   private TextField poids;
+  /**
+   * Texte à côté du menu déroulant pour choisir le client à livrer.
+   */
   private Label clientLabel;
+  /**
+   * Menu déroulant pour choisir à quel client appartient la commande.
+   *
+   * @see CommandesFormView#getClient()
+   */
   private ChoiceBox client;
+  /**
+   * Texte à côté du calendrier pour choisir la date.
+   */
   private Label dateLabel;
+  /**
+   * Calendrier pour choisir la date de la commande.
+   *
+   * @see CommandesFormView#getDate()
+   */
   private DatePicker date;
+  /**
+   * Texte à côté du champ de texte pour l'heure minimale de livraison.
+   */
   private Label heureDebLabel;
+  /**
+   * Champ de texte pour écrire l'heure minimale de livraison.
+   *
+   * @see CommandesFormView#getHeureDeb()
+   */
   private TextField heureDeb;
+  /**
+   * Texte à côté du champ de texte pour l'heure maximale de livraison.
+   */
   private Label heureFinLabel;
+  /**
+   * Champ de texte pour écrire l'heure maximale de livraison.
+   *
+   * @see CommandesFormView#getHeureFin()
+   */
   private TextField heureFin;
+  /**
+   * Permet d'afficher le message d'erreur.
+   */
   private Label message;
+  /**
+   * Bouton pour enregistrer les champs du formulaire.
+   */
   private Button enregistrer;
+  /**
+   * Bouton pour annuler le formulaire.
+   */
   private Button annuler;
 
+  /**
+   * TODO
+   */
   private CommandesFormCtrl ctrl;
 
   /**

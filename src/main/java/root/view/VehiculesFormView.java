@@ -11,14 +11,38 @@ import root.controller.VehiculesFormCtrl;
  */
 public class VehiculesFormView {
 
+  /**
+   * Texte à côté du champ de texte pour la plaque d'immatriculation du véhicule.
+   */
   private Label immatLabel;
+  /**
+   * Champ de texte pour écrire la plaque d'immatriculation du véhicule.
+   */
   private TextField immat;
+  /**
+   * Texte à côté du champ de texte pour la poids maximum du véhicule.
+   */
   private Label capacitePoidsLabel;
+  /**
+   * Champ de texte pour écrire la poids maximum du véhicule.
+   */
   private TextField capacitePoids;
+  /**
+   * Permet d'afficher le message d'erreur.
+   */
   private Label message;
+  /**
+   * Bouton pour enregistrer les champs du formulaire.
+   */
   private Button enregistrer;
+  /**
+   * Bouton pour annuler le formulaire.
+   */
   private Button annuler;
 
+  /**
+   * TODO
+   */
   private VehiculesFormCtrl ctrl;
 
   /**

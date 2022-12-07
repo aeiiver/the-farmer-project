@@ -10,12 +10,30 @@ import root.controller.CommandesCtrl;
  */
 public class CommandesView {
 
+  /**
+   * Menu de navigation sur la fênetre.
+   */
   private MenuBar menu;
+  /**
+   * Liste pour afficher la liste des commandes existantes.
+   */
   private ListView listeCommandes;
+  /**
+   * Bouton pour ajouter une nouvelle commande.
+   */
   private Button ajouterCommande;
+  /**
+   * Bouton pour supprimer une commande déjà existante.
+   */
   private Button supprimerCommande;
+  /**
+   * Bouton pour modifier une commande déjà existante.
+   */
   private Button editerCommande;
 
+  /**
+   * TODO
+   */
   private CommandesCtrl ctrl;
 
   /**

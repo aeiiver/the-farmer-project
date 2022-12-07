@@ -10,12 +10,30 @@ import root.controller.ClientsCtrl;
  */
 public class ClientsView {
 
+  /**
+   * Menu de navigation sur la fênetre.
+   */
   private MenuBar menu;
+  /**
+   * Liste pour afficher la liste des clients existants.
+   */
   private ListView listeClients;
+  /**
+   * Bouton pour ajouter un nouveau client.
+   */
   private Button ajouterClient;
+  /**
+   * Bouton pour supprimer un client déjà existant.
+   */
   private Button supprimerClient;
+  /**
+   * Bouton pour modifier un client déjà existant.
+   */
   private Button editerClient;
 
+  /**
+   * TODO
+   */
   private ClientsCtrl ctrl;
 
   /**
