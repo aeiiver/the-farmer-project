@@ -32,7 +32,10 @@ public class ProducteursView {
   private Button editerProducteur;
 
   /**
-   * TODO
+   * Controlleur gérant la vue de la liste des producteurs.
+   *
+   * @see ProducteursView#ProducteursView(ProducteursCtrl, MenuBar)
+   * @see ProducteursCtrl
    */
   private ProducteursCtrl ctrl;
 

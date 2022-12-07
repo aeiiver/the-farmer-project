@@ -28,7 +28,7 @@ public class VehiculesFormView {
    */
   private TextField capacitePoids;
   /**
-   * Permet d'afficher le message d'erreur.
+   * Contenu du message d'erreur.
    */
   private Label message;
   /**
@@ -41,7 +41,10 @@ public class VehiculesFormView {
   private Button annuler;
 
   /**
-   * TODO
+   * Controlleur gérant la vue de l'ajout de véhicules.
+   *
+   * @see VehiculesFormView#VehiculesFormView(VehiculesFormCtrl)
+   * @see VehiculesFormCtrl
    */
   private VehiculesFormCtrl ctrl;
 

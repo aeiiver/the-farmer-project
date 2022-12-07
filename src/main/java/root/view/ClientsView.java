@@ -32,7 +32,10 @@ public class ClientsView {
   private Button editerClient;
 
   /**
-   * TODO
+   * Controlleur gérant la vue de la liste des clients.
+   * 
+   * @see ClientsCtrl
+   * @see ClientsView#ClientsView(ClientsCtrl, MenuBar) 
    */
   private ClientsCtrl ctrl;
 

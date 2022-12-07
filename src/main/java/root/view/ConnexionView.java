@@ -12,15 +12,56 @@ import root.controller.ConnexionCtrl;
  */
 public class ConnexionView {
 
+  /**
+   * Text d'indication pour la saisie de l'identifiant.
+   */
   private Label identifiantLabel;
+
+  /**
+   * Zone de saisie de l'identifiant.
+   */
   private TextField identifiant;
+
+  /**
+   * Text d'indication pour la saisie du mot de passe.
+   */
   private Label motdepasseLabel;
+
+  /**
+   * Zone de saisie du mot de passe.
+   */
   private PasswordField motdepasse;
+
+  /**
+   * Text d'indication pour la selection du mode de connexion.
+   */
   private Label modeLabel;
+
+  /**
+   * Selectionneur du mode de connexion.
+   * Soit Producteur soit administrateur.
+   */
   private CheckBox mode;
+
+  /**
+   * Text des messages d'erreurs.
+   * Sera modifier en cas d'échec de la connexion.
+   *
+   * @see ConnexionView#setMessage(String)
+   */
   private Label message;
+
+  /**
+   * Bouton permettant de lancer la tentative de connexion.
+   */
   private Button connexionButton;
 
+  /**
+   * Controlleur gérant la vue de la connexion.
+   *
+   * @see ConnexionView#ConnexionView(ConnexionCtrl)
+   * @see ConnexionCtrl
+   */
   private ConnexionCtrl ctrl;
 
   /**

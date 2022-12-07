@@ -81,7 +81,7 @@ public class ProducteursFormView {
    */
   private TextField codePost;
   /**
-   * TODO
+   * Contenue du message d'erreur.
    */
   private Label message;
   /**

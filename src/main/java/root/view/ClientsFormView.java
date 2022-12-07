@@ -4,6 +4,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import root.controller.ClientsFormCtrl;
+import root.controller.ConnexionCtrl;
 import root.model.Adresse;
 
 /**
@@ -58,7 +59,10 @@ public class ClientsFormView {
    */
   private TextField longitude;
   /**
-   * TODO
+   * Ensemble des information liée à l'adresse du client.
+   *
+   * @see Adresse
+   * @see ClientsFormView#getAdresse()
    */
   private Adresse adresseLabel;
   /**
@@ -88,7 +92,7 @@ public class ClientsFormView {
    */
   private TextField codePost;
   /**
-   * Permet d'afficher le message d'erreur.
+   * Contenu du message d'erreur.
    */
   private Label message;
   /**
@@ -101,7 +105,10 @@ public class ClientsFormView {
   private Button annuler;
 
   /**
-   * TODO
+   * Controlleur gérant la vue du formulaire d'ajout d'un client.
+   *
+   * @see ClientsFormView#ClientsFormView(ClientsFormCtrl)
+   * @see ClientsFormCtrl
    */
   private ClientsFormCtrl ctrl;
 

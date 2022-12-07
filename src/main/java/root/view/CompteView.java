@@ -42,7 +42,10 @@ public class CompteView {
   private Button annuler;
 
   /**
-   * TODO
+   * Controlleur gérant la vue de la modification des informations du compte.
+   *
+   * @see CompteView#CompteView(CompteCtrl, MenuBar)
+   * @see CompteCtrl
    */
   private CompteCtrl ctrl;
 
