@@ -7,6 +7,15 @@ import java.util.ArrayList;
  */
 public class ListeClients {
 
+  /**
+   * Liste des clients.
+   *
+   * @see ListeClients#ListeClients()
+   * @see ListeClients#getClients()
+   * @see ListeClients#ajouter(Client)
+   * @see ListeClients#supprimer(Client)
+   * @see Client
+   */
   private ArrayList<Client> clients;
 
   /**

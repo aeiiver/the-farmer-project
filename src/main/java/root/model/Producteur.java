@@ -5,10 +5,49 @@ package root.model;
  */
 public class Producteur extends Utilisateur {
 
+  /**
+   * ID du producteur. Numéro Siret de son entreprise.
+   *
+   * @see Producteur#Producteur(String, String, String, String, String, String, Adresse)  Producteur
+   * @see Producteur#getSiret() 
+   * @see Producteur#setSiret(String)
+   */
   private String siret;
+
+  /**
+   * Nom du producteur.
+   *
+   * @see Producteur#Producteur(String, String, String, String, String, String, Adresse)  Producteur
+   * @see Producteur#getNom()
+   * @see Producteur#setNom(String)
+   */
   private String nom;
+  
+  /**
+   * Prénom du producteur.
+   *
+   * @see Producteur#Producteur(String, String, String, String, String, String, Adresse)  Producteur
+   * @see Producteur#getPrenom()
+   * @see Producteur#setPrenom(String)
+   */
   private String prenom;
+  
+  /**
+   * Numéro de téléphone du producteur.
+   *
+   * @see Producteur#Producteur(String, String, String, String, String, String, Adresse)  Producteur
+   * @see Producteur#getNumTel()
+   * @see Producteur#setNumTel(String)
+   */
   private String numTel;
+  
+  /**
+   * Coordonnés GPS du producteur.
+   *
+   * @see Producteur#Producteur(String, String, String, String, String, String, Adresse)  Producteur
+   * @see Producteur#getAdresse() 
+   * @see Producteur#setAdresse(Adresse) 
+   */
   private Adresse adresse;
 
   /**

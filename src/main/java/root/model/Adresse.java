@@ -5,13 +5,76 @@ package root.model;
  */
 public class Adresse {
 
+  /**
+   * Identifiant de l'adresse dans la base de données.
+   *
+   * @see Adresse#Adresse(int, String, String, String, String, int, String, String)
+   * @see Adresse#getIdAdresse()
+   * @see Adresse#setIdAdresse(int)
+   */
   private int idAdresse;
+
+  /**
+   * Pays de l'adresse.
+   *
+   * @see Adresse#Adresse(int, String, String, String, String, int, String, String)
+   * @see Adresse#getPays()
+   * @see Adresse#setPays(String)
+   */
   private String pays;
+
+  /**
+   * Code postal de l'adresse.
+   *
+   * @see Adresse#Adresse(int, String, String, String, String, int, String, String)
+   * @see Adresse#getCodePost()
+   * @see Adresse#setCodePost(String)
+   */
   private String codePost;
+
+  /**
+   * Type de rue de l'adresse. (Avenue, Rue, Boulevard, etc.)
+   *
+   * @see Adresse#Adresse(int, String, String, String, String, int, String, String)
+   * @see Adresse#getVoie()
+   * @see Adresse#setVoie(String)
+   */
   private String voie;
+
+  /**
+   * Nom de la rue de l'adresse.
+   *
+   * @see Adresse#Adresse(int, String, String, String, String, int, String, String)
+   * @see Adresse#getVoie()
+   * @see Adresse#setVoie(String)
+   */
   private String nom;
+
+  /**
+   * Numéro de la rue de l'adresse.
+   *
+   * @see Adresse#Adresse(int, String, String, String, String, int, String, String)
+   * @see Adresse#getNumero()
+   * @see Adresse#setNumero(int)
+   */
   private int numero;
+
+  /**
+   * Mention de l'adresse (Batiment, Appartement, etc.)
+   *
+   * @see Adresse#Adresse(int, String, String, String, String, int, String, String)
+   * @see Adresse#getMention()
+   * @see Adresse#setMention(String)
+   */
   private String mention;
+
+  /**
+   * Complément de l'adresse (Bis, Ter, etc.)
+   *
+   * @see Adresse#Adresse(int, String, String, String, String, int, String, String)
+   * @see Adresse#getComplement()
+   * @see Adresse#setComplement(String)
+   */
   private String complement;
 
   /**

@@ -8,7 +8,20 @@ import root.view.ClientsFormView;
  */
 public class ClientsFormCtrl {
 
+  /**
+   * Modèle de la liste des clients.
+   *
+   * @see ClientsFormCtrl#ClientsFormCtrl(ListeClients, ClientsFormView)
+   * @see ClientsFormCtrl#getModel()
+   */
   private ListeClients model;
+
+  /**
+   * Vue du formulaire d'ajout et modification d'un client.
+   *
+   * @see ClientsFormCtrl#ClientsFormCtrl(ListeClients, ClientsFormView)
+   * @see ClientsFormCtrl#getView()
+   */
   private ClientsFormView view;
 
   /**

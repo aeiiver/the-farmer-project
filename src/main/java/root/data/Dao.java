@@ -11,6 +11,9 @@ import java.util.ArrayList;
  */
 public abstract class Dao<T, U> {
 
+  /**
+   * Connexion à la base de données.
+   */
   private Connection connexion;
 
   /**

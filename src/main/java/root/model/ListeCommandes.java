@@ -7,6 +7,15 @@ import java.util.ArrayList;
  */
 public class ListeCommandes {
 
+  /**
+   * Liste des commandes.
+   *
+   * @see ListeCommandes#ListeCommandes()
+   * @see ListeCommandes#getCommandes()
+   * @see ListeCommandes#ajouter(Commande)
+   * @see ListeCommandes#supprimer(Commande)
+   * @see Commande
+   */
   private ArrayList<Commande> commandes;
 
   /**

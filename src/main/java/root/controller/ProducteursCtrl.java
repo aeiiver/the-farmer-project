@@ -8,7 +8,20 @@ import root.view.ProducteursView;
  */
 public class ProducteursCtrl {
 
+  /**
+   * Modèle de la liste des producteurs.
+   *
+   * @see ProducteursCtrl#ProducteursCtrl(ListeProducteurs, ProducteursView)
+   * @see ProducteursCtrl#getModel()
+   */
   private ListeProducteurs model;
+
+  /**
+   * Vue de la liste des producteurs.
+   *
+   * @see ProducteursCtrl#ProducteursCtrl(ListeProducteurs, ProducteursView)
+   * @see ProducteursCtrl#getView()
+   */
   private ProducteursView view;
 
   /**

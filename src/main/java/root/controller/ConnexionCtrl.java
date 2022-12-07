@@ -11,7 +11,18 @@ import root.view.TableaudebordView;
  */
 public class ConnexionCtrl {
 
+  /**
+   * Vue de l'écran de connexion utilisateur.
+   *
+   * @see ConnexionCtrl#ConnexionCtrl(ConnexionView, TableaudebordView)
+   */
   private ConnexionView connexionView;
+
+  /**
+   * Vue du tableau de bord.
+   *
+   * @see ConnexionCtrl#ConnexionCtrl(ConnexionView, TableaudebordView)
+   */
   private TableaudebordView tableaudebordView;
 
   /**

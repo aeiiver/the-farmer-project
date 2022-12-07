@@ -8,7 +8,20 @@ import root.view.CompteView;
  */
 public class CompteCtrl {
 
+  /**
+   * Modèle de l'utilisateur.
+   *
+   * @see CompteCtrl#CompteCtrl(Utilisateur, CompteView)
+   * @see CompteCtrl#getModel()
+   */
   private Utilisateur model;
+
+  /**
+   * Vue du compte de l'utilisateur.
+   *
+   * @see CompteCtrl#CompteCtrl(Utilisateur, CompteView)
+   * @see CompteCtrl#getView()
+   */
   private CompteView view;
 
   /**

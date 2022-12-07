@@ -5,13 +5,78 @@ package root.model;
  */
 public class Commande {
 
+  /**
+   * Identifiant de la commande dans la base de données.
+   *
+   * @see Commande#Commande(int, String, int, String, int, int, Producteur, Client)  Commande
+   * @see Commande#getNumCom()
+   * @see Commande#setNumCom(int)
+   */
   private int numCom;
+
+  /**
+   * Nom de la commande.
+   *
+   * @see Commande#Commande(int, String, int, String, int, int, Producteur, Client)  Commande
+   * @see Commande#getLibelle()
+   * @see Commande#setLibelle(String)
+   */
   private String libelle;
+
+  /**
+   * Poids total de la commande.
+   *
+   * @see Commande#Commande(int, String, int, String, int, int, Producteur, Client)  Commande
+   * @see Commande#getPoids()
+   * @see Commande#setPoids(int)
+   */
   private int poids;
+
+  /**
+   * Date de la commande.
+   *
+   * @see Commande#Commande(int, String, int, String, int, int, Producteur, Client)  Commande
+   * @see Commande#getDateCom()
+   * @see Commande#setDateCom(String)
+   */
   private String dateCom;
+
+  /**
+   * Horaire minimale de livraison de la commande.
+   *
+   * @see Commande#Commande(int, String, int, String, int, int, Producteur, Client)  Commande
+   * @see Commande#getHeureDeb()
+   * @see Commande#setHeureDeb(int)
+   */
   private int heureDeb;
+
+  /**
+   * Horaire maximale de livraison de la commande.
+   *
+   * @see Commande#Commande(int, String, int, String, int, int, Producteur, Client)  Commande
+   * @see Commande#getHeureFin()
+   * @see Commande#setHeureFin(int)
+   */
   private int heureFin;
+
+  /**
+   * Producteur de la commande.
+   *
+   * @see Commande#Commande(int, String, int, String, int, int, Producteur, Client)  Commande
+   * @see Commande#getProducteur()
+   * @see Commande#setProducteur(Producteur)
+   * @see Producteur
+   */
   private Producteur producteur;
+
+  /**
+   * Client de la commande.
+   *
+   * @see Commande#Commande(int, String, int, String, int, int, Producteur, Client)  Commande
+   * @see Commande#getClient()
+   * @see Commande#setClient(Client)
+   * @see Client
+   */
   private Client client;
 
   /**

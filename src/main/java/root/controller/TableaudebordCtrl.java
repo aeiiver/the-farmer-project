@@ -15,14 +15,56 @@ import root.view.VehiculesView;
  */
 public class TableaudebordCtrl {
 
+  /**
+   * Listes des tournées sur le tableau de bord.
+   *
+   * @see TableaudebordCtrl#TableaudebordCtrl(ListeTournees, ListeCommandes,
+   * TableaudebordView, CommandesView, TourneesView, CompteView, ClientsView,
+   * VehiculesView)
+   */
   private ListeTournees listeTournees;
+
+  /**
+   * Liste des commandes sur le tableau de bord.
+   *
+   * @see TableaudebordCtrl#TableaudebordCtrl(ListeTournees, ListeCommandes,
+   * TableaudebordView, CommandesView, TourneesView, CompteView, ClientsView,
+   * VehiculesView)
+   */
   private ListeCommandes listeCommandes;
 
+  /**
+   * Vue du tableau de bord.
+   *
+   * @see TableaudebordCtrl#TableaudebordCtrl(ListeTournees, ListeCommandes,
+   * TableaudebordView, CommandesView, TourneesView, CompteView, ClientsView,
+   * VehiculesView)
+   */
   private TableaudebordView tableaudebordView;
+
+  /**
+   * Vue de la liste des commandes.
+   */
   private CommandesView commandesView;
+
+  /**
+   * Vue de la liste des tournées.
+   */
   private TourneesView tourneesView;
+
+  /**
+   * Vue du compte.
+   */
   private CompteView compteView;
+
+  /**
+   * Vue de la liste des clients.
+   */
   private ClientsView clientsView;
+
+  /**
+   * Vue de la liste des véhicules.
+    */
   private VehiculesView vehiculesView;
 
   /**

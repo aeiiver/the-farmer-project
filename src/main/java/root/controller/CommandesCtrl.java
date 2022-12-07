@@ -9,7 +9,20 @@ import root.view.CommandesView;
  */
 public class CommandesCtrl {
 
+  /**
+   * Modèle de la liste des commandes.
+   *
+   * @see CommandesCtrl#CommandesCtrl(ListeCommandes, CommandesView)
+   * @see CommandesCtrl#getModel()
+   */
   private ListeCommandes model;
+
+  /**
+   * Vue de la liste des commandes.
+   *
+   * @see CommandesCtrl#CommandesCtrl(ListeCommandes, CommandesView)
+   * @see CommandesCtrl#getView()
+   */
   private CommandesView view;
 
   /**

@@ -8,7 +8,20 @@ import root.view.CommandesFormView;
  */
 public class CommandesFormCtrl {
 
+  /**
+   * Modèle de la commande.
+   *
+   * @see CommandesFormCtrl#CommandesFormCtrl(ListeCommandes, CommandesFormView)
+   * @see CommandesFormCtrl#getModel()
+   */
   private ListeCommandes model;
+
+  /**
+   * Vue du formulaire d'ajout et modification d'une commande.
+   *
+   * @see CommandesFormCtrl#CommandesFormCtrl(ListeCommandes, CommandesFormView)
+   * @see CommandesFormCtrl#getView()
+   */
   private CommandesFormView view;
 
   /**

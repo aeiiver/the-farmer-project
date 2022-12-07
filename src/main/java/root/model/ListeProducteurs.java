@@ -7,6 +7,15 @@ import java.util.ArrayList;
  */
 public class ListeProducteurs {
 
+  /**
+   * Liste des producteurs.
+   *
+   * @see ListeProducteurs#ListeProducteurs()
+   * @see ListeProducteurs#getProducteurs()
+   * @see ListeProducteurs#ajouter(Producteur)
+   * @see ListeProducteurs#supprimer(Producteur)
+   * @see Producteur
+   */
   private ArrayList<Producteur> producteurs;
 
   /**

@@ -8,7 +8,14 @@ import root.view.TourneesView;
  */
 public class TourneesCtrl {
 
+  /**
+   * Contrôleur de la vue du formulaire d'ajout et modification d'une tournée.
+   */
   private ListeTournees model;
+
+  /**
+   * Vue de la liste des tournées.
+   */
   private TourneesView view;
 
   /**

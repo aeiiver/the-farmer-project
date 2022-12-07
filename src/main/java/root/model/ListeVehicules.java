@@ -7,6 +7,15 @@ import java.util.ArrayList;
  */
 public class ListeVehicules {
 
+  /**
+   * Liste des vehicules.
+   *
+   * @see ListeVehicules#ListeVehicules()
+   * @see ListeVehicules#getVehicules()
+   * @see ListeVehicules#ajouter(Vehicule)
+   * @see ListeVehicules#supprimer(Vehicule)
+   * @see Vehicule
+   */
   private ArrayList<Vehicule> vehicules;
 
   /**

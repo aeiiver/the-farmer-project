@@ -8,7 +8,18 @@ import root.view.TourneesFormView;
  */
 public class TourneesFormCtrl {
 
+  /**
+   * Modèle de la liste des tournées.
+   *
+   * @see TourneesFormCtrl#TourneesFormCtrl(ListeTournees, TourneesFormView)
+   */
   private ListeTournees model;
+
+  /**
+   * Vue du formulaire d'ajout et modification d'une tournée.
+   *
+   * @see TourneesFormCtrl#TourneesFormCtrl(ListeTournees, TourneesFormView)
+   */
   private TourneesFormView view;
 
   /**

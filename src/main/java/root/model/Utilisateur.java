@@ -5,7 +5,26 @@ package root.model;
  */
 public abstract class Utilisateur {
 
+  /**
+   * Mail de l'utilisateur.
+   *
+   * @see Utilisateur#Utilisateur(String, String)
+   * @see Utilisateur#getMail()
+   * @see Utilisateur#setMail(String)
+   * @see Producteur
+   * @see Admin
+   */
   private String mail;
+
+  /**
+   * Mot de passe de l'utilisateur.
+   *
+   * @see Utilisateur#Utilisateur(String, String)
+   * @see Utilisateur#getMdp()
+   * @see Utilisateur#setMdp(String)
+   * @see Producteur
+   * @see Admin
+   */
   private String mdp;
 
   public Utilisateur(String mail, String mdp) {

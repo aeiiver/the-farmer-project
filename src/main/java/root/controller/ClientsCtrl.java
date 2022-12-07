@@ -8,7 +8,20 @@ import root.view.ClientsView;
  */
 public class ClientsCtrl {
 
+  /**
+   * Modèle de la liste des clients.
+   *
+   * @see ClientsCtrl#ClientsCtrl(ListeClients, ClientsView)
+   * @see ClientsCtrl#getModel()
+   */
   private ListeClients model;
+
+  /**
+   * Vue de la liste des clients.
+   *
+   * @see ClientsCtrl#ClientsCtrl(ListeClients, ClientsView)
+   * @see ClientsCtrl#getView()
+   */
   private ClientsView view;
 
   /**

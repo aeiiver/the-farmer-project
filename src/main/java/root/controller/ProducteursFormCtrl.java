@@ -8,7 +8,20 @@ import root.view.ProducteursFormView;
  */
 public class ProducteursFormCtrl {
 
+  /**
+   * Modèle du formulaire d'ajout et modification d'un producteur.
+   *
+   * @see ProducteursFormCtrl#ProducteursFormCtrl(ListeProducteurs, ProducteursFormView)
+   * @see ProducteursFormCtrl#getModel()
+   */
   private ListeProducteurs model;
+
+  /**
+   * Vue du formulaire d'ajout et modification d'un producteur.
+   *
+   * @see ProducteursFormCtrl#ProducteursFormCtrl(ListeProducteurs, ProducteursFormView)
+   * @see ProducteursFormCtrl#getView()
+   */
   private ProducteursFormView view;
 
   /**

@@ -7,6 +7,15 @@ import java.util.ArrayList;
  */
 public class ListeTournees {
 
+  /**
+   * Liste des tournees.
+   *
+   * @see ListeTournees#ListeTournees()
+   * @see ListeTournees#getTournees()
+   * @see ListeTournees#ajouter(Tournee)
+   * @see ListeTournees#supprimer(Tournee)
+   * @see Tournee
+   */
   private ArrayList<Tournee> tournees;
 
   /**

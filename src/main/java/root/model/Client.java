@@ -5,11 +5,59 @@ package root.model;
  */
 public class Client {
 
+  /**
+   * Identifiant du client dans la base de données.
+   *
+   * @see Client#Client(int, String, String, String, String, Adresse)
+   * @see Client#getIdClient()
+   * @see Client#setIdClient(int)
+   */
   private int idClient;
+
+  /**
+   * Nom du client.
+   *
+   * @see Client#Client(int, String, String, String, String, Adresse)
+   * @see Client#getNom()
+   * @see Client#setNom(String)
+   */
   private String nom;
+
+  /**
+   * Prénom du client.
+   *
+   * @see Client#Client(int, String, String, String, String, Adresse)
+   * @see Client#getPrenom()
+   * @see Client#setPrenom(String)
+   */
   private String prenom;
+
+  /**
+   * Numéro de téléphone du client.
+   *
+   * @see Client#Client(int, String, String, String, String, Adresse)
+   * @see Client#getNumTel()
+   * @see Client#setNumTel(String)
+   */
   private String numTel;
+
+  /**
+   * Coordonnés GPS du client.
+   *
+   * @see Client#Client(int, String, String, String, String, Adresse)
+   * @see Client#getGps()
+   * @see Client#setGps(String)
+   */
   private String gps;
+
+  /**
+   * Adresse du client.
+   *
+   * @see Client#Client(int, String, String, String, String, Adresse)
+   * @see Client#getAdresse()
+   * @see Client#setAdresse(Adresse)
+   * @see Adresse
+   */
   private Adresse adresse;
 
   /**

@@ -5,7 +5,22 @@ package root.model;
  */
 public class Admin extends Utilisateur {
 
+  /**
+   * ID de l'administrateur.
+   *
+   * @see Admin#Admin(String, String, int, String)
+   * @see Admin#getIdAdmin()
+   * @see Admin#setIdAdmin(int)
+   */
   private int idAdmin;
+
+  /**
+   * Pseudonyme de l'administrateur.
+   *
+   * @see Admin#Admin(String, String, int, String)
+   * @see Admin#getPseudo()
+   * @see Admin#setPseudo(String)
+   */
   private String pseudo;
 
   /**

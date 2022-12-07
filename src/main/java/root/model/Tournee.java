@@ -7,12 +7,70 @@ import java.util.ArrayList;
  */
 public class Tournee {
 
+  /**
+   * Identifiant de la tournée.
+   *
+   * @see Tournee#Tournee(int, String, int, int, Producteur, Vehicule)  Tournee
+   * @see Tournee#getNumTournee()
+   * @see Tournee#setNumTournee(int)
+   */
   private int numTournee;
+
+  /**
+   * Nom de la tournée.
+   *
+   * @see Tournee#Tournee(int, String, int, int, Producteur, Vehicule)  Tournee
+   * @see Tournee#getLibelle()
+   * @see Tournee#setLibelle(String)
+   */
   private String libelle;
+
+  /**
+   * Heure de début de la tournée.
+   *
+   * @see Tournee#Tournee(int, String, int, int, Producteur, Vehicule)  Tournee
+   * @see Tournee#getHeureMin()
+   * @see Tournee#setHeureMin(int)
+   */
   private int heureMin;
+
+  /**
+   * Heure de fin de la tournée.
+   *
+   * @see Tournee#Tournee(int, String, int, int, Producteur, Vehicule)  Tournee
+   * @see Tournee#getHeureMax()
+   * @see Tournee#setHeureMax(int)
+   */
   private int heureMax;
+
+  /**
+   * Producteur de la tournée.
+   *
+   * @see Tournee#Tournee(int, String, int, int, Producteur, Vehicule)  Tournee
+   * @see Tournee#getProducteur()
+   * @see Tournee#setProducteur(Producteur)
+   */
   private Producteur producteur;
+
+  /**
+   * Véhicule de la tournée.
+   *
+   * @see Tournee#Tournee(int, String, int, int, Producteur, Vehicule)  Tournee
+   * @see Tournee#getVehicule()
+   * @see Tournee#setVehicule(Vehicule)
+   */
   private Vehicule vehicule;
+
+  /**
+   * Liste des commandes de la tournée.
+   *
+   * @see Tournee#Tournee(int, String, int, int, Producteur, Vehicule)  Tournee
+   * @see Tournee#getCommandes()
+   * @see Tournee#setCommandes(ArrayList)
+   * @see Tournee#ajouteCommande(Commande)
+   * @see Commande
+   * @see ListeCommandes
+   */
   private ArrayList<Commande> commandes;
 
   /**

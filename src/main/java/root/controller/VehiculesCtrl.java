@@ -8,7 +8,20 @@ import root.view.VehiculesView;
  */
 public class VehiculesCtrl {
 
+  /**
+   * Modèle de la liste des véhicules.
+   *
+   * @see VehiculesCtrl#VehiculesCtrl(ListeVehicules, VehiculesView)
+   * @see VehiculesCtrl#getModel()
+   */
   private ListeVehicules model;
+
+  /**
+   * Vue de la liste des véhicules.
+   *
+   * @see VehiculesCtrl#VehiculesCtrl(ListeVehicules, VehiculesView)
+   * @see VehiculesCtrl#getView()
+   */
   private VehiculesView view;
 
   /**

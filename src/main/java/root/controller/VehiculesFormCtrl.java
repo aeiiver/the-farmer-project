@@ -4,11 +4,24 @@ import root.model.ListeVehicules;
 import root.view.VehiculesFormView;
 
 /**
- * Classe contrôleuse pour la vue et modèle du formulaire d'ajout et modification d'une véhicule.
+ * Classe contrôleuse pour la vue et modèle du formulaire d'ajout et modification d'un véhicule.
  */
 public class VehiculesFormCtrl {
 
+  /**
+   * Modèle de la liste des véhicules.
+   *
+   * @see VehiculesFormCtrl#VehiculesFormCtrl(ListeVehicules, VehiculesFormView)
+   * @see VehiculesFormCtrl#getModel()
+   */
   private ListeVehicules model;
+
+  /**
+   * Vue du formulaire d'ajout et modification d'un véhicule.
+   *
+   * @see VehiculesFormCtrl#VehiculesFormCtrl(ListeVehicules, VehiculesFormView)
+   * @see VehiculesFormCtrl#getView()
+   */
   private VehiculesFormView view;
 
   /**
@@ -47,7 +60,7 @@ public class VehiculesFormCtrl {
   /**
    * Change le modèle courant avec un nouveau.
    *
-   * @param model Le modèle nouveau.
+   * @param model Le nouveau modèle.
    */
   public void setModel(ListeVehicules model) {
     this.model = model;
@@ -56,7 +69,7 @@ public class VehiculesFormCtrl {
   /**
    * Retourne la vue associée à ce contrôleur.
    *
-   * @return Le vue.
+   * @return La vue.
    */
   public VehiculesFormView getView() {
     return view;
