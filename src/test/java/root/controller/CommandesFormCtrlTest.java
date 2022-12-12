@@ -27,7 +27,7 @@ class CommandesFormCtrlTest {
    * <p>Un champ a une valeur illégale quand celle-ci ne respecte pas le format attendu par
    * le champ</p>
    *
-   * <p>Il faudra vérifier que à l'enregistrement, on capture bien une exception.
+   * <p>Il faudra vérifier que à l'enregistrement, on capture bien une exception.</p>
    */
   @Test
   void valeursIllegales() {

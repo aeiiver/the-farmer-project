@@ -21,7 +21,7 @@ class CompteCtrlTest {
    * <p>Un champ a une valeur illégale quand celle-ci ne respecte pas le format attendu par
    * le champ</p>
    *
-   * <p>Il faudra vérifier que à la modification, on capture bien une exception.
+   * <p>Il faudra vérifier que à la modification, on capture bien une exception.</p>
    */
   @Test
   void valeursIllegales() {
