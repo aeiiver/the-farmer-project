@@ -223,6 +223,10 @@ public class Tournee {
   /**
    * Méthode pour vérifier si la tournée est valide.
    *
+   * <p>Une tournée est valide si toutes les commandes qu'elle contient ont lieu à la même date,
+   * entre les horaires minimale et maximale de la tournée, et la somme de leur poids est
+   * inférieur ou égal au poids que le véhicule peut supporter.</p>
+   *
    * @return true si la tournée est valide, false sinon
    */
   public boolean estValide() {

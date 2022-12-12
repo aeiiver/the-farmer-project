@@ -53,6 +53,8 @@ public abstract class Utilisateur {
   /**
    * Méthode vérifiant les informations de connexion.
    *
+   * <p>L'implémentation devra fait appel à son DAO pour effectuer la vérification.</p>
+   *
    * @return true si les informations sont correctes, false sinon
    */
   public abstract boolean verifieIdentifiants();

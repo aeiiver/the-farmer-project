@@ -105,7 +105,7 @@ public class ClientsFormView {
   private Button annuler;
 
   /**
-   * Controlleur gérant la vue du formulaire d'ajout d'un client.
+   * Contrôleur gérant la vue du formulaire d'ajout d'un client.
    *
    * @see ClientsFormView#ClientsFormView(ClientsFormCtrl)
    * @see ClientsFormCtrl

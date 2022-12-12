@@ -57,7 +57,7 @@ public class ConnexionView {
   private Button connexionButton;
 
   /**
-   * Controlleur gérant la vue de la connexion.
+   * Contrôleur gérant la vue de la connexion.
    *
    * @see ConnexionView#ConnexionView(ConnexionCtrl)
    * @see ConnexionCtrl

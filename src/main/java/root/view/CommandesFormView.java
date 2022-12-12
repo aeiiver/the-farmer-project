@@ -87,7 +87,7 @@ public class CommandesFormView {
   private Button annuler;
 
   /**
-   * Controlleur gérant la vue de formulaire d'ajout d'une commande.
+   * Contrôleur gérant la vue de formulaire d'ajout d'une commande.
    *
    * @see CommandesFormView#CommandesFormView(CommandesFormCtrl)
    * @see CommandesFormCtrl

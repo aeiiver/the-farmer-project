@@ -48,7 +48,7 @@ public class TableaudebordView {
   private Button editerCommande;
 
   /**
-   * Controlleur gérant la vue du tableau de bord.
+   * Contrôleur gérant la vue du tableau de bord.
    *
    * @see TableaudebordView#TableaudebordView(TableaudebordCtrl, MenuBar)
    * @see TableaudebordCtrl

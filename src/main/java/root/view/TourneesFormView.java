@@ -70,7 +70,7 @@ public class TourneesFormView {
   private Button annuler;
 
   /**
-   * Controlleur gérant la vue du formulaire d'ajout d'une tournée.
+   * Contrôleur gérant la vue du formulaire d'ajout d'une tournée.
    *
    * @see TourneesFormView#TourneesFormView(TourneesFormCtrl)
    * @see TourneesFormCtrl

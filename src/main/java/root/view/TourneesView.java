@@ -32,7 +32,7 @@ public class TourneesView {
   private Button editerTournee;
 
   /**
-   * Controlleur gérant la vue de la liste des tournées.
+   * Contrôleur gérant la vue de la liste des tournées.
    *
    * @see TourneesView#TourneesView(TourneesCtrl, MenuBar)
    * @see TourneesCtrl

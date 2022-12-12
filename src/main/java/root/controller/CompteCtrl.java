@@ -36,7 +36,7 @@ public class CompteCtrl {
   }
 
   /**
-   * Reflète les modifications du compte dans le modêle.
+   * Reflète les modifications du compte dans le modèle.
    */
   public void updateUtilisateur() {
   }

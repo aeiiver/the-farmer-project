@@ -32,6 +32,8 @@ public class ProducteurDao extends Dao<Producteur, String> {
   /**
    * Récupération d'un enregistrement de la table.
    *
+   * <p>'id' peut être un SIRET ou une adresse email.</p>
+   *
    * @param id Identifiant de l'enregistrement à récupérer
    * @return Modèle correspondant à l'enregistrement
    */

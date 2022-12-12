@@ -41,7 +41,7 @@ public class VehiculesFormView {
   private Button annuler;
 
   /**
-   * Controlleur gérant la vue de l'ajout de véhicules.
+   * Contrôleur gérant la vue de l'ajout de véhicules.
    *
    * @see VehiculesFormView#VehiculesFormView(VehiculesFormCtrl)
    * @see VehiculesFormCtrl

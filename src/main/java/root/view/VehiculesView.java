@@ -32,7 +32,7 @@ public class VehiculesView {
   private Button editerVehicule;
 
   /**
-   * Controlleur gérant la vue de la liste des véhicules.
+   * Contrôleur gérant la vue de la liste des véhicules.
    *
    * @see VehiculesView#VehiculesView(VehiculesCtrl, MenuBar)
    * @see VehiculesCtrl

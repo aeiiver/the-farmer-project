@@ -32,7 +32,7 @@ public class CommandesView {
   private Button editerCommande;
 
   /**
-   * Controlleur gérant la vue de la liste des commandes.
+   * Contrôleur gérant la vue de la liste des commandes.
    *
    * @see CommandesView#CommandesView(CommandesCtrl, MenuBar)
    * @see CommandesCtrl
