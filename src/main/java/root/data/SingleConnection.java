@@ -30,6 +30,11 @@ public class SingleConnection {
     return connexion;
   }
 
+  /**
+   * Fermeture de la connexion à la base de données.
+   *
+   * @throws SQLException L'exception générée en cas d'échec.
+   */
   public static void close() throws SQLException {
     connexion.close();
   }
