@@ -33,7 +33,7 @@ public class ClientsView {
 
   /**
    * Contrôleur gérant la vue de la liste des clients.
-   * 
+   *
    * @see ClientsCtrl
    * @see ClientsView#ClientsView(ClientsCtrl, MenuBar) 
    */
