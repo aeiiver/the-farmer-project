@@ -11,7 +11,7 @@ target=svg
 
 for file in $target/*; do
     printf "Processing $file...\n"
-    sed -n 's|UNREGISTERED||g' $file
+    sed -i 's|UNREGISTERED||g' $file
 done
 
 unset file
