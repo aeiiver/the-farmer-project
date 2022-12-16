@@ -133,7 +133,7 @@ public class ClientsFormView {
   /**
    * Retourne la saisie du prénom.
    *
-   * @return La prénom saisi.
+   * @return Le prénom saisi.
    */
   public String getPrenom() {
     return null;
