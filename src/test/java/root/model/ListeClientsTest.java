@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 class ListeClientsTest {
 
 
@@ -13,6 +15,20 @@ class ListeClientsTest {
    */
   @Test
   void ajouter() {
+    Adresse adresse = new Adresse(1, "France", "36300", "Rue", "Quelconque", 5, "", "");
+    Client client = new Client(1, "Nom", "Prenom", "01 23 45 67 89", "0.0", adresse);
+    ListeClients listeClients = new ListeClients();
+
+    listeClients.ajouter(client);
+    ArrayList<Client> maListe = listeClients.getClients();
+    Client recu = maListe.get(maListe.size() - 1);
+
+    assertEquals(client.getIdClient(), recu.getIdClient());
+    assertEquals(client.getNom(), recu.getNom());
+    assertEquals(client.getPrenom(), recu.getPrenom());
+    assertEquals(client.getNumTel(), recu.getNumTel());
+    assertEquals(client.getGps(), recu.getGps());
+    assertEquals(client.getAdresse(), recu.getAdresse());
   }
 
   /**
@@ -20,6 +36,17 @@ class ListeClientsTest {
    */
   @Test
   void supprimer() {
+    Adresse adresse = new Adresse(1, "France", "36300", "Rue", "Quelconque", 5, "", "");
+    Client client = new Client(1, "Nom", "Prenom", "01 23 45 67 89", "0.0", adresse);
+    ListeClients listeClients = new ListeClients();
+
+    listeClients.ajouter(client);
+    listeClients.supprimer(client);
+    ArrayList<Client> maListe = listeClients.getClients();
+
+    for (int i = 0; i < maListe.size(); i++) {
+      assertNotEquals(client, maListe.get(i));
+    }
   }
 
   /**
@@ -27,6 +54,23 @@ class ListeClientsTest {
    */
   @Test
   void editer() {
+    Adresse adresse = new Adresse(1, "France", "36300", "Rue", "Quelconque", 5, "", "");
+    Client client = new Client(1, "Nom", "Prenom", "01 23 45 67 89", "0.0", adresse);
+    ListeClients listeClients = new ListeClients();
+
+    listeClients.ajouter(client);
+    client.setNom("AutreNom");
+    client.setNumTel("01 02 03 04 05");
+    listeClients.editer(client);
+    ArrayList<Client> maListe = listeClients.getClients();
+    Client recu = maListe.get(maListe.size() - 1);
+
+    assertEquals(client.getIdClient(), recu.getIdClient());
+    assertEquals(client.getNom(), recu.getNom());
+    assertEquals(client.getPrenom(), recu.getPrenom());
+    assertEquals(client.getNumTel(), recu.getNumTel());
+    assertEquals(client.getGps(), recu.getGps());
+    assertEquals(client.getAdresse(), recu.getAdresse());
   }
 
 }

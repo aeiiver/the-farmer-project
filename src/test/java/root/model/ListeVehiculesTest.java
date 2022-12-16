@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 class ListeVehiculesTest {
 
 
@@ -13,6 +15,18 @@ class ListeVehiculesTest {
    */
   @Test
   void ajouter() {
+    Adresse adresse = new Adresse(1, "France", "36300", "Rue", "Quelconque", 5, "", "");
+    Producteur producteur = new Producteur("email@jaimail.com", "motdepasse1234", "000 111 222 33333", "Producteur", "Random", "99 99 99 99 99", adresse);
+    Vehicule vehicule = new Vehicule("SW-0241-1041", 500, producteur);
+    ListeVehicules listeVehicules = new ListeVehicules();
+
+    listeVehicules.ajouter(vehicule);
+    ArrayList<Vehicule> maListe = listeVehicules.getVehicules();
+    Vehicule recu = maListe.get(maListe.size() - 1);
+
+    assertEquals(vehicule.getImmat(), recu.getImmat());
+    assertEquals(vehicule.getPoidsMax(), recu.getPoidsMax());
+    assertEquals(vehicule.getProprietaire(), recu.getProprietaire());
   }
 
   /**
@@ -20,6 +34,18 @@ class ListeVehiculesTest {
    */
   @Test
   void supprimer() {
+    Adresse adresse = new Adresse(1, "France", "36300", "Rue", "Quelconque", 5, "", "");
+    Producteur producteur = new Producteur("email@jaimail.com", "motdepasse1234", "000 111 222 33333", "Producteur", "Random", "99 99 99 99 99", adresse);
+    Vehicule vehicule = new Vehicule("SW-0241-1041", 500, producteur);
+    ListeVehicules listeVehicules = new ListeVehicules();
+
+    listeVehicules.ajouter(vehicule);
+    listeVehicules.supprimer(vehicule);
+    ArrayList<Vehicule> maListe = listeVehicules.getVehicules();
+
+    for (int i = 0; i < maListe.size(); i++) {
+      assertNotEquals(vehicule, maListe.get(i));
+    }
   }
 
   /**
@@ -27,6 +53,20 @@ class ListeVehiculesTest {
    */
   @Test
   void editer() {
+    Adresse adresse = new Adresse(1, "France", "36300", "Rue", "Quelconque", 5, "", "");
+    Producteur producteur = new Producteur("email@jaimail.com", "motdepasse1234", "000 111 222 33333", "Producteur", "Random", "99 99 99 99 99", adresse);
+    Vehicule vehicule = new Vehicule("SW-0241-1041", 500, producteur);
+    ListeVehicules listeVehicules = new ListeVehicules();
+
+    listeVehicules.ajouter(vehicule);
+    vehicule.setPoidsMax(1000);
+    listeVehicules.editer(vehicule);
+    ArrayList<Vehicule> maListe = listeVehicules.getVehicules();
+    Vehicule recu = maListe.get(maListe.size() - 1);
+
+    assertEquals(vehicule.getImmat(), recu.getImmat());
+    assertEquals(vehicule.getPoidsMax(), recu.getPoidsMax());
+    assertEquals(vehicule.getProprietaire(), recu.getProprietaire());
   }
 
 }
