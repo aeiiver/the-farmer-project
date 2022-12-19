@@ -4,8 +4,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.AfterAll;
@@ -17,7 +18,6 @@ import root.model.Admin;
 class AdminDaoTest {
 
   static Connection connexion;
-  static Statement statement;
   static AdminDao systemUnderTest;
 
   @BeforeAll
@@ -26,21 +26,18 @@ class AdminDaoTest {
     connexion = DriverManager.getConnection(
         System.getenv("DB_URL_DEV"),
         System.getenv("DB_USER"),
-        System.getenv("DB_PSW")
-    );
-    statement = connexion.createStatement();
+        System.getenv("DB_PSW"));
     systemUnderTest = new AdminDao(connexion);
-  }
-
-  @AfterAll
-  static void teardown() throws SQLException {
-    statement.close();
-    connexion.close();
   }
 
   @AfterEach
   void teardownEach() throws SQLException {
-    statement.executeUpdate("DELETE FROM Admin;");
+    connexion.prepareStatement("DELETE FROM Admin;").executeUpdate();
+  }
+
+  @AfterAll
+  static void teardown() throws SQLException {
+    connexion.close();
   }
 
   /**
@@ -52,59 +49,42 @@ class AdminDaoTest {
     Admin admin = new Admin("testemail@dontmail.me", "1234hasher_moi", -1, "John");
 
     boolean recu = systemUnderTest.insert(admin);
-
     assertTrue(recu);
-    assertEquals(1, TestUtil.nombreLignesTrouvees(statement, "Admin"));
+
+    assertInsertOk(admin);
   }
 
   /**
    * Ce test doit vérifier si la récupération d'une ligne de données
-   * dans la table Admin renvoie bien true s'ils sont bien reçus.
+   * dans la table Admin renvoie bien l'objet correspondant.
    */
   @Test
   void get() throws SQLException {
-    statement.executeUpdate("INSERT INTO Admin VALUES "
-        + "(42, 'testemail@dontmail.me', 'Jean', '1234hasher_moi');");
+    Admin attendu = new Admin("testemail@dontmail.me", "1234hasher_moi", 42, "John");
+    insertAdmin(attendu);
 
-    Admin recu = systemUnderTest.get("Jean");
+    Admin recu = systemUnderTest.get(attendu.getPseudo());
+    assertNotNull(recu);
 
-    assertEquals(42, recu.getIdAdmin());
-    assertEquals("testemail@dontmail.me", recu.getMail());
-    assertEquals("Jean", recu.getPseudo());
-    assertEquals("1234hasher_moi", recu.getMdp());
+    assertAdminEquals(attendu, recu);
   }
 
   /**
    * Ce test doit vérifier si la récupération de toutes les données
-   * dans la table Admin renvoie bien true s'ils sont bien reçus.
+   * dans la table Admin renvoie bien la liste de tous les objets correspondants.
    */
   @Test
   void getAll() throws SQLException {
-    List<Admin> adminsAttendus = List.of(
-        new Admin("testemail@dontmail.me", "1234hasher_moi", 42, "John"),
-        new Admin("trying.something@website.org", "un_mot_de_passe", 43, "Jean"),
-        new Admin("blabla@abc.xyz", "le-chat-est-passe-par-la", 44, "Carl"));
-    connexion.setAutoCommit(false);
-    for (Admin admin : adminsAttendus) {
-      statement.addBatch(String.format("INSERT INTO Admin VALUES (%d, '%s', '%s', '%s');",
-          admin.getIdAdmin(), admin.getMail(), admin.getPseudo(), admin.getMdp()));
-    }
-    statement.executeBatch();
-    statement.clearBatch();
-    connexion.commit();
-    connexion.setAutoCommit(true);
+    List<Admin> attendus = prepareSomesAdmins();
 
-    ArrayList<Admin> adminsRecus = systemUnderTest.getAll();
+    ArrayList<Admin> recus = systemUnderTest.getAll();
+    assertNotNull(recus);
+    assertEquals(attendus.size(), recus.size());
 
-    assertTrue(adminsRecus.size() == adminsAttendus.size());
-    for (int index = 0; index < adminsAttendus.size(); ++index) {
-      Admin attendu = adminsAttendus.get(index);
-      Admin recu = adminsRecus.get(index);
-
-      assertEquals(attendu.getIdAdmin(), recu.getIdAdmin());
-      assertEquals(attendu.getMail(), recu.getMail());
-      assertEquals(attendu.getPseudo(), recu.getPseudo());
-      assertEquals(attendu.getMdp(), recu.getMdp());
+    for (int index = 0; index < attendus.size(); ++index) {
+      Admin attendu = attendus.get(index);
+      Admin recu = recus.get(index);
+      assertAdminEquals(attendu, recu);
     }
   }
 
@@ -114,15 +94,16 @@ class AdminDaoTest {
    */
   @Test
   void update() throws SQLException {
-    Admin admin = new Admin("testemail@dontmail.me", "1234hasher_moi", -1, "John");
-    statement.executeUpdate(String.format("INSERT INTO Admin VALUES (%d, '%s', '%s', '%s')",
-        admin.getIdAdmin(), admin.getMail(), admin.getPseudo(), admin.getMdp()));
+    Admin admin = new Admin("testemail@dontmail.me", "1234hasher_moi", 42, "John");
+    insertAdmin(admin);
+
     admin.setMail("jai.change.de.mail@mail.me");
     admin.setMdp("mot-de-passe-en-clair");
 
     boolean recu = systemUnderTest.update(admin);
-
     assertTrue(recu);
+
+    assertUpdateOk(admin);
   }
 
   /**
@@ -131,14 +112,91 @@ class AdminDaoTest {
    */
   @Test
   void delete() throws SQLException {
-    Admin admin = new Admin("testemail@dontmail.me", "1234hasher_moi", -1, "John");
-    statement.executeUpdate(String.format("INSERT INTO Admin VALUES (%d, '%s', '%s', '%s')",
-        admin.getIdAdmin(), admin.getMail(), admin.getPseudo(), admin.getMdp()));
+    Admin admin = new Admin("testemail@dontmail.me", "1234hasher_moi", 42, "John");
+    insertAdmin(admin);
 
     boolean recu = systemUnderTest.delete(admin);
-
     assertTrue(recu);
-    assertEquals(0, TestUtil.nombreLignesTrouvees(statement, "Admin"));
+
+    assertDeleteOk(admin);
+  }
+
+  private static void assertInsertOk(Admin admin) throws SQLException {
+    PreparedStatement pstmt = connexion.prepareStatement(
+        "SELECT * FROM Admin WHERE idAdmin = (SELECT MAX(idAdmin) FROM Admin);");
+
+    ResultSet rs = pstmt.executeQuery();
+    assertTrue(rs.next());
+
+    String mailInsere = rs.getString("mail");
+    String pseudoInsere = rs.getString("pseudo");
+    String mdpInsere = rs.getString("mdp");
+
+    assertEquals(admin.getMail(), mailInsere);
+    assertEquals(admin.getPseudo(), pseudoInsere);
+    assertEquals(admin.getMdp(), mdpInsere);
+  }
+
+  private static void assertUpdateOk(Admin admin) throws SQLException {
+    PreparedStatement pstmt = connexion.prepareStatement(
+        "SELECT * FROM Admin WHERE idAdmin = ?;");
+    pstmt.setInt(1, admin.getIdAdmin());
+
+    ResultSet rs = pstmt.executeQuery();
+    assertTrue(rs.next());
+
+    String mailInsere = rs.getString("mail");
+    String pseudoInsere = rs.getString("pseudo");
+    String mdpInsere = rs.getString("mdp");
+
+    assertEquals(admin.getMail(), mailInsere);
+    assertEquals(admin.getPseudo(), pseudoInsere);
+    assertEquals(admin.getMdp(), mdpInsere);
+  }
+
+  private static void assertDeleteOk(Admin admin) throws SQLException {
+    PreparedStatement pstmt = connexion.prepareStatement(
+        "SELECT * FROM Admin WHERE idAdmin = ?;");
+    pstmt.setInt(1, admin.getIdAdmin());
+
+    ResultSet rs = pstmt.executeQuery();
+    assertFalse(rs.next());
+  }
+
+  private static void assertAdminEquals(Admin attendu, Admin recu) {
+    assertEquals(attendu.getIdAdmin(), recu.getIdAdmin());
+    assertEquals(attendu.getMail(), recu.getMail());
+    assertEquals(attendu.getPseudo(), recu.getPseudo());
+    assertEquals(attendu.getMdp(), recu.getMdp());
+  }
+
+  private static void insertAdmin(Admin admin)
+      throws SQLException {
+    PreparedStatement pstmt =
+        connexion.prepareStatement("INSERT INTO Admin VALUES (NULL,?,?,?);");
+
+    pstmt.setString(1, admin.getMail());
+    pstmt.setString(2, admin.getPseudo());
+    pstmt.setString(3, admin.getMdp());
+
+    pstmt.executeUpdate();
+  }
+
+  private static List<Admin> prepareSomesAdmins() {
+    List<Admin> admins =
+        List.of(new Admin("testemail@dontmail.me", "1234hasher_moi", 42, "John"),
+            new Admin("trying.something@website.org", "un_mot_de_passe", 43, "Jean"),
+            new Admin("blabla@abc.xyz", "le-chat-est-passe-par-la", 44, "Carl"));
+
+    admins.forEach(admin -> {
+      try {
+        insertAdmin(admin);
+      } catch (SQLException e) {
+        throw new RuntimeException(e);
+      }
+    });
+
+    return admins;
   }
 
 }

@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -17,33 +19,28 @@ import root.model.Client;
 
 class ClientDaoTest {
 
-
   static Connection connexion;
-  static Statement statement;
   static ClientDao systemUnderTest;
 
   @BeforeAll
   static void setup() throws ClassNotFoundException, SQLException {
-
     Class.forName("com.mysql.cj.jdbc.Driver");
     connexion = DriverManager.getConnection(
         System.getenv("DB_URL_DEV"),
         System.getenv("DB_USER"),
-        System.getenv("DB_PSW")
-    );
-    statement = connexion.createStatement();
+        System.getenv("DB_PSW"));
     systemUnderTest = new ClientDao(connexion);
+  }
+
+  @AfterEach
+  void teardownEach() throws SQLException {
+    connexion.prepareStatement("DELETE FROM Client;").executeUpdate();
+    connexion.prepareStatement("DELETE FROM Adresse;").executeUpdate();
   }
 
   @AfterAll
   static void teardown() throws SQLException {
-    statement.close();
     connexion.close();
-  }
-
-  @AfterEach
-  void tear() throws SQLException {
-    statement.executeUpdate("DELETE FROM Client;");
   }
 
   /**
@@ -52,91 +49,51 @@ class ClientDaoTest {
    */
   @Test
   void insert() throws SQLException {
-    Adresse adresse = new Adresse(33, "France", "72310", "Chemin", "Les Charbonnieres", 0, "", "");
-    Client client = new Client(-1, "Smith", "John", "0624745201",
-        "47.83700332971232,0.7046477664761941", adresse);
+    Adresse adresse =
+        new Adresse(-1, "France", "12400", "Bou", "Rue", "Perce-cent-lieux", 3, "", "");
+    Client client = new Client(-1, "Vant", "Jean", "1122334400",
+        "46.232192999999995,2.209666999999996", adresse);
 
     boolean recu = systemUnderTest.insert(client);
-
     assertTrue(recu);
-    assertEquals(TestUtil.nombreLignesTrouvees(statement, "Client"), 1);
-    assertEquals(TestUtil.nombreLignesTrouvees(statement, "Adresse"), 1);
+
+    assertInsertOk(client);
   }
 
   /**
    * Ce test doit vérifier si la récupération d'une ligne de données
-   * dans la table Client renvoie bien true s'ils sont bien reçus.
+   * dans la table Client renvoie bien l'objet correspondant.
    */
   @Test
   void get() throws SQLException {
-    statement.executeUpdate("INSERT INTO Adresse VALUES "
-        + "(54, 'France', '33600', 'Pessac', 'Ruelle', 'Grand vert', 2, '', '');");
-    statement.executeUpdate("INSERT INTO Client VALUES (23, 'Smith', 'John', '0624745201',"
-        + "'47.83700332971232,0.7046477664761941', 54);");
+    Adresse adresse =
+        new Adresse(23, "France", "12400", "Bou", "Rue", "Perce-cent-lieux", 3, "", "");
+    Client attendu = new Client(23, "Vant", "Jean", "1122334400",
+        "46.232193,2.2096670", adresse);
+    insertClient(attendu);
 
-    Client recu = systemUnderTest.get(23);
+    Client recu = systemUnderTest.get(attendu.getIdClient());
+    assertNotNull(recu);
 
-    assertEquals(23, recu.getIdClient());
-    assertEquals("Smith", recu.getNom());
-    assertEquals("John", recu.getPrenom());
-    assertEquals("0624745201", recu.getNumTel());
-    assertEquals("47.83700332971232,0.7046477664761941", recu.getGps());
-    assertTrue(recu.getAdresse() != null);
+    assertClientEquals(attendu, recu);
   }
 
   /**
    * Ce test doit vérifier si la récupération de toutes les données
-   * dans la table Client renvoie bien true s'ils sont bien reçus.
+   * dans la table Client renvoie bien la liste de tous les objets correspondants.
    */
   @Test
   void getAll() throws SQLException {
-    List<Adresse> adresses = List.of(
-        new Adresse(33, "France", "72310", "Chemin", "Les Charbonnieres", 0, "", ""),
-        new Adresse(34, "France", "79340", "Rue", "Les Forges", 2, "", ""),
-        new Adresse(35, "France", "72310", "Promenade", "La Petite Piece", 1, "", "")
-    );
-    List<Client> clientsAttendus = List.of(
-        new Client(14, "Smith", "John", "0642784201",
-            "47.83700332971232,0.7046477664761941", adresses.get(0)),
-        new Client(15, "Charles", "Peter", "0713928374",
-            "46.53935446877776,-0.024586199879674808", adresses.get(1)),
-        new Client(16, "Let", "Pomme", "0683947362",
-            "46.8381642630827,0.439126696719514", adresses.get(2))
-    );
-    connexion.setAutoCommit(false);
-    for (Adresse adresse : adresses) {
-      statement.addBatch(String.format("INSERT INTO Adresse VALUES "
-              + "(%d, '%s', '%s', '%s', '%s', '%s', %d, '%s', '%s');",
-          adresse.getIdAdresse(), adresse.getPays(), adresse.getCodePost(), "", adresse.getVoie(),
-          adresse.getNom(), adresse.getNumero(), adresse.getMention(), adresse.getComplement()));
-    }
-    statement.executeBatch();
-    statement.clearBatch();
-    connexion.commit();
-    for (Client client : clientsAttendus) {
-      statement.addBatch(String.format("INSERT INTO Client VALUES "
-              + "(%d, '%s', '%s', '%s', '%s', %d);",
-          client.getIdClient(), client.getNom(), client.getPrenom(), client.getNumTel(),
-          client.getGps(), client.getAdresse().getIdAdresse()));
-    }
-    statement.executeBatch();
-    statement.clearBatch();
-    connexion.commit();
-    connexion.setAutoCommit(true);
+    List<Client> attendus = prepareSomeClients();
 
-    ArrayList<Client> clientsRecus = systemUnderTest.getAll();
+    ArrayList<Client> recus = systemUnderTest.getAll();
+    assertNotNull(recus);
+    assertEquals(attendus.size(), recus.size());
 
-    assertTrue(clientsRecus.size() == clientsAttendus.size());
-    for (int index = 0; index < clientsAttendus.size(); ++index) {
-      Client attendu = clientsAttendus.get(index);
-      Client recu = clientsRecus.get(index);
-
-      assertEquals(attendu.getIdClient(), recu.getIdClient());
-      assertEquals(attendu.getNom(), recu.getNom());
-      assertEquals(attendu.getPrenom(), recu.getPrenom());
-      assertEquals(attendu.getNumTel(), recu.getNumTel());
-      assertEquals(attendu.getGps(), recu.getGps());
-      assertEquals(attendu.getAdresse().getIdAdresse(), recu.getAdresse().getIdAdresse());
+    for (int index = 0; index < attendus.size(); ++index) {
+      Client attendu = attendus.get(index);
+      Client recu = recus.get(index);
+      assertClientEquals(attendu, recu);
     }
   }
 
@@ -146,18 +103,20 @@ class ClientDaoTest {
    */
   @Test
   void update() throws SQLException {
-    Adresse adresse = new Adresse(33, "France", "72310", "Chemin", "Les Charbonnieres", 0, "", "");
-    Client client = new Client(55, "Smith", "John", "0624745201",
-        "47.83700332971232,0.7046477664761941", adresse);
-    statement.executeUpdate(String.format("INSERT INTO Client VALUES "
-            + "(%d, '%s', '%s', '%s', '%s', %d);",
-        client.getIdClient(), client.getNom(), client.getPrenom(), client.getNumTel(),
-        client.getGps(), client.getAdresse().getIdAdresse()));
-    client.setNumTel("0756478674");
+    Adresse adresse =
+        new Adresse(23, "France", "12400", "Bou", "Rue", "Perce-cent-lieux", 3, "", "");
+    Client client = new Client(23, "Vant", "Jean", "1122334400",
+        "46.232193,2.2096670", adresse);
+    insertClient(client);
+
+    client.setGps("43.957193,3.7126230");
+    client.setAdresse(
+        new Adresse(24, "France", "13700", "Nou", "Avenue", "Marche-mille-pas", 2, "", "Bis."));
 
     boolean recu = systemUnderTest.update(client);
-
     assertTrue(recu);
+
+    assertUpdateOk(client);
   }
 
   /**
@@ -166,14 +125,147 @@ class ClientDaoTest {
    */
   @Test
   void delete() throws SQLException {
-    Adresse adresse = new Adresse(33, "France", "72310", "Chemin", "Les Charbonnieres", 0, "", "");
-    Client client = new Client(-1, "Smith", "John", "0624745201",
-        "47.83700332971232,0.7046477664761941", adresse);
+    Adresse adresse =
+        new Adresse(23, "France", "12400", "Bou", "Rue", "Perce-cent-lieux", 3, "", "");
+    Client client = new Client(23, "Vant", "Jean", "1122334400",
+        "46.232193,2.2096670", adresse);
+    insertClient(client);
 
     boolean recu = systemUnderTest.delete(client);
-
     assertTrue(recu);
-    assertEquals(TestUtil.nombreLignesTrouvees(statement, "Client"), 0);
+
+    assertDeleteOk(client);
+  }
+
+  private static void assertInsertOk(Client client) throws SQLException {
+    PreparedStatement pstmt = connexion.prepareStatement(
+        "SELECT * FROM Client WHERE idClient = (SELECT MAX(idClient) FROM Client);");
+
+    ResultSet rs = pstmt.executeQuery();
+    assertTrue(rs.next());
+
+    String nomInsere = rs.getString("nomClient");
+    String prenomInsere = rs.getString("prenomClient");
+    String numTelInsere = rs.getString("numTel");
+    String gpsInsere = rs.getString("gps");
+    int idAdresseInsere = rs.getInt("idAdresse");
+
+    assertEquals(client.getNom(), nomInsere);
+    assertEquals(client.getPrenom(), prenomInsere);
+    assertEquals(client.getNumTel(), numTelInsere);
+    assertEquals(client.getGps(), gpsInsere);
+    assertEquals(client.getAdresse().getIdAdresse(), idAdresseInsere);
+  }
+
+  private static void assertUpdateOk(Client client) throws SQLException {
+    PreparedStatement pstmt =
+        connexion.prepareStatement("SELECT * FROM Client WHERE idClient = ?;");
+    pstmt.setInt(1, client.getIdClient());
+
+    ResultSet rs = pstmt.executeQuery();
+    assertTrue(rs.next());
+
+    String nomInsere = rs.getString("nomClient");
+    String prenomInsere = rs.getString("prenomClient");
+    String numTelInsere = rs.getString("numTel");
+    String gpsInsere = rs.getString("gps");
+    int idAdresseInsere = rs.getInt("idAdresse");
+
+    assertEquals(client.getNom(), nomInsere);
+    assertEquals(client.getPrenom(), prenomInsere);
+    assertEquals(client.getNumTel(), numTelInsere);
+    assertEquals(client.getGps(), gpsInsere);
+    assertEquals(client.getAdresse().getIdAdresse(), idAdresseInsere);
+  }
+
+  private static void assertDeleteOk(Client client) throws SQLException {
+    PreparedStatement pstmt =
+        connexion.prepareStatement("SELECT * FROM Client WHERE idClient = ?;");
+    pstmt.setInt(1, client.getIdClient());
+
+    ResultSet rs = pstmt.executeQuery();
+    assertFalse(rs.next());
+  }
+
+  private static void assertClientEquals(Client attendu, Client recu) {
+    assertEquals(attendu.getIdClient(), recu.getIdClient());
+    assertEquals(attendu.getNom(), recu.getNom());
+    assertEquals(attendu.getPrenom(), recu.getPrenom());
+    assertEquals(attendu.getNumTel(), recu.getNumTel());
+    assertEquals(attendu.getGps(), recu.getGps());
+    assertAdresseEquals(attendu.getAdresse(), recu.getAdresse());
+  }
+
+  private static void assertAdresseEquals(Adresse attendu, Adresse recu) {
+    assertEquals(attendu.getIdAdresse(), recu.getIdAdresse());
+    assertEquals(attendu.getPays(), recu.getPays());
+    assertEquals(attendu.getCodePost(), recu.getCodePost());
+    assertEquals(attendu.getVille(), recu.getVille());
+    assertEquals(attendu.getVoie(), recu.getVoie());
+    assertEquals(attendu.getNom(), recu.getNom());
+    assertEquals(attendu.getNumero(), recu.getNumero());
+    assertEquals(attendu.getMention(), recu.getMention());
+    assertEquals(attendu.getComplement(), recu.getComplement());
+  }
+
+  private static void insertClient(Client client) throws SQLException {
+    PreparedStatement pstmt =
+        connexion.prepareStatement("INSERT INTO Adresse VALUES (NULL,?,?,?,?,?,?,?,?);", Statement.RETURN_GENERATED_KEYS);
+    Adresse adresse = client.getAdresse();
+
+    pstmt.setString(1, adresse.getPays());
+    pstmt.setString(2, adresse.getCodePost());
+    pstmt.setString(3, adresse.getVille());
+    pstmt.setString(4, adresse.getVoie());
+    pstmt.setString(5, adresse.getNom());
+    pstmt.setInt(6, adresse.getNumero());
+    pstmt.setString(7, adresse.getMention());
+    pstmt.setString(8, adresse.getComplement());
+
+    pstmt.executeUpdate();
+
+    ResultSet keys =  pstmt.getGeneratedKeys();
+    assertTrue(keys.next());
+    int insertedIdAdresse = keys.getInt(1);
+
+    pstmt =
+        connexion.prepareStatement("INSERT INTO Client VALUES (NULL,?,?,?,?,?);");
+
+    pstmt.setString(1, client.getNom());
+    pstmt.setString(2, client.getPrenom());
+    pstmt.setString(3, client.getNumTel());
+    pstmt.setString(4, client.getGps());
+    pstmt.setInt(5, insertedIdAdresse);
+
+    pstmt.executeUpdate();
+  }
+
+  private static List<Client> prepareSomeClients() {
+    Adresse adresse1 =
+        new Adresse(23, "France", "12400", "Bou", "Rue", "Perce-cent-lieux", 3, "", "");
+    Adresse adresse2 =
+        new Adresse(24, "France", "12345", "Volaire", "Rue", "Perce-cent-lieux", 3, "", "Bis");
+    Adresse adresse3 =
+        new Adresse(25, "France", "30020", "Lecentre", "Avenue", "Lueilwitz Court", 3,
+            "Appt 230", "");
+
+    List<Client> clients =
+        List.of(new Client(23, "Vant", "Jean", "1122334400",
+                "46.232193,2.2096670", adresse1),
+            new Client(24, "Vant", "Jean", "1231231230",
+                "46.232193,2.2096670", adresse2),
+            new Client(25, "Vant", "Jean", "2244668800",
+                "46.232193,2.2096670", adresse3));
+
+    clients.forEach(client -> {
+      try {
+        insertClient(client);
+      } catch (SQLException e) {
+        throw new RuntimeException(e);
+      }
+    });
+
+    return clients;
   }
 
 }
