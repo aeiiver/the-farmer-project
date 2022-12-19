@@ -35,8 +35,8 @@ public class TourneeDao extends Dao<Tournee, Integer> {
       PreparedStatement preparedStatement = connexion.prepareStatement(query);
       preparedStatement.setInt(1, tournee.getNumTournee());
       preparedStatement.setString(2, tournee.getLibelle());
-      preparedStatement.setDate(3, tournee.getHeureMin());
-      preparedStatement.setDate(4, tournee.getHeureMin());
+      preparedStatement.setTime(3, tournee.getHeureMin());
+      preparedStatement.setTime(4, tournee.getHeureMin());
       preparedStatement.setString(5, tournee.getVehicule().getImmat());
       preparedStatement.executeUpdate();
       return true;
@@ -61,8 +61,8 @@ public class TourneeDao extends Dao<Tournee, Integer> {
       return new Tournee(
           preparedStatement.executeQuery().getInt("numTournee"),
           preparedStatement.executeQuery().getString("libelle"),
-          preparedStatement.executeQuery().getDate("heureMin"),
-          preparedStatement.executeQuery().getDate("heureMax"),
+          preparedStatement.executeQuery().getTime("heureMin"),
+          preparedStatement.executeQuery().getTime("heureMax"),
           new ProducteurDao(connexion).get(preparedStatement.executeQuery().getString("SIRET")),
           new VehiculeDao(connexion).get(preparedStatement.executeQuery().getString("immat")));
     } catch (Exception e) {
@@ -86,8 +86,8 @@ public class TourneeDao extends Dao<Tournee, Integer> {
         tournees.add(new Tournee(
             preparedStatement.executeQuery().getInt("numTournee"),
             preparedStatement.executeQuery().getString("libelle"),
-            preparedStatement.executeQuery().getDate("heureMin"),
-            preparedStatement.executeQuery().getDate("heureMax"),
+            preparedStatement.executeQuery().getTime("heureMin"),
+            preparedStatement.executeQuery().getTime("heureMax"),
             new ProducteurDao(connexion).get(preparedStatement.executeQuery().getString("SIRET")),
             new VehiculeDao(connexion).get(preparedStatement.executeQuery().getString("immat"))));
       }
@@ -112,8 +112,8 @@ public class TourneeDao extends Dao<Tournee, Integer> {
           + "WHERE numTournee = ?";
       PreparedStatement preparedStatement = connexion.prepareStatement(query);
       preparedStatement.setString(1, tournee.getLibelle());
-      preparedStatement.setDate(2, tournee.getHeureMin());
-      preparedStatement.setDate(3, tournee.getHeureMin());
+      preparedStatement.setTime(2, tournee.getHeureMin());
+      preparedStatement.setTime(3, tournee.getHeureMin());
       preparedStatement.setString(4, tournee.getVehicule().getImmat());
       preparedStatement.setInt(5, tournee.getNumTournee());
       preparedStatement.executeUpdate();

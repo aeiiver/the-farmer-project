@@ -15,7 +15,7 @@ class ListeClientsTest {
    */
   @Test
   void ajouter() {
-    Adresse adresse = new Adresse(1, "France", "36300", "Rue", "Quelconque", 5, "", "");
+    Adresse adresse = new Adresse(1, "France", "36300", "Villa", "Rue", "Quelconque", 5, "", "");
     Client client = new Client(1, "Nom", "Prenom", "01 23 45 67 89", "0.0", adresse);
     ListeClients listeClients = new ListeClients();
 
@@ -36,7 +36,7 @@ class ListeClientsTest {
    */
   @Test
   void supprimer() {
-    Adresse adresse = new Adresse(1, "France", "36300", "Rue", "Quelconque", 5, "", "");
+    Adresse adresse = new Adresse(1, "France", "36300", "Villa", "Rue", "Quelconque", 5, "", "");
     Client client = new Client(1, "Nom", "Prenom", "01 23 45 67 89", "0.0", adresse);
     ListeClients listeClients = new ListeClients();
 
@@ -54,7 +54,7 @@ class ListeClientsTest {
    */
   @Test
   void editer() {
-    Adresse adresse = new Adresse(1, "France", "36300", "Rue", "Quelconque", 5, "", "");
+    Adresse adresse = new Adresse(1, "France", "36300", "Villa", "Rue", "Quelconque", 5, "", "");
     Client client = new Client(1, "Nom", "Prenom", "01 23 45 67 89", "0.0", adresse);
     ListeClients listeClients = new ListeClients();
 

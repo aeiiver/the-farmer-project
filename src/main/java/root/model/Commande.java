@@ -11,7 +11,7 @@ public class Commande {
   /**
    * Identifiant de la commande dans la base de données.
    *
-   * @see Commande#Commande(int, String, int, Date, Date, Date, Producteur, Client)  Commande
+   * @see Commande#Commande(int, String, int, Date, Time, Time, Producteur, Client)  Commande
    * @see Commande#getNumCom()
    * @see Commande#setNumCom(int)
    */
@@ -20,7 +20,7 @@ public class Commande {
   /**
    * Nom de la commande.
    *
-   * @see Commande#Commande(int, String, int, Date, Date, Date, Producteur, Client)  Commande
+   * @see Commande#Commande(int, String, int, Date, Time, Time, Producteur, Client)  Commande
    * @see Commande#getLibelle()
    * @see Commande#setLibelle(String)
    */
@@ -29,7 +29,7 @@ public class Commande {
   /**
    * Poids total de la commande.
    *
-   * @see Commande#Commande(int, String, int, Date, Date, Date, Producteur, Client)  Commande
+   * @see Commande#Commande(int, String, int, Date, Time, Time, Producteur, Client)  Commande
    * @see Commande#getPoids()
    * @see Commande#setPoids(int)
    */
@@ -38,7 +38,7 @@ public class Commande {
   /**
    * Date de la commande.
    *
-   * @see Commande#Commande(int, String, int, Date, Date, Date, Producteur, Client)  Commande
+   * @see Commande#Commande(int, String, int, Date, Time, Time, Producteur, Client)  Commande
    * @see Commande#getDateCom()
    * @see Commande#setDateCom(Date)
    */
@@ -47,25 +47,25 @@ public class Commande {
   /**
    * Horaire minimale de livraison de la commande.
    *
-   * @see Commande#Commande(int, String, int, Date, Date, Date, Producteur, Client)  Commande
+   * @see Commande#Commande(int, String, int, Date, Time, Time, Producteur, Client)  Commande
    * @see Commande#getHeureDeb()
-   * @see Commande#setHeureDeb(Date)
+   * @see Commande#setHeureDeb(Time)
    */
-  private Date heureDeb;
+  private Time heureDeb;
 
   /**
    * Horaire maximale de livraison de la commande.
    *
-   * @see Commande#Commande(int, String, int, Date, Date, Date, Producteur, Client)  Commande
+   * @see Commande#Commande(int, String, int, Date, Time, Time, Producteur, Client)  Commande
    * @see Commande#getHeureFin()
-   * @see Commande#setHeureFin(Date)
+   * @see Commande#setHeureFin(Time)
    */
-  private Date heureFin;
+  private Time heureFin;
 
   /**
    * Producteur de la commande.
    *
-   * @see Commande#Commande(int, String, int, Date, Date, Date, Producteur, Client)  Commande
+   * @see Commande#Commande(int, String, int, Date, Time, Time, Producteur, Client)  Commande
    * @see Commande#getProducteur()
    * @see Commande#setProducteur(Producteur)
    * @see Producteur
@@ -75,7 +75,7 @@ public class Commande {
   /**
    * Client de la commande.
    *
-   * @see Commande#Commande(int, String, int, Date, Date, Date, Producteur, Client)  Commande
+   * @see Commande#Commande(int, String, int, Date, Time, Time, Producteur, Client)  Commande
    * @see Commande#getClient()
    * @see Commande#setClient(Client)
    * @see Client
@@ -94,7 +94,7 @@ public class Commande {
    * @param producteur Le producteur qui a envoyé la commande.
    * @param client     Le client auquel la commande est destiné.
    */
-  public Commande(int numCom, String libelle, int poids, Date dateCom, Date heureDeb, Date heureFin,
+  public Commande(int numCom, String libelle, int poids, Date dateCom, Time heureDeb, Time heureFin,
                   Producteur producteur, Client client) {
     this.numCom = numCom;
     this.libelle = libelle;
@@ -147,7 +147,7 @@ public class Commande {
    *
    * @return heureDeb l'heure de début de la commande
    */
-  public Date getHeureDeb() {
+  public Time getHeureDeb() {
     return heureDeb;
   }
 
@@ -156,7 +156,7 @@ public class Commande {
    *
    * @return heureFin l'heure de fin de la commande
    */
-  public Date getHeureFin() {
+  public Time getHeureFin() {
     return heureFin;
   }
 
@@ -219,7 +219,7 @@ public class Commande {
    *
    * @param heureDeb l'heure de début de la commande
    */
-  public void setHeureDeb(Date heureDeb) {
+  public void setHeureDeb(Time heureDeb) {
     this.heureDeb = heureDeb;
   }
 
@@ -228,7 +228,7 @@ public class Commande {
    *
    * @param heureFin l'heure de fin de la commande
    */
-  public void setHeureFin(Date heureFin) {
+  public void setHeureFin(Time heureFin) {
     this.heureFin = heureFin;
   }
 

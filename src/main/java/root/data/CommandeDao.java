@@ -36,8 +36,8 @@ public class CommandeDao extends Dao<Commande, Integer> {
       preparedStatement.setString(2, commande.getLibelle());
       preparedStatement.setDouble(3, commande.getPoids());
       preparedStatement.setDate(4, commande.getDateCom());
-      preparedStatement.setDate(5, commande.getHeureDeb());
-      preparedStatement.setDate(6, commande.getHeureFin());
+      preparedStatement.setTime(5, commande.getHeureDeb());
+      preparedStatement.setTime(6, commande.getHeureFin());
       preparedStatement.setString(7, commande.getProducteur().getSiret());
       preparedStatement.setInt(8, commande.getClient().getIdClient());
       preparedStatement.executeUpdate();
@@ -64,8 +64,8 @@ public class CommandeDao extends Dao<Commande, Integer> {
           preparedStatement.executeQuery().getString("libelle"),
           preparedStatement.executeQuery().getInt("poids"),
           preparedStatement.executeQuery().getDate("dateCom"),
-          preparedStatement.executeQuery().getDate("heureDeb"),
-          preparedStatement.executeQuery().getDate("heureFin"),
+          preparedStatement.executeQuery().getTime("heureDeb"),
+          preparedStatement.executeQuery().getTime("heureFin"),
           new ProducteurDao(connexion).get(preparedStatement.executeQuery().getString("SIRET")),
           new ClientDao(connexion).get(preparedStatement.executeQuery().getInt("idClient")));
     } catch (Exception e) {
@@ -92,8 +92,8 @@ public class CommandeDao extends Dao<Commande, Integer> {
             preparedStatement.executeQuery().getString("libelle"),
             preparedStatement.executeQuery().getInt("poids"),
             preparedStatement.executeQuery().getDate("dateCom"),
-            preparedStatement.executeQuery().getDate("heureDeb"),
-            preparedStatement.executeQuery().getDate("heureFin"),
+            preparedStatement.executeQuery().getTime("heureDeb"),
+            preparedStatement.executeQuery().getTime("heureFin"),
             new ProducteurDao(connexion).get((preparedStatement.executeQuery().getString("SIRET"))),
             new ClientDao(connexion).get(preparedStatement.executeQuery().getInt("idClient"))));
       }
@@ -119,8 +119,8 @@ public class CommandeDao extends Dao<Commande, Integer> {
       preparedStatement.setString(1, commande.getLibelle());
       preparedStatement.setDouble(2, commande.getPoids());
       preparedStatement.setDate(3, commande.getDateCom());
-      preparedStatement.setDate(4, commande.getHeureDeb());
-      preparedStatement.setDate(5, commande.getHeureFin());
+      preparedStatement.setTime(4, commande.getHeureDeb());
+      preparedStatement.setTime(5, commande.getHeureFin());
       preparedStatement.setString(6, commande.getProducteur().getSiret());
       preparedStatement.setInt(7, commande.getClient().getIdClient());
       preparedStatement.setInt(8, commande.getNumCom());

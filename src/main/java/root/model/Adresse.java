@@ -8,7 +8,7 @@ public class Adresse {
   /**
    * Identifiant de l'adresse dans la base de données.
    *
-   * @see Adresse#Adresse(int, String, String, String, String, int, String, String)
+   * @see Adresse#Adresse(int, String, String, String, String, String, int, String, String)
    * @see Adresse#getIdAdresse()
    * @see Adresse#setIdAdresse(int)
    */
@@ -17,7 +17,7 @@ public class Adresse {
   /**
    * Pays de l'adresse.
    *
-   * @see Adresse#Adresse(int, String, String, String, String, int, String, String)
+   * @see Adresse#Adresse(int, String, String, String, String, String, int, String, String)
    * @see Adresse#getPays()
    * @see Adresse#setPays(String)
    */
@@ -26,16 +26,25 @@ public class Adresse {
   /**
    * Code postal de l'adresse.
    *
-   * @see Adresse#Adresse(int, String, String, String, String, int, String, String)
+   * @see Adresse#Adresse(int, String, String, String, String, String, int, String, String)
    * @see Adresse#getCodePost()
    * @see Adresse#setCodePost(String)
    */
   private String codePost;
 
   /**
+   * Code postal de l'adresse.
+   *
+   * @see Adresse#Adresse(int, String, String, String, String, String, int, String, String)
+   * @see Adresse#getVille()
+   * @see Adresse#setVille(String)
+   */
+  private String ville;
+
+  /**
    * Type de rue de l'adresse. (Avenue, Rue, Boulevard, etc.)
    *
-   * @see Adresse#Adresse(int, String, String, String, String, int, String, String)
+   * @see Adresse#Adresse(int, String, String, String, String, String, int, String, String)
    * @see Adresse#getVoie()
    * @see Adresse#setVoie(String)
    */
@@ -44,7 +53,7 @@ public class Adresse {
   /**
    * Nom de la rue de l'adresse.
    *
-   * @see Adresse#Adresse(int, String, String, String, String, int, String, String)
+   * @see Adresse#Adresse(int, String, String, String, String, String, int, String, String)
    * @see Adresse#getVoie()
    * @see Adresse#setVoie(String)
    */
@@ -53,7 +62,7 @@ public class Adresse {
   /**
    * Numéro de la rue de l'adresse.
    *
-   * @see Adresse#Adresse(int, String, String, String, String, int, String, String)
+   * @see Adresse#Adresse(int, String, String, String, String, String, int, String, String)
    * @see Adresse#getNumero()
    * @see Adresse#setNumero(int)
    */
@@ -62,7 +71,7 @@ public class Adresse {
   /**
    * Mention de l'adresse (Batiment, Appartement, etc.)
    *
-   * @see Adresse#Adresse(int, String, String, String, String, int, String, String)
+   * @see Adresse#Adresse(int, String, String, String, String, String, int, String, String)
    * @see Adresse#getMention()
    * @see Adresse#setMention(String)
    */
@@ -71,7 +80,7 @@ public class Adresse {
   /**
    * Complément de l'adresse (Bis, Ter, etc.)
    *
-   * @see Adresse#Adresse(int, String, String, String, String, int, String, String)
+   * @see Adresse#Adresse(int, String, String, String, String, String, int, String, String)
    * @see Adresse#getComplement()
    * @see Adresse#setComplement(String)
    */
@@ -83,17 +92,19 @@ public class Adresse {
    * @param idAdresse  Un identifiant pour l'adresse.
    * @param pays       Un nom de pays.
    * @param codePost   Le code postal lié à l'adresse.
+   * @param ville      La ville liée à l'adresse.
    * @param voie       La dénomination de la voie (rue, boulevard, chemin, ...).
    * @param nom        Le nom lié l'adresse.
    * @param numero     Le numéro de l'adresse.
    * @param mention    La mention de l'adresse.
    * @param complement Le complément de l'adresse (bât., étage, ...)
    */
-  public Adresse(int idAdresse, String pays, String codePost, String voie, String nom, int numero,
+  public Adresse(int idAdresse, String pays, String codePost, String ville, String voie, String nom, int numero,
                  String mention, String complement) {
     this.idAdresse = idAdresse;
     this.pays = pays;
     this.codePost = codePost;
+    this.ville = ville;
     this.voie = voie;
     this.nom = nom;
     this.numero = numero;
@@ -126,6 +137,15 @@ public class Adresse {
    */
   public String getCodePost() {
     return codePost;
+  }
+
+  /**
+   * Getter de la ville de l'adresse.
+   *
+   * @return ville la ville de l'adresse.
+   */
+  public String getVille() {
+    return ville;
   }
 
   /**
@@ -198,6 +218,15 @@ public class Adresse {
    */
   public void setCodePost(String codePost) {
     this.codePost = codePost;
+  }
+
+  /**
+   * Setter de la ville de l'adresse.
+   *
+   * @param ville la ville de l'adresse.
+   */
+  public void setVille(String ville) {
+    this.ville = ville;
   }
 
   /**

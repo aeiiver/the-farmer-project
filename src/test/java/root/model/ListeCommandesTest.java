@@ -2,6 +2,8 @@ package root.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.sql.Date;
+import java.sql.Time;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -14,10 +16,11 @@ class ListeCommandesTest {
    */
   @Test
   void ajouter() {
-    Adresse adresse = new Adresse(1, "France", "36300", "Rue", "Quelconque", 5, "", "");
+    Adresse adresse = new Adresse(1, "France", "36300", "Villa", "Rue", "Quelconque", 5, "", "");
     Client client = new Client(1, "Nom", "Prenom", "01 23 45 67 89", "0.0", adresse);
     Producteur producteur = new Producteur("email@jaimail.com", "motdepasse1234", "000 111 222 33333", "Producteur", "Random", "99 99 99 99 99", adresse);
-    Commande commande = new Commande(1, "Super Commande", 245, "01/01/2040", 2, 4, producteur, client);
+    Commande commande = new Commande(1, "Super Commande", 245, Date.valueOf("01/01/2040"),
+        Time.valueOf("02:00:00"), Time.valueOf("04:00:00"), producteur, client);
     ListeCommandes listeCommandes = new ListeCommandes();
 
     listeCommandes.ajouter(commande);
@@ -39,10 +42,11 @@ class ListeCommandesTest {
    */
   @Test
   void supprimer() {
-    Adresse adresse = new Adresse(1, "France", "36300", "Rue", "Quelconque", 5, "", "");
+    Adresse adresse = new Adresse(1, "France", "36300", "Villa", "Rue", "Quelconque", 5, "", "");
     Client client = new Client(1, "Nom", "Prenom", "01 23 45 67 89", "0.0", adresse);
     Producteur producteur = new Producteur("email@jaimail.com", "motdepasse1234", "000 111 222 33333", "Producteur", "Random", "99 99 99 99 99", adresse);
-    Commande commande = new Commande(1, "Super Commande", 245, "01/01/2040", 2, 4, producteur, client);
+    Commande commande = new Commande(1, "Super Commande", 245, Date.valueOf("01/01/2040"),
+        Time.valueOf("02:00:00"), Time.valueOf("04:00:00"), producteur, client);
     ListeCommandes listeCommandes = new ListeCommandes();
 
     listeCommandes.ajouter(commande);
@@ -59,16 +63,17 @@ class ListeCommandesTest {
    */
   @Test
   void editer() {
-    Adresse adresse = new Adresse(1, "France", "36300", "Rue", "Quelconque", 5, "", "");
+    Adresse adresse = new Adresse(1, "France", "36300", "Villa", "Rue", "Quelconque", 5, "", "");
     Client client = new Client(1, "Nom", "Prenom", "01 23 45 67 89", "0.0", adresse);
     Producteur producteur = new Producteur("email@jaimail.com", "motdepasse1234", "000 111 222 33333", "Producteur", "Random", "99 99 99 99 99", adresse);
-    Commande commande = new Commande(1, "Super Commande", 245, "01/01/2040", 2, 4, producteur, client);
+    Commande commande = new Commande(1, "Super Commande", 245, Date.valueOf("01/01/2040"),
+        Time.valueOf("02:00:00"), Time.valueOf("04:00:00"), producteur, client);
     ListeCommandes listeCommandes = new ListeCommandes();
 
     listeCommandes.ajouter(commande);
     commande.setLibelle("Commande trop cool");
-    commande.setHeureDeb(5);
-    commande.setHeureFin(15);
+    commande.setHeureDeb(Time.valueOf("05:00:00"));
+    commande.setHeureFin(Time.valueOf("15:00:00"));
     listeCommandes.editer(commande);
     ArrayList<Commande> maListe = listeCommandes.getCommandes();
     Commande recu = maListe.get(maListe.size() - 1);

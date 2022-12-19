@@ -2,6 +2,7 @@ package root.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.sql.Time;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -41,10 +42,10 @@ class ListeTourneesTest {
    */
   @Test
   void ajouter() {
-    Adresse adresse = new Adresse(1, "France", "36300", "Rue", "Quelconque", 5, "", "");
+    Adresse adresse = new Adresse(1, "France", "36300", "Villa", "Rue", "Quelconque", 5, "", "");
     Producteur producteur = new Producteur("email@jaimail.com", "motdepasse1234", "000 111 222 33333", "Producteur", "Random", "99 99 99 99 99", adresse);
     Vehicule vehicule = new Vehicule("SW-0241-1041", 500, producteur);
-    Tournee tournee = new Tournee(1, "Trajet en camion", 10, 20, producteur, vehicule);
+    Tournee tournee = new Tournee(1, "Trajet en camion", Time.valueOf("10:00:00"), Time.valueOf("20:00:00"), producteur, vehicule);
     ListeTournees listeTournees = new ListeTournees();
 
     listeTournees.ajouter(tournee);
@@ -64,10 +65,10 @@ class ListeTourneesTest {
    */
   @Test
   void supprimer() {
-    Adresse adresse = new Adresse(1, "France", "36300", "Rue", "Quelconque", 5, "", "");
+    Adresse adresse = new Adresse(1, "France", "36300", "Villa", "Rue", "Quelconque", 5, "", "");
     Producteur producteur = new Producteur("email@jaimail.com", "motdepasse1234", "000 111 222 33333", "Producteur", "Random", "99 99 99 99 99", adresse);
     Vehicule vehicule = new Vehicule("SW-0241-1041", 500, producteur);
-    Tournee tournee = new Tournee(1, "Trajet en camion", 10, 20, producteur, vehicule);
+    Tournee tournee = new Tournee(1, "Trajet en camion", Time.valueOf("10:00:00"), Time.valueOf("20:00:00"), producteur, vehicule);
     ListeTournees listeTournees = new ListeTournees();
 
     listeTournees.ajouter(tournee);
@@ -84,15 +85,15 @@ class ListeTourneesTest {
    */
   @Test
   void editer() {
-    Adresse adresse = new Adresse(1, "France", "36300", "Rue", "Quelconque", 5, "", "");
+    Adresse adresse = new Adresse(1, "France", "36300", "Villa", "Rue", "Quelconque", 5, "", "");
     Producteur producteur = new Producteur("email@jaimail.com", "motdepasse1234", "000 111 222 33333", "Producteur", "Random", "99 99 99 99 99", adresse);
     Vehicule vehicule = new Vehicule("SW-0241-1041", 500, producteur);
-    Tournee tournee = new Tournee(1, "Trajet en camion", 10, 20, producteur, vehicule);
+    Tournee tournee = new Tournee(1, "Trajet en camion", Time.valueOf("10:00:00"), Time.valueOf("20:00:00"), producteur, vehicule);
     ListeTournees listeTournees = new ListeTournees();
 
     listeTournees.ajouter(tournee);
     tournee.setLibelle("L'autre trajet en camion");
-    tournee.setHeureMin(2);
+    tournee.setHeureMin(Time.valueOf("02:00:00"));
     listeTournees.editer(tournee);
     ArrayList<Tournee> maListe = listeTournees.getTournees();
     Tournee recu = maListe.get(maListe.size() - 1);

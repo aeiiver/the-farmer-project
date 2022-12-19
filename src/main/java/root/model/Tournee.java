@@ -1,6 +1,6 @@
 package root.model;
 
-import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 
 /**
@@ -11,7 +11,7 @@ public class Tournee {
   /**
    * Identifiant de la tournée.
    *
-   * @see Tournee#Tournee(int, String, Date, Date, Producteur, Vehicule)  Tournee
+   * @see Tournee#Tournee(int, String, Time, Time, Producteur, Vehicule)  Tournee
    * @see Tournee#getNumTournee()
    * @see Tournee#setNumTournee(int)
    */
@@ -20,7 +20,7 @@ public class Tournee {
   /**
    * Nom de la tournée.
    *
-   * @see Tournee#Tournee(int, String, Date, Date, Producteur, Vehicule)  Tournee
+   * @see Tournee#Tournee(int, String, Time, Time, Producteur, Vehicule)  Tournee
    * @see Tournee#getLibelle()
    * @see Tournee#setLibelle(String)
    */
@@ -29,25 +29,25 @@ public class Tournee {
   /**
    * Heure de début de la tournée.
    *
-   * @see Tournee#Tournee(int, String, Date, Date, Producteur, Vehicule)  Tournee
+   * @see Tournee#Tournee(int, String, Time, Time, Producteur, Vehicule)  Tournee
    * @see Tournee#getHeureMin()
-   * @see Tournee#setHeureMin(Date)
+   * @see Tournee#setHeureMin(Time)
    */
-  private Date heureMin;
+  private Time heureMin;
 
   /**
    * Heure de fin de la tournée.
    *
-   * @see Tournee#Tournee(int, String, Date, Date, Producteur, Vehicule)  Tournee
+   * @see Tournee#Tournee(int, String, Time, Time, Producteur, Vehicule)  Tournee
    * @see Tournee#getHeureMax()
-   * @see Tournee#setHeureMax(Date)
+   * @see Tournee#setHeureMax(Time)
    */
-  private Date heureMax;
+  private Time heureMax;
 
   /**
    * Producteur de la tournée.
    *
-   * @see Tournee#Tournee(int, String, Date, Date, Producteur, Vehicule)  Tournee
+   * @see Tournee#Tournee(int, String, Time, Time, Producteur, Vehicule)  Tournee
    * @see Tournee#getProducteur()
    * @see Tournee#setProducteur(Producteur)
    */
@@ -56,7 +56,7 @@ public class Tournee {
   /**
    * Véhicule de la tournée.
    *
-   * @see Tournee#Tournee(int, String, Date, Date, Producteur, Vehicule)  Tournee
+   * @see Tournee#Tournee(int, String, Time, Time, Producteur, Vehicule)  Tournee
    * @see Tournee#getVehicule()
    * @see Tournee#setVehicule(Vehicule)
    */
@@ -65,7 +65,7 @@ public class Tournee {
   /**
    * Liste des commandes de la tournée.
    *
-   * @see Tournee#Tournee(int, String, Date, Date, Producteur, Vehicule)  Tournee
+   * @see Tournee#Tournee(int, String, Time, Time, Producteur, Vehicule)  Tournee
    * @see Tournee#getCommandes()
    * @see Tournee#setCommandes(ArrayList)
    * @see Tournee#ajouteCommande(Commande)
@@ -84,8 +84,8 @@ public class Tournee {
    * @param producteur Le producteur qui réalise la tournée.
    * @param vehicule   Le véhicule avec lequel la tournée sera réalisé.
    */
-  public Tournee(int numTournee, String libelle, Date heureMin, Date heureMax,
-                 Producteur producteur, Vehicule vehicule) {
+  public Tournee(int numTournee, String libelle, Time heureMin, Time heureMax, Producteur producteur,
+                 Vehicule vehicule) {
     this.numTournee = numTournee;
     this.libelle = libelle;
     this.heureMin = heureMin;
@@ -118,7 +118,7 @@ public class Tournee {
    *
    * @return heureMin l'heure minimale de la tournée
    */
-  public Date getHeureMin() {
+  public Time getHeureMin() {
     return heureMin;
   }
 
@@ -127,7 +127,7 @@ public class Tournee {
    *
    * @return heureMax l'heure maximale de la tournée
    */
-  public Date getHeureMax() {
+  public Time getHeureMax() {
     return heureMax;
   }
 
@@ -181,7 +181,7 @@ public class Tournee {
    *
    * @param heureMin l'heure minimale de la tournée
    */
-  public void setHeureMin(Date heureMin) {
+  public void setHeureMin(Time heureMin) {
     this.heureMin = heureMin;
   }
 
@@ -190,7 +190,7 @@ public class Tournee {
    *
    * @param heureMax l'heure maximale de la tournée
    */
-  public void setHeureMax(Date heureMax) {
+  public void setHeureMax(Time heureMax) {
     this.heureMax = heureMax;
   }
 

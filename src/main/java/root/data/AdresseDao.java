@@ -34,7 +34,7 @@ public class AdresseDao extends Dao<Adresse, Integer> {
       PreparedStatement preparedStatement = connexion.prepareStatement(query);
       preparedStatement.setString(1, adresse.getPays());
       preparedStatement.setString(2, adresse.getCodePost());
-      preparedStatement.setString(3, "");
+      preparedStatement.setString(3, adresse.getVille());
       preparedStatement.setString(4, adresse.getVoie());
       preparedStatement.setString(5, adresse.getNom());
       preparedStatement.setInt(6, adresse.getNumero());
@@ -64,6 +64,7 @@ public class AdresseDao extends Dao<Adresse, Integer> {
           preparedStatement.executeQuery().getInt("idAdresse"),
           preparedStatement.executeQuery().getString("pays"),
           preparedStatement.executeQuery().getString("codePost"),
+          preparedStatement.executeQuery().getString("ville"),
           preparedStatement.executeQuery().getString("voie"),
           preparedStatement.executeQuery().getString("nom"),
           preparedStatement.executeQuery().getInt("numero"),
@@ -92,6 +93,7 @@ public class AdresseDao extends Dao<Adresse, Integer> {
             preparedStatement.executeQuery().getInt("idAdresse"),
             preparedStatement.executeQuery().getString("pays"),
             preparedStatement.executeQuery().getString("codePost"),
+            preparedStatement.executeQuery().getString("ville"),
             preparedStatement.executeQuery().getString("voie"),
             preparedStatement.executeQuery().getString("nom"),
             preparedStatement.executeQuery().getInt("numero"),
