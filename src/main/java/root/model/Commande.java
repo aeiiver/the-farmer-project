@@ -1,5 +1,8 @@
 package root.model;
 
+import java.sql.Date;
+import java.sql.Time;
+
 /**
  * Classe de modèle pour les Commandes.
  */
@@ -135,7 +138,7 @@ public class Commande {
    *
    * @return dateCom la date de la commande
    */
-  public String getDateCom() {
+  public Date getDateCom() {
     return dateCom;
   }
 
@@ -144,7 +147,7 @@ public class Commande {
    *
    * @return heureDeb l'heure de début de la commande
    */
-  public int getHeureDeb() {
+  public Time getHeureDeb() {
     return heureDeb;
   }
 
@@ -153,7 +156,7 @@ public class Commande {
    *
    * @return heureFin l'heure de fin de la commande
    */
-  public int getHeureFin() {
+  public Time getHeureFin() {
     return heureFin;
   }
 

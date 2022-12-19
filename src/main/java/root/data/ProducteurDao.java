@@ -1,6 +1,7 @@
 package root.data;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import root.model.Producteur;
 
@@ -26,7 +27,24 @@ public class ProducteurDao extends Dao<Producteur, String> {
    */
   @Override
   public boolean insert(Producteur producteur) {
-    return false;
+    try {
+      String query = "INSERT INTO Producteur "
+          + "(SIRET, mail, nomProd, prenomProd, numTel, mdp, idAdresse) "
+          + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+      PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      preparedStatement.setString(1, producteur.getSiret());
+      preparedStatement.setString(2, producteur.getMail());
+      preparedStatement.setString(3, producteur.getNom());
+      preparedStatement.setString(4, producteur.getPrenom());
+      preparedStatement.setString(5, producteur.getNumTel());
+      preparedStatement.setString(6, producteur.getMdp());
+      preparedStatement.setInt(6, producteur.getAdresse().getIdAdresse());
+      preparedStatement.executeUpdate();
+      return true;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return false;
+    }
   }
 
   /**
@@ -39,7 +57,24 @@ public class ProducteurDao extends Dao<Producteur, String> {
    */
   @Override
   public Producteur get(String id) {
-    return null;
+    try {
+      String query = "SELECT * FROM Producteur WHERE SIRET = ? OR mail = ?";
+      PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      preparedStatement.setString(1, id);
+      preparedStatement.setString(2, id);
+      return new Producteur(
+          preparedStatement.executeQuery().getString("SIRET"),
+          preparedStatement.executeQuery().getString("mail"),
+          preparedStatement.executeQuery().getString("nomProd"),
+          preparedStatement.executeQuery().getString("prenomProd"),
+          preparedStatement.executeQuery().getString("numTel"),
+          preparedStatement.executeQuery().getString("mdp"),
+          new AdresseDao(connexion).get(preparedStatement.executeQuery().getInt("idAdresse"))
+      );
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
   }
 
   /**
@@ -49,7 +84,26 @@ public class ProducteurDao extends Dao<Producteur, String> {
    */
   @Override
   public ArrayList<Producteur> getAll() {
-    return null;
+    try {
+      String query = "SELECT * FROM Producteur";
+      PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      ArrayList<Producteur> producteurs = new ArrayList<>();
+      while (preparedStatement.executeQuery().next()) {
+        producteurs.add(new Producteur(
+            preparedStatement.executeQuery().getString("SIRET"),
+            preparedStatement.executeQuery().getString("mail"),
+            preparedStatement.executeQuery().getString("nomProd"),
+            preparedStatement.executeQuery().getString("prenomProd"),
+            preparedStatement.executeQuery().getString("numTel"),
+            preparedStatement.executeQuery().getString("mdp"),
+            new AdresseDao(connexion).get(preparedStatement.executeQuery().getInt("idAdresse"))
+        ));
+      }
+      return producteurs;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
   }
 
   /**
@@ -60,7 +114,24 @@ public class ProducteurDao extends Dao<Producteur, String> {
    */
   @Override
   public boolean update(Producteur producteur) {
-    return false;
+    try {
+      String query = "UPDATE Producteur SET "
+          + "mail = ?, nomProd = ?, prenomProd = ?, numTel = ?, mdp = ?, idAdresse = ? "
+          + "WHERE SIRET = ?";
+      PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      preparedStatement.setString(1, producteur.getMail());
+      preparedStatement.setString(2, producteur.getNom());
+      preparedStatement.setString(3, producteur.getPrenom());
+      preparedStatement.setString(4, producteur.getNumTel());
+      preparedStatement.setString(5, producteur.getMdp());
+      preparedStatement.setInt(6, producteur.getAdresse().getIdAdresse());
+      preparedStatement.setString(7, producteur.getSiret());
+      preparedStatement.executeUpdate();
+      return true;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return false;
+    }
   }
 
   /**

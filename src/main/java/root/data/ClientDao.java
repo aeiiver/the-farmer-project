@@ -1,6 +1,7 @@
 package root.data;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import root.model.Client;
 
@@ -26,7 +27,23 @@ public class ClientDao extends Dao<Client, Integer> {
    */
   @Override
   public boolean insert(Client client) {
-    return false;
+    try {
+      String query = "INSERT INTO Client "
+          + "(idClient, nomClient, prenomClient, numTel, gps, idAdresse) "
+          + "VALUES (?, ?, ?, ?, ?, ?)";
+      PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      preparedStatement.setInt(1, client.getIdClient());
+      preparedStatement.setString(2, client.getNom());
+      preparedStatement.setString(3, client.getPrenom());
+      preparedStatement.setString(4, client.getGps());
+      preparedStatement.setString(5, client.getNumTel());
+      preparedStatement.setInt(6, client.getAdresse().getIdAdresse());
+      preparedStatement.executeUpdate();
+      return true;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return false;
+    }
   }
 
   /**
@@ -37,7 +54,21 @@ public class ClientDao extends Dao<Client, Integer> {
    */
   @Override
   public Client get(Integer id) {
-    return null;
+    try {
+      String query = "SELECT * FROM Client WHERE idClient = ?";
+      PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      preparedStatement.setInt(1, id);
+      return new Client(
+          preparedStatement.executeQuery().getInt("idClient"),
+          preparedStatement.executeQuery().getString("nomClient"),
+          preparedStatement.executeQuery().getString("prenomClient"),
+          preparedStatement.executeQuery().getString("numTel"),
+          preparedStatement.executeQuery().getString("gps"),
+          new AdresseDao(connexion).get(preparedStatement.executeQuery().getInt("idAdresse")));
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
   }
 
   /**
@@ -47,7 +78,24 @@ public class ClientDao extends Dao<Client, Integer> {
    */
   @Override
   public ArrayList<Client> getAll() {
-    return null;
+    try {
+      String query = "SELECT * FROM Client";
+      PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      ArrayList<Client> clients = new ArrayList<>();
+      while (preparedStatement.executeQuery().next()) {
+        clients.add(new Client(
+            preparedStatement.executeQuery().getInt("idClient"),
+            preparedStatement.executeQuery().getString("nomClient"),
+            preparedStatement.executeQuery().getString("prenomClient"),
+            preparedStatement.executeQuery().getString("numTel"),
+            preparedStatement.executeQuery().getString("gps"),
+            new AdresseDao(connexion).get(preparedStatement.executeQuery().getInt("idAdresse"))));
+      }
+      return clients;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
   }
 
   /**
@@ -58,7 +106,22 @@ public class ClientDao extends Dao<Client, Integer> {
    */
   @Override
   public boolean update(Client client) {
-    return false;
+    try {
+      String query = "UPDATE Client SET nomClient = ?, prenomClient = ?, "
+          + "numTel = ?, gps = ?, idAdresse = ? WHERE idClient = ?";
+      PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      preparedStatement.setString(1, client.getNom());
+      preparedStatement.setString(2, client.getPrenom());
+      preparedStatement.setString(3, client.getNumTel());
+      preparedStatement.setString(4, client.getGps());
+      preparedStatement.setInt(5, client.getAdresse().getIdAdresse());
+      preparedStatement.setInt(6, client.getIdClient());
+      preparedStatement.executeUpdate();
+      return true;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return false;
+    }
   }
 
   /**
@@ -69,7 +132,16 @@ public class ClientDao extends Dao<Client, Integer> {
    */
   @Override
   public boolean delete(Client client) {
-    return false;
+    try {
+      String query = "DELETE FROM Client WHERE idClient = ?";
+      PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      preparedStatement.setInt(1, client.getIdClient());
+      preparedStatement.executeUpdate();
+      return true;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return false;
+    }
   }
 
 }

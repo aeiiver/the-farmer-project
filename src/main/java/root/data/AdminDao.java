@@ -1,6 +1,7 @@
 package root.data;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import root.model.Admin;
 
@@ -26,7 +27,18 @@ public class AdminDao extends Dao<Admin, String> {
    */
   @Override
   public boolean insert(Admin admin) {
-    return false;
+    try {
+      String query = "INSERT INTO Admin (mail, pseudo, mdp) VALUES (?, ?, ?)";
+      PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      preparedStatement.setString(1, admin.getMail());
+      preparedStatement.setString(2, admin.getPseudo());
+      preparedStatement.setString(3, admin.getMdp());
+      preparedStatement.executeUpdate();
+      return true;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return false;
+    }
   }
 
   /**
@@ -39,7 +51,21 @@ public class AdminDao extends Dao<Admin, String> {
    */
   @Override
   public Admin get(String id) {
-    return null;
+    try {
+      String query = "SELECT * FROM Admin WHERE idAdmin = ?";
+      PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      preparedStatement.setString(1, id);
+      return preparedStatement.executeQuery().next() ? new Admin(
+          preparedStatement.executeQuery().getString("mail"),
+          preparedStatement.executeQuery().getString("mdp"),
+          preparedStatement.executeQuery().getInt("idAdmin"),
+          preparedStatement.executeQuery().getString("pseudo")
+
+      ) : null;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
   }
 
   /**
@@ -49,7 +75,23 @@ public class AdminDao extends Dao<Admin, String> {
    */
   @Override
   public ArrayList<Admin> getAll() {
-    return null;
+    try {
+      String query = "SELECT * FROM Admin";
+      PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      ArrayList<Admin> admins = new ArrayList<>();
+      while (preparedStatement.executeQuery().next()) {
+        admins.add(new Admin(
+            preparedStatement.executeQuery().getString("mail"),
+            preparedStatement.executeQuery().getString("mdp"),
+            preparedStatement.executeQuery().getInt("idAdmin"),
+            preparedStatement.executeQuery().getString("pseudo")
+        ));
+      }
+      return admins;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
   }
 
   /**
@@ -60,7 +102,19 @@ public class AdminDao extends Dao<Admin, String> {
    */
   @Override
   public boolean update(Admin admin) {
-    return false;
+    try {
+      String query = "UPDATE Admin SET mail = ?, pseudo = ?, mdp = ? WHERE idAdmin = ?";
+      PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      preparedStatement.setString(1, admin.getMail());
+      preparedStatement.setString(2, admin.getPseudo());
+      preparedStatement.setString(3, admin.getMdp());
+      preparedStatement.setInt(4, admin.getIdAdmin());
+      preparedStatement.executeUpdate();
+      return true;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return false;
+    }
   }
 
   /**
@@ -71,7 +125,16 @@ public class AdminDao extends Dao<Admin, String> {
    */
   @Override
   public boolean delete(Admin admin) {
-    return false;
+    try {
+      String query = "DELETE FROM Admin WHERE idAdmin = ?";
+      PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      preparedStatement.setInt(1, admin.getIdAdmin());
+      preparedStatement.executeUpdate();
+      return true;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return false;
+    }
   }
 
 }

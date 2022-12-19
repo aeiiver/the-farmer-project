@@ -14,7 +14,7 @@ public abstract class Dao<T, U> {
   /**
    * Connexion à la base de données.
    */
-  private Connection connexion;
+  Connection connexion;
 
   /**
    * Constructeur.

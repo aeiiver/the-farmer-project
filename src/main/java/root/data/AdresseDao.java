@@ -1,6 +1,7 @@
 package root.data;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import root.model.Adresse;
 
@@ -26,7 +27,25 @@ public class AdresseDao extends Dao<Adresse, Integer> {
    */
   @Override
   public boolean insert(Adresse adresse) {
-    return false;
+    try {
+      String query = "INSERT INTO Adresse "
+          + "(pays, codePost, ville, voie, nom, numero, mention, complement) "
+          + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+      PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      preparedStatement.setString(1, adresse.getPays());
+      preparedStatement.setString(2, adresse.getCodePost());
+      preparedStatement.setString(3, "");
+      preparedStatement.setString(4, adresse.getVoie());
+      preparedStatement.setString(5, adresse.getNom());
+      preparedStatement.setInt(6, adresse.getNumero());
+      preparedStatement.setString(7, adresse.getMention());
+      preparedStatement.setString(8, adresse.getComplement());
+      preparedStatement.executeUpdate();
+      return true;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return false;
+    }
   }
 
   /**
@@ -37,7 +56,24 @@ public class AdresseDao extends Dao<Adresse, Integer> {
    */
   @Override
   public Adresse get(Integer id) {
-    return null;
+    try {
+      String query = "SELECT * FROM Adresse WHERE idAdresse = ?";
+      PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      preparedStatement.setInt(1, id);
+      return preparedStatement.executeQuery().next() ? new Adresse(
+          preparedStatement.executeQuery().getInt("idAdresse"),
+          preparedStatement.executeQuery().getString("pays"),
+          preparedStatement.executeQuery().getString("codePost"),
+          preparedStatement.executeQuery().getString("voie"),
+          preparedStatement.executeQuery().getString("nom"),
+          preparedStatement.executeQuery().getInt("numero"),
+          preparedStatement.executeQuery().getString("mention"),
+          preparedStatement.executeQuery().getString("complement")
+      ) : null;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
   }
 
   /**
@@ -47,7 +83,27 @@ public class AdresseDao extends Dao<Adresse, Integer> {
    */
   @Override
   public ArrayList<Adresse> getAll() {
-    return null;
+    try {
+      String query = "SELECT * FROM Adresse";
+      PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      ArrayList<Adresse> adresses = new ArrayList<>();
+      while (preparedStatement.executeQuery().next()) {
+        adresses.add(new Adresse(
+            preparedStatement.executeQuery().getInt("idAdresse"),
+            preparedStatement.executeQuery().getString("pays"),
+            preparedStatement.executeQuery().getString("codePost"),
+            preparedStatement.executeQuery().getString("voie"),
+            preparedStatement.executeQuery().getString("nom"),
+            preparedStatement.executeQuery().getInt("numero"),
+            preparedStatement.executeQuery().getString("mention"),
+            preparedStatement.executeQuery().getString("complement")
+        ));
+      }
+      return adresses;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
   }
 
   /**
@@ -58,7 +114,16 @@ public class AdresseDao extends Dao<Adresse, Integer> {
    */
   @Override
   public boolean delete(Adresse adresse) {
-    return false;
+    try {
+      String query = "DELETE FROM Adresse WHERE idAdresse = ?";
+      PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      preparedStatement.setInt(1, adresse.getIdAdresse());
+      preparedStatement.executeUpdate();
+      return true;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return false;
+    }
   }
 
   /**
@@ -69,7 +134,25 @@ public class AdresseDao extends Dao<Adresse, Integer> {
    */
   @Override
   public boolean update(Adresse adresse) {
-    return false;
+    try {
+      String query = "UPDATE Adresse SET "
+          + "pays = ?, codePost = ?, voie = ?, nom = ?, numero = ?, "
+          + "mention = ?, complement = ? WHERE idAdresse = ?";
+      PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      preparedStatement.setString(1, adresse.getPays());
+      preparedStatement.setString(2, adresse.getCodePost());
+      preparedStatement.setString(3, adresse.getVoie());
+      preparedStatement.setString(4, adresse.getNom());
+      preparedStatement.setInt(5, adresse.getNumero());
+      preparedStatement.setString(6, adresse.getMention());
+      preparedStatement.setString(7, adresse.getComplement());
+      preparedStatement.setInt(8, adresse.getIdAdresse());
+      preparedStatement.executeUpdate();
+      return true;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return false;
+    }
   }
   
 }

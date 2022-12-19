@@ -1,6 +1,8 @@
 package root.data;
 
 import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import root.model.Tournee;
 
@@ -26,7 +28,22 @@ public class TourneeDao extends Dao<Tournee, Integer> {
    */
   @Override
   public boolean insert(Tournee tournee) {
-    return false;
+    try {
+      String query = "INSERT INTO Tournee "
+          + "(numTournee, libelle, heureMin, heureMax, immat) "
+          + "VALUES (?, ?, ?, ?, ?)";
+      PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      preparedStatement.setInt(1, tournee.getNumTournee());
+      preparedStatement.setString(2, tournee.getLibelle());
+      preparedStatement.setDate(3, tournee.getHeureMin());
+      preparedStatement.setDate(4, tournee.getHeureMin());
+      preparedStatement.setString(5, tournee.getVehicule().getImmat());
+      preparedStatement.executeUpdate();
+      return true;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return false;
+    }
   }
 
   /**
@@ -37,7 +54,21 @@ public class TourneeDao extends Dao<Tournee, Integer> {
    */
   @Override
   public Tournee get(Integer id) {
-    return null;
+    try {
+      String query = "SELECT * FROM Tournee WHERE numTournee = ?";
+      PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      preparedStatement.setInt(1, id);
+      return new Tournee(
+          preparedStatement.executeQuery().getInt("numTournee"),
+          preparedStatement.executeQuery().getString("libelle"),
+          preparedStatement.executeQuery().getDate("heureMin"),
+          preparedStatement.executeQuery().getDate("heureMax"),
+          new ProducteurDao(connexion).get(preparedStatement.executeQuery().getString("SIRET")),
+          new VehiculeDao(connexion).get(preparedStatement.executeQuery().getString("immat")));
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
   }
 
   /**
@@ -47,7 +78,24 @@ public class TourneeDao extends Dao<Tournee, Integer> {
    */
   @Override
   public ArrayList<Tournee> getAll() {
-    return null;
+    try {
+      String query = "SELECT * FROM Tournee";
+      PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      ArrayList<Tournee> tournees = new ArrayList<>();
+      while (preparedStatement.executeQuery().next()) {
+        tournees.add(new Tournee(
+            preparedStatement.executeQuery().getInt("numTournee"),
+            preparedStatement.executeQuery().getString("libelle"),
+            preparedStatement.executeQuery().getDate("heureMin"),
+            preparedStatement.executeQuery().getDate("heureMax"),
+            new ProducteurDao(connexion).get(preparedStatement.executeQuery().getString("SIRET")),
+            new VehiculeDao(connexion).get(preparedStatement.executeQuery().getString("immat"))));
+      }
+      return tournees;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
   }
 
   /**
@@ -58,7 +106,22 @@ public class TourneeDao extends Dao<Tournee, Integer> {
    */
   @Override
   public boolean update(Tournee tournee) {
-    return false;
+    try {
+      String query = "UPDATE Tournee SET "
+          + "libelle = ?, heureMin = ?, heureMax = ?, immat = ? "
+          + "WHERE numTournee = ?";
+      PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      preparedStatement.setString(1, tournee.getLibelle());
+      preparedStatement.setDate(2, tournee.getHeureMin());
+      preparedStatement.setDate(3, tournee.getHeureMin());
+      preparedStatement.setString(4, tournee.getVehicule().getImmat());
+      preparedStatement.setInt(5, tournee.getNumTournee());
+      preparedStatement.executeUpdate();
+      return true;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return false;
+    }
   }
 
   /**
@@ -69,7 +132,16 @@ public class TourneeDao extends Dao<Tournee, Integer> {
    */
   @Override
   public boolean delete(Tournee tournee) {
-    return false;
+    try {
+      String query = "DELETE FROM Tournee WHERE numTournee = ?";
+      PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      preparedStatement.setInt(1, tournee.getNumTournee());
+      preparedStatement.executeUpdate();
+      return true;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return false;
+    }
   }
 
 }
