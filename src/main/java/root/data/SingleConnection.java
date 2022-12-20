@@ -1,6 +1,7 @@
 package root.data;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
@@ -25,6 +26,15 @@ public class SingleConnection {
    */
   public static Connection getInstance() {
     if (connexion == null) {
+      try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        System.out.println("Driver loaded");
+        Connection connexion = DriverManager.getConnection("jdbc:mysql://les-roseaux.dev:3306"
+            + "/the-farmer-project",  "farmer", "vgeGm3tZ2t2JEWE");
+        System.out.println("Connection established");
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
       // do stuff that make so connexion is no longer null
     }
     return connexion;
