@@ -42,13 +42,13 @@ public class VehiculesCtrl {
   }
 
   /**
-   * Supprime une véhicule du modèle.
+   * Supprime un véhicule du modèle.
    */
   public void supprimerVehicules() {
   }
 
   /**
-   * Affiche la vue du formulaire de modification d'une véhicule.
+   * Affiche la vue du formulaire de modification d'un véhicule.
    */
   public void editerVehicules() {
   }
@@ -65,7 +65,7 @@ public class VehiculesCtrl {
   /**
    * Change le modèle courant avec un nouveau.
    *
-   * @param model Le modèle nouveau.
+   * @param model Le nouveau modèle.
    */
   public void setModel(ListeVehicules model) {
     this.model = model;
@@ -74,7 +74,7 @@ public class VehiculesCtrl {
   /**
    * Retourne la vue associée à ce contrôleur.
    *
-   * @return Le vue.
+   * @return La vue.
    */
   public VehiculesView getView() {
     return view;

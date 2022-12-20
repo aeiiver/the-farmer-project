@@ -37,7 +37,7 @@ public class ConnexionCtrl {
   }
 
   /**
-   * Vérifie que les identifiants saisies ont une correspondance dans la base de
+   * Vérifie que les identifiants saisis ont une correspondance dans la base de
    * données.
    *
    * <p>
@@ -64,7 +64,7 @@ public class ConnexionCtrl {
   }
 
   /**
-   * Valide les champs saisies.
+   * Valide les champs saisis.
    *
    * <p> La logique de validation dépend de si la case "Administrateur"
    * (pour se connecter en tant que administrateur) a été cochée ou non.

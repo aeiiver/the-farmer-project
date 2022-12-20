@@ -60,7 +60,7 @@ public class CommandesFormCtrl {
   /**
    * Change le modèle courant avec un nouveau.
    *
-   * @param model Le modèle nouveau.
+   * @param model Le nouveau modèle.
    */
   public void setModel(ListeCommandes model) {
     this.model = model;
@@ -69,7 +69,7 @@ public class CommandesFormCtrl {
   /**
    * Retourne la vue associée à ce contrôleur.
    *
-   * @return Le vue.
+   * @return La vue.
    */
   public CommandesFormView getView() {
     return view;

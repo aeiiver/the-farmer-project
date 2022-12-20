@@ -60,7 +60,7 @@ public class ClientsFormCtrl {
   /**
    * Change le modèle courant avec un nouveau.
    *
-   * @param model Le modèle nouveau.
+   * @param model Le nouveau modèle.
    */
   public void setModel(ListeClients model) {
     this.model = model;
@@ -69,7 +69,7 @@ public class ClientsFormCtrl {
   /**
    * Retourne la vue associée à ce contrôleur.
    *
-   * @return Le vue.
+   * @return La vue.
    */
   public ClientsFormView getView() {
     return view;

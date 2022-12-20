@@ -78,7 +78,7 @@ public class TableaudebordCtrl {
    * @param listeCommandes    Le modèle correspondant à la liste des commandes.
    * @param tableaudebordView La vue sur le tableau de bord.
    * @param commandesView     La vue sur la liste des commandes.
-   * @param tourneesView      La vue sur le liste des tournées
+   * @param tourneesView      La vue sur la liste des tournées
    * @param compteView        La vue sur l'écran du compte.
    * @param clientsView       La vue sur la liste des clients.
    * @param vehiculesView     La vue sur la liste des véhicules.
