@@ -204,7 +204,8 @@ class CommandeDaoTest {
 
     assertEquals(commande.getLibelle(), libelleInsere);
     assertEquals(commande.getPoids(), poidsInsere);
-    assertEquals(commande.getDateCom(), heureDebInsere);
+    assertEquals(commande.getDateCom(), dateInseree);
+    assertEquals(commande.getHeureDeb(), heureDebInsere);
     assertEquals(commande.getHeureFin(), heureFinInsere);
     assertEquals(commande.getProducteur().getSiret(), siretInsere);
     assertEquals(commande.getClient().getIdClient(), idClientInsere);
@@ -227,7 +228,8 @@ class CommandeDaoTest {
 
     assertEquals(commande.getLibelle(), libelleInsere);
     assertEquals(commande.getPoids(), poidsInsere);
-    assertEquals(commande.getDateCom(), heureDebInsere);
+    assertEquals(commande.getDateCom(), dateInseree);
+    assertEquals(commande.getHeureDeb(), heureDebInsere);
     assertEquals(commande.getHeureFin(), heureFinInsere);
     assertEquals(commande.getProducteur().getSiret(), siretInsere);
     assertEquals(commande.getClient().getIdClient(), idClientInsere);

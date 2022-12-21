@@ -166,7 +166,7 @@ class AdresseDaoTest {
     String villeInseree = rs.getString("ville");
     String voieInseree = rs.getString("voie");
     String nomInsere = rs.getString("nom");
-    String numeroInsere = rs.getString("numero");
+    int numeroInsere = rs.getInt("numero");
     String mentionInseree = rs.getString("mention");
     String complementInsere = rs.getString("complement");
 
