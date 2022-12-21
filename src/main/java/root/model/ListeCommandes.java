@@ -40,6 +40,7 @@ public class ListeCommandes {
    * @param commande commande à ajouter
    */
   public void ajouter(Commande commande) {
+    commandes.add(commande);
   }
 
   /**
@@ -48,6 +49,7 @@ public class ListeCommandes {
    * @param commande commande à supprimer
    */
   public void supprimer(Commande commande) {
+    commandes.remove(commande);
   }
 
   /**

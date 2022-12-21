@@ -40,6 +40,7 @@ public class ListeVehicules {
    * @param vehicule véhicule à ajouter
    */
   public void ajouter(Vehicule vehicule) {
+    vehicules.add(vehicule);
   }
 
   /**
@@ -48,6 +49,7 @@ public class ListeVehicules {
    * @param vehicule véhicule à supprimer
    */
   public void supprimer(Vehicule vehicule) {
+    vehicules.remove(vehicule);
   }
 
   /**

@@ -49,6 +49,7 @@ public class ListeTournees {
    * @param tournee tournée à ajouter
    */
   public void ajouter(Tournee tournee) {
+    tournees.add(tournee);
   }
 
   /**
@@ -57,6 +58,7 @@ public class ListeTournees {
    * @param tournee tournée à supprimer
    */
   public void supprimer(Tournee tournee) {
+    tournees.remove(tournee);
   }
 
   /**

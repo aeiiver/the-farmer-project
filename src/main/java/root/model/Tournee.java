@@ -84,8 +84,8 @@ public class Tournee {
    * @param producteur Le producteur qui réalise la tournée.
    * @param vehicule   Le véhicule avec lequel la tournée sera réalisé.
    */
-  public Tournee(int numTournee, String libelle, Time heureMin, Time heureMax, Producteur producteur,
-                 Vehicule vehicule) {
+  public Tournee(int numTournee, String libelle, Time heureMin, Time heureMax,
+                 Producteur producteur, Vehicule vehicule) {
     this.numTournee = numTournee;
     this.libelle = libelle;
     this.heureMin = heureMin;
@@ -231,9 +231,30 @@ public class Tournee {
    * @return true si la tournée est valide, false sinon
    */
   public boolean estValide() {
+    int poidTotal = 0;
+    //pour chaque commande de la tournée
+    for (Commande com : commandes) {
 
-    // dummy return
-    return false;
+      //vérification de l'heure de début
+      if (com.getHeureDeb().before(this.getHeureMin()))
+        return false;
+
+      //vérification de l'heure de fin
+      if (com.getHeureFin().after(this.heureMax))
+        return false;
+
+      //si l'heure de début et l'heure de fin sont correspondantes alors
+      //la date correspond aussi puisqu'on utilise java.sql.Date .
+
+      //additionne le poid de toutes les commandes
+      poidTotal += com.getPoids();
+    }
+
+    //vérifie si la somme du poid de toutes les commandes est valide
+    if (poidTotal > this.vehicule.getPoidsMax())
+      return false;
+
+    return true;
   }
 
   /**
@@ -242,6 +263,7 @@ public class Tournee {
    * @param commande commande à ajouter
    */
   public void ajouteCommande(Commande commande) {
+    commandes.add(commande);
   }
 
   /**
@@ -250,6 +272,7 @@ public class Tournee {
    * @param commande commande à supprimer
    */
   public void retireCommande(Commande commande) {
+    commandes.remove(commande);
   }
 
 }

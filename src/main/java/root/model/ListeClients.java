@@ -40,6 +40,7 @@ public class ListeClients {
    * @param client client à ajouter
    */
   public void ajouter(Client client) {
+    clients.add(client);
   }
 
   /**
@@ -48,6 +49,7 @@ public class ListeClients {
    * @param client client à supprimer
    */
   public void supprimer(Client client) {
+    clients.remove(client);
   }
 
   /**
@@ -56,6 +58,7 @@ public class ListeClients {
    * @param client client à modifier
    */
   public void editer(Client client) {
+
   }
 
 }

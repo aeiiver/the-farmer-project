@@ -40,6 +40,7 @@ public class ListeProducteurs {
    * @param producteur producteur à ajouter
    */
   public void ajouter(Producteur producteur) {
+    producteurs.add(producteur);
   }
 
   /**
@@ -48,6 +49,7 @@ public class ListeProducteurs {
    * @param producteur producteur à supprimer
    */
   public void supprimer(Producteur producteur) {
+    producteurs.remove(producteur);
   }
 
   /**

@@ -187,7 +187,7 @@ public class Adresse {
   /**
    * Getter du complément de l'adresse.
    *
-   * @return Le complément de l'adresse.
+   * @return complement Le complément de l'adresse.
    */
   public String getComplement() {
     return complement;
