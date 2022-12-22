@@ -1,5 +1,6 @@
 package root.controller;
 
+import javafx.stage.Stage;
 import root.view.ConnexionView;
 import root.view.TableaudebordView;
 
@@ -14,26 +15,25 @@ public class ConnexionCtrl {
   /**
    * Vue de l'écran de connexion utilisateur.
    *
-   * @see ConnexionCtrl#ConnexionCtrl(ConnexionView, TableaudebordView)
    */
   private ConnexionView connexionView;
 
   /**
    * Vue du tableau de bord.
    *
-   * @see ConnexionCtrl#ConnexionCtrl(ConnexionView, TableaudebordView)
    */
   private TableaudebordView tableaudebordView;
 
   /**
-   * Constructeur de classe.
-   *
-   * @param connexionView     La vue correspondante à l'écran de connexion.
-   * @param tableaudebordView La vue correspondante au tableau de bord.
+   * Stage de la fenêtre.
    */
-  public ConnexionCtrl(ConnexionView connexionView, TableaudebordView tableaudebordView) {
-    this.connexionView = connexionView;
-    this.tableaudebordView = tableaudebordView;
+  private Stage primaryStage;
+
+  /**
+   * Constructeur de la classe.
+   */
+  public ConnexionCtrl(Stage primaryStage) {
+    this.primaryStage = primaryStage;
   }
 
   /**

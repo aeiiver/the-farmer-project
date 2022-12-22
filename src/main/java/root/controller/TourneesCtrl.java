@@ -2,6 +2,7 @@ package root.controller;
 
 import root.model.ListeTournees;
 import root.view.TourneesView;
+import javafx.stage.Stage;
 
 /**
  * Classe contrôleuse pour la vue et modèle de la liste des tournées.
@@ -19,14 +20,15 @@ public class TourneesCtrl {
   private TourneesView view;
 
   /**
-   * Constructeur de classe.
-   *
-   * @param model Le modèle à associer.
-   * @param view  La vue à associer.
+   * Stage de la fenêtre.
    */
-  public TourneesCtrl(ListeTournees model, TourneesView view) {
-    this.model = model;
-    this.view = view;
+  private Stage primaryStage;
+
+  /**
+   * Constructeur de la classe.
+   */
+  public TourneesCtrl(Stage primaryStage) {
+    this.primaryStage = primaryStage;
   }
 
   /**

@@ -1,5 +1,6 @@
 package root.controller;
 
+import javafx.stage.Stage;
 import root.model.ListeProducteurs;
 import root.view.ProducteursFormView;
 
@@ -11,7 +12,6 @@ public class ProducteursFormCtrl {
   /**
    * Modèle du formulaire d'ajout et modification d'un producteur.
    *
-   * @see ProducteursFormCtrl#ProducteursFormCtrl(ListeProducteurs, ProducteursFormView)
    * @see ProducteursFormCtrl#getModel()
    */
   private ListeProducteurs model;
@@ -19,20 +19,20 @@ public class ProducteursFormCtrl {
   /**
    * Vue du formulaire d'ajout et modification d'un producteur.
    *
-   * @see ProducteursFormCtrl#ProducteursFormCtrl(ListeProducteurs, ProducteursFormView)
    * @see ProducteursFormCtrl#getView()
    */
   private ProducteursFormView view;
 
   /**
-   * Constructeur de classe.
-   *
-   * @param model Le modèle à associer.
-   * @param view  La vue à associer.
+   * Stage de la fenêtre.
    */
-  public ProducteursFormCtrl(ListeProducteurs model, ProducteursFormView view) {
-    this.model = model;
-    this.view = view;
+  private Stage primaryStage;
+
+  /**
+   * Constructeur vide de la classe.
+   */
+  public ProducteursFormCtrl(Stage primaryStage) {
+    this.primaryStage = primaryStage;
   }
 
   /**

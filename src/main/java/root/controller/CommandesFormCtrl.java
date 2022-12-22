@@ -1,5 +1,6 @@
 package root.controller;
 
+import javafx.stage.Stage;
 import root.model.ListeCommandes;
 import root.view.CommandesFormView;
 
@@ -11,7 +12,6 @@ public class CommandesFormCtrl {
   /**
    * Modèle de la commande.
    *
-   * @see CommandesFormCtrl#CommandesFormCtrl(ListeCommandes, CommandesFormView)
    * @see CommandesFormCtrl#getModel()
    */
   private ListeCommandes model;
@@ -19,20 +19,20 @@ public class CommandesFormCtrl {
   /**
    * Vue du formulaire d'ajout et modification d'une commande.
    *
-   * @see CommandesFormCtrl#CommandesFormCtrl(ListeCommandes, CommandesFormView)
    * @see CommandesFormCtrl#getView()
    */
   private CommandesFormView view;
 
   /**
-   * Constructeur de classe.
-   *
-   * @param model Le modèle à associer.
-   * @param view  La vue à associer.
+   * Stage de la fenêtre.
    */
-  public CommandesFormCtrl(ListeCommandes model, CommandesFormView view) {
-    this.model = model;
-    this.view = view;
+  private Stage primaryStage;
+
+  /**
+   * Constructeur de la classe.
+   */
+  public CommandesFormCtrl(Stage primaryStage) {
+    this.primaryStage = primaryStage;
   }
 
   /**

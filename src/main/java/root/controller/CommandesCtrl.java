@@ -1,6 +1,7 @@
 package root.controller;
 
 
+import javafx.stage.Stage;
 import root.model.ListeCommandes;
 import root.view.CommandesView;
 
@@ -12,7 +13,6 @@ public class CommandesCtrl {
   /**
    * Modèle de la liste des commandes.
    *
-   * @see CommandesCtrl#CommandesCtrl(ListeCommandes, CommandesView)
    * @see CommandesCtrl#getModel()
    */
   private ListeCommandes model;
@@ -20,18 +20,20 @@ public class CommandesCtrl {
   /**
    * Vue de la liste des commandes.
    *
-   * @see CommandesCtrl#CommandesCtrl(ListeCommandes, CommandesView)
    * @see CommandesCtrl#getView()
    */
   private CommandesView view;
 
   /**
-   * Constructeur de classe.
-   *
-   * @param model Le modèle à associer.
-   * @param view  La vue à associer.
+   * Stage de la fenêtre.
    */
-  public CommandesCtrl(ListeCommandes model, CommandesView view) {
+  private Stage primaryStage;
+
+  /**
+   * Constructeur de la classe.
+   */
+  public CommandesCtrl(Stage primaryStage) {
+    this.primaryStage = primaryStage;
   }
 
   /**

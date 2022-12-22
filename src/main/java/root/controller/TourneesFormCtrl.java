@@ -1,5 +1,6 @@
 package root.controller;
 
+import javafx.stage.Stage;
 import root.model.ListeTournees;
 import root.view.TourneesFormView;
 
@@ -11,26 +12,25 @@ public class TourneesFormCtrl {
   /**
    * Modèle de la liste des tournées.
    *
-   * @see TourneesFormCtrl#TourneesFormCtrl(ListeTournees, TourneesFormView)
    */
   private ListeTournees model;
 
   /**
    * Vue du formulaire d'ajout et modification d'une tournée.
    *
-   * @see TourneesFormCtrl#TourneesFormCtrl(ListeTournees, TourneesFormView)
    */
   private TourneesFormView view;
 
   /**
-   * Constructeur de classe.
-   *
-   * @param model Le modèle à associer.
-   * @param view  La vue à associer.
+   * Stage de la fenêtre.
    */
-  public TourneesFormCtrl(ListeTournees model, TourneesFormView view) {
-    this.model = model;
-    this.view = view;
+  private Stage primaryStage;
+
+  /**
+   * Constructeur de la classe.
+   */
+  public TourneesFormCtrl(Stage primaryStage) {
+    this.primaryStage = primaryStage;
   }
 
   /**
