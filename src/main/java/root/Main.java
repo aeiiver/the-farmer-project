@@ -1,9 +1,9 @@
 package root;
 
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 import root.controller.ConnexionCtrl;
 import root.controller.TableaudebordCtrl;
@@ -20,17 +20,10 @@ public class Main extends Application {
    * @param stage Le stage principal de l'application.
    * @throws Exception Si une erreur survient lors du chargement de la vue.
    */
-  @FXML
   @Override
   public void start(Stage stage) throws Exception {
-    Stage primaryStage = new Stage();
-    FXMLLoader loader = new FXMLLoader();
-    loader.setLocation(getClass().getResource("/root/controller/fxml/Connection.fxml"));
-    Parent content = loader.load();
-
-
-    ConnexionCtrl connexionCtrl = new ConnexionCtrl(primaryStage);
-    TableaudebordCtrl tableaudebordCtrl = new TableaudebordCtrl(primaryStage);
+    ConnexionCtrl connexionCtrl = new ConnexionCtrl(stage);
+    TableaudebordCtrl tableaudebordCtrl = new TableaudebordCtrl(stage);
     connexionCtrl.setConnexionView(new ConnexionView(connexionCtrl));
     connexionCtrl.setTableaudebordView(new TableaudebordView(tableaudebordCtrl));
     connexionCtrl.showConnexionView();
