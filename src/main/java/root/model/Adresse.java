@@ -99,8 +99,8 @@ public class Adresse {
    * @param mention    La mention de l'adresse.
    * @param complement Le complément de l'adresse (bât., étage, ...)
    */
-  public Adresse(int idAdresse, String pays, String codePost, String ville, String voie, String nom, int numero,
-                 String mention, String complement) {
+  public Adresse(int idAdresse, String pays, String codePost, String ville, String voie,
+                 String nom, int numero, String mention, String complement) {
     this.idAdresse = idAdresse;
     this.pays = pays;
     this.codePost = codePost;

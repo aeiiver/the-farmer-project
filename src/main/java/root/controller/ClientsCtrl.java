@@ -1,8 +1,9 @@
 package root.controller;
 
+import javafx.stage.Stage;
 import root.model.ListeClients;
 import root.view.ClientsView;
-import javafx.stage.Stage;
+
 /**
  * Classe contrôleuse pour la vue et modèle de la liste des clients.
  */

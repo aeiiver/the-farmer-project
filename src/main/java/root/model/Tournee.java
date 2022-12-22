@@ -84,8 +84,8 @@ public class Tournee {
    * @param producteur Le producteur qui réalise la tournée.
    * @param vehicule   Le véhicule avec lequel la tournée sera réalisé.
    */
-  public Tournee(int numTournee, String libelle, Time heureMin, Time heureMax, Producteur producteur,
-                 Vehicule vehicule) {
+  public Tournee(int numTournee, String libelle, Time heureMin, Time heureMax,
+                 Producteur producteur, Vehicule vehicule) {
     this.numTournee = numTournee;
     this.libelle = libelle;
     this.heureMin = heureMin;

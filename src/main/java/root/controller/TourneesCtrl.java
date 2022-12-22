@@ -1,8 +1,8 @@
 package root.controller;
 
+import javafx.stage.Stage;
 import root.model.ListeTournees;
 import root.view.TourneesView;
-import javafx.stage.Stage;
 
 /**
  * Classe contrôleuse pour la vue et modèle de la liste des tournées.
