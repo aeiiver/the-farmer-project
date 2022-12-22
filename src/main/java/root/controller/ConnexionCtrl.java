@@ -1,5 +1,6 @@
 package root.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -34,7 +35,7 @@ public class ConnexionCtrl {
    * Stage de la fenêtre.
    */
   private Stage primaryStage;
-  private final Parent ROOT = FXMLLoader.load(getClass().getResource("/root/controller/fxml/Connection.fxml"));
+  private final FXMLLoader ROOT = new FXMLLoader();
 
   /**
    * Constructeur de la classe.
@@ -68,6 +69,12 @@ public class ConnexionCtrl {
    * les saisies sont incorrectes.</p>
    */
   public void verifieIdentifiants() {
+    String identifiant = connexionView.getIdentifiant();
+    String motDePasse = connexionView.getMdp();
+    String estAdmin = connexionView.getConnexionMode();
+    if (valideIdentifiants(identifiant, motDePasse, estAdmin)) {
+      System.out.println("Identifiants valides");
+    }
   }
 
   /**
@@ -88,8 +95,8 @@ public class ConnexionCtrl {
    *
    * @return true si les identifiants sont valides, false sinon.
    */
-  public boolean valideIdentifiants() {
-    // dummy return
+  public boolean valideIdentifiants(String id, String mdp, String mode) {
+    System.out.println(mode);
     return false;
   }
 
@@ -130,9 +137,15 @@ public class ConnexionCtrl {
   }
 
   public void showConnexionView() {
-    Scene scene = new Scene(this.ROOT);
-    primaryStage.setScene(scene);
-    primaryStage.show();
+    this.ROOT.setLocation(Main.class.getResource("view/ConnexionView.fxml"));
+    this.ROOT.setController(this);
+    try {
+      Parent root = this.ROOT.load();
+      Scene scene = new Scene(root);
+      this.primaryStage.setScene(scene);
+      this.primaryStage.show();
+    } catch (IOException e) {
+      e.printStackTrace();
+    };
   }
-
 }

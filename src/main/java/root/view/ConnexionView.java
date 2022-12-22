@@ -1,5 +1,6 @@
 package root.view;
 
+import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -16,26 +17,15 @@ public class ConnexionView {
    * Text d'indication pour la saisie de l'identifiant.
    */
   private Label identifiantLabel;
-
   /**
    * Zone de saisie de l'identifiant.
    */
   private TextField identifiant;
 
   /**
-   * Text d'indication pour la saisie du mot de passe.
-   */
-  private Label motdepasseLabel;
-
-  /**
    * Zone de saisie du mot de passe.
    */
   private PasswordField motdepasse;
-
-  /**
-   * Text d'indication pour la selection du mode de connexion.
-   */
-  private Label modeLabel;
 
   /**
    * Selectionneur du mode de connexion.
@@ -64,6 +54,10 @@ public class ConnexionView {
    */
   private ConnexionCtrl ctrl;
 
+  public ConnexionView() {
+
+  }
+
   /**
    * Constructeur de classe.
    *
@@ -79,7 +73,7 @@ public class ConnexionView {
    * @return identifiant saisi
    */
   public String getIdentifiant() {
-    return null;
+    return identifiant.getText();
   }
 
   /**
@@ -88,7 +82,7 @@ public class ConnexionView {
    * @return mot de passe saisi
    */
   public String getMdp() {
-    return null;
+    return motdepasse.getText();
   }
 
   /**
@@ -97,7 +91,7 @@ public class ConnexionView {
    * @return mode de connexion
    */
   public String getConnexionMode() {
-    return null;
+    return mode.getText();
   }
 
   /**
@@ -109,4 +103,8 @@ public class ConnexionView {
     this.message.setText(msg);
   }
 
+  public void Connexion(ActionEvent actionEvent) {
+    actionEvent.consume();
+    ctrl.verifieIdentifiants();
+  }
 }

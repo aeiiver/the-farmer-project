@@ -27,7 +27,6 @@ public class Main extends Application {
     connexionCtrl.setConnexionView(new ConnexionView(connexionCtrl));
     connexionCtrl.setTableaudebordView(new TableaudebordView(tableaudebordCtrl));
     connexionCtrl.showConnexionView();
-    System.out.println("test");
   }
 
   /**
