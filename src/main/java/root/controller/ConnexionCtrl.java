@@ -1,8 +1,13 @@
 package root.controller;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 import root.view.ConnexionView;
 import root.view.TableaudebordView;
+
+import java.io.IOException;
 
 /**
  * Classe contrôleuse pour la vue sur l'écran de connexion utilisateur.
@@ -28,11 +33,12 @@ public class ConnexionCtrl {
    * Stage de la fenêtre.
    */
   private Stage primaryStage;
+  private final Parent ROOT = FXMLLoader.load(getClass().getResource("/root/controller/fxml/Connection.fxml"));
 
   /**
    * Constructeur de la classe.
    */
-  public ConnexionCtrl(Stage primaryStage) {
+  public ConnexionCtrl(Stage primaryStage) throws IOException {
     this.primaryStage = primaryStage;
   }
 
@@ -120,6 +126,12 @@ public class ConnexionCtrl {
    */
   public void setTableaudebordView(TableaudebordView tableaudebordView) {
     this.tableaudebordView = tableaudebordView;
+  }
+
+  public void showConnexionView() {
+    Scene scene = new Scene(this.ROOT);
+    primaryStage.setScene(scene);
+    primaryStage.show();
   }
 
 }
