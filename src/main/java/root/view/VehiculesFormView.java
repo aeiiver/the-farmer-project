@@ -9,7 +9,7 @@ import root.controller.VehiculesFormCtrl;
 /**
  * Classe de vue pour l'ajout de véhicules.
  */
-public class VehiculesFormView {
+public class VehiculesFormView extends MainView {
 
   /**
    * Texte à côté du champ de texte pour la plaque d'immatriculation du véhicule.
@@ -41,20 +41,12 @@ public class VehiculesFormView {
   private Button annuler;
 
   /**
-   * Contrôleur gérant la vue de l'ajout de véhicules.
-   *
-   * @see VehiculesFormView#VehiculesFormView(VehiculesFormCtrl)
-   * @see VehiculesFormCtrl
-   */
-  private VehiculesFormCtrl ctrl;
-
-  /**
    * Constructeur de classe.
    *
    * @param ctrl Le contrôleur de cette vue.
    */
   public VehiculesFormView(VehiculesFormCtrl ctrl) {
-    this.ctrl = ctrl;
+    super(ctrl);
   }
 
   /**

@@ -16,7 +16,7 @@ import root.view.TableaudebordView;
  * <p>Cette classe n'a pas de modèles en champs privés car il n'y a pas besoin
  * de mémoriser les saisies de l'utilisateur.</p>
  */
-public class ConnexionCtrl {
+public class ConnexionCtrl extends MainCtrl {
 
   /**
    * Vue de l'écran de connexion utilisateur.
@@ -39,9 +39,9 @@ public class ConnexionCtrl {
    * Constructeur de la classe.
    */
   public ConnexionCtrl(Stage primaryStage) throws IOException {
+    super(primaryStage);
     this.connexionView = new ConnexionView(this);
     this.tableaudebordView = new TableaudebordView(new TableaudebordCtrl(primaryStage));
-    this.primaryStage = primaryStage;
   }
 
   /**
@@ -74,7 +74,7 @@ public class ConnexionCtrl {
     Boolean estAdmin = connexionView.getConnexionMode();
     if (valideIdentifiants(identifiant, motDePasse, estAdmin)) {
       System.out.println("Identifiants valides");
-      showTableaudebordView();
+      this.showTableaudebordView(this.tableaudebordView);
     }
   }
 
@@ -138,44 +138,6 @@ public class ConnexionCtrl {
    */
   public void setTableaudebordView(TableaudebordView tableaudebordView) {
     this.tableaudebordView = tableaudebordView;
-  }
-
-  /**
-   * Affichage de la page de connexion.
-   */
-  public void showConnexionView() {
-    FXMLLoader root = new FXMLLoader(Main.class.getResource("/root/controller/fxml/Connection.fxml"));
-    root.setController(this.connexionView);
-
-    Parent node = null;
-    try {
-      node = root.load();
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-
-    Scene scene = new Scene(node);
-    this.primaryStage.setScene(scene);
-    this.primaryStage.show();
-  }
-
-  /**
-   * Affichage du tableau de bord.
-   */
-  private void showTableaudebordView() {
-    FXMLLoader root = new FXMLLoader(Main.class.getResource("/root/controller/fxml/MainPage.fxml"));
-    root.setController(this.tableaudebordView);
-
-    Parent node = null;
-    try {
-      node = root.load();
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-
-    Scene scene = new Scene(node);
-    this.primaryStage.setScene(scene);
-    this.primaryStage.show();
   }
 
 }

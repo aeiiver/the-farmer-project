@@ -13,10 +13,11 @@
    <children>
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="1013.0">
         <menus>
-          <Menu mnemonicParsing="false" text="Mes Commandes" onAction="#goToCommandesMenu" />
-          <Menu mnemonicParsing="false" text="Mes Tournées" onShowing="#goToTourneesMenu"/>
-          <Menu mnemonicParsing="false" text="Mon Compte" />
-          <Menu mnemonicParsing="false" text="Mes clients" onAction="#goToClientsMenu"/>
+            <Menu mnemonicParsing="false" text="Tableau de bord" onMenuValidation="#MenuTableaudebord"/>
+            <Menu mnemonicParsing="false" text="Mes Commandes" onMenuValidation="#MenuCommandes"/>
+            <Menu mnemonicParsing="false" text="Mes Tournées"/>
+            <Menu mnemonicParsing="false" text="Mon Compte"/>
+            <Menu mnemonicParsing="false" text="Mes clients"/>
         </menus>
       </MenuBar>
       <Separator layoutY="97.0" prefHeight="6.0" prefWidth="1013.0" />

@@ -24,9 +24,10 @@ public class Main extends Application {
   public void start(Stage stage) throws Exception {
     ConnexionCtrl connexionCtrl = new ConnexionCtrl(stage);
     TableaudebordCtrl tableaudebordCtrl = new TableaudebordCtrl(stage);
+    ConnexionView connexionView = new ConnexionView(connexionCtrl);
     connexionCtrl.setConnexionView(new ConnexionView(connexionCtrl));
     connexionCtrl.setTableaudebordView(new TableaudebordView(tableaudebordCtrl));
-    connexionCtrl.showConnexionView();
+    connexionCtrl.showConnexionView(connexionView);
   }
 
   /**

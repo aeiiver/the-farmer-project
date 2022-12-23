@@ -14,7 +14,7 @@ import root.model.Vehicule;
 /**
  * Classe de vue pour le formulaire d'ajout d'une tournée.
  */
-public class TourneesFormView {
+public class TourneesFormView extends MainView {
 
   /**
    * Texte à côté du champ de texte pour le libelle de la tournée.
@@ -70,20 +70,12 @@ public class TourneesFormView {
   private Button annuler;
 
   /**
-   * Contrôleur gérant la vue du formulaire d'ajout d'une tournée.
-   *
-   * @see TourneesFormView#TourneesFormView(TourneesFormCtrl)
-   * @see TourneesFormCtrl
-   */
-  private TourneesFormCtrl ctrl;
-
-  /**
    * Constructeur de classe.
    *
    * @param ctrl Le contrôleur de cette vue.
    */
   public TourneesFormView(TourneesFormCtrl ctrl) {
-    this.ctrl = ctrl;
+    super(ctrl);
   }
 
   /**

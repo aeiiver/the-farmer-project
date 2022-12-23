@@ -7,7 +7,7 @@ import root.view.ProducteursView;
 /**
  * Classe contrôleuse pour la vue et modèle de la liste des producteurs.
  */
-public class ProducteursCtrl {
+public class ProducteursCtrl extends MainCtrl {
 
   /**
    * Modèle de la liste des producteurs.
@@ -24,15 +24,10 @@ public class ProducteursCtrl {
   private ProducteursView view;
 
   /**
-   * Stage de la fenêtre.
-   */
-  private Stage primaryStage;
-
-  /**
    * Constructeur vide de la classe.
    */
   public ProducteursCtrl(Stage primaryStage) {
-    this.primaryStage = primaryStage;
+    super(primaryStage);
   }
 
   /**

@@ -8,7 +8,7 @@ import root.controller.CommandesCtrl;
 /**
  * Classe de vue pour la liste des commandes.
  */
-public class CommandesView {
+public class CommandesView extends MainView {
 
   /**
    * Menu de navigation sur la fênetre.
@@ -32,19 +32,12 @@ public class CommandesView {
   private Button editerCommande;
 
   /**
-   * Contrôleur gérant la vue de la liste des commandes.
-   *
-   * @see CommandesView#CommandesView(CommandesCtrl)
-   * @see CommandesCtrl
-   */
-  private CommandesCtrl ctrl;
-
-  /**
    * Constructeur de classe.
    *
    * @param ctrl Le contrôleur de cette vue.
    */
   public CommandesView(CommandesCtrl ctrl) {
+    super(ctrl);
   }
 
   public void goToCommandesMenu() {}

@@ -7,7 +7,7 @@ import root.view.VehiculesView;
 /**
  * Classe contrôleuse pour la vue et modèle de la liste des véhicules.
  */
-public class VehiculesCtrl {
+public class VehiculesCtrl extends MainCtrl  {
 
   /**
    * Modèle de la liste des véhicules.
@@ -24,15 +24,10 @@ public class VehiculesCtrl {
   private VehiculesView view;
 
   /**
-   * Stage de la fenêtre.
-   */
-  private Stage primaryStage;
-
-  /**
    * Constructeur de la classe.
    */
   public VehiculesCtrl(Stage primaryStage) {
-    this.primaryStage = primaryStage;
+    super(primaryStage);
   }
 
   /**

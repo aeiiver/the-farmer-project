@@ -10,7 +10,7 @@ import root.controller.TableaudebordCtrl;
 /**
  * Classe de vue pour le tableau de bord.
  */
-public class TableaudebordView {
+public class TableaudebordView extends MainView {
 
   /**
    * Menu de navigation sur la fênetre.
@@ -66,37 +66,14 @@ public class TableaudebordView {
   private Button editerCommande;
 
   /**
-   * Contrôleur gérant la vue du tableau de bord.
-   *
-   * @see TableaudebordView#TableaudebordView(TableaudebordCtrl)
-   * @see TableaudebordCtrl
-   */
-  private TableaudebordCtrl ctrl;
-
-  /**
    * Constructeur de classe.
    *
    * @param ctrl Le contrôleur de cette vue.
    */
   public TableaudebordView(TableaudebordCtrl ctrl) {
-    this.ctrl = ctrl;
+    super(ctrl);
   }
 
-  public void goToCommandesMenu(ActionEvent actionEvent) {
-    actionEvent.consume();
-    System.out.println("goToCommandesMenu");
-    this.ctrl.goToMenuCommandes();
-  }
 
-  public void goToTourneesMenu(ActionEvent actionEvent) {
-    actionEvent.consume();
-    System.out.println("goToTourneesMenu");
-    this.ctrl.goToMenuTournees();
-  }
-
-  public void goToClientsMenu(ActionEvent actionEvent) {
-    actionEvent.consume();
-    System.out.println("goToClientsMenu");
-  }
 
 }

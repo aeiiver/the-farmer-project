@@ -8,7 +8,7 @@ import root.view.CommandesView;
 /**
  * Classe contrôleuse pour la vue et modèle de la liste des commandes.
  */
-public class CommandesCtrl {
+public class CommandesCtrl extends MainCtrl {
 
   /**
    * Modèle de la liste des commandes.
@@ -25,15 +25,10 @@ public class CommandesCtrl {
   private CommandesView view;
 
   /**
-   * Stage de la fenêtre.
-   */
-  private Stage primaryStage;
-
-  /**
    * Constructeur de la classe.
    */
   public CommandesCtrl(Stage primaryStage) {
-    this.primaryStage = primaryStage;
+    super(primaryStage);
   }
 
   /**

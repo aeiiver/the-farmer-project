@@ -7,7 +7,7 @@ import root.view.ClientsFormView;
 /**
  * Classe contrôleuse pour la vue et modèle du formulaire d'ajout et modification d'un client.
  */
-public class ClientsFormCtrl {
+public class ClientsFormCtrl extends MainCtrl {
 
   /**
    * Modèle de la liste des clients.
@@ -24,15 +24,10 @@ public class ClientsFormCtrl {
   private ClientsFormView view;
 
   /**
-   * Stage de la fenêtre.
-   */
-  private Stage primaryStage;
-
-  /**
    * Constructeur de la classe.
    */
   public ClientsFormCtrl(Stage primaryStage) {
-    this.primaryStage = primaryStage;
+    super(primaryStage);
   }
 
   /**
