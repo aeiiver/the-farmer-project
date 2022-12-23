@@ -1,5 +1,6 @@
 package root.controller;
 
+import java.beans.EventHandler;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -68,9 +69,6 @@ public class TableaudebordCtrl {
    */
   private Stage primaryStage;
 
-  private final FXMLLoader root = new FXMLLoader(
-      Main.class.getResource("/root/controller/fxml/MainPage.fxml"));
-
   /**
    * Deuxième Constructeur de la classe.
    */
@@ -82,30 +80,95 @@ public class TableaudebordCtrl {
    * Redirige l'utilisateur vers la vue sur la liste des commandes.
    */
   public void goToMenuCommandes() {
+    FXMLLoader root = new FXMLLoader(Main.class.getResource("/root/controller/fxml/Listes.fxml"));
+    root.setController(new CommandesView(new CommandesCtrl(primaryStage)));
+
+    Parent node = null;
+    try {
+      node = root.load();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    this.commandesView = root.getController();
+    Scene scene = new Scene(node);
+    this.primaryStage.setScene(scene);
+    this.primaryStage.show();
   }
 
   /**
    * Redirige l'utilisateur vers la vue sur la liste des tournées.
    */
   public void goToMenuTournees() {
+    FXMLLoader root = new FXMLLoader(Main.class.getResource("/root/controller/fxml/Listes.fxml"));
+    root.setController(new TourneesCtrl(primaryStage));
+
+    Parent node = null;
+    try {
+      node = root.load();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    this.tourneesView = root.getController();
+    Scene scene = new Scene(node);
+    this.primaryStage.setScene(scene);
+    this.primaryStage.show();
   }
 
   /**
    * Redirige l'utilisateur vers la vue sur son compte.
    */
   public void goToMenuCompte() {
+    FXMLLoader root = new FXMLLoader(Main.class.getResource("/root/controller/fxml/Listes.fxml"));
+    root.setController(new CompteCtrl(primaryStage));
+
+    Parent node = null;
+    try {
+      node = root.load();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    this.compteView = root.getController();
+    Scene scene = new Scene(node);
+    this.primaryStage.setScene(scene);
+    this.primaryStage.show();
   }
 
   /**
    * Redirige l'utilisateur vers la vue sur la liste des clients.
    */
   public void goToMenuClients() {
+    FXMLLoader root = new FXMLLoader(Main.class.getResource("/root/controller/fxml/Listes.fxml"));
+    root.setController(new ClientsCtrl(primaryStage));
+
+    Parent node = null;
+    try {
+      node = root.load();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    this.clientsView = root.getController();
+    Scene scene = new Scene(node);
+    this.primaryStage.setScene(scene);
+    this.primaryStage.show();
   }
 
   /**
    * Redirige l'utilisateur vers la vue sur la liste des véhicules.
    */
   public void goToMenuVehicules() {
+    FXMLLoader root = new FXMLLoader(Main.class.getResource("/root/controller/fxml/Listes.fxml"));
+    root.setController(new VehiculesCtrl(primaryStage));
+
+    Parent node = null;
+    try {
+      node = root.load();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    this.vehiculesView = root.getController();
+    Scene scene = new Scene(node);
+    this.primaryStage.setScene(scene);
+    this.primaryStage.show();
   }
 
   /**
@@ -148,15 +211,17 @@ public class TableaudebordCtrl {
    * Affiche la vue du tableau de bord.
    */
   public void showTableaudebordView() {
-    this.root.setController(this.tableaudebordView);
-    Parent root = null;
+    FXMLLoader root = new FXMLLoader(Main.class.getResource("/root/controller/fxml/MainPage.fxml"));
+    root.setController(this.tableaudebordView);
+
+    Parent node = null;
     try {
-      root = this.root.load();
+      node = root.load();
     } catch (IOException e) {
       e.printStackTrace();
     }
-    this.tableaudebordView = this.root.getController();
-    Scene scene = new Scene(root);
+    this.tableaudebordView = root.getController();
+    Scene scene = new Scene(node);
     this.primaryStage.setScene(scene);
     this.primaryStage.show();
   }

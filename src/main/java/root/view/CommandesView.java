@@ -34,7 +34,7 @@ public class CommandesView {
   /**
    * Contrôleur gérant la vue de la liste des commandes.
    *
-   * @see CommandesView#CommandesView(CommandesCtrl, MenuBar)
+   * @see CommandesView#CommandesView(CommandesCtrl)
    * @see CommandesCtrl
    */
   private CommandesCtrl ctrl;
@@ -43,11 +43,16 @@ public class CommandesView {
    * Constructeur de classe.
    *
    * @param ctrl Le contrôleur de cette vue.
-   * @param menu Le menu de navigation.
    */
-  public CommandesView(CommandesCtrl ctrl, MenuBar menu) {
-    this.ctrl = ctrl;
-    this.menu = menu;
+  public CommandesView(CommandesCtrl ctrl) {
   }
+
+  public void goToCommandesMenu() {}
+
+  public void goToTourneesMenu() {}
+
+  public void goToClientsMenu() {}
+
+  public void goToTableaudebordMenu() {}
 
 }

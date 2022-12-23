@@ -119,6 +119,11 @@ public class ConnexionView {
     this.message.setText(msg);
   }
 
+  /**
+   * Méthode appelée lors du clic sur le bouton de connexion.
+   *
+   * @param actionEvent Evènement de clic.
+   */
   public void connexion(ActionEvent actionEvent) {
     actionEvent.consume();
     ctrl.verifieIdentifiants();
