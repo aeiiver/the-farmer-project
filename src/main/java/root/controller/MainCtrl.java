@@ -1,14 +1,24 @@
 package root.controller;
 
+import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import root.Main;
-import root.view.*;
+import root.view.ClientsFormView;
+import root.view.ClientsView;
+import root.view.CommandesView;
+import root.view.CompteView;
+import root.view.ConnexionView;
+import root.view.MainView;
+import root.view.TableaudebordView;
+import root.view.TourneesView;
+import root.view.VehiculesView;
 
-import java.io.IOException;
-
+/**
+ * Classe contrôleuse mère.
+ */
 public class MainCtrl {
 
   Stage primaryStage;
@@ -22,7 +32,8 @@ public class MainCtrl {
    * Affichage de la page de connexion.
    */
   public void showConnexionView(ConnexionView connexionView) {
-    FXMLLoader root = new FXMLLoader(Main.class.getResource("/root/controller/fxml/Connection.fxml"));
+    FXMLLoader root = new FXMLLoader(Main.class
+        .getResource("/root/controller/fxml/Connection.fxml"));
     root.setController(connexionView);
 
     Parent node = null;

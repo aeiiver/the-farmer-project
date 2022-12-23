@@ -100,7 +100,8 @@ public class ConnexionCtrl extends MainCtrl {
     System.out.println(id);
     System.out.println(mdp);
     System.out.println(mode);
-    System.out.println("Je retourne `true` inconditionnellement. N'oubliez pas de me changer plus tard!!!!");
+    System.out.println("Je retourne `true` inconditionnellement. N'oubliez pas "
+        + "de me changer plus tard!!!!");
     return true;
   }
 

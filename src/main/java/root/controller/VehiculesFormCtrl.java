@@ -24,10 +24,6 @@ public class VehiculesFormCtrl extends MainCtrl  {
   private VehiculesFormView view;
 
   /**
-   * Stage de la fenêtre.
-   */
-
-  /**
    * Constructeur de la classe.
    */
   public VehiculesFormCtrl(Stage primaryStage) {
