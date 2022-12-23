@@ -1,6 +1,7 @@
 package root.view;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -20,17 +21,20 @@ public class ConnexionView {
   /**
    * Zone de saisie de l'identifiant.
    */
+  @FXML
   private TextField identifiant;
 
   /**
    * Zone de saisie du mot de passe.
    */
+  @FXML
   private PasswordField motdepasse;
 
   /**
    * Selectionneur du mode de connexion.
    * Soit Producteur soit administrateur.
    */
+  @FXML
   private CheckBox mode;
 
   /**

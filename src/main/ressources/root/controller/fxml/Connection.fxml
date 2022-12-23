@@ -11,10 +11,10 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
       minWidth="-Infinity" prefHeight="520.0" prefWidth="408.0"
-      xmlns="http://javafx.com/javafx/19">
-   <PasswordField layoutX="56.0" layoutY="278.0" prefHeight="35.0"
+      xmlns="http://javafx.com/javafx/19"  xmlns:fx="http://javafx.com/fxml">
+   <PasswordField fx:id="motdepasse" layoutX="56.0" layoutY="278.0" prefHeight="35.0"
                   prefWidth="293.0"/>
-   <TextField layoutX="56.0" layoutY="179.0" prefHeight="35.0"
+   <TextField fx:id="identifiant" layoutX="56.0" layoutY="179.0" prefHeight="35.0"
               prefWidth="293.0"/>
    <Label layoutX="67.0" layoutY="144.0" text="Identifiant">
       <font>
@@ -31,7 +31,7 @@
          <Font size="32.0"/>
       </font>
    </Label>
-   <CheckBox layoutX="75.0" layoutY="334.0" mnemonicParsing="false"
+   <CheckBox fx:id="mode" layoutX="75.0" layoutY="334.0" mnemonicParsing="false"
              text="Administrateur">
       <font>
          <Font size="18.0"/>

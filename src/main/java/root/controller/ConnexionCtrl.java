@@ -4,6 +4,7 @@ import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import root.Main;
 import root.view.ConnexionView;
@@ -33,13 +34,13 @@ public class ConnexionCtrl {
    * Stage de la fenêtre.
    */
   private Stage primaryStage;
-  private final FXMLLoader root = new FXMLLoader(
-      Main.class.getResource("/root/controller/fxml/Connection.fxml"));
 
   /**
    * Constructeur de la classe.
    */
   public ConnexionCtrl(Stage primaryStage) throws IOException {
+    this.connexionView = new ConnexionView(this);
+    this.tableaudebordView = new TableaudebordView(new TableaudebordCtrl(primaryStage));
     this.primaryStage = primaryStage;
   }
 
@@ -73,6 +74,7 @@ public class ConnexionCtrl {
     Boolean estAdmin = connexionView.getConnexionMode();
     if (valideIdentifiants(identifiant, motDePasse, estAdmin)) {
       System.out.println("Identifiants valides");
+      showTableaudebordView();
     }
   }
 
@@ -95,9 +97,11 @@ public class ConnexionCtrl {
    * @return true si les identifiants sont valides, false sinon.
    */
   public boolean valideIdentifiants(String id, String mdp, Boolean mode) {
-    System.out.println(mode);
     System.out.println(id);
-    return false;
+    System.out.println(mdp);
+    System.out.println(mode);
+    System.out.println("Je retourne `true` inconditionnellement. N'oubliez pas de me changer plus tard!!!!");
+    return true;
   }
 
   /**
@@ -140,16 +144,38 @@ public class ConnexionCtrl {
    * Affichage de la page de connexion.
    */
   public void showConnexionView() {
-    this.root.setController(this.connexionView);
-    Parent root = null;
+    FXMLLoader root = new FXMLLoader(Main.class.getResource("/root/controller/fxml/Connection.fxml"));
+    root.setController(this.connexionView);
+
+    Parent node = null;
     try {
-      root = this.root.load();
+      node = root.load();
     } catch (IOException e) {
-      e.printStackTrace();
+      throw new RuntimeException(e);
     }
-    this.connexionView = this.root.getController();
-    Scene scene = new Scene(root);
+
+    Scene scene = new Scene(node);
     this.primaryStage.setScene(scene);
     this.primaryStage.show();
   }
+
+  /**
+   * Affichage du tableau de bord.
+   */
+  private void showTableaudebordView() {
+    FXMLLoader root = new FXMLLoader(Main.class.getResource("/root/controller/fxml/MainPage.fxml"));
+    root.setController(this.tableaudebordView);
+
+    Parent node = null;
+    try {
+      node = root.load();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+
+    Scene scene = new Scene(node);
+    this.primaryStage.setScene(scene);
+    this.primaryStage.show();
+  }
+
 }
