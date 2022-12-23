@@ -115,7 +115,7 @@ public class ConnexionView {
     this.message.setText(msg);
   }
 
-  public void Connexion(ActionEvent actionEvent) {
+  public void connexion(ActionEvent actionEvent) {
     actionEvent.consume();
     ctrl.verifieIdentifiants();
   }

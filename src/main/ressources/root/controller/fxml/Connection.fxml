@@ -38,7 +38,7 @@
       </font>
    </CheckBox>
    <Button layoutX="139.0" layoutY="423.0" mnemonicParsing="false"
-           text="Se connecter" onAction="#Connexion">
+           text="Se connecter" onAction="#connexion">
       <font>
          <Font size="18.0"/>
       </font>

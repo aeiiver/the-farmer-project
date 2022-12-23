@@ -1,6 +1,6 @@
 package root.controller;
 
-
+import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,8 +14,6 @@ import root.view.CompteView;
 import root.view.TableaudebordView;
 import root.view.TourneesView;
 import root.view.VehiculesView;
-
-import java.io.IOException;
 
 /**
  * Classe contrôleuse pour la vue et modèle du tableau de bord.
@@ -70,7 +68,8 @@ public class TableaudebordCtrl {
    */
   private Stage primaryStage;
 
-  private final FXMLLoader ROOT = new FXMLLoader(Main.class.getResource("/root/controller/fxml/MainPage.fxml"));
+  private final FXMLLoader root = new FXMLLoader(
+      Main.class.getResource("/root/controller/fxml/MainPage.fxml"));
 
   /**
    * Deuxième Constructeur de la classe.
@@ -149,14 +148,14 @@ public class TableaudebordCtrl {
    * Affiche la vue du tableau de bord.
    */
   public void showTableaudebordView() {
-    this.ROOT.setController(this.tableaudebordView);
+    this.root.setController(this.tableaudebordView);
     Parent root = null;
     try {
-      root = this.ROOT.load();
+      root = this.root.load();
     } catch (IOException e) {
       e.printStackTrace();
     }
-    this.tableaudebordView = this.ROOT.getController();
+    this.tableaudebordView = this.root.getController();
     Scene scene = new Scene(root);
     this.primaryStage.setScene(scene);
     this.primaryStage.show();
