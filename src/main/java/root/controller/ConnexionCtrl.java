@@ -68,11 +68,25 @@ public class ConnexionCtrl {
    * les saisies sont incorrectes.</p>
    */
   public void verifieIdentifiants() {
-    String identifiant = connexionView.getIdentifiant();
-    String motDePasse = connexionView.getMdp();
-    Boolean estAdmin = connexionView.getConnexionMode();
+    String identifiant = this.connexionView.getIdentifiant();
+    String motDePasse = this.connexionView.getMdp();
+    Boolean estAdmin = this.connexionView.getConnexionMode();
     if (valideIdentifiants(identifiant, motDePasse, estAdmin)) {
       System.out.println("Identifiants valides");
+      if (estAdmin) {
+        System.out.println("Admin");
+      } else {
+        System.out.println("Producteur");
+      }
+      if (estAdmin) {
+        TableaudebordCtrl tableaudebordCtrl = new TableaudebordCtrl(primaryStage);
+        tableaudebordCtrl.showTableaudebordView();
+      } else {
+        connexionView.setMessage("Identifiant ou Mot de Passe incorrects");
+
+      }
+    } else {
+      connexionView.setMessage("Identifiant ou Mot de Passe incorrects");
     }
   }
 
@@ -96,7 +110,6 @@ public class ConnexionCtrl {
    */
   public boolean valideIdentifiants(String id, String mdp, Boolean mode) {
     System.out.println(mode);
-    System.out.println(id);
     return false;
   }
 
@@ -147,7 +160,7 @@ public class ConnexionCtrl {
     } catch (IOException e) {
       e.printStackTrace();
     }
-    this.connexionView = this.root.getController();
+    this.setConnexionView(this.root.getController());
     Scene scene = new Scene(root);
     this.primaryStage.setScene(scene);
     this.primaryStage.show();

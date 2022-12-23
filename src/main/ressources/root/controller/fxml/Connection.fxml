@@ -31,6 +31,11 @@
          <Font size="32.0"/>
       </font>
    </Label>
+   <Label layoutX="22.0" layoutY="45.0" text="                       " id="message">
+      <font>
+         <Font size="22.0"/>
+      </font>
+   </Label>
    <CheckBox layoutX="75.0" layoutY="334.0" mnemonicParsing="false"
              text="Administrateur">
       <font>

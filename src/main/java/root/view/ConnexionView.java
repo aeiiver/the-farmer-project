@@ -29,7 +29,7 @@ public class ConnexionView {
 
   /**
    * Selectionneur du mode de connexion.
-   * Soit Producteur soit administrateur.
+   * Soit Producteur, soit administrateur.
    */
   private CheckBox mode;
 
