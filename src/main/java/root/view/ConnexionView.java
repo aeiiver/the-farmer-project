@@ -73,7 +73,11 @@ public class ConnexionView {
    * @return identifiant saisi
    */
   public String getIdentifiant() {
-    return identifiant.getText();
+    String retour = "";
+    if (identifiant != null) {
+      retour = identifiant.getText();
+    }
+    return retour;
   }
 
   /**
@@ -82,7 +86,11 @@ public class ConnexionView {
    * @return mot de passe saisi
    */
   public String getMdp() {
-    return motdepasse.getText();
+    String retour = "";
+    if (motdepasse != null) {
+      retour = motdepasse.getText();
+    }
+    return retour;
   }
 
   /**
@@ -90,8 +98,12 @@ public class ConnexionView {
    *
    * @return mode de connexion
    */
-  public String getConnexionMode() {
-    return mode.getText();
+  public boolean getConnexionMode() {
+    boolean retour = false;
+    if (mode != null) {
+      retour = mode.isSelected();
+    }
+    return retour;
   }
 
   /**

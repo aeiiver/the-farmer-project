@@ -1,7 +1,11 @@
 package root.controller;
 
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
+import root.Main;
 import root.model.ListeCommandes;
 import root.model.ListeTournees;
 import root.view.ClientsView;
@@ -10,6 +14,8 @@ import root.view.CompteView;
 import root.view.TableaudebordView;
 import root.view.TourneesView;
 import root.view.VehiculesView;
+
+import java.io.IOException;
 
 /**
  * Classe contrôleuse pour la vue et modèle du tableau de bord.
@@ -63,6 +69,8 @@ public class TableaudebordCtrl {
    * Stage de la fenêtre.
    */
   private Stage primaryStage;
+
+  private final FXMLLoader ROOT = new FXMLLoader(Main.class.getResource("/root/controller/fxml/MainPage.fxml"));
 
   /**
    * Deuxième Constructeur de la classe.
@@ -135,6 +143,23 @@ public class TableaudebordCtrl {
    * Redirige l'utilisateur vers la vue du formulaire de modification d'une commande.
    */
   public void editerCommande() {
+  }
+
+  /**
+   * Affiche la vue du tableau de bord.
+   */
+  public void showTableaudebordView() {
+    this.ROOT.setController(this.tableaudebordView);
+    Parent root = null;
+    try {
+      root = this.ROOT.load();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    this.tableaudebordView = this.ROOT.getController();
+    Scene scene = new Scene(root);
+    this.primaryStage.setScene(scene);
+    this.primaryStage.show();
   }
 
 }

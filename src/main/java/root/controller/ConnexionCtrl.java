@@ -35,7 +35,7 @@ public class ConnexionCtrl {
    * Stage de la fenêtre.
    */
   private Stage primaryStage;
-  private final FXMLLoader ROOT = new FXMLLoader();
+  private final FXMLLoader ROOT = new FXMLLoader(Main.class.getResource("/root/controller/fxml/Connection.fxml"));
 
   /**
    * Constructeur de la classe.
@@ -71,7 +71,7 @@ public class ConnexionCtrl {
   public void verifieIdentifiants() {
     String identifiant = connexionView.getIdentifiant();
     String motDePasse = connexionView.getMdp();
-    String estAdmin = connexionView.getConnexionMode();
+    Boolean estAdmin = connexionView.getConnexionMode();
     if (valideIdentifiants(identifiant, motDePasse, estAdmin)) {
       System.out.println("Identifiants valides");
     }
@@ -95,8 +95,9 @@ public class ConnexionCtrl {
    *
    * @return true si les identifiants sont valides, false sinon.
    */
-  public boolean valideIdentifiants(String id, String mdp, String mode) {
+  public boolean valideIdentifiants(String id, String mdp, Boolean mode) {
     System.out.println(mode);
+    System.out.println(id);
     return false;
   }
 
@@ -137,15 +138,16 @@ public class ConnexionCtrl {
   }
 
   public void showConnexionView() {
-    this.ROOT.setLocation(Main.class.getResource("view/ConnexionView.fxml"));
-    this.ROOT.setController(this);
+    this.ROOT.setController(this.connexionView);
+    Parent root = null;
     try {
-      Parent root = this.ROOT.load();
-      Scene scene = new Scene(root);
-      this.primaryStage.setScene(scene);
-      this.primaryStage.show();
+      root = this.ROOT.load();
     } catch (IOException e) {
       e.printStackTrace();
-    };
+    }
+    this.connexionView = this.ROOT.getController();
+    Scene scene = new Scene(root);
+    this.primaryStage.setScene(scene);
+    this.primaryStage.show();
   }
 }
