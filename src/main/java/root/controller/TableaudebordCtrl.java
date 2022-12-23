@@ -1,6 +1,11 @@
 package root.controller;
 
-
+import java.io.IOException;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import root.Main;
 import root.model.ListeCommandes;
 import root.model.ListeTournees;
 import root.view.ClientsView;
@@ -18,27 +23,18 @@ public class TableaudebordCtrl {
   /**
    * Listes des tournées sur le tableau de bord.
    *
-   * @see TableaudebordCtrl#TableaudebordCtrl(ListeTournees, ListeCommandes,
-   * TableaudebordView, CommandesView, TourneesView, CompteView, ClientsView,
-   * VehiculesView)
    */
   private ListeTournees listeTournees;
 
   /**
    * Liste des commandes sur le tableau de bord.
    *
-   * @see TableaudebordCtrl#TableaudebordCtrl(ListeTournees, ListeCommandes,
-   * TableaudebordView, CommandesView, TourneesView, CompteView, ClientsView,
-   * VehiculesView)
    */
   private ListeCommandes listeCommandes;
 
   /**
    * Vue du tableau de bord.
    *
-   * @see TableaudebordCtrl#TableaudebordCtrl(ListeTournees, ListeCommandes,
-   * TableaudebordView, CommandesView, TourneesView, CompteView, ClientsView,
-   * VehiculesView)
    */
   private TableaudebordView tableaudebordView;
 
@@ -68,33 +64,18 @@ public class TableaudebordCtrl {
   private VehiculesView vehiculesView;
 
   /**
-   * Constructeur de classe.
-   * <p>
-   * Le contrôleur a besoin de connaître les autres vues pour permettre à
-   * l'utilisateur de naviguer sur le menu.
-   * </p>
-   *
-   * @param listeTournees     Le modèle correspondant à la liste des tournées.
-   * @param listeCommandes    Le modèle correspondant à la liste des commandes.
-   * @param tableaudebordView La vue sur le tableau de bord.
-   * @param commandesView     La vue sur la liste des commandes.
-   * @param tourneesView      La vue sur la liste des tournées
-   * @param compteView        La vue sur l'écran du compte.
-   * @param clientsView       La vue sur la liste des clients.
-   * @param vehiculesView     La vue sur la liste des véhicules.
+   * Stage de la fenêtre.
    */
-  public TableaudebordCtrl(ListeTournees listeTournees, ListeCommandes listeCommandes,
-                           TableaudebordView tableaudebordView, CommandesView commandesView,
-                           TourneesView tourneesView, CompteView compteView,
-                           ClientsView clientsView, VehiculesView vehiculesView) {
-    this.listeTournees = listeTournees;
-    this.listeCommandes = listeCommandes;
-    this.tableaudebordView = tableaudebordView;
-    this.commandesView = commandesView;
-    this.tourneesView = tourneesView;
-    this.compteView = compteView;
-    this.clientsView = clientsView;
-    this.vehiculesView = vehiculesView;
+  private Stage primaryStage;
+
+  private final FXMLLoader root = new FXMLLoader(
+      Main.class.getResource("/root/controller/fxml/MainPage.fxml"));
+
+  /**
+   * Deuxième Constructeur de la classe.
+   */
+  public TableaudebordCtrl(Stage primaryStage) {
+    this.primaryStage = primaryStage;
   }
 
   /**
@@ -161,6 +142,23 @@ public class TableaudebordCtrl {
    * Redirige l'utilisateur vers la vue du formulaire de modification d'une commande.
    */
   public void editerCommande() {
+  }
+
+  /**
+   * Affiche la vue du tableau de bord.
+   */
+  public void showTableaudebordView() {
+    this.root.setController(this.tableaudebordView);
+    Parent root = null;
+    try {
+      root = this.root.load();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    this.tableaudebordView = this.root.getController();
+    Scene scene = new Scene(root);
+    this.primaryStage.setScene(scene);
+    this.primaryStage.show();
   }
 
 }

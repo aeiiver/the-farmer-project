@@ -1,5 +1,6 @@
 package root.controller;
 
+import javafx.stage.Stage;
 import root.model.Utilisateur;
 import root.view.CompteView;
 
@@ -11,7 +12,6 @@ public class CompteCtrl {
   /**
    * Modèle de l'utilisateur.
    *
-   * @see CompteCtrl#CompteCtrl(Utilisateur, CompteView)
    * @see CompteCtrl#getModel()
    */
   private Utilisateur model;
@@ -19,20 +19,20 @@ public class CompteCtrl {
   /**
    * Vue du compte de l'utilisateur.
    *
-   * @see CompteCtrl#CompteCtrl(Utilisateur, CompteView)
    * @see CompteCtrl#getView()
    */
   private CompteView view;
 
   /**
-   * Constructeur de classe.
-   *
-   * @param model Le modèle à associer.
-   * @param view  La vue à associer.
+   * Stage de la fenêtre.
    */
-  public CompteCtrl(Utilisateur model, CompteView view) {
-    this.model = model;
-    this.view = view;
+  private Stage primaryStage;
+
+  /**
+   * Constructeur de la classe.
+   */
+  public CompteCtrl(Stage primaryStage) {
+    this.primaryStage = primaryStage;
   }
 
   /**

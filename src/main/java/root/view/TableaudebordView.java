@@ -50,7 +50,7 @@ public class TableaudebordView {
   /**
    * Contrôleur gérant la vue du tableau de bord.
    *
-   * @see TableaudebordView#TableaudebordView(TableaudebordCtrl, MenuBar)
+   * @see TableaudebordView#TableaudebordView(TableaudebordCtrl)
    * @see TableaudebordCtrl
    */
   private TableaudebordCtrl ctrl;
@@ -59,11 +59,9 @@ public class TableaudebordView {
    * Constructeur de classe.
    *
    * @param ctrl Le contrôleur de cette vue.
-   * @param menu Le menu de navigation.
    */
-  public TableaudebordView(TableaudebordCtrl ctrl, MenuBar menu) {
+  public TableaudebordView(TableaudebordCtrl ctrl) {
     this.ctrl = ctrl;
-    this.menu = menu;
   }
 
 }

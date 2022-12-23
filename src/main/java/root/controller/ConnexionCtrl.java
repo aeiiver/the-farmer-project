@@ -1,5 +1,12 @@
 package root.controller;
 
+import java.io.IOException;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import root.Main;
 import root.view.ConnexionView;
 import root.view.TableaudebordView;
 
@@ -14,26 +21,27 @@ public class ConnexionCtrl {
   /**
    * Vue de l'écran de connexion utilisateur.
    *
-   * @see ConnexionCtrl#ConnexionCtrl(ConnexionView, TableaudebordView)
    */
   private ConnexionView connexionView;
 
   /**
    * Vue du tableau de bord.
    *
-   * @see ConnexionCtrl#ConnexionCtrl(ConnexionView, TableaudebordView)
    */
   private TableaudebordView tableaudebordView;
 
   /**
-   * Constructeur de classe.
-   *
-   * @param connexionView     La vue correspondante à l'écran de connexion.
-   * @param tableaudebordView La vue correspondante au tableau de bord.
+   * Stage de la fenêtre.
    */
-  public ConnexionCtrl(ConnexionView connexionView, TableaudebordView tableaudebordView) {
-    this.connexionView = connexionView;
-    this.tableaudebordView = tableaudebordView;
+  private Stage primaryStage;
+
+  /**
+   * Constructeur de la classe.
+   */
+  public ConnexionCtrl(Stage primaryStage) throws IOException {
+    this.connexionView = new ConnexionView(this);
+    this.tableaudebordView = new TableaudebordView(new TableaudebordCtrl(primaryStage));
+    this.primaryStage = primaryStage;
   }
 
   /**
@@ -61,6 +69,13 @@ public class ConnexionCtrl {
    * les saisies sont incorrectes.</p>
    */
   public void verifieIdentifiants() {
+    String identifiant = connexionView.getIdentifiant();
+    String motDePasse = connexionView.getMdp();
+    Boolean estAdmin = connexionView.getConnexionMode();
+    if (valideIdentifiants(identifiant, motDePasse, estAdmin)) {
+      System.out.println("Identifiants valides");
+      showTableaudebordView();
+    }
   }
 
   /**
@@ -81,9 +96,12 @@ public class ConnexionCtrl {
    *
    * @return true si les identifiants sont valides, false sinon.
    */
-  public boolean valideIdentifiants() {
-    // dummy return
-    return false;
+  public boolean valideIdentifiants(String id, String mdp, Boolean mode) {
+    System.out.println(id);
+    System.out.println(mdp);
+    System.out.println(mode);
+    System.out.println("Je retourne `true` inconditionnellement. N'oubliez pas de me changer plus tard!!!!");
+    return true;
   }
 
   /**
@@ -120,6 +138,44 @@ public class ConnexionCtrl {
    */
   public void setTableaudebordView(TableaudebordView tableaudebordView) {
     this.tableaudebordView = tableaudebordView;
+  }
+
+  /**
+   * Affichage de la page de connexion.
+   */
+  public void showConnexionView() {
+    FXMLLoader root = new FXMLLoader(Main.class.getResource("/root/controller/fxml/Connection.fxml"));
+    root.setController(this.connexionView);
+
+    Parent node = null;
+    try {
+      node = root.load();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+
+    Scene scene = new Scene(node);
+    this.primaryStage.setScene(scene);
+    this.primaryStage.show();
+  }
+
+  /**
+   * Affichage du tableau de bord.
+   */
+  private void showTableaudebordView() {
+    FXMLLoader root = new FXMLLoader(Main.class.getResource("/root/controller/fxml/MainPage.fxml"));
+    root.setController(this.tableaudebordView);
+
+    Parent node = null;
+    try {
+      node = root.load();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+
+    Scene scene = new Scene(node);
+    this.primaryStage.setScene(scene);
+    this.primaryStage.show();
   }
 
 }

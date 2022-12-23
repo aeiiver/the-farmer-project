@@ -1,5 +1,6 @@
 package root.controller;
 
+import javafx.stage.Stage;
 import root.model.ListeVehicules;
 import root.view.VehiculesView;
 
@@ -11,7 +12,6 @@ public class VehiculesCtrl {
   /**
    * Modèle de la liste des véhicules.
    *
-   * @see VehiculesCtrl#VehiculesCtrl(ListeVehicules, VehiculesView)
    * @see VehiculesCtrl#getModel()
    */
   private ListeVehicules model;
@@ -19,20 +19,20 @@ public class VehiculesCtrl {
   /**
    * Vue de la liste des véhicules.
    *
-   * @see VehiculesCtrl#VehiculesCtrl(ListeVehicules, VehiculesView)
    * @see VehiculesCtrl#getView()
    */
   private VehiculesView view;
 
   /**
-   * Constructeur de classe.
-   *
-   * @param model Le modèle à associer.
-   * @param view  La vue à associer.
+   * Stage de la fenêtre.
    */
-  public VehiculesCtrl(ListeVehicules model, VehiculesView view) {
-    this.model = model;
-    this.view = view;
+  private Stage primaryStage;
+
+  /**
+   * Constructeur de la classe.
+   */
+  public VehiculesCtrl(Stage primaryStage) {
+    this.primaryStage = primaryStage;
   }
 
   /**

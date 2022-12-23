@@ -1,5 +1,6 @@
 package root.controller;
 
+import javafx.stage.Stage;
 import root.model.ListeProducteurs;
 import root.view.ProducteursView;
 
@@ -11,7 +12,6 @@ public class ProducteursCtrl {
   /**
    * Modèle de la liste des producteurs.
    *
-   * @see ProducteursCtrl#ProducteursCtrl(ListeProducteurs, ProducteursView)
    * @see ProducteursCtrl#getModel()
    */
   private ListeProducteurs model;
@@ -19,20 +19,20 @@ public class ProducteursCtrl {
   /**
    * Vue de la liste des producteurs.
    *
-   * @see ProducteursCtrl#ProducteursCtrl(ListeProducteurs, ProducteursView)
    * @see ProducteursCtrl#getView()
    */
   private ProducteursView view;
 
   /**
-   * Constructeur de classe.
-   *
-   * @param model Le modèle à associer.
-   * @param view  La vue à associer.
+   * Stage de la fenêtre.
    */
-  public ProducteursCtrl(ListeProducteurs model, ProducteursView view) {
-    this.model = model;
-    this.view = view;
+  private Stage primaryStage;
+
+  /**
+   * Constructeur vide de la classe.
+   */
+  public ProducteursCtrl(Stage primaryStage) {
+    this.primaryStage = primaryStage;
   }
 
   /**

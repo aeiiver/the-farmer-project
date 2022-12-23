@@ -1,5 +1,6 @@
 package root.controller;
 
+import javafx.stage.Stage;
 import root.model.ListeClients;
 import root.view.ClientsView;
 
@@ -11,7 +12,6 @@ public class ClientsCtrl {
   /**
    * Modèle de la liste des clients.
    *
-   * @see ClientsCtrl#ClientsCtrl(ListeClients, ClientsView)
    * @see ClientsCtrl#getModel()
    */
   private ListeClients model;
@@ -19,18 +19,20 @@ public class ClientsCtrl {
   /**
    * Vue de la liste des clients.
    *
-   * @see ClientsCtrl#ClientsCtrl(ListeClients, ClientsView)
    * @see ClientsCtrl#getView()
    */
   private ClientsView view;
 
   /**
-   * Constructeur de classe.
-   *
-   * @param model Le modèle à associer.
-   * @param view  La vue à associer.
+   * Stage de la fenêtre.
    */
-  public ClientsCtrl(ListeClients model, ClientsView view) {
+  private Stage primaryStage;
+
+  /**
+   * Constructeur de la classe.
+   */
+  public ClientsCtrl(Stage primaryStage) {
+    this.primaryStage = primaryStage;
   }
 
   /**

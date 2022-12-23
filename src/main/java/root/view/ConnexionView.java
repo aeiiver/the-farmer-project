@@ -1,5 +1,7 @@
 package root.view;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -16,31 +18,23 @@ public class ConnexionView {
    * Text d'indication pour la saisie de l'identifiant.
    */
   private Label identifiantLabel;
-
   /**
    * Zone de saisie de l'identifiant.
    */
+  @FXML
   private TextField identifiant;
-
-  /**
-   * Text d'indication pour la saisie du mot de passe.
-   */
-  private Label motdepasseLabel;
 
   /**
    * Zone de saisie du mot de passe.
    */
+  @FXML
   private PasswordField motdepasse;
-
-  /**
-   * Text d'indication pour la selection du mode de connexion.
-   */
-  private Label modeLabel;
 
   /**
    * Selectionneur du mode de connexion.
    * Soit Producteur soit administrateur.
    */
+  @FXML
   private CheckBox mode;
 
   /**
@@ -64,6 +58,10 @@ public class ConnexionView {
    */
   private ConnexionCtrl ctrl;
 
+  public ConnexionView() {
+
+  }
+
   /**
    * Constructeur de classe.
    *
@@ -79,7 +77,11 @@ public class ConnexionView {
    * @return identifiant saisi
    */
   public String getIdentifiant() {
-    return null;
+    String retour = "";
+    if (identifiant != null) {
+      retour = identifiant.getText();
+    }
+    return retour;
   }
 
   /**
@@ -88,7 +90,11 @@ public class ConnexionView {
    * @return mot de passe saisi
    */
   public String getMdp() {
-    return null;
+    String retour = "";
+    if (motdepasse != null) {
+      retour = motdepasse.getText();
+    }
+    return retour;
   }
 
   /**
@@ -96,8 +102,12 @@ public class ConnexionView {
    *
    * @return mode de connexion
    */
-  public String getConnexionMode() {
-    return null;
+  public boolean getConnexionMode() {
+    boolean retour = false;
+    if (mode != null) {
+      retour = mode.isSelected();
+    }
+    return retour;
   }
 
   /**
@@ -109,4 +119,8 @@ public class ConnexionView {
     this.message.setText(msg);
   }
 
+  public void connexion(ActionEvent actionEvent) {
+    actionEvent.consume();
+    ctrl.verifieIdentifiants();
+  }
 }

@@ -1,3 +1,5 @@
+package root;
+
 /**
  * Classe de pour la suite de tests.
  */
