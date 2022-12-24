@@ -17,12 +17,21 @@
             <Menu mnemonicParsing="false" text="Tableau de bord" onAction="#menuTableaudebord">
                 <MenuItem mnemonicParsing="false" text="Tableau de bord" onAction="#menuTableaudebord"/>
             </Menu>
-            <Menu mnemonicParsing="false" text="Mes Commandes" onAction="#menuCommandes">
+            <Menu mnemonicParsing="false" text="Commandes">
                 <MenuItem mnemonicParsing="false" text="Mes Commandes" onAction="#menuCommandes"/>
+                <MenuItem mnemonicParsing="false" text="Nouvelle Commande" onAction="#menuNouvelleCommande"/>
             </Menu>
-            <Menu mnemonicParsing="false" text="Mes Tournées"/>
+            <Menu mnemonicParsing="false" text="Mes Tournées">
+                <MenuItem mnemonicParsing="false" text="Mes Tournées" onAction="#menuTournees"/>
+                <MenuItem mnemonicParsing="false" text="Nouvelle Tournée"/>
+            </Menu>
+
             <Menu mnemonicParsing="false" text="Mon Compte"/>
-            <Menu mnemonicParsing="false" text="Mes clients"/>
+            <Menu mnemonicParsing="false" text="Mes clients">
+                <MenuItem mnemonicParsing="false" text="Mes clients"/>
+                <MenuItem mnemonicParsing="false" text="Nouveau client"/>
+            </Menu>
+
         </menus>
       </MenuBar>
       <Separator layoutY="97.0" prefHeight="6.0" prefWidth="1013.0" />

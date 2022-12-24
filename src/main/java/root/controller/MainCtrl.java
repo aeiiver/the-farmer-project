@@ -6,15 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import root.Main;
-import root.view.ClientsFormView;
-import root.view.ClientsView;
-import root.view.CommandesView;
-import root.view.CompteView;
-import root.view.ConnexionView;
-import root.view.MainView;
-import root.view.TableaudebordView;
-import root.view.TourneesView;
-import root.view.VehiculesView;
+import root.view.*;
 
 /**
  * Classe contrôleuse mère.
@@ -28,6 +20,10 @@ public class MainCtrl {
     this.primaryStage = primaryStage;
   }
 
+  public Stage getPrimaryStage() {
+    return primaryStage;
+  }
+
   /**
    * Affichage de la page de connexion.
    */
@@ -35,17 +31,7 @@ public class MainCtrl {
     FXMLLoader root = new FXMLLoader(Main.class
         .getResource("/root/controller/fxml/Connection.fxml"));
     root.setController(connexionView);
-
-    Parent node = null;
-    try {
-      node = root.load();
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-
-    Scene scene = new Scene(node);
-    this.primaryStage.setScene(scene);
-    this.primaryStage.show();
+    changeScene(root);
   }
 
   /**
@@ -54,37 +40,16 @@ public class MainCtrl {
   public void showTableaudebordView(TableaudebordView tableaudebordView) {
     FXMLLoader root = new FXMLLoader(Main.class.getResource("/root/controller/fxml/MainPage.fxml"));
     root.setController(tableaudebordView);
-
-    Parent node = null;
-    try {
-      node = root.load();
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-
-    Scene scene = new Scene(node);
-    this.primaryStage.setScene(scene);
-    this.primaryStage.show();
+    changeScene(root);
   }
 
   /**
    * Redirige l'utilisateur vers la vue sur la liste des commandes.
    */
   public void showCommandesView(CommandesView commandesView) {
-    System.out.println("showCommandesView");
     FXMLLoader root = new FXMLLoader(Main.class.getResource("/root/controller/fxml/Listes.fxml"));
     root.setController(new CommandesView(new CommandesCtrl(primaryStage)));
-
-    Parent node = null;
-    try {
-      node = root.load();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    commandesView = root.getController();
-    Scene scene = new Scene(node);
-    this.primaryStage.setScene(scene);
-    this.primaryStage.show();
+    changeScene(root);
   }
 
   /**
@@ -93,17 +58,7 @@ public class MainCtrl {
   public void showTourneesView(TourneesView tourneesView) {
     FXMLLoader root = new FXMLLoader(Main.class.getResource("/root/controller/fxml/Listes.fxml"));
     root.setController(new TourneesCtrl(primaryStage));
-
-    Parent node = null;
-    try {
-      node = root.load();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    tourneesView = root.getController();
-    Scene scene = new Scene(node);
-    this.primaryStage.setScene(scene);
-    this.primaryStage.show();
+    changeScene(root);
   }
 
   /**
@@ -112,17 +67,7 @@ public class MainCtrl {
   public void showCompteView(CompteView compteView) {
     FXMLLoader root = new FXMLLoader(Main.class.getResource("/root/controller/fxml/Listes.fxml"));
     root.setController(new CompteCtrl(primaryStage));
-
-    Parent node = null;
-    try {
-      node = root.load();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    compteView = root.getController();
-    Scene scene = new Scene(node);
-    this.primaryStage.setScene(scene);
-    this.primaryStage.show();
+    changeScene(root);
   }
 
   /**
@@ -131,17 +76,7 @@ public class MainCtrl {
   public void showClientsView(ClientsView clientsView) {
     FXMLLoader root = new FXMLLoader(Main.class.getResource("/root/controller/fxml/Listes.fxml"));
     root.setController(new ClientsCtrl(primaryStage));
-
-    Parent node = null;
-    try {
-      node = root.load();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    clientsView = root.getController();
-    Scene scene = new Scene(node);
-    this.primaryStage.setScene(scene);
-    this.primaryStage.show();
+    changeScene(root);
   }
 
   /**
@@ -150,20 +85,28 @@ public class MainCtrl {
   public void showVehiculesView(VehiculesView vehiculesView) {
     FXMLLoader root = new FXMLLoader(Main.class.getResource("/root/controller/fxml/Listes.fxml"));
     root.setController(new VehiculesCtrl(primaryStage));
+    changeScene(root);
+  }
 
+  public void showComptesView(CompteView compteView) {
+
+  }
+
+  public void showCommandFormView(CommandesFormView commandesFormView) {
+    FXMLLoader root = new FXMLLoader(Main.class.getResource("/root/controller/fxml/AddCommand.fxml"));
+    root.setController(new CommandesFormCtrl(primaryStage));
+    changeScene(root);
+  }
+
+  public void changeScene(FXMLLoader root) {
     Parent node = null;
     try {
       node = root.load();
     } catch (IOException e) {
       e.printStackTrace();
     }
-    vehiculesView = root.getController();
     Scene scene = new Scene(node);
     this.primaryStage.setScene(scene);
     this.primaryStage.show();
-  }
-
-  public void showComptesView(CompteView compteView) {
-
   }
 }

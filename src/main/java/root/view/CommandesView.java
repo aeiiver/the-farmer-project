@@ -40,12 +40,4 @@ public class CommandesView extends MainView {
     super(ctrl);
   }
 
-  public void goToCommandesMenu() {}
-
-  public void goToTourneesMenu() {}
-
-  public void goToClientsMenu() {}
-
-  public void goToTableaudebordMenu() {}
-
 }
