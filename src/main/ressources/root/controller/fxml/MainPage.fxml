@@ -13,26 +13,26 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="1013.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="1013.0">
-        <menus>
+         <menus>
             <Menu mnemonicParsing="false" text="Tableau de bord" onAction="#menuTableaudebord">
-                <MenuItem mnemonicParsing="false" text="Tableau de bord" onAction="#menuTableaudebord"/>
+               <MenuItem mnemonicParsing="false" text="Tableau de bord" onAction="#menuTableaudebord"/>
             </Menu>
             <Menu mnemonicParsing="false" text="Commandes">
-                <MenuItem mnemonicParsing="false" text="Mes Commandes" onAction="#menuCommandes"/>
-                <MenuItem mnemonicParsing="false" text="Nouvelle Commande" onAction="#menuNouvelleCommande"/>
+               <MenuItem mnemonicParsing="false" text="Mes Commandes" onAction="#menuCommandes"/>
+               <MenuItem mnemonicParsing="false" text="Nouvelle Commande" onAction="#menuNouvelleCommande"/>
             </Menu>
             <Menu mnemonicParsing="false" text="Mes Tournées">
-                <MenuItem mnemonicParsing="false" text="Mes Tournées" onAction="#menuTournees"/>
-                <MenuItem mnemonicParsing="false" text="Nouvelle Tournée"/>
+               <MenuItem mnemonicParsing="false" text="Mes Tournées" onAction="#menuTournees"/>
+               <MenuItem mnemonicParsing="false" text="Nouvelle Tournée"/>
             </Menu>
 
             <Menu mnemonicParsing="false" text="Mon Compte"/>
             <Menu mnemonicParsing="false" text="Mes clients">
-                <MenuItem mnemonicParsing="false" text="Mes clients"/>
-                <MenuItem mnemonicParsing="false" text="Nouveau client"/>
+               <MenuItem mnemonicParsing="false" text="Mes clients"/>
+               <MenuItem mnemonicParsing="false" text="Nouveau client"/>
             </Menu>
 
-        </menus>
+         </menus>
       </MenuBar>
       <Separator layoutY="97.0" prefHeight="6.0" prefWidth="1013.0" />
       <Separator layoutX="846.0" layoutY="27.0" orientation="VERTICAL" prefHeight="75.0" prefWidth="0.0" />
