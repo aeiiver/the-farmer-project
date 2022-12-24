@@ -1,12 +1,10 @@
 package root.controller;
 
-
+import java.util.ArrayList;
 import javafx.stage.Stage;
 import root.model.Commande;
 import root.model.ListeCommandes;
 import root.view.CommandesView;
-
-import java.util.ArrayList;
 
 /**
  * Classe contrôleuse pour la vue et modèle de la liste des commandes.
