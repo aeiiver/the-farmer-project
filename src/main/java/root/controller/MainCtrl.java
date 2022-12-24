@@ -71,6 +71,7 @@ public class MainCtrl {
    * Redirige l'utilisateur vers la vue sur la liste des commandes.
    */
   public void showCommandesView(CommandesView commandesView) {
+    System.out.println("showCommandesView");
     FXMLLoader root = new FXMLLoader(Main.class.getResource("/root/controller/fxml/Listes.fxml"));
     root.setController(new CommandesView(new CommandesCtrl(primaryStage)));
 
