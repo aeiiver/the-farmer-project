@@ -1,6 +1,8 @@
 package root.view;
 
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuBar;
 import root.controller.CommandesCtrl;
@@ -31,6 +33,9 @@ public class CommandesView extends MainView {
    */
   private Button editerCommande;
 
+  @FXML
+  private Label titre;
+
   /**
    * Constructeur de classe.
    *
@@ -38,6 +43,11 @@ public class CommandesView extends MainView {
    */
   public CommandesView(CommandesCtrl ctrl) {
     super(ctrl);
+  }
+
+  @FXML
+  public void initialize() {
+    assert this.titre != null : "Liste des commandes";
   }
 
 }

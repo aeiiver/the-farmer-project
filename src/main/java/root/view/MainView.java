@@ -1,13 +1,14 @@
 package root.view;
 
 import javafx.event.ActionEvent;
+import root.controller.ClientsCtrl;
+import root.controller.ClientsFormCtrl;
 import root.controller.CommandesCtrl;
 import root.controller.CommandesFormCtrl;
 import root.controller.CompteCtrl;
 import root.controller.MainCtrl;
 import root.controller.TableaudebordCtrl;
 import root.controller.TourneesCtrl;
-
 
 /**
  * Classe de vue mère.
@@ -28,24 +29,34 @@ public class MainView {
   }
 
   /**
-   * Redirige l'utilisateur vers la vue sur la liste des commandes.
-   *
-   * @param event L'événement déclencheur.
-   */
-  public void menuCommandes(ActionEvent event) {
-    event.consume();
-    ctrl.showCommandesView(new CommandesView(new CommandesCtrl(ctrl.getPrimaryStage())));
-  }
-
-  /**
    * Redirige l'utilisateur vers le tableau de bord. Lors du clic dans le menu.
    *
    * @param event L'événement qui a déclenché l'action.
    */
-  public void menuTableaudebord(ActionEvent event) {
+  public void lienTableaudebord(ActionEvent event) {
     event.consume();
-    ctrl.showTableaudebordView(new TableaudebordView(
+    ctrl.voirTableaudebord(new TableaudebordView(
         new TableaudebordCtrl(ctrl.getPrimaryStage())));
+  }
+
+  /**
+   * Redirige l'utilisateur vers la vue sur la liste des commandes.
+   *
+   * @param event L'événement déclencheur.
+   */
+  public void lienCommandes(ActionEvent event) {
+    event.consume();
+    ctrl.voirCommandesListes(new CommandesView(new CommandesCtrl(ctrl.getPrimaryStage())));
+  }
+
+  /**
+   * Redirige l'utilisateur vers la vue sur la liste des clients.
+   *
+   * @param event L'événement déclencheur.
+   */
+  public void lienClients(ActionEvent event) {
+    event.consume();
+    ctrl.voirClientsListes(new ClientsView(new ClientsCtrl(ctrl.getPrimaryStage())));
   }
 
   /**
@@ -53,9 +64,9 @@ public class MainView {
    *
    * @param event L'événement qui a déclenché l'action.
    */
-  public void menuTournees(ActionEvent event) {
+  public void lienTournees(ActionEvent event) {
     event.consume();
-    ctrl.showTourneesView(new TourneesView(new TourneesCtrl(ctrl.getPrimaryStage())));
+    ctrl.voirTourneesListes(new TourneesView(new TourneesCtrl(ctrl.getPrimaryStage())));
   }
 
   /**
@@ -63,9 +74,19 @@ public class MainView {
    *
    * @param event L'événement qui a déclenché l'action.
    */
-  public void menuComptes(ActionEvent event) {
+  public void lienComptes(ActionEvent event) {
     event.consume();
-    ctrl.showComptesView(new CompteView(new CompteCtrl(ctrl.getPrimaryStage())));
+    ctrl.voirComptesListes(new CompteView(new CompteCtrl(ctrl.getPrimaryStage())));
+  }
+
+  /**
+   * Redirige l'utilisateur vers le formulaire d'ajout de clients.
+   *
+   * @param event L'événement déclencheur.
+   */
+  public void lienClientsForm(ActionEvent event) {
+    event.consume();
+    ctrl.voirClientsForm(new ClientsFormView(new ClientsFormCtrl(ctrl.getPrimaryStage())));
   }
 
   /**
@@ -74,8 +95,8 @@ public class MainView {
    *
    * @param event L'événement qui a déclenché l'action.
    */
-  public void menuNouvelleCommande(ActionEvent event) {
+  public void lienFormCommande(ActionEvent event) {
     event.consume();
-    ctrl.showCommandFormView(new CommandesFormView(new CommandesFormCtrl(ctrl.getPrimaryStage())));
+    ctrl.voirCommandesForm(new CommandesFormView(new CommandesFormCtrl(ctrl.getPrimaryStage())));
   }
 }

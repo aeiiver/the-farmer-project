@@ -1,12 +1,7 @@
 package root.controller;
 
 import java.io.IOException;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import root.Main;
 import root.view.ConnexionView;
 import root.view.TableaudebordView;
 
@@ -74,7 +69,7 @@ public class ConnexionCtrl extends MainCtrl {
     Boolean estAdmin = connexionView.getConnexionMode();
     if (valideIdentifiants(identifiant, motDePasse, estAdmin)) {
       System.out.println("Identifiants valides");
-      this.showTableaudebordView(this.tableaudebordView);
+      this.voirTableaudebord(this.tableaudebordView);
     }
   }
 

@@ -12,13 +12,8 @@ import root.view.CommandesFormView;
 import root.view.CommandesView;
 import root.view.CompteView;
 import root.view.ConnexionView;
-import root.view.MainView;
-import root.view.ProducteursFormView;
-import root.view.ProducteursView;
 import root.view.TableaudebordView;
-import root.view.TourneesFormView;
 import root.view.TourneesView;
-import root.view.VehiculesFormView;
 import root.view.VehiculesView;
 
 
@@ -53,9 +48,9 @@ public class MainCtrl {
   /**
    * Affichage de la page de connexion.
    */
-  public void showConnexionView(ConnexionView connexionView) {
+  public void voirConnexion(ConnexionView connexionView) {
     FXMLLoader root = new FXMLLoader(Main.class
-        .getResource("/root/controller/fxml/Connection.fxml"));
+        .getResource("/root/controller/fxml/Connexion.fxml"));
     root.setController(connexionView);
     changeScene(root);
   }
@@ -63,8 +58,9 @@ public class MainCtrl {
   /**
    * Affichage du tableau de bord.
    */
-  public void showTableaudebordView(TableaudebordView tableaudebordView) {
-    FXMLLoader root = new FXMLLoader(Main.class.getResource("/root/controller/fxml/MainPage.fxml"));
+  public void voirTableaudebord(TableaudebordView tableaudebordView) {
+    FXMLLoader root = new FXMLLoader(
+        Main.class.getResource("/root/controller/fxml/MainPage.fxml"));
     root.setController(tableaudebordView);
     changeScene(root);
   }
@@ -72,17 +68,20 @@ public class MainCtrl {
   /**
    * Redirige l'utilisateur vers la vue sur la liste des commandes.
    */
-  public void showCommandesView(CommandesView commandesView) {
-    FXMLLoader root = new FXMLLoader(Main.class.getResource("/root/controller/fxml/Listes.fxml"));
+  public void voirCommandesListes(CommandesView commandesView) {
+    FXMLLoader root = new FXMLLoader(
+        Main.class.getResource("/root/controller/fxml/ListeData.fxml"));
     root.setController(new CommandesView(new CommandesCtrl(primaryStage)));
     changeScene(root);
+    commandesView.initialize();
   }
 
   /**
    * Redirige l'utilisateur vers la vue sur la liste des tournées.
    */
-  public void showTourneesView(TourneesView tourneesView) {
-    FXMLLoader root = new FXMLLoader(Main.class.getResource("/root/controller/fxml/Listes.fxml"));
+  public void voirTourneesListes(TourneesView tourneesView) {
+    FXMLLoader root = new FXMLLoader(
+        Main.class.getResource("/root/controller/fxml/ListeData.fxml"));
     root.setController(new TourneesCtrl(primaryStage));
     changeScene(root);
   }
@@ -90,8 +89,9 @@ public class MainCtrl {
   /**
    * Redirige l'utilisateur vers la vue sur son compte.
    */
-  public void showCompteView(CompteView compteView) {
-    FXMLLoader root = new FXMLLoader(Main.class.getResource("/root/controller/fxml/Listes.fxml"));
+  public void voirCompte(CompteView compteView) {
+    FXMLLoader root = new FXMLLoader(
+        Main.class.getResource("/root/controller/fxml/ListeData.fxml"));
     root.setController(new CompteCtrl(primaryStage));
     changeScene(root);
   }
@@ -99,8 +99,9 @@ public class MainCtrl {
   /**
    * Redirige l'utilisateur vers la vue sur la liste des clients.
    */
-  public void showClientsView(ClientsView clientsView) {
-    FXMLLoader root = new FXMLLoader(Main.class.getResource("/root/controller/fxml/Listes.fxml"));
+  public void voirClientsListes(ClientsView clientsView) {
+    FXMLLoader root = new FXMLLoader(
+        Main.class.getResource("/root/controller/fxml/ListeData.fxml"));
     root.setController(new ClientsCtrl(primaryStage));
     changeScene(root);
   }
@@ -108,13 +109,14 @@ public class MainCtrl {
   /**
    * Redirige l'utilisateur vers la vue sur la liste des véhicules.
    */
-  public void showVehiculesView(VehiculesView vehiculesView) {
-    FXMLLoader root = new FXMLLoader(Main.class.getResource("/root/controller/fxml/Listes.fxml"));
+  public void voirVehiculesListes(VehiculesView vehiculesView) {
+    FXMLLoader root = new FXMLLoader(
+        Main.class.getResource("/root/controller/fxml/ListeData.fxml"));
     root.setController(new VehiculesCtrl(primaryStage));
     changeScene(root);
   }
 
-  public void showComptesView(CompteView compteView) {
+  public void voirComptesListes(CompteView compteView) {
 
   }
 
@@ -123,10 +125,22 @@ public class MainCtrl {
    *
    * @param commandesFormView La vue du formulaire.
    */
-  public void showCommandFormView(CommandesFormView commandesFormView) {
+  public void voirCommandesForm(CommandesFormView commandesFormView) {
     FXMLLoader root = new FXMLLoader(
-        Main.class.getResource("/root/controller/fxml/AddCommand.fxml"));
+        Main.class.getResource("/root/controller/fxml/FormCommand.fxml"));
     root.setController(new CommandesFormCtrl(primaryStage));
+    changeScene(root);
+  }
+
+  /**
+   * Redirige l'utilisateur vers la vue d'ajout de client (formulaire).
+   *
+   * @param clientsFormView La vue du formulaire.
+   */
+  public void voirClientsForm(ClientsFormView clientsFormView) {
+    FXMLLoader root = new FXMLLoader(
+        Main.class.getResource("/root/controller/fxml/FormClient.fxml"));
+    root.setController(new ClientsFormCtrl(primaryStage));
     changeScene(root);
   }
 

@@ -1,9 +1,6 @@
 package root;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import root.controller.ConnexionCtrl;
 import root.controller.TableaudebordCtrl;
@@ -27,7 +24,7 @@ public class Main extends Application {
     ConnexionView connexionView = new ConnexionView(connexionCtrl);
     connexionCtrl.setConnexionView(new ConnexionView(connexionCtrl));
     connexionCtrl.setTableaudebordView(new TableaudebordView(tableaudebordCtrl));
-    connexionCtrl.showConnexionView(connexionView);
+    connexionCtrl.voirConnexion(connexionView);
   }
 
   /**
