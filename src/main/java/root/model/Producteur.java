@@ -1,5 +1,9 @@
 package root.model;
 
+import root.data.AdminDao;
+import root.data.ProducteurDao;
+import root.data.SingleConnection;
+
 /**
  * Classe de modèle pour les Producteurs.
  */
@@ -177,8 +181,14 @@ public class Producteur extends Utilisateur {
    */
   @Override
   public boolean verifieIdentifiants() {
-
-    // dummy return
+    ProducteurDao bdd = new ProducteurDao(SingleConnection.getInstance());
+    Producteur existant = bdd.get(this.getMail());
+    if (existant == null) {
+      return false;
+    }
+    if (this.getMdp().equals(existant.getMdp())) {
+      return true;
+    }
     return false;
   }
 

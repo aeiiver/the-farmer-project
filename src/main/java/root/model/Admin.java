@@ -1,5 +1,8 @@
 package root.model;
 
+import root.data.AdminDao;
+import root.data.SingleConnection;
+
 /**
  * Classe de modèle pour les administrateurs.
  */
@@ -90,9 +93,16 @@ public class Admin extends Utilisateur {
    */
   @Override
   public boolean verifieIdentifiants() {
-
-
+    AdminDao bdd = new AdminDao(SingleConnection.getInstance());
+    Admin existant = bdd.get(this.getMail());
+    if (existant == null) {
+      return false;
+    }
+    if (this.getMdp().equals(existant.getMdp())) {
+      return true;
+    }
     return false;
+
   }
 
 }
