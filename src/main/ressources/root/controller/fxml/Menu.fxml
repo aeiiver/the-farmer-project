@@ -6,28 +6,30 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:controller="root.controller.MainCtrl">
+<MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="1013.0">
+    <Menu mnemonicParsing="false" text="Tableau de bord"
+          onAction="#lienTableaudebord">
+        <MenuItem mnemonicParsing="false" text="Tableau de bord"
+                  onAction="#lienTableaudebord"/>
+    </Menu>
+    <Menu mnemonicParsing="false" text="Commandes">
+        <MenuItem mnemonicParsing="false" text="Mes Commandes"
+                  onAction="#lienCommandes"/>
+        <MenuItem mnemonicParsing="false" text="Nouvelle Commande"
+                  onAction="#lienFormCommande"/>
+    </Menu>
+    <Menu mnemonicParsing="false" text="Mes Tournées">
+        <MenuItem mnemonicParsing="false" text="Mes Tournées"
+                  onAction="#lienTournees"/>
+        <MenuItem mnemonicParsing="false" text="Nouvelle Tournée"/>
+    </Menu>
 
-    <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="1013.0">
-        <menus>
-            <Menu mnemonicParsing="false" text="Tableau de bord" onAction="#menuTableaudebord">
-                <MenuItem mnemonicParsing="false" text="Tableau de bord" onAction="#menuTableaudebord"/>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Commandes">
-                <MenuItem mnemonicParsing="false" text="Mes Commandes" onAction="#menuCommandes"/>
-                <MenuItem mnemonicParsing="false" text="Nouvelle Commande" onAction="#menuNouvelleCommande"/>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Mes Tournées">
-                <MenuItem mnemonicParsing="false" text="Mes Tournées" onAction="#menuTournees"/>
-                <MenuItem mnemonicParsing="false" text="Nouvelle Tournée"/>
-            </Menu>
+    <Menu mnemonicParsing="false" text="Mon Compte"/>
+    <Menu mnemonicParsing="false" text="Mes clients">
+        <MenuItem mnemonicParsing="false" text="Mes clients"
+                  onAction="#lienClients"/>
+        <MenuItem mnemonicParsing="false" text="Nouveau client"
+                  onAction="#lienClientsForm"/>
+    </Menu>
 
-            <Menu mnemonicParsing="false" text="Mon Compte"/>
-            <Menu mnemonicParsing="false" text="Mes clients">
-                <MenuItem mnemonicParsing="false" text="Mes clients"/>
-                <MenuItem mnemonicParsing="false" text="Nouveau client"/>
-            </Menu>
-
-        </menus>
-    </MenuBar>
-</AnchorPane>
+</MenuBar>

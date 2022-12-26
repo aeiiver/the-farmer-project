@@ -6,9 +6,12 @@ import root.controller.ClientsFormCtrl;
 import root.controller.CommandesCtrl;
 import root.controller.CommandesFormCtrl;
 import root.controller.CompteCtrl;
+import root.controller.ConnexionCtrl;
 import root.controller.MainCtrl;
 import root.controller.TableaudebordCtrl;
 import root.controller.TourneesCtrl;
+
+import java.io.IOException;
 
 /**
  * Classe de vue mère.
@@ -98,5 +101,10 @@ public class MainView {
   public void lienFormCommande(ActionEvent event) {
     event.consume();
     ctrl.voirCommandesForm(new CommandesFormView(new CommandesFormCtrl(ctrl.getPrimaryStage())));
+  }
+
+  public void deconnexion(ActionEvent event) throws IOException {
+    event.consume();
+    ctrl.voirConnexion(new ConnexionView(new ConnexionCtrl(ctrl.getPrimaryStage())));
   }
 }

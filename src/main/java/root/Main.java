@@ -7,6 +7,8 @@ import root.controller.TableaudebordCtrl;
 import root.view.ConnexionView;
 import root.view.TableaudebordView;
 
+import java.util.ListResourceBundle;
+
 /**
  * Classe représentant le point d'entrée principale de l'application.
  */

@@ -4,44 +4,42 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.Pane?>
 
-
-<?import javafx.scene.control.MenuItem?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="1013.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="1013.0">
-         <menus>
-            <Menu mnemonicParsing="false" text="Tableau de bord" onAction="#lienTableaudebord">
-               <MenuItem mnemonicParsing="false" text="Tableau de bord" onAction="#lienTableaudebord"/>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Commandes">
-               <MenuItem mnemonicParsing="false" text="Mes Commandes" onAction="#lienCommandes"/>
-               <MenuItem mnemonicParsing="false" text="Nouvelle Commande" onAction="#lienFormCommande"/>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Mes Tournées">
-               <MenuItem mnemonicParsing="false" text="Mes Tournées" onAction="#lienTournees"/>
-               <MenuItem mnemonicParsing="false" text="Nouvelle Tournée"/>
-            </Menu>
+   <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="1013.0">
+      <Menu mnemonicParsing="false" onAction="#lienTableaudebord" text="Tableau de bord">
+         <MenuItem mnemonicParsing="false" onAction="#lienTableaudebord" text="Tableau de bord" />
+      </Menu>
+      <Menu mnemonicParsing="false" text="Commandes">
+         <MenuItem mnemonicParsing="false" onAction="#lienCommandes" text="Mes Commandes" />
+         <MenuItem mnemonicParsing="false" onAction="#lienFormCommande" text="Nouvelle Commande" />
+      </Menu>
+      <Menu mnemonicParsing="false" text="Mes Tournées">
+         <MenuItem mnemonicParsing="false" onAction="#lienTournees" text="Mes Tournées" />
+         <MenuItem mnemonicParsing="false" text="Nouvelle Tournée" />
+      </Menu>
 
-            <Menu mnemonicParsing="false" text="Mon Compte"/>
-            <Menu mnemonicParsing="false" text="Mes clients">
-               <MenuItem mnemonicParsing="false" text="Mes clients" onAction="#lienClients"/>
-               <MenuItem mnemonicParsing="false" text="Nouveau client" onAction="#lienClientsForm"/>
-            </Menu>
+      <Menu mnemonicParsing="false" text="Mon Compte" />
+      <Menu mnemonicParsing="false" text="Mes clients">
+         <MenuItem mnemonicParsing="false" onAction="#lienClients" text="Mes clients" />
+         <MenuItem mnemonicParsing="false" onAction="#lienClientsForm" text="Nouveau client" />
+      </Menu>
+      <Menu mnemonicParsing="false" onAction="#deconnexion" text="Déconnexion">
+         <MenuItem mnemonicParsing="false" text="Déconnexion" onAction="#deconnexion"/>
+      </Menu>
 
-         </menus>
-      </MenuBar>
-      <Separator layoutY="97.0" prefHeight="6.0" prefWidth="1013.0" />
-      <Separator layoutX="846.0" layoutY="27.0" orientation="VERTICAL" prefHeight="75.0" prefWidth="0.0" />
-      <ScrollBar layoutY="86.0" prefHeight="14.0" prefWidth="848.0" />
-      <ListView layoutY="27.0" prefHeight="60.0" prefWidth="823.0" />
-      <Separator layoutX="186.0" layoutY="103.0" orientation="VERTICAL" prefHeight="522.0" prefWidth="6.0" />
-      <ListView layoutY="100.0" prefHeight="501.0" prefWidth="188.0" />
-      <Button layoutY="599.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" text="ajouter" />
-      <Button layoutX="139.0" layoutY="599.0" mnemonicParsing="false" text="éditer" />
-      <Button layoutX="58.0" layoutY="599.0" mnemonicParsing="false" text="Supprimer" />
-   </children>
+   </MenuBar>
+   <Separator layoutY="97.0" prefHeight="6.0" prefWidth="1013.0" />
+   <Separator layoutX="846.0" layoutY="27.0" orientation="VERTICAL" prefHeight="75.0" prefWidth="0.0" />
+   <ScrollBar layoutY="86.0" prefHeight="14.0" prefWidth="848.0" />
+   <ListView layoutY="27.0" prefHeight="60.0" prefWidth="823.0" />
+   <Separator layoutX="186.0" layoutY="103.0" orientation="VERTICAL" prefHeight="522.0" prefWidth="6.0" />
+   <ListView layoutY="100.0" prefHeight="501.0" prefWidth="188.0" />
+   <Button layoutY="599.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" text="ajouter" />
+   <Button layoutX="139.0" layoutY="599.0" mnemonicParsing="false" text="éditer" />
+   <Button layoutX="58.0" layoutY="599.0" mnemonicParsing="false" text="Supprimer" />
 </Pane>
