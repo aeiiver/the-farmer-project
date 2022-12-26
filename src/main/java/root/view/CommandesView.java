@@ -1,6 +1,8 @@
 package root.view;
 
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuBar;
 import root.controller.CommandesCtrl;
@@ -8,7 +10,7 @@ import root.controller.CommandesCtrl;
 /**
  * Classe de vue pour la liste des commandes.
  */
-public class CommandesView {
+public class CommandesView extends MainView {
 
   /**
    * Menu de navigation sur la fênetre.
@@ -31,23 +33,21 @@ public class CommandesView {
    */
   private Button editerCommande;
 
-  /**
-   * Contrôleur gérant la vue de la liste des commandes.
-   *
-   * @see CommandesView#CommandesView(CommandesCtrl, MenuBar)
-   * @see CommandesCtrl
-   */
-  private CommandesCtrl ctrl;
+  @FXML
+  private Label titre;
 
   /**
    * Constructeur de classe.
    *
    * @param ctrl Le contrôleur de cette vue.
-   * @param menu Le menu de navigation.
    */
-  public CommandesView(CommandesCtrl ctrl, MenuBar menu) {
-    this.ctrl = ctrl;
-    this.menu = menu;
+  public CommandesView(CommandesCtrl ctrl) {
+    super(ctrl);
+  }
+
+  @FXML
+  public void initialize() {
+    assert this.titre != null : "Liste des commandes";
   }
 
 }

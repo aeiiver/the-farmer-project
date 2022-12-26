@@ -8,7 +8,7 @@ import root.controller.ClientsCtrl;
 /**
  * Classe de vue pour la liste des clients.
  */
-public class ClientsView {
+public class ClientsView extends MainView {
 
   /**
    * Menu de navigation sur la fênetre.
@@ -32,22 +32,12 @@ public class ClientsView {
   private Button editerClient;
 
   /**
-   * Contrôleur gérant la vue de la liste des clients.
-   *
-   * @see ClientsCtrl
-   * @see ClientsView#ClientsView(ClientsCtrl, MenuBar) 
-   */
-  private ClientsCtrl ctrl;
-
-  /**
    * Constructeur de classe.
    *
    * @param ctrl Le contrôleur de cette vue.
-   * @param menu Le menu de navigation.
    */
-  public ClientsView(ClientsCtrl ctrl, MenuBar menu) {
-    this.ctrl = ctrl;
-    this.menu = menu;
+  public ClientsView(ClientsCtrl ctrl) {
+    super(ctrl);
   }
 
 }

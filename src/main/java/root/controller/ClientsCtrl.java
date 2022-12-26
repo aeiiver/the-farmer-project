@@ -7,7 +7,7 @@ import root.view.ClientsView;
 /**
  * Classe contrôleuse pour la vue et modèle de la liste des clients.
  */
-public class ClientsCtrl {
+public class ClientsCtrl extends MainCtrl {
 
   /**
    * Modèle de la liste des clients.
@@ -24,15 +24,10 @@ public class ClientsCtrl {
   private ClientsView view;
 
   /**
-   * Stage de la fenêtre.
-   */
-  private Stage primaryStage;
-
-  /**
    * Constructeur de la classe.
    */
   public ClientsCtrl(Stage primaryStage) {
-    this.primaryStage = primaryStage;
+    super(primaryStage);
   }
 
   /**

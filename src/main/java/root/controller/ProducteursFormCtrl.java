@@ -7,7 +7,7 @@ import root.view.ProducteursFormView;
 /**
  * Classe contrôleuse pour la vue et modèle du formulaire d'ajout et modification d'un producteur.
  */
-public class ProducteursFormCtrl {
+public class ProducteursFormCtrl extends MainCtrl {
 
   /**
    * Modèle du formulaire d'ajout et modification d'un producteur.
@@ -24,15 +24,10 @@ public class ProducteursFormCtrl {
   private ProducteursFormView view;
 
   /**
-   * Stage de la fenêtre.
-   */
-  private Stage primaryStage;
-
-  /**
    * Constructeur vide de la classe.
    */
   public ProducteursFormCtrl(Stage primaryStage) {
-    this.primaryStage = primaryStage;
+    super(primaryStage);
   }
 
   /**

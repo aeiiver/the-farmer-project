@@ -8,7 +8,7 @@ import root.controller.ProducteursFormCtrl;
 /**
  * Classe de vue pour l'ajout de producteurs.
  */
-public class ProducteursFormView {
+public class ProducteursFormView extends MainView {
 
   /**
    * Texte à côté du champ de texte pour le numéro SIRET du producteur.
@@ -94,17 +94,12 @@ public class ProducteursFormView {
   private Button annuler;
 
   /**
-   * Permet d'afficher le message d'erreur.
-   */
-  private ProducteursFormCtrl ctrl;
-
-  /**
    * Constructeur de classe.
    *
    * @param ctrl Le contrôleur de cette vue.
    */
   public ProducteursFormView(ProducteursFormCtrl ctrl) {
-    this.ctrl = ctrl;
+    super(ctrl);
   }
 
   /**

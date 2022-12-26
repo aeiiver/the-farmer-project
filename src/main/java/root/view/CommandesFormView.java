@@ -11,7 +11,7 @@ import root.controller.CommandesFormCtrl;
 /**
  * Classe de vue pour le formulaire d'ajout d'une commande.
  */
-public class CommandesFormView {
+public class CommandesFormView extends MainView {
 
   /**
    * Texte à côté du champ de texte pour le libelle.
@@ -87,20 +87,12 @@ public class CommandesFormView {
   private Button annuler;
 
   /**
-   * Contrôleur gérant la vue de formulaire d'ajout d'une commande.
-   *
-   * @see CommandesFormView#CommandesFormView(CommandesFormCtrl)
-   * @see CommandesFormCtrl
-   */
-  private CommandesFormCtrl ctrl;
-
-  /**
    * Constructeur de classe.
    *
    * @param ctrl Le contrôleur de cette vue.
    */
   public CommandesFormView(CommandesFormCtrl ctrl) {
-    this.ctrl = ctrl;
+    super(ctrl);
   }
 
   /**

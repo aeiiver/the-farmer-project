@@ -1,5 +1,6 @@
 package root.controller;
 
+import java.beans.EventHandler;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,7 +19,7 @@ import root.view.VehiculesView;
 /**
  * Classe contrôleuse pour la vue et modèle du tableau de bord.
  */
-public class TableaudebordCtrl {
+public class TableaudebordCtrl extends MainCtrl {
 
   /**
    * Listes des tournées sur le tableau de bord.
@@ -64,48 +65,10 @@ public class TableaudebordCtrl {
   private VehiculesView vehiculesView;
 
   /**
-   * Stage de la fenêtre.
-   */
-  private Stage primaryStage;
-
-  private final FXMLLoader root = new FXMLLoader(
-      Main.class.getResource("/root/controller/fxml/MainPage.fxml"));
-
-  /**
    * Deuxième Constructeur de la classe.
    */
   public TableaudebordCtrl(Stage primaryStage) {
-    this.primaryStage = primaryStage;
-  }
-
-  /**
-   * Redirige l'utilisateur vers la vue sur la liste des commandes.
-   */
-  public void goToMenuCommandes() {
-  }
-
-  /**
-   * Redirige l'utilisateur vers la vue sur la liste des tournées.
-   */
-  public void goToMenuTournees() {
-  }
-
-  /**
-   * Redirige l'utilisateur vers la vue sur son compte.
-   */
-  public void goToMenuCompte() {
-  }
-
-  /**
-   * Redirige l'utilisateur vers la vue sur la liste des clients.
-   */
-  public void goToMenuClients() {
-  }
-
-  /**
-   * Redirige l'utilisateur vers la vue sur la liste des véhicules.
-   */
-  public void goToMenuVehicules() {
+    super(primaryStage);
   }
 
   /**
@@ -148,15 +111,17 @@ public class TableaudebordCtrl {
    * Affiche la vue du tableau de bord.
    */
   public void showTableaudebordView() {
-    this.root.setController(this.tableaudebordView);
-    Parent root = null;
+    FXMLLoader root = new FXMLLoader(Main.class.getResource("/root/controller/fxml/MainPage.fxml"));
+    root.setController(this.tableaudebordView);
+
+    Parent node = null;
     try {
-      root = this.root.load();
+      node = root.load();
     } catch (IOException e) {
       e.printStackTrace();
     }
-    this.tableaudebordView = this.root.getController();
-    Scene scene = new Scene(root);
+    this.tableaudebordView = root.getController();
+    Scene scene = new Scene(node);
     this.primaryStage.setScene(scene);
     this.primaryStage.show();
   }

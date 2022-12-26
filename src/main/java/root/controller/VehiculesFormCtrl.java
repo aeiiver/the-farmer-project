@@ -7,7 +7,7 @@ import root.view.VehiculesFormView;
 /**
  * Classe contrôleuse pour la vue et modèle du formulaire d'ajout et modification d'un véhicule.
  */
-public class VehiculesFormCtrl {
+public class VehiculesFormCtrl extends MainCtrl  {
 
   /**
    * Modèle de la liste des véhicules.
@@ -24,15 +24,10 @@ public class VehiculesFormCtrl {
   private VehiculesFormView view;
 
   /**
-   * Stage de la fenêtre.
-   */
-  private Stage primaryStage;
-
-  /**
    * Constructeur de la classe.
    */
   public VehiculesFormCtrl(Stage primaryStage) {
-    this.primaryStage = primaryStage;
+    super(primaryStage);
   }
 
   /**

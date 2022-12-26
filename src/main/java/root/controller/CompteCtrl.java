@@ -7,7 +7,7 @@ import root.view.CompteView;
 /**
  * Classe contrôleuse pour la vue et modèle du compte de l'utilisateur.
  */
-public class CompteCtrl {
+public class CompteCtrl extends MainCtrl {
 
   /**
    * Modèle de l'utilisateur.
@@ -24,15 +24,10 @@ public class CompteCtrl {
   private CompteView view;
 
   /**
-   * Stage de la fenêtre.
-   */
-  private Stage primaryStage;
-
-  /**
    * Constructeur de la classe.
    */
   public CompteCtrl(Stage primaryStage) {
-    this.primaryStage = primaryStage;
+    super(primaryStage);
   }
 
   /**

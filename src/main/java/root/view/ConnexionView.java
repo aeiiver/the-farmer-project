@@ -12,7 +12,7 @@ import root.controller.ConnexionCtrl;
 /**
  * Classe de vue pour la connexion.
  */
-public class ConnexionView {
+public class ConnexionView extends MainView {
 
   /**
    * Text d'indication pour la saisie de l'identifiant.
@@ -32,7 +32,7 @@ public class ConnexionView {
 
   /**
    * Selectionneur du mode de connexion.
-   * Soit Producteur soit administrateur.
+   * Soit Producteur, soit administrateur.
    */
   @FXML
   private CheckBox mode;
@@ -51,24 +51,12 @@ public class ConnexionView {
   private Button connexionButton;
 
   /**
-   * Contrôleur gérant la vue de la connexion.
-   *
-   * @see ConnexionView#ConnexionView(ConnexionCtrl)
-   * @see ConnexionCtrl
-   */
-  private ConnexionCtrl ctrl;
-
-  public ConnexionView() {
-
-  }
-
-  /**
    * Constructeur de classe.
    *
    * @param ctrl Le contrôleur de cette vue.
    */
   public ConnexionView(ConnexionCtrl ctrl) {
-    this.ctrl = ctrl;
+    super(ctrl);
   }
 
   /**
@@ -119,8 +107,13 @@ public class ConnexionView {
     this.message.setText(msg);
   }
 
+  /**
+   * Méthode appelée lors du clic sur le bouton de connexion.
+   *
+   * @param actionEvent Evènement de clic.
+   */
   public void connexion(ActionEvent actionEvent) {
     actionEvent.consume();
-    ctrl.verifieIdentifiants();
+    ((ConnexionCtrl) ctrl).verifieIdentifiants();
   }
 }

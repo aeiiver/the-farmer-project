@@ -10,7 +10,7 @@ import root.model.Adresse;
 /**
  * Classe de vue pour le formulaire d'ajout d'un client.
  */
-public class ClientsFormView {
+public class ClientsFormView extends MainView {
 
   /**
    * Texte à côté du champ de texte pour le nom du client.
@@ -105,20 +105,12 @@ public class ClientsFormView {
   private Button annuler;
 
   /**
-   * Contrôleur gérant la vue du formulaire d'ajout d'un client.
-   *
-   * @see ClientsFormView#ClientsFormView(ClientsFormCtrl)
-   * @see ClientsFormCtrl
-   */
-  private ClientsFormCtrl ctrl;
-
-  /**
    * Constructeur de classe.
    *
    * @param ctrl Le contrôleur de cette vue.
    */
   public ClientsFormView(ClientsFormCtrl ctrl) {
-    this.ctrl = ctrl;
+    super(ctrl);
   }
 
   /**

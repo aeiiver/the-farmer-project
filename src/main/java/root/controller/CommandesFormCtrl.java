@@ -7,7 +7,7 @@ import root.view.CommandesFormView;
 /**
  * Classe contrôleuse pour la vue et modèle du formulaire d'ajout et modification d'une commande.
  */
-public class CommandesFormCtrl {
+public class CommandesFormCtrl extends MainCtrl {
 
   /**
    * Modèle de la commande.
@@ -24,15 +24,10 @@ public class CommandesFormCtrl {
   private CommandesFormView view;
 
   /**
-   * Stage de la fenêtre.
-   */
-  private Stage primaryStage;
-
-  /**
    * Constructeur de la classe.
    */
   public CommandesFormCtrl(Stage primaryStage) {
-    this.primaryStage = primaryStage;
+    super(primaryStage);
   }
 
   /**

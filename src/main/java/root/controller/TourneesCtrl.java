@@ -7,7 +7,7 @@ import root.view.TourneesView;
 /**
  * Classe contrôleuse pour la vue et modèle de la liste des tournées.
  */
-public class TourneesCtrl {
+public class TourneesCtrl extends MainCtrl  {
 
   /**
    * Contrôleur de la vue du formulaire d'ajout et modification d'une tournée.
@@ -20,15 +20,10 @@ public class TourneesCtrl {
   private TourneesView view;
 
   /**
-   * Stage de la fenêtre.
-   */
-  private Stage primaryStage;
-
-  /**
    * Constructeur de la classe.
    */
   public TourneesCtrl(Stage primaryStage) {
-    this.primaryStage = primaryStage;
+    super(primaryStage);
   }
 
   /**

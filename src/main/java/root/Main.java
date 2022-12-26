@@ -1,14 +1,13 @@
 package root;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import root.controller.ConnexionCtrl;
 import root.controller.TableaudebordCtrl;
 import root.view.ConnexionView;
 import root.view.TableaudebordView;
+
+import java.util.ListResourceBundle;
 
 /**
  * Classe représentant le point d'entrée principale de l'application.
@@ -24,9 +23,10 @@ public class Main extends Application {
   public void start(Stage stage) throws Exception {
     ConnexionCtrl connexionCtrl = new ConnexionCtrl(stage);
     TableaudebordCtrl tableaudebordCtrl = new TableaudebordCtrl(stage);
+    ConnexionView connexionView = new ConnexionView(connexionCtrl);
     connexionCtrl.setConnexionView(new ConnexionView(connexionCtrl));
     connexionCtrl.setTableaudebordView(new TableaudebordView(tableaudebordCtrl));
-    connexionCtrl.showConnexionView();
+    connexionCtrl.voirConnexion(connexionView);
   }
 
   /**
