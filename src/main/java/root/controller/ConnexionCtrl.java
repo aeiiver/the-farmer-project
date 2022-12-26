@@ -2,6 +2,9 @@ package root.controller;
 
 import java.io.IOException;
 import javafx.stage.Stage;
+import root.model.Admin;
+import root.model.Producteur;
+import root.model.Utilisateur;
 import root.view.ConnexionView;
 import root.view.TableaudebordView;
 
@@ -64,11 +67,35 @@ public class ConnexionCtrl extends MainCtrl {
    * les saisies sont incorrectes.</p>
    */
   public void verifieIdentifiants() {
-    String identifiant = connexionView.getIdentifiant();
+    String identifiant = connexionView.getIdentifiant().trim();
     String motDePasse = connexionView.getMdp();
-    Boolean estAdmin = connexionView.getConnexionMode();
-    if (valideIdentifiants(identifiant, motDePasse, estAdmin)) {
-      System.out.println("Identifiants valides");
+    boolean estAdmin = connexionView.getConnexionMode();
+
+    // Valide les champs
+    if (identifiant.isEmpty() || motDePasse.isEmpty()) {
+      this.connexionView.setMessage("Tous les champs doivent être renseignés.");
+      return;
+    }
+    if (!valideIdentifiants(identifiant, motDePasse, estAdmin)) {
+      this.connexionView.setMessage("L'identifiant ou le mot de passe saisi est invalide.");
+      return;
+    }
+
+    // Vérifie les identifiants dans la base de données
+    Utilisateur utilisateur = (estAdmin)
+        ? new Admin(identifiant, motDePasse, -1, identifiant)
+        : new Producteur(identifiant, motDePasse, identifiant, "", "", "", null);
+    if (!utilisateur.verifieIdentifiants()) {
+      this.connexionView.setMessage(
+          "L'identifiant et le mot de passe saisis ne correspondent pas.");
+      return;
+    }
+
+    // L'utilisateur a saisi ses identifiants correctement
+    if (estAdmin) {
+      // TODO à remplacer avec le tableau de bord admin
+      this.voirTableaudebord(this.tableaudebordView);
+    } else {
       this.voirTableaudebord(this.tableaudebordView);
     }
   }
@@ -91,13 +118,18 @@ public class ConnexionCtrl extends MainCtrl {
    *
    * @return true si les identifiants sont valides, false sinon.
    */
-  public boolean valideIdentifiants(String id, String mdp, Boolean mode) {
-    System.out.println(id);
-    System.out.println(mdp);
-    System.out.println(mode);
-    System.out.println("Je retourne `true` inconditionnellement. N'oubliez pas "
-        + "de me changer plus tard!!!!");
-    return true;
+  public boolean valideIdentifiants(String identifiant, String motdepasse, boolean estAdmin) {
+    String mailPattern =
+        "^[A-Za-z0-9]+([-_.][A-Za-z0-9]+)*@[A-Za-z0-9]+([-_.][A-Za-z0-9]+)*\\.[a-z]{2,3}$";
+
+    if (estAdmin) {
+      // On est un admin
+      String pseudoPattern = "^[A-Za-z0-9]+$"; // Pas sûr de ce pattern...
+      return identifiant.matches(mailPattern + "|" + pseudoPattern);
+    }
+    // On est un producteur
+    String siretPattern = "^\\d{14}$";
+    return identifiant.matches(mailPattern + "|" + siretPattern);
   }
 
   /**

@@ -29,13 +29,12 @@ public class SingleConnection {
       try {
         Class.forName("com.mysql.cj.jdbc.Driver");
         System.out.println("Driver loaded");
-        Connection connexion = DriverManager.getConnection("jdbc:mysql://les-roseaux.dev:3306"
+        connexion = DriverManager.getConnection("jdbc:mysql://les-roseaux.dev:3306"
             + "/the-farmer-project",  "farmer", "vgeGm3tZ2t2JEWE");
         System.out.println("Connection established");
       } catch (Exception e) {
         e.printStackTrace();
       }
-      // do stuff that make so connexion is no longer null
     }
     return connexion;
   }

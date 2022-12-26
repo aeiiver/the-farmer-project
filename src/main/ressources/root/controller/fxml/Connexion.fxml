@@ -31,13 +31,18 @@
          <Font size="32.0"/>
       </font>
    </Label>
+   <Label fx:id="message" layoutX="65.0" layoutY="374.0" prefHeight="65.0" prefWidth="274.0" wrapText="true">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Label>
    <CheckBox fx:id="mode" layoutX="75.0" layoutY="334.0" mnemonicParsing="false"
              text="Administrateur">
       <font>
          <Font size="18.0"/>
       </font>
    </CheckBox>
-   <Button layoutX="139.0" layoutY="423.0" mnemonicParsing="false"
+   <Button layoutX="139.0" layoutY="451.0" mnemonicParsing="false"
            text="Se connecter" onAction="#connexion">
       <font>
          <Font size="18.0"/>

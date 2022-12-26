@@ -182,14 +182,21 @@ public class Producteur extends Utilisateur {
   @Override
   public boolean verifieIdentifiants() {
     ProducteurDao bdd = new ProducteurDao(SingleConnection.getInstance());
+
+    // Tente de chercher un producteur avec son mail
     Producteur existant = bdd.get(this.getMail());
+
+    // Si on a rien, réessaye avec son siret
     if (existant == null) {
-      return false;
+      existant = bdd.get(this.getSiret());
+
+      // Si on a rien, alors le producteur recherché n'existe pas dans la base
+      if (existant == null) {
+        return false;
+      }
     }
-    if (this.getMdp().equals(existant.getMdp())) {
-      return true;
-    }
-    return false;
+
+    return this.getMdp().equals(existant.getMdp());
   }
 
 }

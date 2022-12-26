@@ -2,6 +2,7 @@ package root.data;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import root.model.Adresse;
 
@@ -60,16 +61,19 @@ public class AdresseDao extends Dao<Adresse, Integer> {
       String query = "SELECT * FROM Adresse WHERE idAdresse = ?";
       PreparedStatement preparedStatement = connexion.prepareStatement(query);
       preparedStatement.setInt(1, id);
-      return preparedStatement.executeQuery().next() ? new Adresse(
-          preparedStatement.executeQuery().getInt("idAdresse"),
-          preparedStatement.executeQuery().getString("pays"),
-          preparedStatement.executeQuery().getString("codePost"),
-          preparedStatement.executeQuery().getString("ville"),
-          preparedStatement.executeQuery().getString("voie"),
-          preparedStatement.executeQuery().getString("nom"),
-          preparedStatement.executeQuery().getInt("numero"),
-          preparedStatement.executeQuery().getString("mention"),
-          preparedStatement.executeQuery().getString("complement")
+      
+      ResultSet result = preparedStatement.executeQuery();
+
+      return result.next() ? new Adresse(
+          result.getInt("idAdresse"),
+          result.getString("pays"),
+          result.getString("codePost"),
+          result.getString("ville"),
+          result.getString("voie"),
+          result.getString("nom"),
+          result.getInt("numero"),
+          result.getString("mention"),
+          result.getString("complement")
       ) : null;
     } catch (Exception e) {
       e.printStackTrace();

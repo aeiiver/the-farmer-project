@@ -2,6 +2,7 @@ package root.data;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import root.model.Producteur;
 
@@ -62,15 +63,18 @@ public class ProducteurDao extends Dao<Producteur, String> {
       PreparedStatement preparedStatement = connexion.prepareStatement(query);
       preparedStatement.setString(1, id);
       preparedStatement.setString(2, id);
-      return new Producteur(
-          preparedStatement.executeQuery().getString("SIRET"),
-          preparedStatement.executeQuery().getString("mail"),
-          preparedStatement.executeQuery().getString("nomProd"),
-          preparedStatement.executeQuery().getString("prenomProd"),
-          preparedStatement.executeQuery().getString("numTel"),
-          preparedStatement.executeQuery().getString("mdp"),
-          new AdresseDao(connexion).get(preparedStatement.executeQuery().getInt("idAdresse"))
-      );
+
+      ResultSet result = preparedStatement.executeQuery();
+
+      return (result.next()) ? new Producteur(
+          result.getString("mail"),
+          result.getString("mdp"),
+          result.getString("SIRET"),
+          result.getString("nomProd"),
+          result.getString("prenomProd"),
+          result.getString("numTel"),
+          new AdresseDao(connexion).get(result.getInt("idAdresse"))
+      ) : null;
     } catch (Exception e) {
       e.printStackTrace();
       return null;

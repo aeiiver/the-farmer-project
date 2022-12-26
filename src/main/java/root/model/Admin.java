@@ -94,15 +94,21 @@ public class Admin extends Utilisateur {
   @Override
   public boolean verifieIdentifiants() {
     AdminDao bdd = new AdminDao(SingleConnection.getInstance());
-    Admin existant = bdd.get(this.getMail());
-    if (existant == null) {
-      return false;
-    }
-    if (this.getMdp().equals(existant.getMdp())) {
-      return true;
-    }
-    return false;
 
+    // Tente de chercher un administrateur avec son mail
+    Admin existant = bdd.get(this.getMail());
+
+    // Si on a rien, réessaye avec son pseudo
+    if (existant == null) {
+      existant = bdd.get(this.getPseudo());
+
+      // Si on a rien, alors l'administrateur recherché n'existe pas dans la base
+      if (existant == null) {
+        return false;
+      }
+    }
+
+    return this.getMdp().equals(existant.getMdp());
   }
 
 }

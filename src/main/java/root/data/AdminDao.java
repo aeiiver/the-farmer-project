@@ -2,6 +2,7 @@ package root.data;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import root.model.Admin;
 
@@ -52,15 +53,18 @@ public class AdminDao extends Dao<Admin, String> {
   @Override
   public Admin get(String id) {
     try {
-      String query = "SELECT * FROM Admin WHERE idAdmin = ?";
+      String query = "SELECT * FROM Admin WHERE mail = ? OR pseudo = ?";
       PreparedStatement preparedStatement = connexion.prepareStatement(query);
       preparedStatement.setString(1, id);
-      return preparedStatement.executeQuery().next() ? new Admin(
-          preparedStatement.executeQuery().getString("mail"),
-          preparedStatement.executeQuery().getString("mdp"),
-          preparedStatement.executeQuery().getInt("idAdmin"),
-          preparedStatement.executeQuery().getString("pseudo")
+      preparedStatement.setString(2, id);
 
+      ResultSet result = preparedStatement.executeQuery();
+
+      return result.next() ? new Admin(
+          result.getString("mail"),
+          result.getString("mdp"),
+          result.getInt("idAdmin"),
+          result.getString("pseudo")
       ) : null;
     } catch (Exception e) {
       e.printStackTrace();

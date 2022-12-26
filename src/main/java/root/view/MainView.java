@@ -105,6 +105,6 @@ public class MainView {
 
   public void deconnexion(ActionEvent event) throws IOException {
     event.consume();
-    ctrl.voirConnexion(new ConnexionView(new ConnexionCtrl(ctrl.getPrimaryStage())));
+    ctrl.voirConnexion(new ConnexionCtrl(ctrl.getPrimaryStage()).getConnexionView());
   }
 }

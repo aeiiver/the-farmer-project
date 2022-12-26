@@ -24,7 +24,7 @@ public class Main extends Application {
     ConnexionCtrl connexionCtrl = new ConnexionCtrl(stage);
     TableaudebordCtrl tableaudebordCtrl = new TableaudebordCtrl(stage);
     ConnexionView connexionView = new ConnexionView(connexionCtrl);
-    connexionCtrl.setConnexionView(new ConnexionView(connexionCtrl));
+    connexionCtrl.setConnexionView(connexionView);
     connexionCtrl.setTableaudebordView(new TableaudebordView(tableaudebordCtrl));
     connexionCtrl.voirConnexion(connexionView);
   }

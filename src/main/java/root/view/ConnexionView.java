@@ -43,6 +43,7 @@ public class ConnexionView extends MainView {
    *
    * @see ConnexionView#setMessage(String)
    */
+  @FXML
   private Label message;
 
   /**
