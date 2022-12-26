@@ -21,7 +21,7 @@ import root.model.Client;
 import root.model.Commande;
 import root.model.Producteur;
 
-class CommandeDaoTest {
+public class CommandeDaoTest {
 
   static Connection connexion;
   static CommandeDao systemUnderTest;
@@ -29,10 +29,7 @@ class CommandeDaoTest {
   @BeforeAll
   static void setup() throws ClassNotFoundException, SQLException {
     Class.forName("com.mysql.cj.jdbc.Driver");
-    connexion = DriverManager.getConnection(
-        System.getenv("DB_URL_DEV"),
-        System.getenv("DB_USER"),
-        System.getenv("DB_PSW"));
+    connexion = SingleConnection.getInstance();
     systemUnderTest = new CommandeDao(connexion);
   }
 
@@ -44,10 +41,6 @@ class CommandeDaoTest {
     connexion.prepareStatement("DELETE FROM Adresse;").executeUpdate();
   }
 
-  @AfterAll
-  static void teardown() throws SQLException {
-    connexion.close();
-  }
 
   /**
    * Ce test doit vérifier que l'insertion des données dans

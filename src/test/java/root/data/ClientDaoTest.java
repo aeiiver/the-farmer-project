@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 import root.model.Adresse;
 import root.model.Client;
 
-class ClientDaoTest {
+public class ClientDaoTest {
 
   static Connection connexion;
   static ClientDao systemUnderTest;
@@ -25,10 +25,7 @@ class ClientDaoTest {
   @BeforeAll
   static void setup() throws ClassNotFoundException, SQLException {
     Class.forName("com.mysql.cj.jdbc.Driver");
-    connexion = DriverManager.getConnection(
-        System.getenv("DB_URL_DEV"),
-        System.getenv("DB_USER"),
-        System.getenv("DB_PSW"));
+    connexion = SingleConnection.getInstance();
     systemUnderTest = new ClientDao(connexion);
   }
 
@@ -36,11 +33,6 @@ class ClientDaoTest {
   void teardownEach() throws SQLException {
     connexion.prepareStatement("DELETE FROM Client;").executeUpdate();
     connexion.prepareStatement("DELETE FROM Adresse;").executeUpdate();
-  }
-
-  @AfterAll
-  static void teardown() throws SQLException {
-    connexion.close();
   }
 
   /**

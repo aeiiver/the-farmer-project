@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 import root.model.Adresse;
 import root.model.Producteur;
 
-class ProducteurDaoTest {
+public class ProducteurDaoTest {
 
   static Connection connexion;
   static ProducteurDao systemUnderTest;
@@ -25,10 +25,7 @@ class ProducteurDaoTest {
   @BeforeAll
   static void setup() throws ClassNotFoundException, SQLException {
     Class.forName("com.mysql.cj.jdbc.Driver");
-    connexion = DriverManager.getConnection(
-        System.getenv("DB_URL_DEV"),
-        System.getenv("DB_USER"),
-        System.getenv("DB_PSW"));
+    connexion = SingleConnection.getInstance();
     systemUnderTest = new ProducteurDao(connexion);
   }
 
@@ -38,10 +35,6 @@ class ProducteurDaoTest {
     connexion.prepareStatement("DELETE FROM Adresse;").executeUpdate();
   }
 
-  @AfterAll
-  static void teardown() throws SQLException {
-    connexion.close();
-  }
 
   /**
    * Ce test doit vérifier que l'insertion des données dans

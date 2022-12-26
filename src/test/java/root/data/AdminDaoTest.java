@@ -15,7 +15,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import root.model.Admin;
 
-class AdminDaoTest {
+public class AdminDaoTest {
 
   static Connection connexion;
   static AdminDao systemUnderTest;
@@ -23,10 +23,7 @@ class AdminDaoTest {
   @BeforeAll
   static void setup() throws ClassNotFoundException, SQLException {
     Class.forName("com.mysql.cj.jdbc.Driver");
-    connexion = DriverManager.getConnection(
-        System.getenv("DB_URL_DEV"),
-        System.getenv("DB_USER"),
-        System.getenv("DB_PSW"));
+    connexion = SingleConnection.getInstance();
     systemUnderTest = new AdminDao(connexion);
   }
 
@@ -35,10 +32,6 @@ class AdminDaoTest {
     connexion.prepareStatement("DELETE FROM Admin;").executeUpdate();
   }
 
-  @AfterAll
-  static void teardown() throws SQLException {
-    connexion.close();
-  }
 
   /**
    * Ce test doit vérifier que l'insertion des données dans

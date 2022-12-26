@@ -18,7 +18,7 @@ import root.model.Adresse;
 import root.model.Producteur;
 import root.model.Vehicule;
 
-class VehiculeDaoTest {
+public class VehiculeDaoTest {
 
   static Connection connexion;
   static VehiculeDao systemUnderTest;
@@ -26,10 +26,7 @@ class VehiculeDaoTest {
   @BeforeAll
   static void setup() throws ClassNotFoundException, SQLException {
     Class.forName("com.mysql.cj.jdbc.Driver");
-    connexion = DriverManager.getConnection(
-        System.getenv("DB_URL_DEV"),
-        System.getenv("DB_USER"),
-        System.getenv("DB_PSW"));
+    connexion = SingleConnection.getInstance();
     systemUnderTest = new VehiculeDao(connexion);
   }
 
@@ -40,10 +37,6 @@ class VehiculeDaoTest {
     connexion.prepareStatement("DELETE FROM Adresse;").executeUpdate();
   }
 
-  @AfterAll
-  static void teardown() throws SQLException {
-    connexion.close();
-  }
 
   /**
    * Ce test doit vérifier que l'insertion des données dans
