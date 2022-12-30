@@ -62,11 +62,11 @@ VALUES
 
 INSERT INTO `the-farmer-project`.Producteur (SIRET, mail, nomProd, prenomProd, numTel, mdp, idAdresse)
 VALUES
-    ('98765432123456', 'abc@gmail.com', 'Dupont', 'Marie', '0612345678', '1234', 26),
-    ('12345678901234', 'abc@gmail.com', 'David', 'Martin', '0123456789', '1234', 27),
-    ('14702583691247', 'abc@gmail.com', 'Nguyen', 'Anaïs', '0567898123', '1234', 28),
-    ('91827364509876', 'abc@gmail.com', 'Rousseau', 'Thomas', '0345678901', '1234', 29),
-    ('45612378902345', 'abc@gmail.com', 'Dubois', 'Emma', '0234567890', '1234', 30);
+    ('98765432123456', 'producteur1@gmail.com', 'Dupont', 'Marie', '0612345678', '1234', 26),
+    ('12345678901234', 'producteur2@gmail.com', 'David', 'Martin', '0123456789', '1234', 27),
+    ('14702583691247', 'producteur3@gmail.com', 'Nguyen', 'Anaïs', '0567898123', '1234', 28),
+    ('91827364509876', 'producteur4@gmail.com', 'Rousseau', 'Thomas', '0345678901', '1234', 29),
+    ('45612378902345', 'producteur5@gmail.com', 'Dubois', 'Emma', '0234567890', '1234', 30);
 
 INSERT INTO `the-farmer-project`.Vehicule (immat, poidsMax, SIRET)
 VALUES
@@ -78,6 +78,18 @@ VALUES
     ('PQ-456-TH', 100, '91827364509876'),
     ('RG-499-TH', 100, '45612378902345');
 
-INSERT INTO `the-farmer-project`.Commande (libelle, poids, dateCom, heureDeb, heureFin, SIRET, idClient, numTournee)
+INSERT INTO `the-farmer-project`.Commande (numCom, libelle, poids, dateCom, heureDeb, heureFin, SIRET, idClient, numTournee)
 VALUES
-    ('Restaurant Y', 50, '2023-12-01', '10:00:00', '12:00:00', '98765432123456', 1, '')
+    (1, 'Restaurant Y', 50, '2023-12-01', '10:00:00', '12:00:00', '98765432123456', 1, 1),
+    (2, 'Particulier', 10, '2023-12-01', '11:00:00', '11:30:00', '98765432123456', 2, 1),
+    (3, 'Restaurant X', 100, '2023-12-01', '12:00:00', '14:00:00', '98765432123456', 3, 1);
+
+INSERT INTO `the-farmer-project`.Tournee (numTournee, libelle, heureMin, heureMax, immat)
+VALUES
+    (1, 'Tournee 1', '10:00:00', '14:00:00', 'DE-548-HG');
+
+INSERT INTO `the-farmer-project`.Admin (idAdmin, mail, pseudo, mdp)
+VALUES
+    (1, 'admin1@gmail.com', 'admin1', '1234'),
+    (2, 'admin2@gmail.com', 'admin2', '1234'),
+    (3, 'admin3@gmail.com', 'admin3', '1234');
