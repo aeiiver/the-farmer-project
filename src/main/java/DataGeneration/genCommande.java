@@ -13,7 +13,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 
 public class genCommande {
-  public static void genCommande(int nb, ArrayList<String> sirets, int nbClients) {
+  public static void genCommande(int nb, String siret, int nbClients) {
     for (int i = 0; i < nb; i++) {
       Faker faker = new Faker();
       Time min = Time.valueOf(String.valueOf(faker.number().numberBetween(6, 21)));
@@ -24,7 +24,6 @@ public class genCommande {
         max = temp;
       }
       Connection singleConnection = SingleConnection.getInstance();
-      String siret = sirets.get(faker.number().numberBetween(0, sirets.size() - 1));
 
       Commande commande = new Commande(i, faker.lorem().sentence(),
           faker.number().numberBetween(1, 80),
