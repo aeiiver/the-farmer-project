@@ -80,9 +80,11 @@ VALUES
 
 INSERT INTO `the-farmer-project`.Commande (numCom, libelle, poids, dateCom, heureDeb, heureFin, SIRET, idClient, numTournee)
 VALUES
-    (1, 'Restaurant Y', 50, '2023-12-01', '10:00:00', '12:00:00', '98765432123456', 1, 1),
+    (1, 'Restaurant', 50, '2023-12-01', '10:00:00', '12:00:00', '98765432123456', 1, 1),
     (2, 'Particulier', 10, '2023-12-01', '11:00:00', '11:30:00', '98765432123456', 2, 1),
-    (3, 'Restaurant X', 100, '2023-12-01', '12:00:00', '14:00:00', '98765432123456', 3, 1);
+    (3, 'Restaurant', 100, '2023-12-01', '12:00:00', '14:00:00', '98765432123456', 3, 1),
+    (4, 'Entreprise', 80, '2023-14-01', '08:00:00', '10:00:00', '12345678901234', 4, 2),
+    (5, 'Restaurant', 20, '2022-15-09', '');
 
 INSERT INTO `the-farmer-project`.Tournee (numTournee, libelle, heureMin, heureMax, immat)
 VALUES

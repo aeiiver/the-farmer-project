@@ -274,4 +274,8 @@ public class Adresse {
     this.complement = complement;
   }
 
+  public String toString() {
+    return pays + " " + codePost + " " + ville + " " + voie + " " + nom + " " + numero + " " + mention + " " + complement;
+  }
+
 }
