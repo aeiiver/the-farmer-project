@@ -2,6 +2,10 @@ package datageneration;
 
 import com.github.javafaker.Faker;
 import java.io.IOException;
+import java.sql.Connection;
+
+import root.data.ClientDao;
+import root.data.SingleConnection;
 import root.model.Adresse;
 import root.model.Client;
 
@@ -31,11 +35,12 @@ public class GenClient {
 
       GenAdresse genAdresse = new GenAdresse();
       Adresse adresse = genAdresse.genAdresse();
+      Connection singleConnection = SingleConnection.getInstance();
 
-
-      Client client = new Client(i, faker.name().firstName(),
+      Client client = new Client(faker.name().firstName(),
           faker.name().lastName(), faker.phoneNumber().phoneNumber(),
           genAdresse.getGps(), adresse);
+      new ClientDao(singleConnection).insert(client);
     }
   }
 }

@@ -7,6 +7,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.sql.Connection;
+
+import root.data.AdresseDao;
+import root.data.SingleConnection;
 import root.model.Adresse;
 
 /**
@@ -60,7 +64,7 @@ public class GenAdresse {
     }
     String cityName = json.substring(json.indexOf("\"city\"") + 8,
         json.indexOf("\"", json.indexOf("\"city\"") + 9));
-    adresse = new Adresse(0, "France",
+    adresse = new Adresse("France",
         json.substring(json.indexOf("postcode") + 11, json.indexOf("postcode") + 16),
         cityName,
         typeRueSplit[1],
@@ -68,7 +72,8 @@ public class GenAdresse {
         numero,
         "", ""
     );
-    System.out.println(adresse);
+    Connection connection = SingleConnection.getInstance();
+    new AdresseDao(connection).insert(adresse);
     return adresse;
   }
 

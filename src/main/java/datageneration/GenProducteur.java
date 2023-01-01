@@ -2,7 +2,11 @@ package datageneration;
 
 import com.github.javafaker.Faker;
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.ArrayList;
+
+import root.data.ProducteurDao;
+import root.data.SingleConnection;
 import root.model.Adresse;
 import root.model.Producteur;
 
@@ -37,12 +41,13 @@ public class GenProducteur {
 
       String siret = faker.number().digits(14);
       listSiret.add(siret);
-
+      Connection singleConnection = SingleConnection.getInstance();
 
       Producteur producteur = new Producteur(siret,
           faker.internet().emailAddress(), faker.name().firstName(),
           faker.name().lastName(), faker.phoneNumber().phoneNumber(),
           faker.internet().password(8, 16), adresse);
+      new ProducteurDao(singleConnection).insert(producteur);
     }
     return listSiret;
   }

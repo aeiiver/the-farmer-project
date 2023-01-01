@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import root.data.ProducteurDao;
 import root.data.SingleConnection;
+import root.data.VehiculeDao;
 import root.model.Vehicule;
 
 /**
@@ -26,6 +27,7 @@ public class GenVehicule {
       String immatriculation = faker.regexify("[A-Z]{2}-[0-9]{3}-[A-Z]{2}");
       Vehicule vehicule = new Vehicule(immatriculation, poidsMax,
           new ProducteurDao(singleConnection).get(sirets.get(producteur)));
+      new VehiculeDao(singleConnection).insert(vehicule);
     }
   }
 }

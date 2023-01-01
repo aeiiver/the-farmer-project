@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.Time;
 import root.data.ClientDao;
+import root.data.CommandeDao;
 import root.data.ProducteurDao;
 import root.data.SingleConnection;
 import root.model.Commande;
@@ -32,13 +33,14 @@ public class GenCommande {
       }
       Connection singleConnection = SingleConnection.getInstance();
 
-      Commande commande = new Commande(i, faker.lorem().sentence(),
+      Commande commande = new Commande(faker.lorem().sentence(),
           faker.number().numberBetween(1, 80),
           (java.sql.Date) faker.date().between(Date.valueOf("2020-01-01"),
               Date.valueOf("2023-12-31")),
           min, max,
           new ProducteurDao(singleConnection).get(siret),
           new ClientDao(singleConnection).get(faker.number().numberBetween(0, nbClients - 1)));
+      new CommandeDao(singleConnection).insert(commande);
     }
   }
 }

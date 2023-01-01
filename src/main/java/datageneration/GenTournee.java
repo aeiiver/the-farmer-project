@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import root.data.CommandeDao;
 import root.data.ProducteurDao;
 import root.data.SingleConnection;
+import root.data.TourneeDao;
 import root.model.Tournee;
 import root.model.Vehicule;
 
@@ -35,6 +36,7 @@ public class GenTournee {
           heureMin, heureMax,
           new ProducteurDao(singleConnection).get(siret),
           immatriculations.get(vehicule));
+      new TourneeDao(singleConnection).insert(tournee);
     }
   }
 }
