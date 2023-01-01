@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,7 +11,6 @@ import java.sql.Statement;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -53,8 +51,9 @@ public class CommandeDaoTest {
     Adresse adresseClient =
         new Adresse(-1, "France", "21435", "Who", "Rue", "Clareté des scènes", 7, "Appt. 210", "");
     Producteur producteur =
-        new Producteur("contact@farmer-times.com", "bycryptiscool", "12345678901234", "Sant",
-            "Paul", "1133557799", adresseProd);
+        new Producteur("12345678901234", "contact@farmer-times.com", "Sant", "Paul", "1133557799",
+            "bycryptiscool",
+            adresseProd);
     Client client =
         new Client(-1, "Vant", "Jean", "1122334400", "46.232192999999995,2.209666999999996",
             adresseClient);
@@ -81,8 +80,9 @@ public class CommandeDaoTest {
     Adresse adresseClient =
         new Adresse(-1, "France", "21435", "Who", "Rue", "Clareté des scènes", 7, "Appt. 210", "");
     Producteur producteur =
-        new Producteur("contact@farmer-times.com", "bycryptiscool", "12345678901234", "Sant",
-            "Paul", "1133557799", adresseProd);
+        new Producteur("12345678901234", "contact@farmer-times.com", "Sant", "Paul", "1133557799",
+            "bycryptiscool",
+            adresseProd);
     Client client =
         new Client(-1, "Vant", "Jean", "1122334400", "46.232192999999995,2.209666999999996",
             adresseClient);
@@ -129,8 +129,9 @@ public class CommandeDaoTest {
     Adresse adresseClient =
         new Adresse(-1, "France", "21435", "Who", "Rue", "Clareté des scènes", 7, "Appt. 210", "");
     Producteur producteur =
-        new Producteur("contact@farmer-times.com", "bycryptiscool", "12345678901234", "Sant",
-            "Paul", "1133557799", adresseProd);
+        new Producteur("12345678901234", "contact@farmer-times.com", "Sant", "Paul", "1133557799",
+            "bycryptiscool",
+            adresseProd);
     Client client =
         new Client(-1, "Vant", "Jean", "1122334400", "46.232192999999995,2.209666999999996",
             adresseClient);
@@ -162,8 +163,9 @@ public class CommandeDaoTest {
     Adresse adresseClient =
         new Adresse(-1, "France", "21435", "Who", "Rue", "Clareté des scènes", 7, "Appt. 210", "");
     Producteur producteur =
-        new Producteur("contact@farmer-times.com", "bycryptiscool", "12345678901234", "Sant",
-            "Paul", "1133557799", adresseProd);
+        new Producteur("12345678901234", "contact@farmer-times.com", "Sant", "Paul", "1133557799",
+            "bycryptiscool",
+            adresseProd);
     Client client =
         new Client(-1, "Vant", "Jean", "1122334400", "46.232192999999995,2.209666999999996",
             adresseClient);
@@ -380,14 +382,17 @@ public class CommandeDaoTest {
         new Adresse(28, "France", "21300", "Otourd", "Avenue", "Haut-les-ciels", 2, "", "Ter.");
 
     Producteur producteur1 =
-        new Producteur("contact@farmer-times.com", "bycryptiscool", "12345678901234", "Sant",
-            "Paul", "1133557799", adresse1);
+        new Producteur("12345678901234", "contact@farmer-times.com", "Sant", "Paul", "1133557799",
+            "bycryptiscool",
+            adresse1);
     Producteur producteur2 =
-        new Producteur("lautre@field-in-things.org", "bycryptiscool", "22446688001234", "Cent",
-            "Pierre", "2244668800", adresse2);
+        new Producteur("22446688001234", "lautre@field-in-things.org", "Cent", "Pierre",
+            "2244668800", "bycryptiscool",
+            adresse2);
     Producteur producteur3 =
-        new Producteur("letiers@waiting-them-grow.org", "bycryptiscool", "11335577999876", "Send",
-            "Daniel", "0987654321", adresse3);
+        new Producteur("11335577999876", "letiers@waiting-them-grow.org", "Send", "Daniel",
+            "0987654321", "bycryptiscool",
+            adresse3);
 
     Client client1 = new Client(23, "Vant", "Jean", "1122334400", "46.232193,2.2096670", adresse4);
     Client client2 = new Client(24, "Vant", "Jean", "1231231230", "46.232193,2.2096670", adresse5);

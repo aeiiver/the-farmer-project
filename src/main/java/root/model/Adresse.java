@@ -69,7 +69,7 @@ public class Adresse {
   private int numero;
 
   /**
-   * Mention de l'adresse (Batiment, Appartement, etc.)
+   * Mention de l'adresse (Bâtiment, Appartement, etc.)
    *
    * @see Adresse#Adresse(int, String, String, String, String, String, int, String, String)
    * @see Adresse#getMention()
@@ -87,7 +87,7 @@ public class Adresse {
   private String complement;
 
   /**
-   * Constructeur de classe.
+   * Constructeur de classe d'une Adresse insérée dans la base.
    *
    * @param idAdresse  Un identifiant pour l'adresse.
    * @param pays       Un nom de pays.
@@ -102,6 +102,31 @@ public class Adresse {
   public Adresse(int idAdresse, String pays, String codePost, String ville, String voie,
                  String nom, int numero, String mention, String complement) {
     this.idAdresse = idAdresse;
+    this.pays = pays;
+    this.codePost = codePost;
+    this.ville = ville;
+    this.voie = voie;
+    this.nom = nom;
+    this.numero = numero;
+    this.mention = mention;
+    this.complement = complement;
+  }
+
+  /**
+   * Constructeur de classe d'une Adresse non insérée dans la base.
+   *
+   * @param pays       Un nom de pays.
+   * @param codePost   Le code postal lié à l'adresse.
+   * @param ville      La ville liée à l'adresse.
+   * @param voie       La dénomination de la voie (rue, boulevard, chemin, ...).
+   * @param nom        Le nom lié l'adresse.
+   * @param numero     Le numéro de l'adresse.
+   * @param mention    La mention de l'adresse.
+   * @param complement Le complément de l'adresse (bât., étage, ...)
+   */
+  public Adresse(String pays, String codePost, String ville, String voie,
+                 String nom, int numero, String mention, String complement) {
+    this.idAdresse = -1;
     this.pays = pays;
     this.codePost = codePost;
     this.ville = ville;
@@ -274,8 +299,23 @@ public class Adresse {
     this.complement = complement;
   }
 
+  @Override
   public String toString() {
-    return pays + " " + codePost + " " + ville + " " + numero + " "  + voie + " " + nom + " " + mention + " " + complement;
+    return pays + " " + codePost + " " + ville + " " + numero + " " + voie + " " + nom + " "
+        + mention + " " + complement;
+  }
+
+  @Override
+  public int hashCode() {
+    return 0;
+  }
+
+  @Override
+  public boolean equals(Object other) {
+    if (!(other instanceof Adresse)) {
+      return false;
+    }
+    return idAdresse == ((Adresse) other).getIdAdresse();
   }
 
 }

@@ -67,12 +67,9 @@ public class ProducteurDao extends Dao<Producteur, String> {
       ResultSet result = preparedStatement.executeQuery();
 
       return (result.next()) ? new Producteur(
-          result.getString("mail"),
+          result.getString("SIRET"), result.getString("mail"),
+          result.getString("nomProd"), result.getString("prenomProd"), result.getString("numTel"),
           result.getString("mdp"),
-          result.getString("SIRET"),
-          result.getString("nomProd"),
-          result.getString("prenomProd"),
-          result.getString("numTel"),
           new AdresseDao(connexion).get(result.getInt("idAdresse"))
       ) : null;
     } catch (Exception e) {
@@ -94,12 +91,10 @@ public class ProducteurDao extends Dao<Producteur, String> {
       ArrayList<Producteur> producteurs = new ArrayList<>();
       while (preparedStatement.executeQuery().next()) {
         producteurs.add(new Producteur(
-            preparedStatement.executeQuery().getString("SIRET"),
-            preparedStatement.executeQuery().getString("mail"),
-            preparedStatement.executeQuery().getString("nomProd"),
+            preparedStatement.executeQuery().getString("nomProd"), preparedStatement.executeQuery().getString("SIRET"),
             preparedStatement.executeQuery().getString("prenomProd"),
             preparedStatement.executeQuery().getString("numTel"),
-            preparedStatement.executeQuery().getString("mdp"),
+            preparedStatement.executeQuery().getString("mdp"), preparedStatement.executeQuery().getString("mail"),
             new AdresseDao(connexion).get(preparedStatement.executeQuery().getInt("idAdresse"))
         ));
       }

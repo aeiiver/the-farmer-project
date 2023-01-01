@@ -3,14 +3,12 @@ package root.data;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -47,8 +45,9 @@ public class VehiculeDaoTest {
     Adresse adresse =
         new Adresse(-1, "France", "12400", "Bou", "Rue", "Perce-cent-lieux", 3, "", "");
     Producteur producteur =
-        new Producteur("contact@farmer-times.com", "bycryptiscool", "12345678901234", "Sant",
-            "Paul", "1133557799", adresse);
+        new Producteur("12345678901234", "contact@farmer-times.com", "Sant", "Paul", "1133557799",
+            "bycryptiscool",
+            adresse);
     Vehicule vehicule = new Vehicule("AB-121-XY", 140, producteur);
     insertProducteur(producteur);
 
@@ -67,8 +66,9 @@ public class VehiculeDaoTest {
     Adresse adresse =
         new Adresse(-1, "France", "12400", "Bou", "Rue", "Perce-cent-lieux", 3, "", "");
     Producteur producteur =
-        new Producteur("contact@farmer-times.com", "bycryptiscool", "12345678901234", "Sant",
-            "Paul", "1133557799", adresse);
+        new Producteur("12345678901234", "contact@farmer-times.com", "Sant", "Paul", "1133557799",
+            "bycryptiscool",
+            adresse);
     Vehicule attendu = new Vehicule("AB-121-XY", 140, producteur);
 
     insertProducteur(producteur);
@@ -108,8 +108,9 @@ public class VehiculeDaoTest {
     Adresse adresse =
         new Adresse(-1, "France", "12400", "Bou", "Rue", "Perce-cent-lieux", 3, "", "");
     Producteur producteur =
-        new Producteur("contact@farmer-times.com", "bycryptiscool", "12345678901234", "Sant",
-            "Paul", "1133557799", adresse);
+        new Producteur("12345678901234", "contact@farmer-times.com", "Sant", "Paul", "1133557799",
+            "bycryptiscool",
+            adresse);
     Vehicule vehicule = new Vehicule("AB-121-XY", 140, producteur);
     insertProducteur(producteur);
     insertVehicule(vehicule);
@@ -131,8 +132,9 @@ public class VehiculeDaoTest {
     Adresse adresse =
         new Adresse(-1, "France", "12400", "Bou", "Rue", "Perce-cent-lieux", 3, "", "");
     Producteur producteur =
-        new Producteur("contact@farmer-times.com", "bycryptiscool", "12345678901234", "Sant",
-            "Paul", "1133557799", adresse);
+        new Producteur("12345678901234", "contact@farmer-times.com", "Sant", "Paul", "1133557799",
+            "bycryptiscool",
+            adresse);
     Vehicule vehicule = new Vehicule("AB-121-XY", 140, producteur);
     insertProducteur(producteur);
     insertVehicule(vehicule);
@@ -266,14 +268,17 @@ public class VehiculeDaoTest {
             "");
 
     Producteur producteur1 =
-        new Producteur("contact@farmer-times.com", "bycryptiscool", "12345678901234", "Sant",
-            "Paul", "1133557799", adresse1);
+        new Producteur("12345678901234", "contact@farmer-times.com", "Sant", "Paul", "1133557799",
+            "bycryptiscool",
+            adresse1);
     Producteur producteur2 =
-        new Producteur("lautre@field-in-things.org", "bycryptiscool", "22446688001234", "Cent",
-            "Pierre", "2244668800", adresse2);
+        new Producteur("22446688001234", "lautre@field-in-things.org", "Cent", "Pierre",
+            "2244668800", "bycryptiscool",
+            adresse2);
     Producteur producteur3 =
-        new Producteur("letiers@waiting-them-grow.org", "bycryptiscool", "11335577999876", "Send",
-            "Daniel", "0987654321", adresse3);
+        new Producteur("11335577999876", "letiers@waiting-them-grow.org", "Send", "Daniel",
+            "0987654321", "bycryptiscool",
+            adresse3);
 
     List<Vehicule> vehicules = List.of(
         new Vehicule("AB-121-XY", 140, producteur1),

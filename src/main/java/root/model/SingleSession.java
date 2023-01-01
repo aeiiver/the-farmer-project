@@ -5,11 +5,11 @@ package root.model;
 /**
  * Singleton représentant la session utilisateur.
  */
-public class SessionManager {
+public class SingleSession {
 
-  private static SessionUtilisateur instance;
+  private static SessionUtilisateur session;
 
-  private SessionManager() {
+  private SingleSession() {
   }
 
   /**
@@ -19,11 +19,11 @@ public class SessionManager {
    * @throws RuntimeException Si aucune session n'est ouverte.
    */
   public static SessionUtilisateur getSession() throws RuntimeException {
-    if (instance == null) {
+    if (session == null) {
       throw new RuntimeException(
           "La session n'est pas ouverte. Appeler SingleSession.ouvreSession() en premier.");
     }
-    return instance;
+    return session;
   }
 
   /**
@@ -34,10 +34,10 @@ public class SessionManager {
    * @throws RuntimeException Si une session est déjà ouverte.
    */
   public static void ouvreSession(String identifiant, boolean estAdmin) throws RuntimeException {
-    if (instance != null) {
+    if (session != null) {
       throw new RuntimeException("Une session est déjà ouverte. Qui l'a ouverte avant vous ?");
     }
-    instance = (estAdmin) ? new SessionAdmin(identifiant) : new SessionProducteur(identifiant);
+    session = (estAdmin) ? new SessionAdmin(identifiant) : new SessionProducteur(identifiant);
   }
 
   /**
@@ -47,7 +47,7 @@ public class SessionManager {
    */
   public static void fermeSession() {
     // Garbage-collecte cette chose...
-    instance = null;
+    session = null;
   }
 
 }

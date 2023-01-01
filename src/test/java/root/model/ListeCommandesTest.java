@@ -17,7 +17,8 @@ class ListeCommandesTest {
   void ajouter() {
     Adresse adresse = new Adresse(1, "France", "36300", "Villa", "Rue", "Quelconque", 5, "", "");
     Client client = new Client(1, "Nom", "Prenom", "01 23 45 67 89", "0.0", adresse);
-    Producteur producteur = new Producteur("email@jaimail.com", "motdepasse1234", "000 111 222 33333", "Producteur", "Random", "99 99 99 99 99", adresse);
+    Producteur producteur = new Producteur("000 111 222 33333", "email@jaimail.com", "Producteur",
+        "Random", "99 99 99 99 99", "motdepasse1234", adresse);
     Commande commande = new Commande(1, "Super Commande", 245, Date.valueOf("01/01/2040"),
         Time.valueOf("02:00:00"), Time.valueOf("04:00:00"), producteur, client);
     ListeCommandes listeCommandes = new ListeCommandes();
@@ -43,7 +44,8 @@ class ListeCommandesTest {
   void supprimer() {
     Adresse adresse = new Adresse(1, "France", "36300", "Villa", "Rue", "Quelconque", 5, "", "");
     Client client = new Client(1, "Nom", "Prenom", "01 23 45 67 89", "0.0", adresse);
-    Producteur producteur = new Producteur("email@jaimail.com", "motdepasse1234", "000 111 222 33333", "Producteur", "Random", "99 99 99 99 99", adresse);
+    Producteur producteur = new Producteur("000 111 222 33333", "email@jaimail.com", "Producteur",
+        "Random", "99 99 99 99 99", "motdepasse1234", adresse);
     Commande commande = new Commande(1, "Super Commande", 245, Date.valueOf("01/01/2040"),
         Time.valueOf("02:00:00"), Time.valueOf("04:00:00"), producteur, client);
     ListeCommandes listeCommandes = new ListeCommandes();
@@ -64,7 +66,8 @@ class ListeCommandesTest {
   void editer() {
     Adresse adresse = new Adresse(1, "France", "36300", "Villa", "Rue", "Quelconque", 5, "", "");
     Client client = new Client(1, "Nom", "Prenom", "01 23 45 67 89", "0.0", adresse);
-    Producteur producteur = new Producteur("email@jaimail.com", "motdepasse1234", "000 111 222 33333", "Producteur", "Random", "99 99 99 99 99", adresse);
+    Producteur producteur = new Producteur("000 111 222 33333", "email@jaimail.com", "Producteur",
+        "Random", "99 99 99 99 99", "motdepasse1234", adresse);
     Commande commande = new Commande(1, "Super Commande", 245, Date.valueOf("01/01/2040"),
         Time.valueOf("02:00:00"), Time.valueOf("04:00:00"), producteur, client);
     ListeCommandes listeCommandes = new ListeCommandes();

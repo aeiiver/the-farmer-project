@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,7 +13,6 @@ import java.sql.Statement;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -53,8 +51,9 @@ public class TourneeDaoTest {
     Adresse adresse =
         new Adresse(-1, "France", "12400", "Bou", "Rue", "Perce-cent-lieux", 3, "", "");
     Producteur producteur =
-        new Producteur("contact@farmer-times.com", "bycryptiscool", "12345678901234", "Sant",
-            "Paul", "1133557799", adresse);
+        new Producteur("12345678901234", "contact@farmer-times.com", "Sant", "Paul", "1133557799",
+            "bycryptiscool",
+            adresse);
     Vehicule vehicule = new Vehicule("AB-121-XY", 140, producteur);
     Tournee tournee =
         new Tournee(-1, "Céréales de saison", Time.valueOf("06:00:00"), Time.valueOf("19:00:00"),
@@ -77,8 +76,9 @@ public class TourneeDaoTest {
     Adresse adresse =
         new Adresse(-1, "France", "12400", "Bou", "Rue", "Perce-cent-lieux", 3, "", "");
     Producteur producteur =
-        new Producteur("contact@farmer-times.com", "bycryptiscool", "12345678901234", "Sant",
-            "Paul", "1133557799", adresse);
+        new Producteur("12345678901234", "contact@farmer-times.com", "Sant", "Paul", "1133557799",
+            "bycryptiscool",
+            adresse);
     Vehicule vehicule = new Vehicule("AB-121-XY", 140, producteur);
     Tournee attendu =
         new Tournee(-1, "Céréales de saison", Time.valueOf("06:00:00"), Time.valueOf("19:00:00"),
@@ -121,8 +121,9 @@ public class TourneeDaoTest {
     Adresse adresse =
         new Adresse(-1, "France", "12400", "Bou", "Rue", "Perce-cent-lieux", 3, "", "");
     Producteur producteur =
-        new Producteur("contact@farmer-times.com", "bycryptiscool", "12345678901234", "Sant",
-            "Paul", "1133557799", adresse);
+        new Producteur("12345678901234", "contact@farmer-times.com", "Sant", "Paul", "1133557799",
+            "bycryptiscool",
+            adresse);
     Vehicule vehicule = new Vehicule("AB-121-XY", 140, producteur);
     Tournee tournee =
         new Tournee(-1, "Céréales de saison", Time.valueOf("06:00:00"), Time.valueOf("19:00:00"),
@@ -150,8 +151,9 @@ public class TourneeDaoTest {
     Adresse adresse =
         new Adresse(-1, "France", "12400", "Bou", "Rue", "Perce-cent-lieux", 3, "", "");
     Producteur producteur =
-        new Producteur("contact@farmer-times.com", "bycryptiscool", "12345678901234", "Sant",
-            "Paul", "1133557799", adresse);
+        new Producteur("12345678901234", "contact@farmer-times.com", "Sant", "Paul", "1133557799",
+            "bycryptiscool",
+            adresse);
     Vehicule vehicule = new Vehicule("AB-121-XY", 140, producteur);
     Tournee tournee =
         new Tournee(-1, "Céréales de saison", Time.valueOf("06:00:00"), Time.valueOf("19:00:00"),
@@ -316,8 +318,9 @@ public class TourneeDaoTest {
     Adresse adresse =
         new Adresse(23, "France", "12400", "Bou", "Rue", "Perce-cent-lieux", 3, "", "");
     Producteur producteur =
-        new Producteur("contact@farmer-times.com", "bycryptiscool", "12345678901234", "Sant",
-            "Paul", "1133557799", adresse);
+        new Producteur("12345678901234", "contact@farmer-times.com", "Sant", "Paul", "1133557799",
+            "bycryptiscool",
+            adresse);
     Vehicule vehicule = new Vehicule("AB-121-XY", 140, producteur);
 
     List<Tournee> tournees = List.of(

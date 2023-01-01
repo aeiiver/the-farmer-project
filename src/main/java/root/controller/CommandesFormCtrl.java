@@ -20,7 +20,7 @@ import root.model.Client;
 import root.model.Commande;
 import root.model.ListeCommandes;
 import root.model.Producteur;
-import root.model.SessionManager;
+import root.model.SingleSession;
 import root.model.SessionProducteur;
 
 /**
@@ -97,7 +97,7 @@ public class CommandesFormCtrl implements Initializable {
     }
 
     // Après validation de la saisie
-    SessionProducteur session = (SessionProducteur) SessionManager.getSession();
+    SessionProducteur session = (SessionProducteur) SingleSession.getSession();
     Producteur producteur = (Producteur) session.getUtilisateur();
     ListeCommandes listeCommandes = session.getListeCommandes();
 
@@ -141,7 +141,7 @@ public class CommandesFormCtrl implements Initializable {
   public void initialize(URL url, ResourceBundle resourceBundle) {
     /* Lister tous les clients dans la ChoiceBox */
     List<Client> clientsStockes =
-        ((SessionProducteur) SessionManager.getSession()).getListeClients().getClients();
+        ((SessionProducteur) SingleSession.getSession()).getListeClients().getClients();
     clients.getItems().addAll(clientsStockes);
 
     // On définit comment on veut afficher un objet Client dans la ChoiceBox.

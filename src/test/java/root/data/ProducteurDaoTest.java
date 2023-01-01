@@ -3,14 +3,12 @@ package root.data;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -45,8 +43,9 @@ public class ProducteurDaoTest {
     Adresse adresse =
         new Adresse(-1, "France", "12400", "Bou", "Rue", "Perce-cent-lieux", 3, "", "");
     Producteur producteur =
-        new Producteur("contact@farmer-times.com", "bycryptiscool", "12345678901234", "Sant",
-            "Paul", "1133557799", adresse);
+        new Producteur("12345678901234", "contact@farmer-times.com", "Sant", "Paul", "1133557799",
+            "bycryptiscool",
+            adresse);
 
     boolean recu = systemUnderTest.insert(producteur);
     assertTrue(recu);
@@ -63,8 +62,9 @@ public class ProducteurDaoTest {
     Adresse adresse =
         new Adresse(-1, "France", "12400", "Bou", "Rue", "Perce-cent-lieux", 3, "", "");
     Producteur attendu =
-        new Producteur("contact@farmer-times.com", "bycryptiscool", "12345678901234", "Sant",
-            "Paul", "1133557799", adresse);
+        new Producteur("12345678901234", "contact@farmer-times.com", "Sant", "Paul", "1133557799",
+            "bycryptiscool",
+            adresse);
     insertProducteur(attendu);
 
     Producteur recu = systemUnderTest.get(attendu.getSiret());
@@ -101,8 +101,9 @@ public class ProducteurDaoTest {
     Adresse adresse =
         new Adresse(-1, "France", "12400", "Bou", "Rue", "Perce-cent-lieux", 3, "", "");
     Producteur producteur =
-        new Producteur("contact@farmer-times.com", "bycryptiscool", "12345678901234", "Sant",
-            "Paul", "1133557799", adresse);
+        new Producteur("12345678901234", "contact@farmer-times.com", "Sant", "Paul", "1133557799",
+            "bycryptiscool",
+            adresse);
     insertProducteur(producteur);
 
     producteur.setNumTel("9876543210");
@@ -124,8 +125,9 @@ public class ProducteurDaoTest {
     Adresse adresse =
         new Adresse(-1, "France", "12400", "Bou", "Rue", "Perce-cent-lieux", 3, "", "");
     Producteur producteur =
-        new Producteur("contact@farmer-times.com", "bycryptiscool", "12345678901234", "Sant",
-            "Paul", "1133557799", adresse);
+        new Producteur("12345678901234", "contact@farmer-times.com", "Sant", "Paul", "1133557799",
+            "bycryptiscool",
+            adresse);
     insertProducteur(producteur);
 
     boolean recu = systemUnderTest.delete(producteur);
@@ -254,12 +256,15 @@ public class ProducteurDaoTest {
             "");
 
     List<Producteur> producteurs = List.of(
-        new Producteur("contact@farmer-times.com", "bycryptiscool", "12345678901234", "Sant",
-            "Paul", "1133557799", adresse1),
-        new Producteur("lautre@field-in-things.org", "bycryptiscool", "22446688001234", "Cent",
-            "Pierre", "2244668800", adresse2),
-        new Producteur("letiers@waiting-them-grow.org", "bycryptiscool", "11335577999876", "Send",
-            "Daniel", "0987654321", adresse3));
+        new Producteur("12345678901234", "contact@farmer-times.com", "Sant", "Paul", "1133557799",
+            "bycryptiscool",
+            adresse1),
+        new Producteur("22446688001234", "lautre@field-in-things.org", "Cent", "Pierre",
+            "2244668800", "bycryptiscool",
+            adresse2),
+        new Producteur("11335577999876", "letiers@waiting-them-grow.org", "Send", "Daniel",
+            "0987654321", "bycryptiscool",
+            adresse3));
 
     producteurs.forEach(producteur -> {
       try {

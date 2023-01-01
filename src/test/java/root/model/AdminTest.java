@@ -7,7 +7,6 @@ import root.data.AdminDao;
 import root.data.SingleConnection;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
 class AdminTest {
@@ -21,12 +20,12 @@ class AdminTest {
    */
   @Test
   void verifieIdentifiantsOk() throws ClassNotFoundException, SQLException {
-    Admin admin = new Admin("mail@gmail.com", "motdepasse123", 1, "NomPrenom");
+    Admin admin = new Admin(1, "mail@gmail.com", "NomPrenom", "motdepasse123");
 
     connexion = SingleConnection.getInstance();
     adminDao = new AdminDao(connexion);
 
-    Admin entreeDao = new Admin("mail@gmail.com", "motdepasse123", 1, "NomPrenom");
+    Admin entreeDao = new Admin(1, "mail@gmail.com", "NomPrenom", "motdepasse123");
     adminDao.insert(entreeDao);
     Admin sortieDao = null;
     for (int i = 0; i < adminDao.getAll().size(); i++) {
@@ -44,12 +43,12 @@ class AdminTest {
    */
   @Test
   void verifieIdentifiantsPasOk() {
-    Admin admin = new Admin("mail@gmail.com", "motdepasse123", 1, "NomPrenom");
+    Admin admin = new Admin(1, "mail@gmail.com", "NomPrenom", "motdepasse123");
 
     connexion = SingleConnection.getInstance();
     adminDao = new AdminDao(connexion);
 
-    Admin entreeDao = new Admin("mail@gmail.com", "password123", 1, "NomPrenom");
+    Admin entreeDao = new Admin(1, "mail@gmail.com", "NomPrenom", "password123");
     adminDao.insert(entreeDao);
     Admin sortieDao = null;
     for (int i = 0; i < adminDao.getAll().size(); i++) {

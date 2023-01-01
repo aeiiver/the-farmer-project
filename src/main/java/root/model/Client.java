@@ -61,18 +61,37 @@ public class Client {
   private Adresse adresse;
 
   /**
-   * Constructeur de classe.
+   * Constructeur de classe d'un client inséré dans la base.
    *
    * @param idClient L'identifiant du client.
    * @param nom      Le nom du client.
    * @param prenom   Le prénom du client.
    * @param numTel   Le numéro de téléphone du client.
    * @param gps      Les coordonnées GPS du client, sous la forme d'une chaîne "latitude;longitude".
-   * @param adresse  L'adresse du client, représenté par un objet Adresse.
+   * @param adresse  L'adresse du client, représenté par un objet "Adresse".
    */
   public Client(int idClient, String nom, String prenom, String numTel, String gps,
                 Adresse adresse) {
     this.idClient = idClient;
+    this.nom = nom;
+    this.prenom = prenom;
+    this.numTel = numTel;
+    this.gps = gps;
+    this.adresse = adresse;
+  }
+
+  /**
+   * Constructeur de classe d'un client non inséré dans la base.
+   *
+   * @param nom      Le nom du client.
+   * @param prenom   Le prénom du client.
+   * @param numTel   Le numéro de téléphone du client.
+   * @param gps      Les coordonnées GPS du client, sous la forme d'une chaîne "latitude;longitude".
+   * @param adresse  L'adresse du client, représenté par un objet "Adresse".
+   */
+  public Client(String nom, String prenom, String numTel, String gps,
+                Adresse adresse) {
+    this.idClient = -1;
     this.nom = nom;
     this.prenom = prenom;
     this.numTel = numTel;
@@ -204,7 +223,7 @@ public class Client {
 
   @Override
   public boolean equals(Object other) {
-    if (other == null) {
+    if (!(other instanceof Client)) {
       return false;
     }
     return idClient == ((Client) other).getIdClient();

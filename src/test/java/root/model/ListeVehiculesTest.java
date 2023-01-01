@@ -16,7 +16,8 @@ class ListeVehiculesTest {
   @Test
   void ajouter() {
     Adresse adresse = new Adresse(1, "France", "36300", "Villa", "Rue", "Quelconque", 5, "", "");
-    Producteur producteur = new Producteur("email@jaimail.com", "motdepasse1234", "000 111 222 33333", "Producteur", "Random", "99 99 99 99 99", adresse);
+    Producteur producteur = new Producteur("000 111 222 33333", "email@jaimail.com", "Producteur",
+        "Random", "99 99 99 99 99", "motdepasse1234", adresse);
     Vehicule vehicule = new Vehicule("SW-0241-1041", 500, producteur);
     ListeVehicules listeVehicules = new ListeVehicules();
 
@@ -35,7 +36,8 @@ class ListeVehiculesTest {
   @Test
   void supprimer() {
     Adresse adresse = new Adresse(1, "France", "36300", "Villa", "Rue", "Quelconque", 5, "", "");
-    Producteur producteur = new Producteur("email@jaimail.com", "motdepasse1234", "000 111 222 33333", "Producteur", "Random", "99 99 99 99 99", adresse);
+    Producteur producteur = new Producteur("000 111 222 33333", "email@jaimail.com", "Producteur",
+        "Random", "99 99 99 99 99", "motdepasse1234", adresse);
     Vehicule vehicule = new Vehicule("SW-0241-1041", 500, producteur);
     ListeVehicules listeVehicules = new ListeVehicules();
 
@@ -54,7 +56,8 @@ class ListeVehiculesTest {
   @Test
   void editer() {
     Adresse adresse = new Adresse(1, "France", "36300", "Villa", "Rue", "Quelconque", 5, "", "");
-    Producteur producteur = new Producteur("email@jaimail.com", "motdepasse1234", "000 111 222 33333", "Producteur", "Random", "99 99 99 99 99", adresse);
+    Producteur producteur = new Producteur("000 111 222 33333", "email@jaimail.com", "Producteur",
+        "Random", "99 99 99 99 99", "motdepasse1234", adresse);
     Vehicule vehicule = new Vehicule("SW-0241-1041", 500, producteur);
     ListeVehicules listeVehicules = new ListeVehicules();
 

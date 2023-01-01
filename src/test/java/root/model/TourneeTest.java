@@ -3,9 +3,7 @@ package root.model;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
-import root.data.AdminDao;
 
-import java.sql.Connection;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
@@ -20,7 +18,8 @@ class TourneeTest {
   void estValide() {
     Adresse adresse = new Adresse(1, "France", "36300", "Villa", "Rue", "Quelconque", 5, "", "");
     Client client = new Client(1, "Nom", "Prenom", "01 23 45 67 89", "0.0", adresse);
-    Producteur producteur = new Producteur("email@jaimail.com", "motdepasse1234", "000 111 222 33333", "Producteur", "Random", "99 99 99 99 99", adresse);
+    Producteur producteur = new Producteur("000 111 222 33333", "email@jaimail.com", "Producteur",
+        "Random", "99 99 99 99 99", "motdepasse1234", adresse);
     Vehicule vehicule = new Vehicule("SW-0241-1041", 500, producteur);
 
     Commande commande1 = new Commande(1, "Super Commande", 245, Date.valueOf("01/01/2023"), Time.valueOf("02:00:00"), Time.valueOf("07:00:00"), producteur, client);
@@ -61,7 +60,8 @@ class TourneeTest {
   void ajouteCommande() {
     Adresse adresse = new Adresse(1, "France", "36300", "Villa", "Rue", "Quelconque", 5, "", "");
     Client client = new Client(1, "Nom", "Prenom", "01 23 45 67 89", "0.0", adresse);
-    Producteur producteur = new Producteur("email@jaimail.com", "motdepasse1234", "000 111 222 33333", "Producteur", "Random", "99 99 99 99 99", adresse);
+    Producteur producteur = new Producteur("000 111 222 33333", "email@jaimail.com", "Producteur",
+        "Random", "99 99 99 99 99", "motdepasse1234", adresse);
     Vehicule vehicule = new Vehicule("SW-0241-1041", 500, producteur);
 
     Tournee tournee = new Tournee(1, "Trajet en camion", Time.valueOf("10:00:00"), Time.valueOf("20:00:00"), producteur, vehicule);
@@ -80,7 +80,8 @@ class TourneeTest {
   void retireCommande() {
     Adresse adresse = new Adresse(1, "France", "36300", "Villa", "Rue", "Quelconque", 5, "", "");
     Client client = new Client(1, "Nom", "Prenom", "01 23 45 67 89", "0.0", adresse);
-    Producteur producteur = new Producteur("email@jaimail.com", "motdepasse1234", "000 111 222 33333", "Producteur", "Random", "99 99 99 99 99", adresse);
+    Producteur producteur = new Producteur("000 111 222 33333", "email@jaimail.com", "Producteur",
+        "Random", "99 99 99 99 99", "motdepasse1234", adresse);
     Vehicule vehicule = new Vehicule("SW-0241-1041", 500, producteur);
 
     Tournee tournee = new Tournee(1, "Trajet en camion", Time.valueOf("10:00:00"), Time.valueOf("20:00:00"), producteur, vehicule);

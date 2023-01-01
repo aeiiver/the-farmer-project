@@ -15,7 +15,7 @@ import javafx.scene.layout.VBox;
 import root.StageUtil;
 import root.model.Admin;
 import root.model.Producteur;
-import root.model.SessionManager;
+import root.model.SingleSession;
 import root.model.Utilisateur;
 
 /**
@@ -79,8 +79,8 @@ public class ConnexionCtrl implements Initializable {
 
     // Vérifie les identifiants dans la base de données
     Utilisateur utilisateur =
-        (estAdmin) ? new Admin(identifiantSaisi, motdepasseSaisi, -1, identifiantSaisi) :
-            new Producteur(identifiantSaisi, motdepasseSaisi, identifiantSaisi, "", "", "", null);
+        (estAdmin) ? new Admin(-1, identifiantSaisi, identifiantSaisi, motdepasseSaisi) :
+            new Producteur(identifiantSaisi, identifiantSaisi, "", "", "", motdepasseSaisi, null);
     if (!utilisateur.verifieIdentifiants()) {
       StageUtil.afficheAlerte("L'identifiant et le mot de passe saisis ne correspondent pas.",
           StageUtil.getFenetre(root));
@@ -88,7 +88,7 @@ public class ConnexionCtrl implements Initializable {
     }
 
     // L'utilisateur a saisi ses identifiants correctement.
-    SessionManager.ouvreSession(identifiantSaisi, estAdmin);
+    SingleSession.ouvreSession(identifiantSaisi, estAdmin);
 
     String ressource = "/root/controller/fxml/Tableaudebord.fxml";
     FXMLLoader loader = new FXMLLoader(getClass().getResource(ressource));

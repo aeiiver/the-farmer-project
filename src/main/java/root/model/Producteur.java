@@ -1,6 +1,5 @@
 package root.model;
 
-import root.data.AdminDao;
 import root.data.ProducteurDao;
 import root.data.SingleConnection;
 
@@ -57,15 +56,15 @@ public class Producteur extends Utilisateur {
   /**
    * Constructeur.
    *
-   * @param mail    L'adresse email du producteur.
-   * @param mdp     Son mot de passe.
    * @param siret   Le numéro SIRET auquel le producteur est associé.
+   * @param mail    L'adresse email du producteur.
    * @param nom     Le nom du producteur.
    * @param prenom  Le prénom du producteur.
    * @param numTel  Le numéro de téléphone du producteur.
-   * @param adresse L'adresse du producteur, représenté par un objet Adresse.
+   * @param mdp     Son mot de passe.
+   * @param adresse L'adresse du producteur, représenté par un objet "Adresse".
    */
-  public Producteur(String mail, String mdp, String siret, String nom, String prenom, String numTel,
+  public Producteur(String siret, String mail, String nom, String prenom, String numTel, String mdp,
                     Adresse adresse) {
     super(mail, mdp);
     this.siret = siret;
@@ -174,6 +173,19 @@ public class Producteur extends Utilisateur {
     this.adresse = adresse;
   }
 
+  @Override
+  public int hashCode() {
+    return 0;
+  }
+
+  @Override
+  public boolean equals(Object other) {
+    if (!(other instanceof Producteur)) {
+      return false;
+    }
+    return siret.contentEquals(((Producteur) other).getSiret());
+  }
+
   /**
    * Vérification des informations de connexion.
    *
@@ -195,11 +207,11 @@ public class Producteur extends Utilisateur {
     // Tente de chercher un producteur avec son mail
     Producteur existant = bdd.get(this.getMail());
 
-    // Si on a rien, réessaye avec son siret
+    // Si on n'a rien, réessaye avec son siret
     if (existant == null) {
       existant = bdd.get(this.getSiret());
 
-      // Si on a rien, alors le producteur recherché n'existe pas dans la base
+      // Si on n'a rien, alors le producteur recherché n'existe pas dans la base
       if (existant == null) {
         return false;
       }

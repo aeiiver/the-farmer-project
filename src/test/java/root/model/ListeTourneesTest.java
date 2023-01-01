@@ -18,7 +18,8 @@ class ListeTourneesTest {
   void getTourneesCourantes() {
     Adresse adresse = new Adresse(1, "France", "36300", "Villa", "Rue", "Quelconque", 5, "", "");
     Client client = new Client(1, "Nom", "Prenom", "01 23 45 67 89", "0.0", adresse);
-    Producteur producteur = new Producteur("email@jaimail.com", "motdepasse1234", "000 111 222 33333", "Producteur", "Random", "99 99 99 99 99", adresse);
+    Producteur producteur = new Producteur("000 111 222 33333", "email@jaimail.com", "Producteur",
+        "Random", "99 99 99 99 99", "motdepasse1234", adresse);
     Vehicule vehicule = new Vehicule("SW-0241-1041", 500, producteur);
 
     Commande commande1 = new Commande(1, "Super Commande", 245, Date.valueOf("01/01/2023"), Time.valueOf("02:00:00"), Time.valueOf("04:00:00"), producteur, client);
@@ -44,7 +45,8 @@ class ListeTourneesTest {
   @Test
   void ajouter() {
     Adresse adresse = new Adresse(1, "France", "36300", "Villa", "Rue", "Quelconque", 5, "", "");
-    Producteur producteur = new Producteur("email@jaimail.com", "motdepasse1234", "000 111 222 33333", "Producteur", "Random", "99 99 99 99 99", adresse);
+    Producteur producteur = new Producteur("000 111 222 33333", "email@jaimail.com", "Producteur",
+        "Random", "99 99 99 99 99", "motdepasse1234", adresse);
     Vehicule vehicule = new Vehicule("SW-0241-1041", 500, producteur);
     Tournee tournee = new Tournee(1, "Trajet en camion", Time.valueOf("10:00:00"), Time.valueOf("20:00:00"), producteur, vehicule);
     ListeTournees listeTournees = new ListeTournees();
@@ -67,7 +69,8 @@ class ListeTourneesTest {
   @Test
   void supprimer() {
     Adresse adresse = new Adresse(1, "France", "36300", "Villa", "Rue", "Quelconque", 5, "", "");
-    Producteur producteur = new Producteur("email@jaimail.com", "motdepasse1234", "000 111 222 33333", "Producteur", "Random", "99 99 99 99 99", adresse);
+    Producteur producteur = new Producteur("000 111 222 33333", "email@jaimail.com", "Producteur",
+        "Random", "99 99 99 99 99", "motdepasse1234", adresse);
     Vehicule vehicule = new Vehicule("SW-0241-1041", 500, producteur);
     Tournee tournee = new Tournee(1, "Trajet en camion", Time.valueOf("10:00:00"), Time.valueOf("20:00:00"), producteur, vehicule);
     ListeTournees listeTournees = new ListeTournees();
@@ -87,7 +90,8 @@ class ListeTourneesTest {
   @Test
   void editer() {
     Adresse adresse = new Adresse(1, "France", "36300", "Villa", "Rue", "Quelconque", 5, "", "");
-    Producteur producteur = new Producteur("email@jaimail.com", "motdepasse1234", "000 111 222 33333", "Producteur", "Random", "99 99 99 99 99", adresse);
+    Producteur producteur = new Producteur("000 111 222 33333", "email@jaimail.com", "Producteur",
+        "Random", "99 99 99 99 99", "motdepasse1234", adresse);
     Vehicule vehicule = new Vehicule("SW-0241-1041", 500, producteur);
     Tournee tournee = new Tournee(1, "Trajet en camion", Time.valueOf("10:00:00"), Time.valueOf("20:00:00"), producteur, vehicule);
     ListeTournees listeTournees = new ListeTournees();

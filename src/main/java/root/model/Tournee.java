@@ -75,18 +75,38 @@ public class Tournee {
   private ArrayList<Commande> commandes;
 
   /**
-   * Construsteur.
+   * Constructeur de classe d'une tournée insérée dans la base.
    *
    * @param numTournee Le numéro de la tournée.
    * @param libelle    Le libellé de la tournée.
-   * @param heureMin   L'heure minimal pour la réalisation de la tournée.
-   * @param heureMax   L'heure maximal pour la réalisation de la tournée.
+   * @param heureMin   L'heure minimale pour la réalisation de la tournée.
+   * @param heureMax   L'heure maximale pour la réalisation de la tournée.
    * @param producteur Le producteur qui réalise la tournée.
    * @param vehicule   Le véhicule avec lequel la tournée sera réalisé.
    */
   public Tournee(int numTournee, String libelle, Time heureMin, Time heureMax,
                  Producteur producteur, Vehicule vehicule) {
     this.numTournee = numTournee;
+    this.libelle = libelle;
+    this.heureMin = heureMin;
+    this.heureMax = heureMax;
+    this.producteur = producteur;
+    this.vehicule = vehicule;
+    this.commandes = new ArrayList<>();
+  }
+
+  /**
+   * Constructeur de classe d'une tournée non insérée dans la base.
+   *
+   * @param libelle    Le libellé de la tournée.
+   * @param heureMin   L'heure minimale pour la réalisation de la tournée.
+   * @param heureMax   L'heure maximale pour la réalisation de la tournée.
+   * @param producteur Le producteur qui réalise la tournée.
+   * @param vehicule   Le véhicule avec lequel la tournée sera réalisé.
+   */
+  public Tournee(String libelle, Time heureMin, Time heureMax,
+                 Producteur producteur, Vehicule vehicule) {
+    this.numTournee = -1;
     this.libelle = libelle;
     this.heureMin = heureMin;
     this.heureMax = heureMax;
@@ -221,6 +241,19 @@ public class Tournee {
     this.commandes = commandes;
   }
 
+  @Override
+  public int hashCode() {
+    return 0;
+  }
+
+  @Override
+  public boolean equals(Object other) {
+    if (!(other instanceof Tournee)) {
+      return false;
+    }
+    return numTournee == ((Tournee) other).getNumTournee();
+  }
+
   /**
    * Méthode pour vérifier si la tournée est valide.
    *
@@ -231,7 +264,8 @@ public class Tournee {
    * @return true si la tournée est valide, false sinon
    */
   public boolean estValide() {
-    int poidTotal = 0;
+    int poidsTotal = 0;
+
     //pour chaque commande de la tournée
     for (Commande com : commandes) {
 
@@ -246,12 +280,12 @@ public class Tournee {
       //si l'heure de début et l'heure de fin sont correspondantes alors
       //la date correspond aussi puisqu'on utilise java.sql.Date .
 
-      //additionne le poid de toutes les commandes
-      poidTotal += com.getPoids();
+      //additionne le poids de toutes les commandes
+      poidsTotal += com.getPoids();
     }
 
     //vérifie si la somme du poid de toutes les commandes est valide
-    if (poidTotal > this.vehicule.getPoidsMax())
+    if (poidsTotal > this.vehicule.getPoidsMax())
       return false;
 
     return true;

@@ -83,20 +83,43 @@ public class Commande {
   private Client client;
 
   /**
-   * Constructeur de classe.
+   * Constructeur de classe d'une commande insérée dans la base.
    *
    * @param numCom     Le numéro de la commande.
-   * @param libelle    Le libéllé.
+   * @param libelle    Le libellé.
    * @param poids      Le poids, en kg.
-   * @param dateCom    La date à laquelle la commande devra être livrée, sous la forme "AAAA-MM-JJ".
-   * @param heureDeb   L'heure minimal de livraison
-   * @param heureFin   L'heure maximal de livraison
+   * @param dateCom    La date à laquelle la commande devra être livrée.
+   * @param heureDeb   L'heure de départ de livraison
+   * @param heureFin   L'heure de fin de livraison
    * @param producteur Le producteur qui a envoyé la commande.
    * @param client     Le client auquel la commande est destiné.
    */
   public Commande(int numCom, String libelle, int poids, Date dateCom, Time heureDeb, Time heureFin,
                   Producteur producteur, Client client) {
     this.numCom = numCom;
+    this.libelle = libelle;
+    this.poids = poids;
+    this.dateCom = dateCom;
+    this.heureDeb = heureDeb;
+    this.heureFin = heureFin;
+    this.producteur = producteur;
+    this.client = client;
+  }
+
+  /**
+   * Constructeur de classe d'une commande non insérée dans la base.
+   *
+   * @param libelle    Le libellé.
+   * @param poids      Le poids, en kg.
+   * @param dateCom    La date à laquelle la commande devra être livrée.
+   * @param heureDeb   L'heure de départ de livraison
+   * @param heureFin   L'heure de fin de livraison
+   * @param producteur Le producteur qui a envoyé la commande.
+   * @param client     Le client auquel la commande est destiné.
+   */
+  public Commande(String libelle, int poids, Date dateCom, Time heureDeb, Time heureFin,
+                  Producteur producteur, Client client) {
+    this.numCom = -1;
     this.libelle = libelle;
     this.poids = poids;
     this.dateCom = dateCom;
@@ -257,7 +280,7 @@ public class Commande {
 
   @Override
   public boolean equals(Object other) {
-    if (other == null) {
+    if (!(other instanceof Commande)) {
       return false;
     }
     return numCom == ((Commande) other).getNumCom();

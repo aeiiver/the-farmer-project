@@ -3,7 +3,6 @@ package root.model;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
-import root.data.AdminDao;
 import root.data.ProducteurDao;
 import root.data.SingleConnection;
 
@@ -21,12 +20,14 @@ class ProducteurTest {
   @Test
   void verifieIdentifiantsOk() {
     Adresse adresse = new Adresse(1, "France", "36300", "Villa", "Rue", "Quelconque", 5, "", "");
-    Producteur producteur = new Producteur("email@jaimail.com", "motdepasse1234", "000 111 222 33333", "Producteur", "Random", "99 99 99 99 99", adresse);
+    Producteur producteur = new Producteur("000 111 222 33333", "email@jaimail.com", "Producteur",
+        "Random", "99 99 99 99 99", "motdepasse1234", adresse);
 
     connexion = SingleConnection.getInstance();
     producteurDao = new ProducteurDao(connexion);
 
-    Producteur entreeDao = new Producteur("email@jaimail.com", "motdepasse1234", "000 111 222 33333", "Producteur", "Random", "99 99 99 99 99", adresse);
+    Producteur entreeDao = new Producteur("000 111 222 33333", "email@jaimail.com", "Producteur",
+        "Random", "99 99 99 99 99", "motdepasse1234", adresse);
     producteurDao.insert(entreeDao);
     Producteur sortieDao = null;
     for (int i = 0; i < producteurDao.getAll().size(); i++) {
@@ -45,12 +46,14 @@ class ProducteurTest {
   @Test
   void verifieIdentifiantsPasOk() {
     Adresse adresse = new Adresse(1, "France", "36300", "Villa", "Rue", "Quelconque", 5, "", "");
-    Producteur producteur = new Producteur("email@jaimail.com", "motdepasse1234", "000 111 222 33333", "Producteur", "Random", "99 99 99 99 99", adresse);
+    Producteur producteur = new Producteur("000 111 222 33333", "email@jaimail.com", "Producteur",
+        "Random", "99 99 99 99 99", "motdepasse1234", adresse);
 
     connexion = SingleConnection.getInstance();
     producteurDao = new ProducteurDao(connexion);
 
-    Producteur entreeDao = new Producteur("email@jaimail.com", "motdepasse1234", "000 111 222 33333", "Producteur", "Random", "99 99 99 99 99", adresse);
+    Producteur entreeDao = new Producteur("000 111 222 33333", "email@jaimail.com", "Producteur",
+        "Random", "99 99 99 99 99", "motdepasse1234", adresse);
     producteurDao.insert(entreeDao);
     Producteur sortieDao = null;
     for (int i = 0; i < producteurDao.getAll().size(); i++) {

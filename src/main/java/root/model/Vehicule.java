@@ -33,7 +33,7 @@ public class Vehicule {
   private Producteur proprietaire;
 
   /**
-   * Constructeur de la classe Véhicule.
+   * Constructeur de la classe "Véhicule".
    *
    * @param immat immatriculation du véhicule
    * @param poidsMax capacité maximale du véhicule en Kg
@@ -97,6 +97,19 @@ public class Vehicule {
    */
   public void setProprietaire(Producteur proprietaire) {
     this.proprietaire = proprietaire;
+  }
+
+  @Override
+  public int hashCode() {
+    return 0;
+  }
+
+  @Override
+  public boolean equals(Object other) {
+    if (!(other instanceof Vehicule)) {
+      return false;
+    }
+    return immat.contentEquals(((Vehicule) other).getImmat());
   }
 
 }

@@ -11,7 +11,7 @@ public class Admin extends Utilisateur {
   /**
    * ID de l'administrateur.
    *
-   * @see Admin#Admin(String, String, int, String)
+   * @see Admin#Admin(int, String, String, String)
    * @see Admin#getIdAdmin()
    * @see Admin#setIdAdmin(int)
    */
@@ -20,7 +20,7 @@ public class Admin extends Utilisateur {
   /**
    * Pseudonyme de l'administrateur.
    *
-   * @see Admin#Admin(String, String, int, String)
+   * @see Admin#Admin(int, String, String, String)
    * @see Admin#getPseudo()
    * @see Admin#setPseudo(String)
    */
@@ -29,12 +29,12 @@ public class Admin extends Utilisateur {
   /**
    * Constructeur de classe.
    *
-   * @param mail    Une adresse email.
-   * @param mdp     Un mot de passe.
    * @param idAdmin Un numéro d'identification.
+   * @param mail    Une adresse email.
    * @param pseudo  Un pseudo.
+   * @param mdp     Un mot de passe.
    */
-  public Admin(String mail, String mdp, int idAdmin, String pseudo) {
+  public Admin(int idAdmin, String mail, String pseudo, String mdp) {
     super(mail, mdp);
     this.idAdmin = idAdmin;
     this.pseudo = pseudo;
@@ -77,6 +77,19 @@ public class Admin extends Utilisateur {
     this.pseudo = pseudo;
   }
 
+  @Override
+  public int hashCode() {
+    return 0;
+  }
+
+  @Override
+  public boolean equals(Object other) {
+    if (!(other instanceof Admin)) {
+      return false;
+    }
+    return idAdmin == ((Admin) other).getIdAdmin();
+  }
+
   /**
    * Vérification des informations de connexion.
    *
@@ -98,11 +111,11 @@ public class Admin extends Utilisateur {
     // Tente de chercher un administrateur avec son mail
     Admin existant = bdd.get(this.getMail());
 
-    // Si on a rien, réessaye avec son pseudo
+    // Si on n'a rien, réessaye avec son pseudo
     if (existant == null) {
       existant = bdd.get(this.getPseudo());
 
-      // Si on a rien, alors l'administrateur recherché n'existe pas dans la base
+      // Si on n'a rien, alors l'administrateur recherché n'existe pas dans la base
       if (existant == null) {
         return false;
       }

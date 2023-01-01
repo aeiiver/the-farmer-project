@@ -17,7 +17,7 @@ import root.StageUtil;
 import root.data.CommandeDao;
 import root.data.SingleConnection;
 import root.model.Commande;
-import root.model.SessionManager;
+import root.model.SingleSession;
 import root.model.SessionProducteur;
 
 /**
@@ -66,7 +66,7 @@ public class MenubarProducteurCtrl {
         cell -> new SimpleStringProperty(cell.getValue().getClient().getPrenomNom()));
 
     ObservableList<Commande> commandes =
-        (ObservableList<Commande>) ((SessionProducteur) SessionManager.getSession())
+        (ObservableList<Commande>) ((SessionProducteur) SingleSession.getSession())
             .getListeCommandes()
             .getCommandes();
     CommandeDao dao = new CommandeDao(SingleConnection.getInstance());
@@ -126,7 +126,7 @@ public class MenubarProducteurCtrl {
 
   @FXML
   private void deconnexion() {
-    SessionManager.fermeSession();
+    SingleSession.fermeSession();
     changeScene("/root/controller/fxml/Connexion.fxml");
   }
 

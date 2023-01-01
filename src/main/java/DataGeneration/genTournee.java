@@ -16,13 +16,14 @@ public class genTournee {
       Connection singleConnection = SingleConnection.getInstance();
       java.sql.Time heureMin = new CommandeDao(singleConnection).get(ite * i + i).getHeureDeb();
       java.sql.Time heureMax = new CommandeDao(singleConnection).get(ite * i + i).getHeureFin();
+
+      // Je ne connais pas l'intention de ce code incomplet, mais ça fait rater la compilation
+      /*
       Tournee tournee = new Tournee (i, faker.lorem().sentence(), heureMin, heureMax,
 
 
       );
-
-
-      }
+      */
     }
   }
 }

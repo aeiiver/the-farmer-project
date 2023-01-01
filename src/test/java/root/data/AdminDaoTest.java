@@ -3,13 +3,11 @@ package root.data;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -39,7 +37,7 @@ public class AdminDaoTest {
    */
   @Test
   void insert() throws SQLException {
-    Admin admin = new Admin("testemail@dontmail.me", "1234hasher_moi", -1, "John");
+    Admin admin = new Admin(-1, "testemail@dontmail.me", "John", "1234hasher_moi");
 
     boolean recu = systemUnderTest.insert(admin);
     assertTrue(recu);
@@ -53,7 +51,7 @@ public class AdminDaoTest {
    */
   @Test
   void get() throws SQLException {
-    Admin attendu = new Admin("testemail@dontmail.me", "1234hasher_moi", 42, "John");
+    Admin attendu = new Admin(42, "testemail@dontmail.me", "John", "1234hasher_moi");
     insertAdmin(attendu);
 
     Admin recu = systemUnderTest.get(attendu.getPseudo());
@@ -87,7 +85,7 @@ public class AdminDaoTest {
    */
   @Test
   void update() throws SQLException {
-    Admin admin = new Admin("testemail@dontmail.me", "1234hasher_moi", 42, "John");
+    Admin admin = new Admin(42, "testemail@dontmail.me", "John", "1234hasher_moi");
     insertAdmin(admin);
 
     admin.setMail("jai.change.de.mail@mail.me");
@@ -105,7 +103,7 @@ public class AdminDaoTest {
    */
   @Test
   void delete() throws SQLException {
-    Admin admin = new Admin("testemail@dontmail.me", "1234hasher_moi", 42, "John");
+    Admin admin = new Admin(42, "testemail@dontmail.me", "John", "1234hasher_moi");
     insertAdmin(admin);
 
     boolean recu = systemUnderTest.delete(admin);
@@ -177,9 +175,9 @@ public class AdminDaoTest {
 
   private static List<Admin> prepareSomesAdmins() {
     List<Admin> admins =
-        List.of(new Admin("testemail@dontmail.me", "1234hasher_moi", 42, "John"),
-            new Admin("trying.something@website.org", "un_mot_de_passe", 43, "Jean"),
-            new Admin("blabla@abc.xyz", "le-chat-est-passe-par-la", 44, "Carl"));
+        List.of(new Admin(42, "testemail@dontmail.me", "John", "1234hasher_moi"),
+            new Admin(43, "trying.something@website.org", "Jean", "un_mot_de_passe"),
+            new Admin(44, "blabla@abc.xyz", "Carl", "le-chat-est-passe-par-la"));
 
     admins.forEach(admin -> {
       try {
