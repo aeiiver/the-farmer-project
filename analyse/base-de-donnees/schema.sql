@@ -5,7 +5,7 @@ CREATE TABLE Adresse(
    ville VARCHAR(100) NOT NULL,
    voie VARCHAR(15) NOT NULL,
    nom VARCHAR(100) NOT NULL,
-   numero SMALLINT NOT NULL,
+   numero SMALLINT,
    mention VARCHAR(10),
    complement VARCHAR(100),
    PRIMARY KEY(idAdresse)
