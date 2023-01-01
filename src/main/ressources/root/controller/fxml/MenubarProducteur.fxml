@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+
+<MenuBar fx:id="root" layoutY="2.0" prefHeight="25.0" prefWidth="1013.0" xmlns="http://javafx.com/javafx/19"
+         xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.controller.MenubarProducteurCtrl">
+    <Menu mnemonicParsing="false" text="Tableau de bord">
+        <MenuItem mnemonicParsing="false" onAction="#gotoTableaudebord" text="Tableau de bord"/>
+    </Menu>
+    <Menu mnemonicParsing="false" text="Commandes">
+        <MenuItem mnemonicParsing="false" onAction="#gotoListeCommandes" text="Mes commandes"/>
+        <MenuItem mnemonicParsing="false" onAction="#gotoFormCommande" text="Nouvelle commande"/>
+    </Menu>
+    <Menu mnemonicParsing="false" text="Tournées">
+        <MenuItem mnemonicParsing="false" onAction="#gotoListeTournees" text="Mes tournées"/>
+        <MenuItem mnemonicParsing="false" onAction="#gotoFormTournee" text="Nouvelle tournée"/>
+    </Menu>
+    <Menu mnemonicParsing="false" text="Véhicules">
+        <MenuItem mnemonicParsing="false" onAction="#gotoListeVehicules" text="Mes véhicules"/>
+        <MenuItem mnemonicParsing="false" onAction="#gotoFormVehicule" text="Nouveau véhicule"/>
+    </Menu>
+    <Menu mnemonicParsing="false" text="Clients">
+        <MenuItem mnemonicParsing="false" onAction="#gotoListeClients" text="Mes clients"/>
+        <MenuItem mnemonicParsing="false" onAction="#gotoFormClient" text="Nouveau client"/>
+    </Menu>
+    <Menu mnemonicParsing="false" text="Compte">
+        <MenuItem mnemonicParsing="false" onAction="#gotoCompte" text="Mon compte"/>
+        <MenuItem mnemonicParsing="false" onAction="#deconnexion" text="Déconnexion"/>
+    </Menu>
+</MenuBar>

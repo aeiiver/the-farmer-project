@@ -38,8 +38,8 @@ public class MainView {
    */
   public void lienTableaudebord(ActionEvent event) {
     event.consume();
-    ctrl.voirTableaudebord(new TableaudebordView(
-        new TableaudebordCtrl(ctrl.getPrimaryStage())));
+    System.out.println("lienTableaudebord: got commented out");
+    //ctrl.voirTableaudebord(new TableaudebordView(new TableaudebordCtrl(ctrl.getPrimaryStage())));
   }
 
   /**
@@ -107,6 +107,8 @@ public class MainView {
 
   public void deconnexion(ActionEvent event) throws IOException {
     event.consume();
-    ctrl.voirConnexion(new ConnexionCtrl(ctrl.getPrimaryStage()).getConnexionView());
+    System.out.println("deconnexion: got commented out");
+    //ctrl.voirConnexion(new ConnexionCtrl(ctrl.getPrimaryStage()).getConnexionView());
   }
+
 }

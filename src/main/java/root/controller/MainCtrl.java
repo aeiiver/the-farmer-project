@@ -60,7 +60,7 @@ public class MainCtrl {
    */
   public void voirTableaudebord(TableaudebordView tableaudebordView) {
     FXMLLoader root = new FXMLLoader(
-        Main.class.getResource("/root/controller/fxml/MainPage.fxml"));
+        Main.class.getResource("/root/controller/fxml/Tableaudebord.fxml"));
     root.setController(tableaudebordView);
     changeScene(root);
   }

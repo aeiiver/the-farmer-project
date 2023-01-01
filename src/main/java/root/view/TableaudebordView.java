@@ -5,6 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuBar;
+import javafx.stage.Stage;
+import root.controller.ConnexionCtrl;
+import root.controller.MainCtrl;
 import root.controller.TableaudebordCtrl;
 
 /**
@@ -70,8 +73,8 @@ public class TableaudebordView extends MainView {
    *
    * @param ctrl Le contrôleur de cette vue.
    */
-  public TableaudebordView(TableaudebordCtrl ctrl) {
-    super(ctrl);
+  public TableaudebordView(ConnexionCtrl ctrl) {
+    super(new MainCtrl(new Stage()));
   }
 
 
