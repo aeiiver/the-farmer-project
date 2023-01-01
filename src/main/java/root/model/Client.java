@@ -108,6 +108,15 @@ public class Client {
   }
 
   /**
+   * Getter du prénom et nom du client.
+   *
+   * @return La concaténation du prénom et du nom du client, séparée par un espace.
+   */
+  public String getPrenomNom() {
+    return prenom + " " + nom;
+  }
+
+  /**
    * Getter du numéro de téléphone du client.
    *
    * @return numTel le numéro de téléphone du client
@@ -186,6 +195,19 @@ public class Client {
    */
   public void setAdresse(Adresse adresse) {
     this.adresse = adresse;
+  }
+
+  @Override
+  public int hashCode() {
+    return 0;
+  }
+
+  @Override
+  public boolean equals(Object other) {
+    if (other == null) {
+      return false;
+    }
+    return idClient == ((Client) other).getIdClient();
   }
 
 }

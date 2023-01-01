@@ -5,7 +5,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuBar;
+import javafx.stage.Stage;
 import root.controller.CommandesCtrl;
+import root.controller.MainCtrl;
 
 /**
  * Classe de vue pour la liste des commandes.
@@ -42,7 +44,7 @@ public class CommandesView extends MainView {
    * @param ctrl Le contrôleur de cette vue.
    */
   public CommandesView(CommandesCtrl ctrl) {
-    super(ctrl);
+    super(new MainCtrl(new Stage()));
   }
 
   @FXML

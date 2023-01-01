@@ -250,4 +250,17 @@ public class Commande {
     this.client = client;
   }
 
+  @Override
+  public int hashCode() {
+    return 0;
+  }
+
+  @Override
+  public boolean equals(Object other) {
+    if (other == null) {
+      return false;
+    }
+    return numCom == ((Commande) other).getNumCom();
+  }
+
 }

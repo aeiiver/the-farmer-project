@@ -49,7 +49,8 @@ public class MainView {
    */
   public void lienCommandes(ActionEvent event) {
     event.consume();
-    ctrl.voirCommandesListes(new CommandesView(new CommandesCtrl(ctrl.getPrimaryStage())));
+    System.out.println("lienCommandes: got commented out");
+    //ctrl.voirCommandesListes(new CommandesView(new CommandesCtrl(ctrl.getPrimaryStage())));
   }
 
   /**
@@ -100,7 +101,8 @@ public class MainView {
    */
   public void lienFormCommande(ActionEvent event) {
     event.consume();
-    ctrl.voirCommandesForm(new CommandesFormView(new CommandesFormCtrl(ctrl.getPrimaryStage())));
+    System.out.println("lienFormCommande: got commented out");
+    //ctrl.voirCommandesForm(new CommandesFormView(new CommandesFormCtrl(ctrl.getPrimaryStage())));
   }
 
   public void deconnexion(ActionEvent event) throws IOException {

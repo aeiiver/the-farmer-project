@@ -1,6 +1,10 @@
 package root.model;
 
-import java.util.ArrayList;
+import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import root.data.CommandeDao;
+import root.data.SingleConnection;
 
 /**
  * Classe de modèle pour la liste des Commandes.
@@ -16,13 +20,18 @@ public class ListeCommandes {
    * @see ListeCommandes#supprimer(Commande)
    * @see Commande
    */
-  private ArrayList<Commande> commandes;
+  private ObservableList<Commande> commandes;
+  /**
+   * Le DAO qui permet au modèle d'interagir avec la base de données.
+   */
+  private CommandeDao commandeDao;
 
   /**
    * Constructeur.
    */
   public ListeCommandes() {
-    commandes = new ArrayList<>();
+    commandeDao = new CommandeDao(SingleConnection.getInstance());
+    commandes = FXCollections.observableArrayList(commandeDao.getAll());
   }
 
   /**
@@ -30,7 +39,7 @@ public class ListeCommandes {
    *
    * @return La liste des commandes.
    */
-  public ArrayList<Commande> getCommandes() {
+  public List<Commande> getCommandes() {
     return commandes;
   }
 
@@ -41,6 +50,8 @@ public class ListeCommandes {
    */
   public void ajouter(Commande commande) {
     commandes.add(commande);
+
+    commandeDao.insert(commande);
   }
 
   /**
@@ -50,6 +61,8 @@ public class ListeCommandes {
    */
   public void supprimer(Commande commande) {
     commandes.remove(commande);
+
+    commandeDao.delete(commande);
   }
 
   /**
@@ -58,6 +71,10 @@ public class ListeCommandes {
    * @param commande commande à modifier
    */
   public void editer(Commande commande) {
+    int index = commandes.indexOf(commande);
+    commandes.set(index, commande);
+
+    commandeDao.update(commande);
   }
 
 }

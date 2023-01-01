@@ -6,7 +6,9 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import root.controller.CommandesFormCtrl;
+import root.controller.MainCtrl;
 
 /**
  * Classe de vue pour le formulaire d'ajout d'une commande.
@@ -92,7 +94,7 @@ public class CommandesFormView extends MainView {
    * @param ctrl Le contrôleur de cette vue.
    */
   public CommandesFormView(CommandesFormCtrl ctrl) {
-    super(ctrl);
+    super(new MainCtrl(new Stage()));
   }
 
   /**

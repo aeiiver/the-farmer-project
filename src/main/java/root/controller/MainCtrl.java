@@ -70,8 +70,8 @@ public class MainCtrl {
    */
   public void voirCommandesListes(CommandesView commandesView) {
     FXMLLoader root = new FXMLLoader(
-        Main.class.getResource("/root/controller/fxml/ListeData.fxml"));
-    root.setController(new CommandesView(new CommandesCtrl(primaryStage)));
+        Main.class.getResource("/root/controller/fxml/TableauDonnees.fxml"));
+    root.setController(commandesView);
     changeScene(root);
     commandesView.initialize();
   }
@@ -81,7 +81,7 @@ public class MainCtrl {
    */
   public void voirTourneesListes(TourneesView tourneesView) {
     FXMLLoader root = new FXMLLoader(
-        Main.class.getResource("/root/controller/fxml/ListeData.fxml"));
+        Main.class.getResource("/root/controller/fxml/TableauDonnees.fxml"));
     root.setController(new TourneesCtrl(primaryStage));
     changeScene(root);
   }
@@ -91,7 +91,7 @@ public class MainCtrl {
    */
   public void voirCompte(CompteView compteView) {
     FXMLLoader root = new FXMLLoader(
-        Main.class.getResource("/root/controller/fxml/ListeData.fxml"));
+        Main.class.getResource("/root/controller/fxml/TableauDonnees.fxml"));
     root.setController(new CompteCtrl(primaryStage));
     changeScene(root);
   }
@@ -101,7 +101,7 @@ public class MainCtrl {
    */
   public void voirClientsListes(ClientsView clientsView) {
     FXMLLoader root = new FXMLLoader(
-        Main.class.getResource("/root/controller/fxml/ListeData.fxml"));
+        Main.class.getResource("/root/controller/fxml/TableauDonnees.fxml"));
     root.setController(new ClientsCtrl(primaryStage));
     changeScene(root);
   }
@@ -111,7 +111,7 @@ public class MainCtrl {
    */
   public void voirVehiculesListes(VehiculesView vehiculesView) {
     FXMLLoader root = new FXMLLoader(
-        Main.class.getResource("/root/controller/fxml/ListeData.fxml"));
+        Main.class.getResource("/root/controller/fxml/TableauDonnees.fxml"));
     root.setController(new VehiculesCtrl(primaryStage));
     changeScene(root);
   }
@@ -127,8 +127,8 @@ public class MainCtrl {
    */
   public void voirCommandesForm(CommandesFormView commandesFormView) {
     FXMLLoader root = new FXMLLoader(
-        Main.class.getResource("/root/controller/fxml/FormCommand.fxml"));
-    root.setController(new CommandesFormCtrl(primaryStage));
+        Main.class.getResource("/root/controller/fxml/FormCommande.fxml"));
+    root.setController(new CommandesFormCtrl());
     changeScene(root);
   }
 

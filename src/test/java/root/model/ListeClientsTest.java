@@ -2,9 +2,8 @@ package root.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
 
 class ListeClientsTest {
 
@@ -20,7 +19,7 @@ class ListeClientsTest {
     ListeClients listeClients = new ListeClients();
 
     listeClients.ajouter(client);
-    ArrayList<Client> maListe = listeClients.getClients();
+    List<Client> maListe = listeClients.getClients();
     Client recu = maListe.get(maListe.size() - 1);
 
     assertEquals(client.getIdClient(), recu.getIdClient());
@@ -42,7 +41,7 @@ class ListeClientsTest {
 
     listeClients.ajouter(client);
     listeClients.supprimer(client);
-    ArrayList<Client> maListe = listeClients.getClients();
+    List<Client> maListe = listeClients.getClients();
 
     for (int i = 0; i < maListe.size(); i++) {
       assertNotEquals(client, maListe.get(i));
@@ -62,7 +61,7 @@ class ListeClientsTest {
     client.setNom("AutreNom");
     client.setNumTel("01 02 03 04 05");
     listeClients.editer(client);
-    ArrayList<Client> maListe = listeClients.getClients();
+    List<Client> maListe = listeClients.getClients();
     Client recu = maListe.get(maListe.size() - 1);
 
     assertEquals(client.getIdClient(), recu.getIdClient());

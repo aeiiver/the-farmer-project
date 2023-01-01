@@ -1,6 +1,10 @@
 package root.model;
 
-import java.util.ArrayList;
+import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import root.data.ClientDao;
+import root.data.SingleConnection;
 
 /**
  * Classe de modèle pour la liste des Clients.
@@ -16,13 +20,18 @@ public class ListeClients {
    * @see ListeClients#supprimer(Client)
    * @see Client
    */
-  private ArrayList<Client> clients;
+  private ObservableList<Client> clients;
+  /**
+   * Le DAO qui permet au modèle d'interagir avec la base de données.
+   */
+  private ClientDao clientDao;
 
   /**
    * Constructeur.
    */
   public ListeClients() {
-    clients = new ArrayList<>();
+    clientDao = new ClientDao(SingleConnection.getInstance());
+    clients = FXCollections.observableArrayList(clientDao.getAll());
   }
 
   /**
@@ -30,7 +39,7 @@ public class ListeClients {
    *
    * @return La liste des clients.
    */
-  public ArrayList<Client> getClients() {
+  public List<Client> getClients() {
     return clients;
   }
 
@@ -41,6 +50,8 @@ public class ListeClients {
    */
   public void ajouter(Client client) {
     clients.add(client);
+
+    clientDao.insert(client);
   }
 
   /**
@@ -50,6 +61,8 @@ public class ListeClients {
    */
   public void supprimer(Client client) {
     clients.remove(client);
+
+    clientDao.delete(client);
   }
 
   /**
@@ -58,7 +71,10 @@ public class ListeClients {
    * @param client client à modifier
    */
   public void editer(Client client) {
+    int index = clients.indexOf(client);
+    clients.set(index, client);
 
+    clientDao.update(client);
   }
 
 }

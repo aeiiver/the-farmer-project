@@ -4,9 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.List;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
 
 class ListeCommandesTest {
 
@@ -24,7 +23,7 @@ class ListeCommandesTest {
     ListeCommandes listeCommandes = new ListeCommandes();
 
     listeCommandes.ajouter(commande);
-    ArrayList<Commande> maListe = listeCommandes.getCommandes();
+    List<Commande> maListe = listeCommandes.getCommandes();
     Commande recu = maListe.get(maListe.size() - 1);
 
     assertEquals(commande.getNumCom(), recu.getNumCom());
@@ -51,7 +50,7 @@ class ListeCommandesTest {
 
     listeCommandes.ajouter(commande);
     listeCommandes.supprimer(commande);
-    ArrayList<Commande> maListe = listeCommandes.getCommandes();
+    List<Commande> maListe = listeCommandes.getCommandes();
 
     for (int i = 0; i < maListe.size(); i++) {
       assertNotEquals(commande, maListe.get(i));
@@ -75,7 +74,7 @@ class ListeCommandesTest {
     commande.setHeureDeb(Time.valueOf("05:00:00"));
     commande.setHeureFin(Time.valueOf("15:00:00"));
     listeCommandes.editer(commande);
-    ArrayList<Commande> maListe = listeCommandes.getCommandes();
+    List<Commande> maListe = listeCommandes.getCommandes();
     Commande recu = maListe.get(maListe.size() - 1);
 
     assertEquals(commande.getNumCom(), recu.getNumCom());

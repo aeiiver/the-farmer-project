@@ -103,6 +103,15 @@ public class Producteur extends Utilisateur {
   }
 
   /**
+   * Getter du prénom et nom du producteur.
+   *
+   * @return La concaténation du prénom et du nom du producteur, séparée par un espace.
+   */
+  public String getPrenomNom() {
+    return prenom + " " + nom;
+  }
+
+  /**
    * Getter du numéro de téléphone du producteur.
    *
    * @return numTel le numéro de téléphone du producteur

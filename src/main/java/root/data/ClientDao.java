@@ -2,6 +2,7 @@ package root.data;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import root.model.Client;
 
@@ -58,13 +59,16 @@ public class ClientDao extends Dao<Client, Integer> {
       String query = "SELECT * FROM Client WHERE idClient = ?";
       PreparedStatement preparedStatement = connexion.prepareStatement(query);
       preparedStatement.setInt(1, id);
-      return new Client(
-          preparedStatement.executeQuery().getInt("idClient"),
-          preparedStatement.executeQuery().getString("nomClient"),
-          preparedStatement.executeQuery().getString("prenomClient"),
-          preparedStatement.executeQuery().getString("numTel"),
-          preparedStatement.executeQuery().getString("gps"),
-          new AdresseDao(connexion).get(preparedStatement.executeQuery().getInt("idAdresse")));
+      ResultSet resultat = preparedStatement.executeQuery();
+
+      return !resultat.next() ? null : new Client(
+          resultat.getInt("idClient"),
+          resultat.getString("nomClient"),
+          resultat.getString("prenomClient"),
+          resultat.getString("numTel"),
+          resultat.getString("gps"),
+          new AdresseDao(connexion).get(resultat.getInt("idAdresse")));
+
     } catch (Exception e) {
       e.printStackTrace();
       return null;
@@ -81,15 +85,19 @@ public class ClientDao extends Dao<Client, Integer> {
     try {
       String query = "SELECT * FROM Client";
       PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      ResultSet resultat = preparedStatement.executeQuery();
+
       ArrayList<Client> clients = new ArrayList<>();
-      while (preparedStatement.executeQuery().next()) {
-        clients.add(new Client(
-            preparedStatement.executeQuery().getInt("idClient"),
-            preparedStatement.executeQuery().getString("nomClient"),
-            preparedStatement.executeQuery().getString("prenomClient"),
-            preparedStatement.executeQuery().getString("numTel"),
-            preparedStatement.executeQuery().getString("gps"),
-            new AdresseDao(connexion).get(preparedStatement.executeQuery().getInt("idAdresse"))));
+
+      while (resultat.next()) {
+        clients.add(
+            new Client(
+                resultat.getInt("idClient"),
+                resultat.getString("nomClient"),
+                resultat.getString("prenomClient"),
+                resultat.getString("numTel"),
+                resultat.getString("gps"),
+                new AdresseDao(connexion).get(resultat.getInt("idAdresse"))));
       }
       return clients;
     } catch (Exception e) {
