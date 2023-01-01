@@ -1,5 +1,6 @@
 package root.view;
 
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import root.controller.ClientsCtrl;
 import root.controller.ClientsFormCtrl;
@@ -10,8 +11,6 @@ import root.controller.ConnexionCtrl;
 import root.controller.MainCtrl;
 import root.controller.TableaudebordCtrl;
 import root.controller.TourneesCtrl;
-
-import java.io.IOException;
 
 /**
  * Classe de vue mère.
@@ -105,6 +104,12 @@ public class MainView {
     //ctrl.voirCommandesForm(new CommandesFormView(new CommandesFormCtrl(ctrl.getPrimaryStage())));
   }
 
+  /**
+   * Redirige l'utilisateur vers la page de connexion.
+   *
+   * @param event L'événement déclencheur.
+   * @throws IOException Si le fichier fxml n'est pas trouvé.
+   */
   public void deconnexion(ActionEvent event) throws IOException {
     event.consume();
     System.out.println("deconnexion: got commented out");

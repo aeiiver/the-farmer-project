@@ -17,8 +17,8 @@ import root.StageUtil;
 import root.data.CommandeDao;
 import root.data.SingleConnection;
 import root.model.Commande;
-import root.model.SingleSession;
 import root.model.SessionProducteur;
+import root.model.SingleSession;
 
 /**
  * Contrôleur associé à la barre de menus.

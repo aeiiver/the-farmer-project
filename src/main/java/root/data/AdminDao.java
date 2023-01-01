@@ -83,8 +83,10 @@ public class AdminDao extends Dao<Admin, String> {
       ArrayList<Admin> admins = new ArrayList<>();
       while (preparedStatement.executeQuery().next()) {
         admins.add(new Admin(
-            preparedStatement.executeQuery().getInt("idAdmin"), preparedStatement.executeQuery().getString("mail"),
-            preparedStatement.executeQuery().getString("pseudo"), preparedStatement.executeQuery().getString("mdp")
+            preparedStatement.executeQuery().getInt("idAdmin"),
+            preparedStatement.executeQuery().getString("mail"),
+            preparedStatement.executeQuery().getString("pseudo"),
+            preparedStatement.executeQuery().getString("mdp")
         ));
       }
       return admins;

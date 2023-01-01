@@ -20,8 +20,9 @@ import root.model.Client;
 import root.model.Commande;
 import root.model.ListeCommandes;
 import root.model.Producteur;
-import root.model.SingleSession;
 import root.model.SessionProducteur;
+import root.model.SingleSession;
+
 
 /**
  * Classe contrôleuse pour la vue et modèle du formulaire d'ajout et modification d'une commande.
@@ -60,8 +61,8 @@ public class CommandesFormCtrl implements Initializable {
 
     /* Validation de la saisie */
     // Vérifie si champs vides
-    if (libelleSaisi.isEmpty() || poidsSaisi.isEmpty() || clientChoisi == null ||
-        dateChoisie == null || heureDebSaisie.isEmpty() || heureFinSaisie.isEmpty()) {
+    if (libelleSaisi.isEmpty() || poidsSaisi.isEmpty() || clientChoisi == null
+        || dateChoisie == null || heureDebSaisie.isEmpty() || heureFinSaisie.isEmpty()) {
       StageUtil.afficheAlerte("Tous les champs doivent être renseignés.",
           StageUtil.getFenetre(root));
       return;

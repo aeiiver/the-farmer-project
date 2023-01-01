@@ -91,10 +91,12 @@ public class ProducteurDao extends Dao<Producteur, String> {
       ArrayList<Producteur> producteurs = new ArrayList<>();
       while (preparedStatement.executeQuery().next()) {
         producteurs.add(new Producteur(
-            preparedStatement.executeQuery().getString("nomProd"), preparedStatement.executeQuery().getString("SIRET"),
+            preparedStatement.executeQuery().getString("nomProd"),
+            preparedStatement.executeQuery().getString("SIRET"),
             preparedStatement.executeQuery().getString("prenomProd"),
             preparedStatement.executeQuery().getString("numTel"),
-            preparedStatement.executeQuery().getString("mdp"), preparedStatement.executeQuery().getString("mail"),
+            preparedStatement.executeQuery().getString("mdp"),
+            preparedStatement.executeQuery().getString("mail"),
             new AdresseDao(connexion).get(preparedStatement.executeQuery().getInt("idAdresse"))
         ));
       }

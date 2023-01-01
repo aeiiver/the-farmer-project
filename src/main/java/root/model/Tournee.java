@@ -270,12 +270,13 @@ public class Tournee {
     for (Commande com : commandes) {
 
       //vérification de l'heure de début
-      if (com.getHeureDeb().before(this.getHeureMin()))
+      if (com.getHeureDeb().before(this.getHeureMin())) {
         return false;
-
+      }
       //vérification de l'heure de fin
-      if (com.getHeureFin().after(this.heureMax))
+      if (com.getHeureFin().after(this.heureMax)) {
         return false;
+      }
 
       //si l'heure de début et l'heure de fin sont correspondantes alors
       //la date correspond aussi puisqu'on utilise java.sql.Date .
@@ -285,8 +286,9 @@ public class Tournee {
     }
 
     //vérifie si la somme du poid de toutes les commandes est valide
-    if (poidsTotal > this.vehicule.getPoidsMax())
+    if (poidsTotal > this.vehicule.getPoidsMax()) {
       return false;
+    }
 
     return true;
   }
