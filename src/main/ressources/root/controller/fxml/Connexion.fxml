@@ -1,51 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-      minWidth="-Infinity" prefHeight="520.0" prefWidth="408.0"
-      xmlns="http://javafx.com/javafx/19"  xmlns:fx="http://javafx.com/fxml">
-   <PasswordField fx:id="motdepasse" layoutX="56.0" layoutY="278.0" prefHeight="35.0"
-                  prefWidth="293.0"/>
-   <TextField fx:id="identifiant" layoutX="56.0" layoutY="179.0" prefHeight="35.0"
-              prefWidth="293.0"/>
-   <Label layoutX="67.0" layoutY="144.0" text="Identifiant">
-      <font>
-         <Font size="24.0"/>
-      </font>
-   </Label>
-   <Label layoutX="68.0" layoutY="243.0" text="Mot de passe">
-      <font>
-         <Font size="24.0"/>
-      </font>
-   </Label>
-   <Label layoutX="22.0" layoutY="31.0" text="Betteraves et Potimarrons">
-      <font>
-         <Font size="32.0"/>
-      </font>
-   </Label>
-   <Label fx:id="message" layoutX="65.0" layoutY="374.0" prefHeight="65.0" prefWidth="274.0" wrapText="true">
-      <font>
-         <Font size="18.0" />
-      </font>
-   </Label>
-   <CheckBox fx:id="mode" layoutX="75.0" layoutY="334.0" mnemonicParsing="false"
-             text="Administrateur">
-      <font>
-         <Font size="18.0"/>
-      </font>
-   </CheckBox>
-   <Button layoutX="139.0" layoutY="451.0" mnemonicParsing="false"
-           text="Se connecter" onAction="#connexion">
-      <font>
-         <Font size="18.0"/>
-      </font>
-   </Button>
-</Pane>
+<VBox fx:id="root" alignment="TOP_CENTER" spacing="40.0" xmlns="http://javafx.com/javafx/19"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.controller.ConnexionCtrl">
+    <padding>
+        <Insets bottom="28.0" left="28.0" right="28.0" top="28.0"/>
+    </padding>
+    <Label text="Betteraves et Potimarrons">
+        <font>
+            <Font size="30.0"/>
+        </font>
+    </Label>
+    <VBox>
+        <Label text="Identifiant">
+            <font>
+                <Font size="20.0"/>
+            </font>
+        </Label>
+        <TextField fx:id="identifiant">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </TextField>
+    </VBox>
+    <VBox>
+        <Label text="Mot de passe">
+            <font>
+                <Font size="20.0"/>
+            </font>
+        </Label>
+        <PasswordField fx:id="motdepasse">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </PasswordField>
+    </VBox>
+    <VBox>
+        <CheckBox fx:id="modeAdmin" mnemonicParsing="false" text="Administrateur">
+            <font>
+                <Font size="20.0"/>
+            </font>
+        </CheckBox>
+    </VBox>
+    <Button mnemonicParsing="false" onAction="#verifieIdentifiants" text="Se connecter">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Button>
+</VBox>

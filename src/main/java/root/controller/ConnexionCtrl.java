@@ -1,12 +1,22 @@
 package root.controller;
 
 import java.io.IOException;
-import javafx.stage.Stage;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.VBox;
+import root.StageUtil;
 import root.model.Admin;
 import root.model.Producteur;
+import root.model.SessionManager;
 import root.model.Utilisateur;
-import root.view.ConnexionView;
-import root.view.TableaudebordView;
 
 /**
  * Classe contrôleuse pour la vue sur l'écran de connexion utilisateur.
@@ -14,33 +24,16 @@ import root.view.TableaudebordView;
  * <p>Cette classe n'a pas de modèles en champs privés car il n'y a pas besoin
  * de mémoriser les saisies de l'utilisateur.</p>
  */
-public class ConnexionCtrl extends MainCtrl {
+public class ConnexionCtrl implements Initializable {
 
-  /**
-   * Vue de l'écran de connexion utilisateur.
-   *
-   */
-  private ConnexionView connexionView;
-
-  /**
-   * Vue du tableau de bord.
-   *
-   */
-  private TableaudebordView tableaudebordView;
-
-  /**
-   * Stage de la fenêtre.
-   */
-  private Stage primaryStage;
-
-  /**
-   * Constructeur de la classe.
-   */
-  public ConnexionCtrl(Stage primaryStage) throws IOException {
-    super(primaryStage);
-    this.connexionView = new ConnexionView(this);
-    this.tableaudebordView = new TableaudebordView(new TableaudebordCtrl(primaryStage));
-  }
+  @FXML
+  private VBox root;
+  @FXML
+  private TextField identifiant;
+  @FXML
+  private TextField motdepasse;
+  @FXML
+  private CheckBox modeAdmin;
 
   /**
    * Vérifie que les identifiants saisis ont une correspondance dans la base de
@@ -66,38 +59,48 @@ public class ConnexionCtrl extends MainCtrl {
    * ou la base a retourné un résultat vide), on indiquera à l'utilisateur que
    * les saisies sont incorrectes.</p>
    */
-  public void verifieIdentifiants() {
-    String identifiant = connexionView.getIdentifiant().trim();
-    String motDePasse = connexionView.getMdp();
-    boolean estAdmin = connexionView.getConnexionMode();
+  @FXML
+  private void verifieIdentifiants() throws IOException {
+    String identifiantSaisi = identifiant.getText();
+    String motdepasseSaisi = motdepasse.getText();
+    boolean estAdmin = modeAdmin.isSelected();
 
     // Valide les champs
-    if (identifiant.isEmpty() || motDePasse.isEmpty()) {
-      this.connexionView.setMessage("Tous les champs doivent être renseignés.");
+    if (identifiantSaisi.isEmpty() || motdepasseSaisi.isEmpty()) {
+      StageUtil.afficheAlerte("Tous les champs doivent être renseignés.",
+          StageUtil.getFenetre(root));
       return;
     }
-    if (!valideIdentifiants(identifiant, motDePasse, estAdmin)) {
-      this.connexionView.setMessage("L'identifiant ou le mot de passe saisi est invalide.");
+    if (!valideIdentifiants(identifiantSaisi, estAdmin)) {
+      StageUtil.afficheAlerte("L'identifiant ou le mot de passe saisi est invalide.",
+          StageUtil.getFenetre(root));
       return;
     }
 
     // Vérifie les identifiants dans la base de données
-    Utilisateur utilisateur = (estAdmin)
-        ? new Admin(identifiant, motDePasse, -1, identifiant)
-        : new Producteur(identifiant, motDePasse, identifiant, "", "", "", null);
+    Utilisateur utilisateur =
+        (estAdmin) ? new Admin(identifiantSaisi, motdepasseSaisi, -1, identifiantSaisi) :
+            new Producteur(identifiantSaisi, motdepasseSaisi, identifiantSaisi, "", "", "", null);
     if (!utilisateur.verifieIdentifiants()) {
-      this.connexionView.setMessage(
-          "L'identifiant et le mot de passe saisis ne correspondent pas.");
+      StageUtil.afficheAlerte("L'identifiant et le mot de passe saisis ne correspondent pas.",
+          StageUtil.getFenetre(root));
       return;
     }
 
-    // L'utilisateur a saisi ses identifiants correctement
+    // L'utilisateur a saisi ses identifiants correctement.
+    SessionManager.ouvreSession(identifiantSaisi, estAdmin);
+
+    String ressource = "/root/controller/fxml/Tableaudebord.fxml";
+    FXMLLoader loader = new FXMLLoader(getClass().getResource(ressource));
+    Parent tableaudebord = loader.load();
+
     if (estAdmin) {
-      // TODO à remplacer avec le tableau de bord admin
-      this.voirTableaudebord(this.tableaudebordView);
+      // TODO à remplacer avec le tableau de bord admin (liste des producteurs ?)
+      StageUtil.getFenetre(root).setScene(new Scene(tableaudebord));
     } else {
-      this.voirTableaudebord(this.tableaudebordView);
+      StageUtil.getFenetre(root).setScene(new Scene(tableaudebord));
     }
+
   }
 
   /**
@@ -118,7 +121,7 @@ public class ConnexionCtrl extends MainCtrl {
    *
    * @return true si les identifiants sont valides, false sinon.
    */
-  public boolean valideIdentifiants(String identifiant, String motdepasse, boolean estAdmin) {
+  public boolean valideIdentifiants(String identifiant, boolean estAdmin) {
     String mailPattern =
         "^[A-Za-z0-9]+([-_.][A-Za-z0-9]+)*@[A-Za-z0-9]+([-_.][A-Za-z0-9]+)*\\.[a-z]{2,3}$";
 
@@ -132,40 +135,17 @@ public class ConnexionCtrl extends MainCtrl {
     return identifiant.matches(mailPattern + "|" + siretPattern);
   }
 
-  /**
-   * Retourne la vue de l'écran de connexion associée à ce contrôleur.
-   *
-   * @return La vue de l'écran de connexion.
-   */
-  public ConnexionView getConnexionView() {
-    return connexionView;
-  }
+  @Override
+  public void initialize(URL url, ResourceBundle resourceBundle) {
 
-  /**
-   * Change la vue courante de l'écran de connexion avec une nouvelle.
-   *
-   * @param connexionView La vue nouvelle.
-   */
-  public void setConnexionView(ConnexionView connexionView) {
-    this.connexionView = connexionView;
+    root.setOnKeyPressed(keyEvent -> {
+      if (keyEvent.getCode() == KeyCode.ENTER) {
+        try {
+          verifieIdentifiants();
+        } catch (IOException e) {
+          throw new RuntimeException(e);
+        }
+      }
+    });
   }
-
-  /**
-   * Retourne la vue du tableau de bord associée à ce contrôleur.
-   *
-   * @return La vue du tableau de bord.
-   */
-  public TableaudebordView getTableaudebordView() {
-    return tableaudebordView;
-  }
-
-  /**
-   * Change la vue courante du tableau de bord avec une nouvelle.
-   *
-   * @param tableaudebordView La vue nouvelle.
-   */
-  public void setTableaudebordView(TableaudebordView tableaudebordView) {
-    this.tableaudebordView = tableaudebordView;
-  }
-
 }

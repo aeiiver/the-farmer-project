@@ -1,33 +1,19 @@
 package root;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
-import root.controller.ConnexionCtrl;
-import root.controller.TableaudebordCtrl;
-import root.view.ConnexionView;
-import root.view.TableaudebordView;
-
-import java.util.ListResourceBundle;
+import root.data.SingleConnection;
+import root.model.SessionManager;
 
 /**
  * Classe représentant le point d'entrée principale de l'application.
  */
 public class Main extends Application {
-  /**
-   * Lancement du logiciel.
-   *
-   * @param stage Le stage principal de l'application.
-   * @throws Exception Si une erreur survient lors du chargement de la vue.
-   */
-  @Override
-  public void start(Stage stage) throws Exception {
-    ConnexionCtrl connexionCtrl = new ConnexionCtrl(stage);
-    TableaudebordCtrl tableaudebordCtrl = new TableaudebordCtrl(stage);
-    ConnexionView connexionView = new ConnexionView(connexionCtrl);
-    connexionCtrl.setConnexionView(connexionView);
-    connexionCtrl.setTableaudebordView(new TableaudebordView(tableaudebordCtrl));
-    connexionCtrl.voirConnexion(connexionView);
-  }
 
   /**
    * Point d'entrée principale de l'application.
@@ -37,4 +23,21 @@ public class Main extends Application {
   public static void main(String[] args) {
     launch(args);
   }
+
+  /**
+   * Lancement du logiciel.
+   *
+   * @param fenetre La fenêtre principale de l'application.
+   */
+  @Override
+  public void start(Stage fenetre) throws IOException {
+    String ressource = "/root/controller/fxml/Connexion.fxml";
+    FXMLLoader loader = new FXMLLoader(getClass().getResource(ressource));
+    Parent ecranConnexion = loader.load();
+
+    fenetre.setTitle("Betteraves et Potimarrons");
+    fenetre.setScene(new Scene(ecranConnexion));
+    fenetre.show();
+  }
+
 }

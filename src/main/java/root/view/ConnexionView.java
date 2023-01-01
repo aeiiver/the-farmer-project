@@ -7,7 +7,9 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import root.controller.ConnexionCtrl;
+import root.controller.MainCtrl;
 
 /**
  * Classe de vue pour la connexion.
@@ -57,7 +59,7 @@ public class ConnexionView extends MainView {
    * @param ctrl Le contrôleur de cette vue.
    */
   public ConnexionView(ConnexionCtrl ctrl) {
-    super(ctrl);
+    super(new MainCtrl(new Stage()));
   }
 
   /**
@@ -115,6 +117,5 @@ public class ConnexionView extends MainView {
    */
   public void connexion(ActionEvent actionEvent) {
     actionEvent.consume();
-    ((ConnexionCtrl) ctrl).verifieIdentifiants();
   }
 }
