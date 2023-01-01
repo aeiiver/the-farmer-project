@@ -275,7 +275,7 @@ public class Adresse {
   }
 
   public String toString() {
-    return pays + " " + codePost + " " + ville + " " + voie + " " + nom + " " + numero + " " + mention + " " + complement;
+    return pays + " " + codePost + " " + ville + " " + numero + " "  + voie + " " + nom + " " + mention + " " + complement;
   }
 
 }

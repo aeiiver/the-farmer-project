@@ -19,10 +19,13 @@ public class genCommande {
         max = temp;
       }
 
+      /*
       Commande commande = new Commande(i, faker.lorem().sentence(),
           faker.number().numberBetween(1, 50), faker.date().between(Date.valueOf("2020-01-01"), Date.valueOf("2020-12-31")),
           min, max, sirets.get(faker.number().numberBetween(0, sirets.size() - 1)),
           faker.number().numberBetween(1, nbClients));
+
+       */
 
     }
   }
