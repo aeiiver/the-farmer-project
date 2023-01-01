@@ -8,13 +8,13 @@ public class Main {
         int nbClients = 1;
         int nbCommandes = 500;
 
-        //ArrayList<String> sirets = genProducteur.genProducteur(10);
+        ArrayList<String> sirets = genProducteur.genProducteur(10);
         genClient.genClient(nbClients);
 
-        /*
+        genVehicule.genVehicule(15, sirets);
+
         genCommande.genCommande(nbCommandes, sirets, nbClients);
         genTournee.genTournee(50, nbCommandes);
-         */
 
     }
 }
