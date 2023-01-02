@@ -34,6 +34,7 @@ public class VehiculesCtrl extends MainCtrl  {
    * Affiche la vue du formulaire d'ajout d'un véhicule.
    */
   public void ajouterVehicules() {
+
   }
 
   /**
