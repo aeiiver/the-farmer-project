@@ -3,7 +3,6 @@ package datageneration;
 import com.github.javafaker.Faker;
 import java.io.IOException;
 import java.sql.Connection;
-
 import root.data.ClientDao;
 import root.data.SingleConnection;
 import root.model.Adresse;

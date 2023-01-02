@@ -4,7 +4,6 @@ import com.github.javafaker.Faker;
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.ArrayList;
-
 import root.data.ProducteurDao;
 import root.data.SingleConnection;
 import root.model.Adresse;
@@ -32,7 +31,7 @@ public class GenProducteur {
    * @throws IOException Si le producteur n'a pas pu être généré.
    */
   public static ArrayList<String> generate(int nbProducteur) throws IOException {
-    ArrayList<String> listSiret = new ArrayList<String>();
+    ArrayList<String> listSiret = new ArrayList<>();
     for (int i = 0; i < nbProducteur; i++) {
       Faker faker = new Faker();
 
@@ -42,11 +41,13 @@ public class GenProducteur {
       String siret = faker.number().digits(14);
       listSiret.add(siret);
       Connection singleConnection = SingleConnection.getInstance();
+      String mdp = faker.internet().password(8, 16);
+      //TODO hash mdp
 
       Producteur producteur = new Producteur(siret,
           faker.internet().emailAddress(), faker.name().firstName(),
           faker.name().lastName(), faker.phoneNumber().phoneNumber(),
-          faker.internet().password(8, 16), adresse);
+          mdp, adresse);
       new ProducteurDao(singleConnection).insert(producteur);
     }
     return listSiret;
