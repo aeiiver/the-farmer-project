@@ -17,7 +17,7 @@ public abstract class Utilisateur {
   private String mail;
 
   /**
-   * Mot de passe de l'utilisateur.
+   * Mot de passe chiffré de l'utilisateur.
    *
    * @see Utilisateur#Utilisateur(String, String)
    * @see Utilisateur#getMdp()
@@ -71,9 +71,12 @@ public abstract class Utilisateur {
   /**
    * Méthode pour récupérer le mot de passe de l'utilisateur.
    *
+   * <p>Le mot de passe est chiffré.</p>
+   *
    * @return mot de passe de l'utilisateur
    */
   public String getMdp() {
     return mdp;
   }
+
 }

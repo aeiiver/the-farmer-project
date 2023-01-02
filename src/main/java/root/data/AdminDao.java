@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import org.mindrot.jbcrypt.BCrypt;
 import root.model.Admin;
 
 /**
@@ -28,12 +29,17 @@ public class AdminDao extends Dao<Admin, String> {
    */
   @Override
   public boolean insert(Admin admin) {
+    String sel = BCrypt.gensalt();
+    String mdpChiffre = BCrypt.hashpw(admin.getMdp(), sel);
+
     try {
       String query = "INSERT INTO Admin (mail, pseudo, mdp) VALUES (?, ?, ?)";
       PreparedStatement preparedStatement = connexion.prepareStatement(query);
+
       preparedStatement.setString(1, admin.getMail());
       preparedStatement.setString(2, admin.getPseudo());
-      preparedStatement.setString(3, admin.getMdp());
+      preparedStatement.setString(3, mdpChiffre);
+
       preparedStatement.executeUpdate();
       return true;
     } catch (Exception e) {

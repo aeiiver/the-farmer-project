@@ -12,9 +12,12 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
+import org.mindrot.jbcrypt.BCrypt;
 import root.StageUtil;
-import root.model.Admin;
-import root.model.Producteur;
+import root.data.AdminDao;
+import root.data.Dao;
+import root.data.ProducteurDao;
+import root.data.SingleConnection;
 import root.model.SingleSession;
 import root.model.Utilisateur;
 
@@ -61,7 +64,7 @@ public class ConnexionCtrl implements Initializable {
    */
   @FXML
   private void verifieIdentifiants() throws IOException {
-    String identifiantSaisi = identifiant.getText();
+    String identifiantSaisi = identifiant.getText().trim();
     String motdepasseSaisi = motdepasse.getText();
     boolean estAdmin = modeAdmin.isSelected();
 
@@ -78,10 +81,15 @@ public class ConnexionCtrl implements Initializable {
     }
 
     // Vérifie les identifiants dans la base de données
-    Utilisateur utilisateur =
-        (estAdmin) ? new Admin(-1, identifiantSaisi, identifiantSaisi, motdepasseSaisi) :
-            new Producteur(identifiantSaisi, identifiantSaisi, "", "", "", motdepasseSaisi, null);
-    if (!utilisateur.verifieIdentifiants()) {
+    Dao dao = (estAdmin)
+        ? new AdminDao(SingleConnection.getInstance())
+        : new ProducteurDao(SingleConnection.getInstance());
+    Utilisateur user = (Utilisateur) dao.get(identifiantSaisi);
+
+    String mdpChiffreStocke = user.getMdp();
+    boolean ok = BCrypt.checkpw(motdepasseSaisi, mdpChiffreStocke);
+
+    if (!ok) {
       StageUtil.afficheAlerte("L'identifiant et le mot de passe saisis ne correspondent pas.",
           StageUtil.getFenetre(root));
       return;

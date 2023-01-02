@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import org.mindrot.jbcrypt.BCrypt;
 import root.model.Producteur;
 
 /**
@@ -28,18 +29,23 @@ public class ProducteurDao extends Dao<Producteur, String> {
    */
   @Override
   public boolean insert(Producteur producteur) {
+    String sel = BCrypt.gensalt();
+    String mdpChiffre = BCrypt.hashpw(producteur.getMdp(), sel);
+
     try {
       String query = "INSERT INTO Producteur "
           + "(SIRET, mail, nomProd, prenomProd, numTel, mdp, idAdresse) "
           + "VALUES (?, ?, ?, ?, ?, ?, ?)";
       PreparedStatement preparedStatement = connexion.prepareStatement(query);
+
       preparedStatement.setString(1, producteur.getSiret());
       preparedStatement.setString(2, producteur.getMail());
       preparedStatement.setString(3, producteur.getNom());
       preparedStatement.setString(4, producteur.getPrenom());
       preparedStatement.setString(5, producteur.getNumTel());
-      preparedStatement.setString(6, producteur.getMdp());
-      preparedStatement.setInt(6, producteur.getAdresse().getIdAdresse());
+      preparedStatement.setString(6, mdpChiffre);
+      preparedStatement.setInt(7, producteur.getAdresse().getIdAdresse());
+
       preparedStatement.executeUpdate();
       return true;
     } catch (Exception e) {
