@@ -1,5 +1,9 @@
 package root.model;
 
+import root.data.ClientDao;
+import root.data.ProducteurDao;
+import root.data.SingleConnection;
+
 import java.util.ArrayList;
 
 /**
@@ -19,10 +23,16 @@ public class ListeProducteurs {
   private ArrayList<Producteur> producteurs;
 
   /**
+   * Le DAO qui permet au modèle d'interagir avec la base de données.
+   */
+  private ProducteurDao producteurDao;
+
+  /**
    * Constructeur.
    */
   public ListeProducteurs() {
     producteurs = new ArrayList<>();
+    producteurDao = new ProducteurDao(SingleConnection.getInstance());
   }
 
   /**
@@ -40,7 +50,9 @@ public class ListeProducteurs {
    * @param producteur producteur à ajouter
    */
   public void ajouter(Producteur producteur) {
+
     producteurs.add(producteur);
+    producteurDao.insert(producteur);
   }
 
   /**
@@ -49,7 +61,9 @@ public class ListeProducteurs {
    * @param producteur producteur à supprimer
    */
   public void supprimer(Producteur producteur) {
+
     producteurs.remove(producteur);
+    producteurDao.delete(producteur);
   }
 
   /**
@@ -58,6 +72,10 @@ public class ListeProducteurs {
    * @param producteur producteur à modifier
    */
   public void editer(Producteur producteur) {
+    int index = producteurs.indexOf(producteur);
+    producteurs.set(index, producteur);
+
+    producteurDao.update(producteur);
   }
 
 }

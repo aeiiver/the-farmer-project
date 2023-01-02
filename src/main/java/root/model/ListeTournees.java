@@ -1,5 +1,9 @@
 package root.model;
 
+import root.data.ProducteurDao;
+import root.data.SingleConnection;
+import root.data.TourneeDao;
+
 import java.util.ArrayList;
 
 /**
@@ -19,10 +23,17 @@ public class ListeTournees {
   private ArrayList<Tournee> tournees;
 
   /**
+   * Le DAO qui permet au modèle d'interagir avec la base de données.
+   */
+  private TourneeDao tourneeDao;
+
+  /**
    * Constructeur.
    */
   public ListeTournees() {
+
     tournees = new ArrayList<>();
+    tourneeDao = new TourneeDao(SingleConnection.getInstance());
   }
 
   /**
@@ -50,6 +61,7 @@ public class ListeTournees {
    */
   public void ajouter(Tournee tournee) {
     tournees.add(tournee);
+    tourneeDao.insert(tournee);
   }
 
   /**
@@ -59,6 +71,7 @@ public class ListeTournees {
    */
   public void supprimer(Tournee tournee) {
     tournees.remove(tournee);
+    tourneeDao.delete(tournee);
   }
 
   /**
@@ -67,6 +80,10 @@ public class ListeTournees {
    * @param tournee tournée à modifier
    */
   public void editer(Tournee tournee) {
+    int index = tournees.indexOf(tournee);
+    tournees.set(index, tournee);
+
+    tourneeDao.update(tournee);
   }
 
 }
