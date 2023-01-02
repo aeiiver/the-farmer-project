@@ -66,6 +66,15 @@ public class MainCtrl {
   }
 
   /**
+   * Affichage du tableau de bord administrateur.
+   */
+  public void voirTableauDeBordAdmin() {
+    FXMLLoader root = new FXMLLoader(
+        Main.class.getResource("/root/controller/fxml/TableaudebordAdmin.fxml"));
+    changeScene(root);
+  }
+
+  /**
    * Redirige l'utilisateur vers la vue sur la liste des commandes.
    */
   public void voirCommandesListes(CommandesView commandesView) {
@@ -120,6 +129,13 @@ public class MainCtrl {
 
   }
 
+  public void voirProducteurListe() {
+    FXMLLoader root = new FXMLLoader(
+        Main.class.getResource("/root/controller/fxml/TableauDonnees.fxml"));
+    //root.setController(new ProducteurCtrl(primaryStage));
+    changeScene(root);
+  }
+
   /**
    * Redirige l'utilisateur vers la vue d'ajout de commande (formulaire).
    *
@@ -141,6 +157,13 @@ public class MainCtrl {
     FXMLLoader root = new FXMLLoader(
         Main.class.getResource("/root/controller/fxml/FormClient.fxml"));
     root.setController(new ClientsFormCtrl(primaryStage));
+    changeScene(root);
+  }
+
+  public void voirProducteurForm() {
+    FXMLLoader root = new FXMLLoader(
+        Main.class.getResource("/root/controller/fxml/FormProducteur.fxml"));
+    //root.setController(new ProducteurFormCtrl(primaryStage));
     changeScene(root);
   }
 

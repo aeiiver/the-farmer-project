@@ -18,19 +18,20 @@ public class Main {
    * @throws IOException Exception en cas d'erreur sur un URL lors de la génération d'adresses.
    */
   public static void main(String[] args) throws IOException {
-    int nbClients = 1;
+    int nbClients = 200;
     Connection singleConnection = SingleConnection.getInstance();
 
-    ArrayList<String> sirets = GenProducteur.generate(10);
+    ArrayList<String> sirets = GenProducteur.generate(50);
     GenClient.generate(nbClients);
-    GenVehicule.generate(15, sirets);
+    GenVehicule.generate(75, sirets);
 
     for (String siret : sirets) {
       int nbCommandes = 50;
       int nbCommandesParTournee = 10;
       for (int i = 0; i < nbCommandes / nbCommandesParTournee; i++) {
         GenCommande.generate(nbCommandesParTournee, siret, nbClients);
-        GenTournee.generate(50, nbCommandes, siret, new VehiculeDao(singleConnection).getAll());
+        GenTournee.generate(nbCommandes / nbCommandesParTournee,
+            nbCommandes, siret, new VehiculeDao(singleConnection).getAll());
 
       }
     }
