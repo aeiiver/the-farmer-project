@@ -4,7 +4,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import root.controller.ClientsFormCtrl;
-import root.controller.ConnexionCtrl;
 import root.model.Adresse;
 
 /**
@@ -119,7 +118,7 @@ public class ClientsFormView extends MainView {
    * @return Le nom saisi.
    */
   public String getNom() {
-    return null;
+    return nom.getText();
   }
 
   /**
@@ -128,7 +127,7 @@ public class ClientsFormView extends MainView {
    * @return Le prénom saisi.
    */
   public String getPrenom() {
-    return null;
+    return prenom.getText();
   }
 
   /**
@@ -137,7 +136,7 @@ public class ClientsFormView extends MainView {
    * @return Le numéro de téléphone saisi.
    */
   public String getNumTel() {
-    return null;
+    return numTel.getText();
   }
 
   /**
@@ -146,7 +145,7 @@ public class ClientsFormView extends MainView {
    * @return La latitude saisie.
    */
   public double getLatitude() {
-    return 0;
+    return Double.parseDouble(latitude.getText());
   }
 
   /**
@@ -155,7 +154,7 @@ public class ClientsFormView extends MainView {
    * @return La longitude saisie.
    */
   public double getLongitude() {
-    return 0;
+    return Double.parseDouble(longitude.getText());
   }
 
   /**
@@ -164,7 +163,7 @@ public class ClientsFormView extends MainView {
    * @return L'adresse saisie.
    */
   public String getAdresse() {
-    return null;
+    return adresse.getText();
   }
 
   /**
@@ -173,7 +172,7 @@ public class ClientsFormView extends MainView {
    * @return Le nom de la ville saisi.
    */
   public String getVille() {
-    return null;
+    return ville.getText();
   }
 
   /**
@@ -182,7 +181,7 @@ public class ClientsFormView extends MainView {
    * @return Le code postal saisi.
    */
   public String getCodePost() {
-    return null;
+    return codePost.getText();
   }
 
   /**
