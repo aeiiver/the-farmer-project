@@ -46,10 +46,11 @@ public class GenProducteur {
       String mdp = faker.internet().password(8, 16);
       String sel = BCrypt.gensalt();
       String mdpChiffre = BCrypt.hashpw(mdp, sel);
+      String num = "0" + faker.phoneNumber().cellPhone().replace(".", "").replace("-", "").substring(1, 10);
 
       Producteur producteur = new Producteur(siret,
           faker.internet().emailAddress(), faker.name().firstName(),
-          faker.name().lastName(), faker.phoneNumber().phoneNumber(),
+          faker.name().lastName(), num,
           mdpChiffre, adresse);
       new ProducteurDao(singleConnection).insert(producteur);
     }

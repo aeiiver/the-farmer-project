@@ -3,6 +3,8 @@ package datageneration;
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.ArrayList;
+
+import com.github.javafaker.Faker;
 import root.data.SingleConnection;
 import root.data.VehiculeDao;
 
@@ -32,10 +34,7 @@ public class Main {
         GenCommande.generate(nbCommandesParTournee, siret, nbClients);
         GenTournee.generate(nbCommandes / nbCommandesParTournee,
             nbCommandes, siret, new VehiculeDao(singleConnection).getAll());
-
       }
     }
-
-
   }
 }

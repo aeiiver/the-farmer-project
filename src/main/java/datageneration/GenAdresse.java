@@ -8,6 +8,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.Comparator;
+
 import root.data.AdresseDao;
 import root.data.SingleConnection;
 import root.model.Adresse;
@@ -63,7 +66,19 @@ public class GenAdresse {
     }
     String cityName = json.substring(json.indexOf("\"city\"") + 8,
         json.indexOf("\"", json.indexOf("\"city\"") + 9));
-    adresse = new Adresse("France",
+
+    ArrayList<Adresse> allAdresse = new AdresseDao(SingleConnection.getInstance()).getAll();
+
+    int idMax = 2;
+
+    if (allAdresse != null) {
+      idMax = new AdresseDao(SingleConnection.getInstance()).getAll().stream()
+          .max(Comparator.comparing(Adresse::getIdAdresse))
+          .orElse(new Adresse(3, "", "", "", "", "", 0, "", "")).getIdAdresse();
+    }
+
+    System.out.println("idMax = " + idMax);
+    adresse = new Adresse(idMax, "France",
         json.substring(json.indexOf("postcode") + 11, json.indexOf("postcode") + 16),
         cityName,
         typeRueSplit[1],

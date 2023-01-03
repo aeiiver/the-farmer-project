@@ -92,21 +92,23 @@ public class AdresseDao extends Dao<Adresse, Integer> {
       String query = "SELECT * FROM Adresse";
       PreparedStatement preparedStatement = connexion.prepareStatement(query);
       ArrayList<Adresse> adresses = new ArrayList<>();
-      while (preparedStatement.executeQuery().next()) {
+      ResultSet result = preparedStatement.executeQuery();
+      while (result.next()) {
         adresses.add(new Adresse(
-            preparedStatement.executeQuery().getInt("idAdresse"),
-            preparedStatement.executeQuery().getString("pays"),
-            preparedStatement.executeQuery().getString("codePost"),
-            preparedStatement.executeQuery().getString("ville"),
-            preparedStatement.executeQuery().getString("voie"),
-            preparedStatement.executeQuery().getString("nom"),
-            preparedStatement.executeQuery().getInt("numero"),
-            preparedStatement.executeQuery().getString("mention"),
-            preparedStatement.executeQuery().getString("complement")
+            result.getInt("idAdresse"),
+            result.getString("pays"),
+            result.getString("codePost"),
+            result.getString("ville"),
+            result.getString("voie"),
+            result.getString("nom"),
+            result.getInt("numero"),
+            result.getString("mention"),
+            result.getString("complement")
         ));
       }
-      return adresses;
+      return adresses.isEmpty() ? null : adresses;
     } catch (Exception e) {
+      System.out.println("aaaaaaaaaaaaaaaaaaaa");
       e.printStackTrace();
       return null;
     }
