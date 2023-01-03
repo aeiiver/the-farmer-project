@@ -51,6 +51,7 @@ public class TableauDonneesCtrl {
     this.titre.setText(titre);
     tableau.getColumns().setAll(colonnes);
     tableau.setItems(modeles);
+    tableau.getSelectionModel().setSelectionMode(javafx.scene.control.SelectionMode.MULTIPLE);
   }
 
   @FXML
@@ -83,6 +84,11 @@ public class TableauDonneesCtrl {
     CommandesFormCtrl ctrl =
         (CommandesFormCtrl) StageUtil.afficheDialogue(ressourceForm, StageUtil.getFenetre(root));
     ctrl.chargeChamps(modele);
+  }
+
+  @FXML
+  public Object getSelected() {
+    return tableau.getSelectionModel().getSelectedItem();
   }
 
 }
