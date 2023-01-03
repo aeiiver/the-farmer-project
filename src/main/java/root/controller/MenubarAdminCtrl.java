@@ -4,34 +4,23 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuBar;
 import javafx.stage.Stage;
+import root.StageUtil;
 
 /**
  * Classe contrôleuse de la barre de menu administateur.
  */
-public class MenubarAdminCtrl extends MainCtrl {
+public class MenubarAdminCtrl {
 
   @FXML
   private MenuBar root;
 
-  /**
-   * Constructeur de classe.
-   *
-   * @param primaryStage La fenêtre principale.
-   */
-  public MenubarAdminCtrl(Stage primaryStage) {
-    super(primaryStage);
-  }
-
-
   public void gotoTableaudebord(ActionEvent actionEvent) {
-    voirTableauDeBordAdmin();
+    gotoTableaudebord(actionEvent);
   }
 
   public void gotoListeProducteurs(ActionEvent actionEvent) {
-    voirProducteurListe();
   }
 
   public void gotoFormProducteur(ActionEvent actionEvent) {
-    voirProducteurForm();
   }
 }
