@@ -64,6 +64,7 @@ public class VehiculesFormCtrl implements Initializable {
     } else {
       listeVehicules.editer(new Vehicule(immat, poidsValide, producteur));
     }
+    StageUtil.getFenetre(root).close();
   }
 
   /**
