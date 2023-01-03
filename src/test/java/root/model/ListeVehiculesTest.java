@@ -2,6 +2,7 @@ package root.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ class ListeVehiculesTest {
     ListeVehicules listeVehicules = new ListeVehicules();
 
     listeVehicules.ajouter(vehicule);
-    ArrayList<Vehicule> maListe = listeVehicules.getVehicules();
+    List<Vehicule> maListe = listeVehicules.getVehicules();
     Vehicule recu = maListe.get(maListe.size() - 1);
 
     assertEquals(vehicule.getImmat(), recu.getImmat());
@@ -43,7 +44,7 @@ class ListeVehiculesTest {
 
     listeVehicules.ajouter(vehicule);
     listeVehicules.supprimer(vehicule);
-    ArrayList<Vehicule> maListe = listeVehicules.getVehicules();
+    List<Vehicule> maListe = listeVehicules.getVehicules();
 
     for (int i = 0; i < maListe.size(); i++) {
       assertNotEquals(vehicule, maListe.get(i));
@@ -64,7 +65,7 @@ class ListeVehiculesTest {
     listeVehicules.ajouter(vehicule);
     vehicule.setPoidsMax(1000);
     listeVehicules.editer(vehicule);
-    ArrayList<Vehicule> maListe = listeVehicules.getVehicules();
+    List<Vehicule> maListe = listeVehicules.getVehicules();
     Vehicule recu = maListe.get(maListe.size() - 1);
 
     assertEquals(vehicule.getImmat(), recu.getImmat());

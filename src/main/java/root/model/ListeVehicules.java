@@ -7,15 +7,13 @@ import javafx.collections.ObservableList;
 import root.data.SingleConnection;
 import root.data.VehiculeDao;
 
-
-
 /**
- * Classe de modèle pour la liste des Vehicules.
+ * Classe de modèle pour la liste des véhicules.
  */
 public class ListeVehicules {
 
   /**
-   * Liste des vehicules.
+   * Liste des véhicules.
    *
    * @see ListeVehicules#ListeVehicules()
    * @see ListeVehicules#getVehicules()
@@ -24,7 +22,6 @@ public class ListeVehicules {
    * @see Vehicule
    */
   private ObservableList<Vehicule> vehicules;
-
   /**
    * Le DAO qui permet au modèle d'interagir avec la base de données.
    */
@@ -39,9 +36,9 @@ public class ListeVehicules {
   }
 
   /**
-   * Getter de la liste des vehicules.
+   * Getter de la liste des véhicules.
    *
-   * @return vehicules la liste des vehicules
+   * @return vehicules la liste des véhicules
    */
   public List<Vehicule> getVehicules() {
     return vehicules;

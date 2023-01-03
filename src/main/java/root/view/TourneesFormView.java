@@ -8,6 +8,8 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import root.controller.MainCtrl;
 import root.controller.TourneesFormCtrl;
 import root.model.Vehicule;
 
@@ -75,7 +77,7 @@ public class TourneesFormView extends MainView {
    * @param ctrl Le contrôleur de cette vue.
    */
   public TourneesFormView(TourneesFormCtrl ctrl) {
-    super(ctrl);
+    super(new MainCtrl(new Stage()));
   }
 
   /**

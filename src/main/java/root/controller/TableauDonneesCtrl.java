@@ -81,8 +81,7 @@ public class TableauDonneesCtrl {
       return;
     }
 
-    CommandesFormCtrl ctrl =
-        (CommandesFormCtrl) StageUtil.afficheDialogue(ressourceForm, StageUtil.getFenetre(root));
+    FormCtrl ctrl = (FormCtrl) StageUtil.afficheDialogue(ressourceForm, StageUtil.getFenetre(root));
     ctrl.chargeChamps(modele);
   }
 

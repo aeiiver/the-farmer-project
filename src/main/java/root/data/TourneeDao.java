@@ -1,10 +1,13 @@
 package root.data;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
+import root.model.Commande;
 import root.model.Tournee;
+import root.model.Vehicule;
 
 /**
  * Cette classe est utilisée pour accéder à la table Tournee.
@@ -29,17 +32,44 @@ public class TourneeDao extends Dao<Tournee, Integer> {
   @Override
   public boolean insert(Tournee tournee) {
     try {
+      connexion.setAutoCommit(false);
+
+      // Insère la tournée
       String query = "INSERT INTO Tournee "
-          + "(numTournee, libelle, heureMin, heureMax, immat) "
-          + "VALUES (?, ?, ?, ?, ?)";
-      PreparedStatement preparedStatement = connexion.prepareStatement(query);
-      preparedStatement.setInt(1, tournee.getNumTournee());
-      preparedStatement.setString(2, tournee.getLibelle());
-      preparedStatement.setTime(3, tournee.getHeureMin());
-      preparedStatement.setTime(4, tournee.getHeureMin());
-      preparedStatement.setString(5, tournee.getVehicule().getImmat());
+          + "(libelle, heureMin, heureMax, immat) "
+          + "VALUES (?, ?, ?, ?)";
+      PreparedStatement preparedStatement = connexion.prepareStatement(query,
+          Statement.RETURN_GENERATED_KEYS);
+
+      preparedStatement.setString(1, tournee.getLibelle());
+      preparedStatement.setTime(2, tournee.getHeureMin());
+      preparedStatement.setTime(3, tournee.getHeureMax());
+      preparedStatement.setString(4, tournee.getVehicule().getImmat());
       preparedStatement.executeUpdate();
+
+      // Met à jour le numéro de la tournée insérée
+      ResultSet key = preparedStatement.getGeneratedKeys();
+      if (!key.next()) {
+        return false;
+      }
+      int idInsere = key.getInt(1);
+      tournee.setNumTournee(idInsere);
+
+      // Met à jour les commandes qui ont été associées à la tournée dans la base
+      query = "UPDATE Commande SET numTournee = ? WHERE numCom = ?;";
+      preparedStatement = connexion.prepareStatement(query);
+
+      for (Commande commande : tournee.getCommandes()) {
+        preparedStatement.setInt(1, tournee.getNumTournee());
+        preparedStatement.setInt(2, commande.getNumCom());
+        preparedStatement.addBatch();
+      }
+      preparedStatement.executeBatch();
+      connexion.commit();
+
+      connexion.setAutoCommit(true);
       return true;
+
     } catch (Exception e) {
       e.printStackTrace();
       return false;
@@ -58,13 +88,26 @@ public class TourneeDao extends Dao<Tournee, Integer> {
       String query = "SELECT * FROM Tournee WHERE numTournee = ?";
       PreparedStatement preparedStatement = connexion.prepareStatement(query);
       preparedStatement.setInt(1, id);
-      return new Tournee(
-          preparedStatement.executeQuery().getInt("numTournee"),
-          preparedStatement.executeQuery().getString("libelle"),
-          preparedStatement.executeQuery().getTime("heureMin"),
-          preparedStatement.executeQuery().getTime("heureMax"),
-          new ProducteurDao(connexion).get(preparedStatement.executeQuery().getString("SIRET")),
-          new VehiculeDao(connexion).get(preparedStatement.executeQuery().getString("immat")));
+
+      ResultSet resultat = preparedStatement.executeQuery();
+
+      if (!resultat.next()) {
+        return null;
+      }
+
+      Vehicule vehicule = new VehiculeDao(connexion).get(resultat.getString("immat"));
+
+      Tournee tournee = new Tournee(
+          resultat.getInt("numTournee"),
+          resultat.getString("libelle"),
+          resultat.getTime("heureMin"),
+          resultat.getTime("heureMax"),
+          vehicule.getProprietaire(),
+          vehicule);
+      tournee.setCommandes(new CommandeDao(connexion).getAllByNumTournee(id));
+
+      return tournee;
+
     } catch (Exception e) {
       e.printStackTrace();
       return null;
@@ -81,17 +124,27 @@ public class TourneeDao extends Dao<Tournee, Integer> {
     try {
       String query = "SELECT * FROM Tournee";
       PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      ResultSet resultat = preparedStatement.executeQuery();
+
       ArrayList<Tournee> tournees = new ArrayList<>();
-      while (preparedStatement.executeQuery().next()) {
-        tournees.add(new Tournee(
-            preparedStatement.executeQuery().getInt("numTournee"),
-            preparedStatement.executeQuery().getString("libelle"),
-            preparedStatement.executeQuery().getTime("heureMin"),
-            preparedStatement.executeQuery().getTime("heureMax"),
-            new ProducteurDao(connexion).get(preparedStatement.executeQuery().getString("SIRET")),
-            new VehiculeDao(connexion).get(preparedStatement.executeQuery().getString("immat"))));
+
+      while (resultat.next()) {
+        int id = resultat.getInt("numTournee");
+        Vehicule vehicule = new VehiculeDao(connexion).get(resultat.getString("immat"));
+
+        Tournee tournee = new Tournee(
+            id,
+            resultat.getString("libelle"),
+            resultat.getTime("heureMin"),
+            resultat.getTime("heureMax"),
+            vehicule.getProprietaire(),
+            vehicule);
+        tournee.setCommandes(new CommandeDao(connexion).getAllByNumTournee(id));
+
+        tournees.add(tournee);
       }
       return tournees;
+
     } catch (Exception e) {
       e.printStackTrace();
       return null;
@@ -107,17 +160,39 @@ public class TourneeDao extends Dao<Tournee, Integer> {
   @Override
   public boolean update(Tournee tournee) {
     try {
+      // Met à jour la tournée dans la base
       String query = "UPDATE Tournee SET "
           + "libelle = ?, heureMin = ?, heureMax = ?, immat = ? "
           + "WHERE numTournee = ?";
       PreparedStatement preparedStatement = connexion.prepareStatement(query);
+
       preparedStatement.setString(1, tournee.getLibelle());
       preparedStatement.setTime(2, tournee.getHeureMin());
       preparedStatement.setTime(3, tournee.getHeureMin());
       preparedStatement.setString(4, tournee.getVehicule().getImmat());
       preparedStatement.setInt(5, tournee.getNumTournee());
       preparedStatement.executeUpdate();
+
+      // Supprime les associations entre la tournée et les commandes qui lui ont été associées.
+      query = "UPDATE Commande SET numTournee = NULL WHERE numTournee = ?;";
+      preparedStatement = connexion.prepareStatement(query);
+      preparedStatement.setInt(1, tournee.getNumTournee());
+      preparedStatement.executeUpdate();
+
+      // Met à jour les commandes qui ont été associées à la tournée dans la base
+      query = "UPDATE Commande SET numTournee = ? WHERE numCom = ?;";
+      preparedStatement = connexion.prepareStatement(query);
+
+      for (Commande commande : tournee.getCommandes()) {
+        preparedStatement.setInt(1, tournee.getNumTournee());
+        preparedStatement.setInt(2, commande.getNumCom());
+        preparedStatement.addBatch();
+      }
+      preparedStatement.executeBatch();
+      connexion.commit();
+
       return true;
+
     } catch (Exception e) {
       e.printStackTrace();
       return false;
@@ -133,11 +208,20 @@ public class TourneeDao extends Dao<Tournee, Integer> {
   @Override
   public boolean delete(Tournee tournee) {
     try {
-      String query = "DELETE FROM Tournee WHERE numTournee = ?";
+      // Supprime les associations entre la tournée et les commandes qui lui ont été associées.
+      String query = "UPDATE Commande SET numTournee = NULL WHERE numTournee = ?;";
       PreparedStatement preparedStatement = connexion.prepareStatement(query);
       preparedStatement.setInt(1, tournee.getNumTournee());
       preparedStatement.executeUpdate();
+
+      // Supprime la tournée de la base
+      query = "DELETE FROM Tournee WHERE numTournee = ?";
+      preparedStatement = connexion.prepareStatement(query);
+      preparedStatement.setInt(1, tournee.getNumTournee());
+      preparedStatement.executeUpdate();
+
       return true;
+
     } catch (Exception e) {
       e.printStackTrace();
       return false;

@@ -11,7 +11,7 @@ public class Commande {
   /**
    * Identifiant de la commande dans la base de données.
    *
-   * @see Commande#Commande(int, String, int, Date, Time, Time, Producteur, Client)  Commande
+   * @see Commande#Commande(int, String, int, Date, Time, Time, Producteur, Client, int)  Commande
    * @see Commande#getNumCom()
    * @see Commande#setNumCom(int)
    */
@@ -20,7 +20,7 @@ public class Commande {
   /**
    * Nom de la commande.
    *
-   * @see Commande#Commande(int, String, int, Date, Time, Time, Producteur, Client)  Commande
+   * @see Commande#Commande(int, String, int, Date, Time, Time, Producteur, Client, int)  Commande
    * @see Commande#getLibelle()
    * @see Commande#setLibelle(String)
    */
@@ -29,7 +29,7 @@ public class Commande {
   /**
    * Poids total de la commande.
    *
-   * @see Commande#Commande(int, String, int, Date, Time, Time, Producteur, Client)  Commande
+   * @see Commande#Commande(int, String, int, Date, Time, Time, Producteur, Client, int)  Commande
    * @see Commande#getPoids()
    * @see Commande#setPoids(int)
    */
@@ -38,7 +38,7 @@ public class Commande {
   /**
    * Date de la commande.
    *
-   * @see Commande#Commande(int, String, int, Date, Time, Time, Producteur, Client)  Commande
+   * @see Commande#Commande(int, String, int, Date, Time, Time, Producteur, Client, int)  Commande
    * @see Commande#getDateCom()
    * @see Commande#setDateCom(Date)
    */
@@ -47,7 +47,7 @@ public class Commande {
   /**
    * Horaire minimale de livraison de la commande.
    *
-   * @see Commande#Commande(int, String, int, Date, Time, Time, Producteur, Client)  Commande
+   * @see Commande#Commande(int, String, int, Date, Time, Time, Producteur, Client, int)  Commande
    * @see Commande#getHeureDeb()
    * @see Commande#setHeureDeb(Time)
    */
@@ -56,7 +56,7 @@ public class Commande {
   /**
    * Horaire maximale de livraison de la commande.
    *
-   * @see Commande#Commande(int, String, int, Date, Time, Time, Producteur, Client)  Commande
+   * @see Commande#Commande(int, String, int, Date, Time, Time, Producteur, Client, int)  Commande
    * @see Commande#getHeureFin()
    * @see Commande#setHeureFin(Time)
    */
@@ -65,7 +65,7 @@ public class Commande {
   /**
    * Producteur de la commande.
    *
-   * @see Commande#Commande(int, String, int, Date, Time, Time, Producteur, Client)  Commande
+   * @see Commande#Commande(int, String, int, Date, Time, Time, Producteur, Client, int)  Commande
    * @see Commande#getProducteur()
    * @see Commande#setProducteur(Producteur)
    * @see Producteur
@@ -75,12 +75,40 @@ public class Commande {
   /**
    * Client de la commande.
    *
-   * @see Commande#Commande(int, String, int, Date, Time, Time, Producteur, Client)  Commande
+   * @see Commande#Commande(int, String, int, Date, Time, Time, Producteur, Client, int)  Commande
    * @see Commande#getClient()
    * @see Commande#setClient(Client)
    * @see Client
    */
   private Client client;
+
+  /**
+   * Numéro de la tournée auquel la commande associée.
+   *
+   * @see Commande#Commande(int, String, int, Date, Time, Time, Producteur, Client, int)  Commande
+   * @see Commande#getNumTournee()
+   * @see Commande#setNumTournee(int)
+   */
+  private int numTournee;
+
+  /**
+   * Constructeur de classe d'une commande insérée dans la base et incluse dans une tournée.
+   *
+   * @param numCom     Le numéro de la commande.
+   * @param libelle    Le libellé.
+   * @param poids      Le poids, en kg.
+   * @param dateCom    La date à laquelle la commande devra être livrée.
+   * @param heureDeb   L'heure de départ de livraison
+   * @param heureFin   L'heure de fin de livraison
+   * @param producteur Le producteur qui a envoyé la commande.
+   * @param client     Le client auquel la commande est destiné.
+   */
+  public Commande(int numCom, String libelle, int poids, Date dateCom, Time heureDeb, Time heureFin,
+                  Producteur producteur, Client client, int numTournee) {
+    this(libelle, poids, dateCom, heureDeb, heureFin, producteur, client);
+    this.numCom = numCom;
+    this.numTournee = numTournee;
+  }
 
   /**
    * Constructeur de classe d'une commande insérée dans la base.
@@ -96,14 +124,8 @@ public class Commande {
    */
   public Commande(int numCom, String libelle, int poids, Date dateCom, Time heureDeb, Time heureFin,
                   Producteur producteur, Client client) {
+    this(libelle, poids, dateCom, heureDeb, heureFin, producteur, client);
     this.numCom = numCom;
-    this.libelle = libelle;
-    this.poids = poids;
-    this.dateCom = dateCom;
-    this.heureDeb = heureDeb;
-    this.heureFin = heureFin;
-    this.producteur = producteur;
-    this.client = client;
   }
 
   /**
@@ -127,6 +149,7 @@ public class Commande {
     this.heureFin = heureFin;
     this.producteur = producteur;
     this.client = client;
+    this.numTournee = -1;
   }
 
   /**
@@ -202,6 +225,15 @@ public class Commande {
   }
 
   /**
+   * Getter du numéro de la tournée auquel la commande est associé.
+   *
+   * @return numTournee le numéro de la tournée.
+   */
+  public int getNumTournee() {
+    return numTournee;
+  }
+
+  /**
    * Setter du numéro de la commande.
    *
    * @param numCom le numéro de la commande
@@ -271,6 +303,15 @@ public class Commande {
    */
   public void setClient(Client client) {
     this.client = client;
+  }
+
+  /**
+   * Setter du numéro de la tournée auquel la commande est associé.
+   *
+   * @param numTournee Le numéro de la tournée.
+   */
+  public void setNumTournee(int numTournee) {
+    this.numTournee = numTournee;
   }
 
   @Override

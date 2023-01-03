@@ -17,6 +17,7 @@ import root.StageUtil;
 import root.data.ClientDao;
 import root.data.CommandeDao;
 import root.data.SingleConnection;
+import root.data.TourneeDao;
 import root.data.VehiculeDao;
 import root.model.*;
 
@@ -79,8 +80,42 @@ public class MenubarProducteurCtrl {
 
   @FXML
   private void gotoListeTournees() {
-    // Change la scène vers liste des tournées
-    throw new RuntimeException("Not implemented");
+
+    // On définit les colonnes qu'on veut afficher...
+    TableColumn<Tournee, String> numero = new TableColumn<>("Numéro");
+    TableColumn<Tournee, String> libelle = new TableColumn<>("Libellé");
+    TableColumn<Tournee, String> heureMin = new TableColumn<>("Heure minimale");
+    TableColumn<Tournee, String> heureMax = new TableColumn<>("Heure maximale");
+    TableColumn<Tournee, String> nombreCommandes = new TableColumn<>("Nombre de commandes");
+    TableColumn<Tournee, String> vehicule = new TableColumn<>("Véhicule");
+
+    final List<TableColumn<Tournee, String>> colonnes =
+        List.of(numero, libelle, heureMin, heureMax, nombreCommandes, vehicule);
+
+    // On définit pour chaque colonne quelle partie de l'objet "Commande" on veut afficher...
+    numero.setCellValueFactory(
+        cell -> new SimpleStringProperty(String.valueOf(cell.getValue().getNumTournee())));
+    libelle.setCellValueFactory(
+        cell -> new SimpleStringProperty(String.valueOf(cell.getValue().getLibelle())));
+    heureMin.setCellValueFactory(
+        cell -> new SimpleStringProperty(String.valueOf(cell.getValue().getHeureMin())));
+    heureMax.setCellValueFactory(
+        cell -> new SimpleStringProperty(String.valueOf(cell.getValue().getHeureMax())));
+    nombreCommandes.setCellValueFactory(
+        cell -> new SimpleStringProperty(String.valueOf(cell.getValue().getCommandes().size())));
+    vehicule.setCellValueFactory(
+        cell -> new SimpleStringProperty(cell.getValue().getVehicule().getImmat()));
+
+    ObservableList<Tournee> tournees =
+        (ObservableList<Tournee>) ((SessionProducteur) SingleSession.getSession())
+            .getListeTournees()
+            .getTournees();
+    TourneeDao dao = new TourneeDao(SingleConnection.getInstance());
+    String ressourceForm = "/root/controller/fxml/FormTournee.fxml";
+
+    TableauDonneesCtrl ctrl =
+        (TableauDonneesCtrl) changeScene("/root/controller/fxml/TableauDonnees.fxml");
+    ctrl.initialiseDonnees("Mes tournées", tournees, colonnes, dao, ressourceForm);
   }
 
   @FXML
@@ -152,8 +187,8 @@ public class MenubarProducteurCtrl {
 
   @FXML
   private void gotoFormTournee() {
-    // Change la scène vers le formulaire "Tournée"
-    throw new RuntimeException("Not implemented");
+    StageUtil.afficheDialogue("/root/controller/fxml/FormTournee.fxml",
+        StageUtil.getFenetre(root));
   }
 
   @FXML

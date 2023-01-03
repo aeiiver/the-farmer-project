@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import root.model.Commande;
 
@@ -88,7 +89,6 @@ public class CommandeDao extends Dao<Commande, Integer> {
     }
   }
 
-
   /**
    * Récupération de tous les enregistrements de la table.
    *
@@ -112,7 +112,43 @@ public class CommandeDao extends Dao<Commande, Integer> {
             resultat.getTime("heureDeb"),
             resultat.getTime("heureFin"),
             new ProducteurDao(connexion).get((resultat.getString("SIRET"))),
-            new ClientDao(connexion).get(resultat.getInt("idClient"))));
+            new ClientDao(connexion).get(resultat.getInt("idClient")),
+            resultat.getInt("numTournee")));
+      }
+      return commandes;
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
+
+  /**
+   * Récupération de tous les enregistrements de la table qui font partie d'une tournée.
+   *
+   * @param numTournee Le numéro de la tournée dont sont associées les commandes.
+   * @return Les commandes associées à la tournée.
+   */
+  public ArrayList<Commande> getAllByNumTournee(int numTournee) {
+    try {
+      String query = "SELECT * FROM Commande WHERE numTournee = ?";
+      PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      preparedStatement.setInt(1, numTournee);
+      ResultSet resultat = preparedStatement.executeQuery();
+
+      ArrayList<Commande> commandes = new ArrayList<>();
+
+      while (resultat.next()) {
+        commandes.add(new Commande(
+            resultat.getInt("numCom"),
+            resultat.getString("libelle"),
+            resultat.getInt("poids"),
+            resultat.getDate("dateCom"),
+            resultat.getTime("heureDeb"),
+            resultat.getTime("heureFin"),
+            new ProducteurDao(connexion).get((resultat.getString("SIRET"))),
+            new ClientDao(connexion).get(resultat.getInt("idClient")),
+            numTournee));
       }
       return commandes;
 
@@ -132,7 +168,7 @@ public class CommandeDao extends Dao<Commande, Integer> {
   public boolean update(Commande commande) {
     try {
       String query = "UPDATE Commande SET libelle = ?, poids = ?, dateCom = ?, "
-          + "heureDeb = ?, heureFin = ?, SIRET = ?, idClient = ? WHERE numCom = ?";
+          + "heureDeb = ?, heureFin = ?, SIRET = ?, idClient = ?, numTournee = ? WHERE numCom = ?";
       PreparedStatement preparedStatement = connexion.prepareStatement(query);
       preparedStatement.setString(1, commande.getLibelle());
       preparedStatement.setDouble(2, commande.getPoids());
@@ -141,7 +177,12 @@ public class CommandeDao extends Dao<Commande, Integer> {
       preparedStatement.setTime(5, commande.getHeureFin());
       preparedStatement.setString(6, commande.getProducteur().getSiret());
       preparedStatement.setInt(7, commande.getClient().getIdClient());
-      preparedStatement.setInt(8, commande.getNumCom());
+      if (commande.getNumTournee() > 0) {
+        preparedStatement.setInt(8, commande.getNumTournee());
+      } else {
+        preparedStatement.setNull(8, Types.INTEGER);
+      }
+      preparedStatement.setInt(9, commande.getNumCom());
       preparedStatement.executeUpdate();
       return true;
     } catch (Exception e) {

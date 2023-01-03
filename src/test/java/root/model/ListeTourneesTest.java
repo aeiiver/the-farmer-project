@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -52,7 +53,7 @@ class ListeTourneesTest {
     ListeTournees listeTournees = new ListeTournees();
 
     listeTournees.ajouter(tournee);
-    ArrayList<Tournee> maListe = listeTournees.getTournees();
+    List<Tournee> maListe = listeTournees.getTournees();
     Tournee recu = maListe.get(maListe.size() - 1);
 
     assertEquals(tournee.getNumTournee(), recu.getNumTournee());
@@ -77,7 +78,7 @@ class ListeTourneesTest {
 
     listeTournees.ajouter(tournee);
     listeTournees.supprimer(tournee);
-    ArrayList<Tournee> maListe = listeTournees.getTournees();
+    List<Tournee> maListe = listeTournees.getTournees();
 
     for (int i = 0; i < maListe.size(); i++) {
       assertNotEquals(tournee, maListe.get(i));
@@ -100,7 +101,7 @@ class ListeTourneesTest {
     tournee.setLibelle("L'autre trajet en camion");
     tournee.setHeureMin(Time.valueOf("02:00:00"));
     listeTournees.editer(tournee);
-    ArrayList<Tournee> maListe = listeTournees.getTournees();
+    List<Tournee> maListe = listeTournees.getTournees();
     Tournee recu = maListe.get(maListe.size() - 1);
 
     assertEquals(tournee.getNumTournee(), recu.getNumTournee());

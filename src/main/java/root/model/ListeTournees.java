@@ -1,17 +1,23 @@
 package root.model;
 
 import java.util.ArrayList;
-import root.data.ProducteurDao;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import root.data.SingleConnection;
+import root.data.ProducteurDao;
 import root.data.TourneeDao;
 
 /**
- * Classe de modèle pour la liste des Tournees.
+ * Classe de modèle pour la liste des tournées.
  */
 public class ListeTournees {
 
   /**
-   * Liste des tournees.
+   * Liste des tournées.
    *
    * @see ListeTournees#ListeTournees()
    * @see ListeTournees#getTournees()
@@ -19,7 +25,7 @@ public class ListeTournees {
    * @see ListeTournees#supprimer(Tournee)
    * @see Tournee
    */
-  private ArrayList<Tournee> tournees;
+  private ObservableList<Tournee> tournees;
 
   /**
    * Le DAO qui permet au modèle d'interagir avec la base de données.
@@ -30,17 +36,16 @@ public class ListeTournees {
    * Constructeur.
    */
   public ListeTournees() {
-
-    tournees = new ArrayList<>();
     tourneeDao = new TourneeDao(SingleConnection.getInstance());
+    tournees = FXCollections.observableArrayList(tourneeDao.getAll());
   }
 
   /**
-   * Getter de la liste des tournees.
+   * Getter de la liste des tournées.
    *
-   * @return tournees la liste des tournees
+   * @return tournees la liste des tournées
    */
-  public ArrayList<Tournee> getTournees() {
+  public List<Tournee> getTournees() {
     return tournees;
   }
 
@@ -49,8 +54,16 @@ public class ListeTournees {
    *
    * @return tournees la liste des tournées dont les dates ne sont pas encore passées
    */
-  public ArrayList<Tournee> getTourneesCourantes() {
-    return null;
+  public List<Tournee> getTourneesCourantes() {
+    return tournees.stream().filter(tournee -> {
+      List<Commande> commandes = tournee.getCommandes();
+
+      return commandes.stream().anyMatch(commande -> {
+        Date aujourdhui = Calendar.getInstance().getTime();
+
+        return commande.getDateCom().after(aujourdhui);
+      });
+    }).collect(Collectors.toList());
   }
 
   /**

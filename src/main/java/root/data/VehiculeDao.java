@@ -2,6 +2,7 @@ package root.data;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import root.model.Vehicule;
 
@@ -53,10 +54,15 @@ public class VehiculeDao extends Dao<Vehicule, String> {
       String query = "SELECT * FROM Vehicule WHERE immat = ?";
       PreparedStatement preparedStatement = connexion.prepareStatement(query);
       preparedStatement.setString(1, immat);
-      return new Vehicule(
-          preparedStatement.executeQuery().getString("immat"),
-          preparedStatement.executeQuery().getInt("poidsMax"),
-          new ProducteurDao(connexion).get(preparedStatement.executeQuery().getString("SIRET")));
+
+      ResultSet resultat = preparedStatement.executeQuery();
+
+      return (resultat.next()) ? new Vehicule(
+          resultat.getString("immat"),
+          resultat.getInt("poidsMax"),
+          new ProducteurDao(connexion).get(resultat.getString("SIRET")))
+          : null;
+
     } catch (Exception e) {
       e.printStackTrace();
       return null;
@@ -73,14 +79,18 @@ public class VehiculeDao extends Dao<Vehicule, String> {
     try {
       String query = "SELECT * FROM Vehicule";
       PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      ResultSet resultat = preparedStatement.executeQuery();
+
       ArrayList<Vehicule> vehicules = new ArrayList<>();
-      while (preparedStatement.executeQuery().next()) {
+
+      while (resultat.next()) {
         vehicules.add(new Vehicule(
-            preparedStatement.executeQuery().getString("immat"),
-            preparedStatement.executeQuery().getInt("poidsMax"),
-            new ProducteurDao(connexion).get(preparedStatement.executeQuery().getString("SIRET"))));
+            resultat.getString("immat"),
+            resultat.getInt("poidsMax"),
+            new ProducteurDao(connexion).get(resultat.getString("SIRET"))));
       }
       return vehicules;
+
     } catch (Exception e) {
       e.printStackTrace();
       return null;

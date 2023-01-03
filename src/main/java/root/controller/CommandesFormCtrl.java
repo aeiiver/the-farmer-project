@@ -27,7 +27,7 @@ import root.model.SingleSession;
 /**
  * Classe contrôleuse pour la vue et modèle du formulaire d'ajout et modification d'une commande.
  */
-public class CommandesFormCtrl implements Initializable {
+public class CommandesFormCtrl implements Initializable, FormCtrl<Commande> {
 
   @FXML
   private VBox root;
@@ -165,26 +165,24 @@ public class CommandesFormCtrl implements Initializable {
   /**
    * Charge des valeurs dans les champs.
    *
-   * @param modeleObj Le modèle qui contient les données à charger.
+   * @param commande Le modèle qui contient les données à charger.
    */
-  public void chargeChamps(Object modeleObj) {
-    Commande modele = (Commande) modeleObj;
+  public void chargeChamps(Commande commande) {
+    numero = Optional.of(commande.getNumCom());
 
-    numero = Optional.of(modele.getNumCom());
+    libelle.setText(commande.getLibelle());
+    poids.setText(String.valueOf(commande.getPoids()));
 
-    libelle.setText(modele.getLibelle());
-    poids.setText(String.valueOf(modele.getPoids()));
-
-    int index = clients.getItems().indexOf(modele.getClient());
+    int index = clients.getItems().indexOf(commande.getClient());
     clients.getSelectionModel().select(index);
 
-    date.setValue(modele.getDateCom().toLocalDate());
+    date.setValue(commande.getDateCom().toLocalDate());
 
     Calendar calendrier = Calendar.getInstance();
-    calendrier.setTime(modele.getHeureDeb());
+    calendrier.setTime(commande.getHeureDeb());
     heureDeb.setText(String.valueOf(calendrier.get(Calendar.HOUR_OF_DAY)));
 
-    calendrier.setTime(modele.getHeureFin());
+    calendrier.setTime(commande.getHeureFin());
     heureFin.setText(String.valueOf(calendrier.get(Calendar.HOUR_OF_DAY)));
   }
 
