@@ -37,7 +37,7 @@ public class VehiculesCtrl extends MainCtrl  {
    * Affiche la vue du formulaire d'ajout d'un véhicule.
    */
   public void ajouterVehicules() {
-    changeScene(new FXMLLoader(getClass().getResource("/root/view/VehiculesFormView.fxml")));
+    changeScene(new FXMLLoader(getClass().getResource("/root/controller/FormVehicule.fxml")));
 
   }
 
@@ -53,7 +53,7 @@ public class VehiculesCtrl extends MainCtrl  {
    * Affiche la vue du formulaire de modification d'un véhicule.
    */
   public void editerVehicules() {
-    changeScene(new FXMLLoader(getClass().getResource("/root/view/FormVehicule.fxml")));
+    changeScene(new FXMLLoader(getClass().getResource("/root/controller/FormVehicule.fxml")));
     //TODO récupérer l'élément sélectionné.
   }
 

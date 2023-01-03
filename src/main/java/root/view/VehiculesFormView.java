@@ -1,36 +1,33 @@
 package root.view;
 
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import root.controller.VehiculesFormCtrl;
+
+import java.beans.EventHandler;
 
 /**
  * Classe de vue pour l'ajout de véhicules.
  */
 public class VehiculesFormView {
 
-  /**
-   * Texte à côté du champ de texte pour la plaque d'immatriculation du véhicule.
-   */
-  private Label immatLabel;
+  @FXML
+  private Pane root;
   /**
    * Champ de texte pour écrire la plaque d'immatriculation du véhicule.
    */
-  private TextField immat;
-  /**
-   * Texte à côté du champ de texte pour le poids maximum du véhicule.
-   */
-  private Label capacitePoidsLabel;
+  @FXML
+  private TextField immatriculation;
   /**
    * Champ de texte pour écrire le poids maximum du véhicule.
    */
-  private TextField capacitePoids;
-  /**
-   * Contenu du message d'erreur.
-   */
-  private Label message;
+  @FXML
+  private TextField poidsMax;
   /**
    * Bouton pour enregistrer les champs du formulaire.
    */
@@ -40,13 +37,15 @@ public class VehiculesFormView {
    */
   private Button annuler;
 
+  private VehiculesFormCtrl controller = new VehiculesFormCtrl();
+
   /**
    * Retourne le numéro d'immatriculation saisi.
    *
    * @return Le numéro d'immatriculation saisi.
    */
-  public String getImmat() {
-    return null;
+  private String getImmat() {
+    return immatriculation.getText();
   }
 
   /**
@@ -54,17 +53,20 @@ public class VehiculesFormView {
    *
    * @return La capacité saisie.
    */
-  public double getCapacitePoids() {
-    return 0;
+  private String getCapacitePoids() {
+    return poidsMax.getText();
   }
 
-  /**
-   * Change le contenu du message à afficher en cas d'erreur.
-   *
-   * @param msg Le message à afficher.
-   */
-  public void setMessage(String msg) {
-    this.message.setText(msg);
+  public void setImmat(String immat) {
+    this.immatriculation.setText(immat);
   }
 
+  public void setCapacitePoids(double capacitePoids) {
+    this.poidsMax.setText(String.valueOf(capacitePoids));
+  }
+
+  public void valider() {
+    System.out.println(getImmat());
+    controller.enregistrer(getImmat(), getCapacitePoids(), root);
+  }
 }

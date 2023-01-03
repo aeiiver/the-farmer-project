@@ -27,22 +27,13 @@ import root.view.VehiculesView;
  */
 public class VehiculesFormCtrl implements Initializable {
 
-  @FXML
-  private Pane root;
-
-  @FXML
-  private TextField immatriculation;
-  @FXML
-  private TextField poidsMax;
-
+  Pane root;
   /**
    * Reflète l'ajout ou modification dans le modèle et redirige
    * l'utilisateur vers la vue sur la liste des véhicules.
    */
-  public void enregistrer() {
-    String immat = immatriculation.getText();
-    String poids = poidsMax.getText();
-
+  public void enregistrer(String immat, String poids, Pane root) {
+    this.root = root;
     if (immat.isEmpty() || poids.isEmpty()) {
       StageUtil.afficheAlerte("Tous les champs doivent être renseignés.",
           StageUtil.getFenetre(root));
@@ -53,7 +44,7 @@ public class VehiculesFormCtrl implements Initializable {
     if (!immat.matches("[A-Z]{2}-[0-9]{3}-[A-Z]{2}")) {
       messageErreur += "L'immatriculation doit être au format XX-000-XX\n";
     }
-    if (!poids.matches("[0-9]+")) {
+    if (!poids.matches("[0-9]{1,}")) {
       messageErreur += "Le poids doit être un nombre entier\n";
     }
     if (!messageErreur.isEmpty()) {
@@ -90,8 +81,9 @@ public class VehiculesFormCtrl implements Initializable {
   public void chargeChamps(Object modeleObj) {
     Vehicule modele = (Vehicule) modeleObj;
 
-    immatriculation.setText(modele.getImmat());
-    poidsMax.setText(String.valueOf(modele.getPoidsMax()));
+    VehiculesFormView view = new VehiculesFormView();
+    view.setImmat(modele.getImmat());
+    view.setCapacitePoids(modele.getPoidsMax());
   }
 
   /**

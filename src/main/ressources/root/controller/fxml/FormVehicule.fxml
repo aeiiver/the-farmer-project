@@ -10,7 +10,7 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
       minWidth="-Infinity" prefHeight="314.0" prefWidth="391.0"
       xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="root.controller.VehiculesFormCtrl"
+      fx:controller="root.view.VehiculesFormView"
       fx:id="root">
    <Label alignment="CENTER" layoutY="14.0" prefHeight="35.0" prefWidth="391.0"
           text="Ajout de Véhicules">
@@ -35,7 +35,7 @@
    <TextField layoutX="263.0" layoutY="159.0" prefHeight="38.0" prefWidth="108.0"
             fx:id="poidsMax"/>
    <Button layoutX="136.0" layoutY="239.0" mnemonicParsing="false"
-           text="Ajouter" onAction="#enregistrer">
+           text="Ajouter" onAction="#valider">
       <font>
          <Font size="20.0"/>
       </font>

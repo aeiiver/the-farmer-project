@@ -58,8 +58,8 @@ public class VehiculeDao extends Dao<Vehicule, String> {
       ResultSet resultat = preparedStatement.executeQuery();
 
       return (resultat.next()) ? new Vehicule(
-          resultat.getString("immat"),
-          resultat.getInt("poidsMax"),
+          resultat.getString("immat").isEmpty() ? null : resultat.getString("immat"),
+          resultat.getInt("poidsMax") == 0 ? null : resultat.getInt("poidsMax"),
           new ProducteurDao(connexion).get(resultat.getString("SIRET")))
           : null;
 
