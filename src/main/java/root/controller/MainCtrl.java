@@ -129,6 +129,9 @@ public class MainCtrl {
 
   }
 
+  /**
+   * Redirige l'utilisateur vers la vue sur la liste des producteurs.
+   */
   public void voirProducteurListe() {
     FXMLLoader root = new FXMLLoader(
         Main.class.getResource("/root/controller/fxml/TableauDonnees.fxml"));
@@ -160,6 +163,9 @@ public class MainCtrl {
     changeScene(root);
   }
 
+  /**
+   * Redirige l'utilisateur vers la vue d'ajout de producteurs.
+   */
   public void voirProducteurForm() {
     FXMLLoader root = new FXMLLoader(
         Main.class.getResource("/root/controller/fxml/FormProducteur.fxml"));

@@ -1,12 +1,13 @@
 package root.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import root.data.SingleConnection;
 import root.data.VehiculeDao;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  * Classe de modèle pour la liste des Vehicules.

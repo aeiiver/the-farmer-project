@@ -5,7 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.MenuBar;
 import javafx.stage.Stage;
 
-
+/**
+ * Classe contrôleuse de la barre de menu administateur.
+ */
 public class MenubarAdminCtrl extends MainCtrl {
 
   @FXML

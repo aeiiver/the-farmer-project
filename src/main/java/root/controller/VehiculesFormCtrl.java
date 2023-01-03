@@ -1,5 +1,8 @@
 package root.controller;
 
+import java.net.URL;
+import java.sql.Connection;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Spinner;
@@ -10,14 +13,14 @@ import javafx.stage.Stage;
 import root.StageUtil;
 import root.data.SingleConnection;
 import root.data.VehiculeDao;
-import root.model.*;
+import root.model.ListeVehicules;
+import root.model.Producteur;
+import root.model.SessionProducteur;
+import root.model.SingleSession;
+import root.model.Vehicule;
 import root.view.ConnexionView;
 import root.view.VehiculesFormView;
 import root.view.VehiculesView;
-
-import java.net.URL;
-import java.sql.Connection;
-import java.util.ResourceBundle;
 
 /**
  * Classe contrôleuse pour la vue et modèle du formulaire d'ajout et modification d'un véhicule.
@@ -79,6 +82,11 @@ public class VehiculesFormCtrl implements Initializable {
     StageUtil.getFenetre(root).close();
   }
 
+  /**
+   * Charge les champs du formulaire lors d'une édition.
+   *
+   * @param modeleObj Le véhicule à éditer.
+   */
   public void chargeChamps(Object modeleObj) {
     Vehicule modele = (Vehicule) modeleObj;
 
@@ -87,8 +95,10 @@ public class VehiculesFormCtrl implements Initializable {
   }
 
   /**
-   * @param url
-   * @param resourceBundle
+   * Initialise la vue.
+   *
+   * @param url L'URL de la vue.
+   * @param resourceBundle Les ressources de la vue.
    */
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -97,7 +97,8 @@ public class MenubarProducteurCtrl {
     poidsMax.setCellValueFactory(
         cell -> new SimpleStringProperty(String.valueOf(cell.getValue().getPoidsMax())));
 
-    ObservableList<Vehicule> vehicules = (ObservableList<Vehicule>) ((SessionProducteur) SingleSession.getSession())
+    ObservableList<Vehicule> vehicules =
+        (ObservableList<Vehicule>) ((SessionProducteur) SingleSession.getSession())
         .getListeVehicules()
         .getVehicules();
     VehiculeDao dao = new VehiculeDao(SingleConnection.getInstance());

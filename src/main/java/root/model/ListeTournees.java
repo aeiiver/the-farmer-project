@@ -1,10 +1,9 @@
 package root.model;
 
+import java.util.ArrayList;
 import root.data.ProducteurDao;
 import root.data.SingleConnection;
 import root.data.TourneeDao;
-
-import java.util.ArrayList;
 
 /**
  * Classe de modèle pour la liste des Tournees.
