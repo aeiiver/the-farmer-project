@@ -2,6 +2,7 @@ package root.view;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import root.controller.ProducteursFormCtrl;
 
@@ -83,6 +84,18 @@ public class ProducteursFormView extends MainView {
   /**
    * Contenue du message d'erreur.
    */
+
+  private Label paysLabel;
+
+  private TextField pays;
+
+  private Label mdpLabel;
+
+  private PasswordField mdp;
+
+  private Label mailLabel;
+
+  private TextField mail;
   private Label message;
   /**
    * Bouton pour enregistrer les champs du formulaire.
