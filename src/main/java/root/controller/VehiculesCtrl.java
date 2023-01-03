@@ -5,6 +5,8 @@ import javafx.stage.Stage;
 import root.model.ListeVehicules;
 import root.view.VehiculesView;
 
+import static root.StageUtil.valideSuppression;
+
 /**
  * Classe contrôleuse pour la vue et modèle de la liste des véhicules.
  */
@@ -43,6 +45,8 @@ public class VehiculesCtrl extends MainCtrl  {
    * Supprime un véhicule du modèle.
    */
   public void supprimerVehicules() {
+    //TODO: Supprimer un véhicule du modèle
+    //valideSuppression(view.getClass(), view);
   }
 
   /**

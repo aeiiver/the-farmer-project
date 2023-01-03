@@ -66,6 +66,17 @@ public class StageUtil {
     alerte.showAndWait();
   }
 
+  public static void valideSuppression(Object objet, Stage fenetreParente) {
+    Alert alerte = new Alert(Alert.AlertType.CONFIRMATION);
+
+    alerte.setTitle("Suppression");
+    alerte.setHeaderText(null);
+    alerte.setContentText("Voulez-vous vraiment supprimer cet élément?");
+    alerte.initOwner(fenetreParente);
+
+    alerte.showAndWait();
+  }
+
   /**
    * Retourne la fenêtre à laquelle un élément FXML appartient.
    *
