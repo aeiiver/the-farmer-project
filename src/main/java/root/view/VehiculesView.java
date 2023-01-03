@@ -1,5 +1,6 @@
 package root.view;
 
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuBar;
@@ -21,15 +22,18 @@ public class VehiculesView extends MainView {
   /**
    * Bouton pour ajouter un nouveau véhicule.
    */
-  private Button ajouterVehicule;
+  @FXML
+  private Button ajouter;
   /**
    * Bouton pour supprimer un véhicule déjà existant.
    */
-  private Button supprimerVehicule;
+  @FXML
+  private Button supprimer;
   /**
    * Bouton pour modifier un véhicule déjà existant.
    */
-  private Button editerVehicule;
+  @FXML
+  private Button editer;
 
   /**
    * Contrôleur gérant la vue de la liste des véhicules.
