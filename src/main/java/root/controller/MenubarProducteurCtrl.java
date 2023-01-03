@@ -14,13 +14,11 @@ import javafx.scene.control.TableColumn;
 import javafx.stage.Stage;
 import root.Main;
 import root.StageUtil;
+import root.data.ClientDao;
 import root.data.CommandeDao;
 import root.data.SingleConnection;
 import root.data.VehiculeDao;
-import root.model.Commande;
-import root.model.SessionProducteur;
-import root.model.SingleSession;
-import root.model.Vehicule;
+import root.model.*;
 
 /**
  * Contrôleur associé à la barre de menus.
@@ -111,8 +109,39 @@ public class MenubarProducteurCtrl {
 
   @FXML
   private void gotoListeClients() {
-    // Change la scène vers liste des clients
-    throw new RuntimeException("Not implemented");
+    // On définit les colonnes qu'on veut afficher...
+    TableColumn<Client, String> nom = new TableColumn<>("Nom");
+    TableColumn<Client, String> prenom = new TableColumn<>("Prénom");
+    TableColumn<Client, String> numTel = new TableColumn<>("Numéro de Téléphone");
+    TableColumn<Client, String> gps = new TableColumn<>("Coordonnées GPS");
+    TableColumn<Client, String> adresse = new TableColumn<>("Adresse");
+
+    final List<TableColumn<Client, String>> colonnes =
+            List.of(nom, prenom, numTel, gps, adresse);
+    final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
+
+    // On définit pour chaque colonne quelle partie de l'objet "Client" on veut afficher...
+    nom.setCellValueFactory(
+            cell -> new SimpleStringProperty(String.valueOf(cell.getValue().getNom())));
+    prenom.setCellValueFactory(
+            cell -> new SimpleStringProperty(String.valueOf(cell.getValue().getPrenom())));
+    numTel.setCellValueFactory(
+            cell -> new SimpleStringProperty(String.valueOf(cell.getValue().getNumTel())));
+    gps.setCellValueFactory(
+            cell -> new SimpleStringProperty(String.format(cell.getValue().getGps())));
+    adresse.setCellValueFactory(
+            cell -> new SimpleStringProperty(String.valueOf(cell.getValue().getAdresse())));
+
+    ObservableList<Client> clients =
+            (ObservableList<Client>) ((SessionProducteur) SingleSession.getSession())
+                    .getListeClients()
+                    .getClients();
+    ClientDao dao = new ClientDao(SingleConnection.getInstance());
+    String ressourceForm = "/root/controller/fxml/FormClient.fxml";
+
+    TableauDonneesCtrl ctrl =
+            (TableauDonneesCtrl) changeScene("/root/controller/fxml/TableauDonnees.fxml");
+    ctrl.initialiseDonnees("Mes clients", clients, colonnes, dao, ressourceForm);
   }
 
   @FXML
