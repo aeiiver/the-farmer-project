@@ -16,9 +16,11 @@ import root.Main;
 import root.StageUtil;
 import root.data.CommandeDao;
 import root.data.SingleConnection;
+import root.data.VehiculeDao;
 import root.model.Commande;
 import root.model.SessionProducteur;
 import root.model.SingleSession;
+import root.model.Vehicule;
 
 /**
  * Contrôleur associé à la barre de menus.
@@ -85,8 +87,25 @@ public class MenubarProducteurCtrl {
 
   @FXML
   private void gotoListeVehicules() {
-    // Change la scène vers liste des véhicules
-    throw new RuntimeException("Not implemented");
+    TableColumn<Vehicule, String> immat = new TableColumn<>("Immatriculation");
+    TableColumn<Vehicule, String> poidsMax = new TableColumn<>("Charge maximale supportée");
+
+    final List<TableColumn<Vehicule, String>> colonnes = List.of(immat, poidsMax);
+
+    immat.setCellValueFactory(
+        cell -> new SimpleStringProperty(String.valueOf(cell.getValue().getImmat())));
+    poidsMax.setCellValueFactory(
+        cell -> new SimpleStringProperty(String.valueOf(cell.getValue().getPoidsMax())));
+
+    ObservableList<Vehicule> vehicules = (ObservableList<Vehicule>) ((SessionProducteur) SingleSession.getSession())
+        .getListeVehicules()
+        .getVehicules();
+    VehiculeDao dao = new VehiculeDao(SingleConnection.getInstance());
+    String ressourceForm = "/root/controller/fxml/FormVehicule.fxml";
+
+    TableauDonneesCtrl ctrl =
+        (TableauDonneesCtrl) changeScene("/root/controller/fxml/TableauDonnees.fxml");
+    ctrl.initialiseDonnees("Mes véhicules", vehicules, colonnes, dao, ressourceForm);
   }
 
   @FXML
@@ -109,8 +128,8 @@ public class MenubarProducteurCtrl {
 
   @FXML
   private void gotoFormVehicule() {
-    // Change la scène vers le formulaire "Véhicule"
-    throw new RuntimeException("Not implemented");
+    StageUtil.afficheDialogue("/root/controller/fxml/FormVehicule.fxml",
+        StageUtil.getFenetre(root));
   }
 
   @FXML

@@ -102,9 +102,12 @@ public class ConnexionCtrl implements Initializable {
     FXMLLoader loader = new FXMLLoader(getClass().getResource(ressource));
     Parent tableaudebord = loader.load();
 
+    String ressourceAdmin = "/root/controller/fxml/TableaudebordAdmin.fxml";
+    FXMLLoader loaderAdmin = new FXMLLoader(getClass().getResource(ressourceAdmin));
+    Parent tableaudebordAdmin = loaderAdmin.load();
+
     if (estAdmin) {
-      // TODO à remplacer avec le tableau de bord admin (liste des producteurs ?)
-      StageUtil.getFenetre(root).setScene(new Scene(tableaudebord));
+      StageUtil.getFenetre(root).setScene(new Scene(tableaudebordAdmin));
     } else {
       StageUtil.getFenetre(root).setScene(new Scene(tableaudebord));
     }

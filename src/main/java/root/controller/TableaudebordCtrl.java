@@ -28,4 +28,10 @@ public class TableaudebordCtrl {
   private void editerTournee() {
   }
 
+  @FXML
+  public void initialize() {
+
+
+  }
+
 }

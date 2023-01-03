@@ -28,6 +28,8 @@ public class Main extends Application {
    */
   @Override
   public void start(Stage fenetre) throws IOException {
+    System.setProperty("javafx.platform", "desktop");
+    System.setProperty("http.agent", "Gluon Mobile/1.0.3");
     String ressource = "/root/controller/fxml/Connexion.fxml";
     FXMLLoader loader = new FXMLLoader(getClass().getResource(ressource));
     Parent ecranConnexion = loader.load();

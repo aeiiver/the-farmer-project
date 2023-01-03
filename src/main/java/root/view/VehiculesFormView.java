@@ -9,7 +9,7 @@ import root.controller.VehiculesFormCtrl;
 /**
  * Classe de vue pour l'ajout de véhicules.
  */
-public class VehiculesFormView extends MainView {
+public class VehiculesFormView {
 
   /**
    * Texte à côté du champ de texte pour la plaque d'immatriculation du véhicule.
@@ -20,11 +20,11 @@ public class VehiculesFormView extends MainView {
    */
   private TextField immat;
   /**
-   * Texte à côté du champ de texte pour la poids maximum du véhicule.
+   * Texte à côté du champ de texte pour le poids maximum du véhicule.
    */
   private Label capacitePoidsLabel;
   /**
-   * Champ de texte pour écrire la poids maximum du véhicule.
+   * Champ de texte pour écrire le poids maximum du véhicule.
    */
   private TextField capacitePoids;
   /**
@@ -39,15 +39,6 @@ public class VehiculesFormView extends MainView {
    * Bouton pour annuler le formulaire.
    */
   private Button annuler;
-
-  /**
-   * Constructeur de classe.
-   *
-   * @param ctrl Le contrôleur de cette vue.
-   */
-  public VehiculesFormView(VehiculesFormCtrl ctrl) {
-    super(ctrl);
-  }
 
   /**
    * Retourne le numéro d'immatriculation saisi.

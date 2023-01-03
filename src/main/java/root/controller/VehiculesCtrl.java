@@ -1,5 +1,6 @@
 package root.controller;
 
+import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import root.model.ListeVehicules;
 import root.view.VehiculesView;
@@ -34,6 +35,7 @@ public class VehiculesCtrl extends MainCtrl  {
    * Affiche la vue du formulaire d'ajout d'un véhicule.
    */
   public void ajouterVehicules() {
+    changeScene(new FXMLLoader(getClass().getResource("/root/view/VehiculesFormView.fxml")));
 
   }
 
@@ -47,6 +49,8 @@ public class VehiculesCtrl extends MainCtrl  {
    * Affiche la vue du formulaire de modification d'un véhicule.
    */
   public void editerVehicules() {
+    changeScene(new FXMLLoader(getClass().getResource("/root/view/VehiculesFormView.fxml")));
+    //TODO récupérer l'élément sélectionné.
   }
 
   /**

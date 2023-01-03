@@ -1,6 +1,12 @@
 package root.model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import root.data.SingleConnection;
+import root.data.VehiculeDao;
+
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Classe de modèle pour la liste des Vehicules.
@@ -16,13 +22,19 @@ public class ListeVehicules {
    * @see ListeVehicules#supprimer(Vehicule)
    * @see Vehicule
    */
-  private ArrayList<Vehicule> vehicules;
+  private ObservableList<Vehicule> vehicules;
+
+  /**
+   * Le DAO qui permet au modèle d'interagir avec la base de données.
+   */
+  private VehiculeDao vehiculeDao;
 
   /**
    * Constructeur.
    */
   public ListeVehicules() {
-    vehicules = new ArrayList<>();
+    vehiculeDao = new VehiculeDao(SingleConnection.getInstance());
+    vehicules = FXCollections.observableArrayList(vehiculeDao.getAll());
   }
 
   /**
@@ -30,7 +42,7 @@ public class ListeVehicules {
    *
    * @return vehicules la liste des vehicules
    */
-  public ArrayList<Vehicule> getVehicules() {
+  public List<Vehicule> getVehicules() {
     return vehicules;
   }
 
@@ -41,6 +53,7 @@ public class ListeVehicules {
    */
   public void ajouter(Vehicule vehicule) {
     vehicules.add(vehicule);
+    vehiculeDao.insert(vehicule);
   }
 
   /**
@@ -50,6 +63,7 @@ public class ListeVehicules {
    */
   public void supprimer(Vehicule vehicule) {
     vehicules.remove(vehicule);
+    vehiculeDao.delete(vehicule);
   }
 
   /**
@@ -58,6 +72,9 @@ public class ListeVehicules {
    * @param vehicule véhicule à modifier
    */
   public void editer(Vehicule vehicule) {
+    int index = vehicules.indexOf(vehicule);
+    vehicules.set(index, vehicule);
+    vehiculeDao.update(vehicule);
   }
 
 }

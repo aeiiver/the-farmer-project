@@ -1,6 +1,7 @@
 package root.controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
@@ -14,41 +15,22 @@ import root.view.ConnexionView;
 import root.view.VehiculesFormView;
 import root.view.VehiculesView;
 
+import java.net.URL;
 import java.sql.Connection;
+import java.util.ResourceBundle;
 
 /**
  * Classe contrôleuse pour la vue et modèle du formulaire d'ajout et modification d'un véhicule.
  */
-public class VehiculesFormCtrl extends MainCtrl  {
+public class VehiculesFormCtrl implements Initializable {
 
   @FXML
   private Pane root;
-
-  /**
-   * Modèle de la liste des véhicules.
-   *
-   * @see VehiculesFormCtrl#getModel()
-   */
-  private ListeVehicules model;
-
-  /**
-   * Vue du formulaire d'ajout et modification d'un véhicule.
-   *
-   * @see VehiculesFormCtrl#getView()
-   */
-  private VehiculesFormView view;
 
   @FXML
   private TextField immatriculation;
   @FXML
   private TextField poidsMax;
-
-  /**
-   * Constructeur de la classe.
-   */
-  public VehiculesFormCtrl(Stage primaryStage) {
-    super(primaryStage);
-  }
 
   /**
    * Reflète l'ajout ou modification dans le modèle et redirige
@@ -97,42 +79,6 @@ public class VehiculesFormCtrl extends MainCtrl  {
     StageUtil.getFenetre(root).close();
   }
 
-  /**
-   * Retourne le modèle associé à ce contrôleur.
-   *
-   * @return Le modèle.
-   */
-  public ListeVehicules getModel() {
-    return model;
-  }
-
-  /**
-   * Change le modèle courant avec un nouveau.
-   *
-   * @param model Le nouveau modèle.
-   */
-  public void setModel(ListeVehicules model) {
-    this.model = model;
-  }
-
-  /**
-   * Retourne la vue associée à ce contrôleur.
-   *
-   * @return La vue.
-   */
-  public VehiculesFormView getView() {
-    return view;
-  }
-
-  /**
-   * Change la vue courante avec une nouvelle.
-   *
-   * @param view La vue nouvelle.
-   */
-  public void setView(VehiculesFormView view) {
-    this.view = view;
-  }
-
   public void chargeChamps(Object modeleObj) {
     Vehicule modele = (Vehicule) modeleObj;
 
@@ -140,4 +86,12 @@ public class VehiculesFormCtrl extends MainCtrl  {
     poidsMax.setText(String.valueOf(modele.getPoidsMax()));
   }
 
+  /**
+   * @param url
+   * @param resourceBundle
+   */
+  @Override
+  public void initialize(URL url, ResourceBundle resourceBundle) {
+
+  }
 }
