@@ -4,6 +4,8 @@ import com.github.javafaker.Faker;
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.ArrayList;
+
+import org.mindrot.jbcrypt.BCrypt;
 import root.data.ProducteurDao;
 import root.data.SingleConnection;
 import root.model.Adresse;
@@ -42,12 +44,13 @@ public class GenProducteur {
       listSiret.add(siret);
       Connection singleConnection = SingleConnection.getInstance();
       String mdp = faker.internet().password(8, 16);
-      //TODO hash mdp
+      String sel = BCrypt.gensalt();
+      String mdpChiffre = BCrypt.hashpw(mdp, sel);
 
       Producteur producteur = new Producteur(siret,
           faker.internet().emailAddress(), faker.name().firstName(),
           faker.name().lastName(), faker.phoneNumber().phoneNumber(),
-          mdp, adresse);
+          mdpChiffre, adresse);
       new ProducteurDao(singleConnection).insert(producteur);
     }
     return listSiret;
