@@ -6,8 +6,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
+<VBox xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            prefHeight="400.0" prefWidth="600.0">
+            prefHeight="400.0" prefWidth="600.0"
+            fx:controller="root.controller.TableaudebordAdminCtrl"
+            fx:id="root">
+    <fx:include source="MenubarAdmin.fxml" />
+    <ListView fx:id="listeProducteurs" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS"/>
+    <ListView fx:id="listeClients" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS"/>
 
-</AnchorPane>
+
+</VBox>
