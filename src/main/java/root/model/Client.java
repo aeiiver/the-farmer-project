@@ -229,4 +229,8 @@ public class Client {
     return idClient == ((Client) other).getIdClient();
   }
 
+  public String toString() {
+    return this.nom + " " + this.prenom;
+  }
+
 }

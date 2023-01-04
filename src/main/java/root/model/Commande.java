@@ -327,4 +327,11 @@ public class Commande {
     return numCom == ((Commande) other).getNumCom();
   }
 
+  @Override
+  public String toString() {
+    return this.libelle + "\n" + this.client
+        + "\n" + this.dateCom + "\n(" + this.heureDeb
+        + "/" + this.heureFin + ")";
+  }
+
 }
