@@ -7,7 +7,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import root.StageUtil;
 import root.controller.ClientsFormCtrl;
+import root.controller.TourneesFormCtrl;
 import root.model.*;
 
 /**
@@ -56,10 +59,32 @@ public class ClientsFormView implements Initializable, FormView<Client> {
   @FXML
   private TextField codePostal;
   /**
-   * Champ de texte pour écrire l'adresse du client.
+   * Champ de texte pour écrire le numéro de l'adresse du client.
    */
   @FXML
-  private TextField adresse;
+  private TextField numeroAdresse;
+  /**
+   * Champ de texte pour écrire la mention de l'adresse du client.
+   */
+  @FXML
+  private TextField mention;
+  /**
+   * Champ de texte pour écrire le type de voie de l'adresse du client.
+   */
+  @FXML
+  private TextField typeVoie;
+  /**
+   * Champ de texte pour écrire le nom de la voie de l'adresse du client.
+   */
+  @FXML
+  private TextField nomVoie;
+  /**
+   * Champ de texte pour écrire le complément de l'adresse du client.
+   */
+  @FXML
+  private TextField complementAdresse;
+
+  private int idClient = -1;
 
   /**
    * Contrôleur de la vue.
@@ -79,14 +104,25 @@ public class ClientsFormView implements Initializable, FormView<Client> {
     String paysSaisi = pays.getText().trim();
     String villeSaisi = ville.getText().trim();
     String codePostalSaisi = codePostal.getText().trim();
-    String adresseSaisi = adresse.getText().trim();
+    int numeroAdresseSaisi = 0;
+    try {
+      numeroAdresseSaisi = Integer.parseInt(numeroAdresse.getText().trim());
+    }
+    catch (Exception e) {
+      numeroAdresseSaisi = 0;
+    }
+    String mentionSaisi = mention.getText().trim();
+    String typeVoieSaisi = typeVoie.getText().trim();
+    String nomVoieSaisi = nomVoie.getText().trim();
+    String complementAdresseSaisi = complementAdresse.getText().trim();
 
     ctrl.enregistrer(nomSaisi, prenomSaisi, numTelSaisi, gpsSaisi,
-            paysSaisi, villeSaisi, codePostalSaisi, adresseSaisi);
+            paysSaisi, villeSaisi, codePostalSaisi, numeroAdresseSaisi,
+            mentionSaisi, typeVoieSaisi, nomVoieSaisi, complementAdresseSaisi, idClient);
   }
 
   /**
-   * Redirige l'utilisateur vers la vue sur la liste des tournées.
+   * Redirige l'utilisateur vers la vue sur la liste des clients.
    */
   @FXML
   private void annuler() {
@@ -95,7 +131,12 @@ public class ClientsFormView implements Initializable, FormView<Client> {
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    // TODO
+
+    StageUtil.onWindowLoad(root, () -> {
+      Stage fenetreCourante = StageUtil.getFenetre(root);
+      ctrl = new ClientsFormCtrl(fenetreCourante);
+    });
+
   }
 
   /**
@@ -104,6 +145,7 @@ public class ClientsFormView implements Initializable, FormView<Client> {
    * @param client Le client à charger.
    */
   public void chargeChamps(Client client) {
+    idClient = client.getIdClient();
 
     // Nom
     nom.setText(client.getNom());
@@ -126,9 +168,20 @@ public class ClientsFormView implements Initializable, FormView<Client> {
     // Code Postal
     codePostal.setText(client.getAdresse().getCodePost());
 
-    // Adresse
-    adresse.setText(client.getAdresse().getNumero() + " " + client.getAdresse().getMention() + " " +
-            client.getAdresse().getVoie() + " " + client.getAdresse().getNom() + " " + client.getAdresse().getComplement());
+    // Numéro de l'Adresse
+    numeroAdresse.setText(String.valueOf(client.getAdresse().getNumero()));
+
+    // Mention de l'Adresse
+    mention.setText(client.getAdresse().getMention());
+
+    // Type de voie de l'Adresse
+    typeVoie.setText(client.getAdresse().getVoie());
+
+    // Nom de la voie de l'Adresse
+    nomVoie.setText(client.getAdresse().getNom());
+
+    // Complément de l'Adresse
+    complementAdresse.setText(client.getAdresse().getComplement());
   }
 
 }

@@ -12,42 +12,42 @@
          <Font size="32.0" />
       </font>
    </Label>
-   <Label layoutX="16.0" layoutY="121.0" prefHeight="33.0" prefWidth="160.0" text="Nom">
+   <Label layoutX="16.0" layoutY="121.0" prefHeight="33.0" prefWidth="160.0" text="Nom*">
       <font>
          <Font size="20.0" />
       </font>
    </Label>
-   <Label layoutX="16.0" layoutY="162.0" prefHeight="33.0" prefWidth="160.0" text="Prenom">
+   <Label layoutX="16.0" layoutY="162.0" prefHeight="33.0" prefWidth="160.0" text="Prenom*">
       <font>
          <Font size="20.0" />
       </font>
    </Label>
-   <Label layoutX="16.0" layoutY="205.0" prefHeight="33.0" prefWidth="160.0" text="Numéro de téléphone">
+   <Label layoutX="16.0" layoutY="205.0" prefHeight="33.0" prefWidth="160.0" text="Numéro de téléphone*">
       <font>
          <Font size="15.0" />
       </font>
    </Label>
-   <Label layoutX="16.0" layoutY="249.0" prefHeight="33.0" prefWidth="160.0" text="Coordonnées GPS">
+   <Label layoutX="16.0" layoutY="249.0" prefHeight="33.0" prefWidth="160.0" text="Coordonnées GPS*">
       <font>
          <Font size="17.0" />
       </font>
    </Label>
-   <Label layoutX="16.0" layoutY="292.0" prefHeight="33.0" prefWidth="160.0" text="Pays">
+   <Label layoutX="16.0" layoutY="292.0" prefHeight="33.0" prefWidth="160.0" text="Pays*">
       <font>
          <Font size="20.0" />
       </font>
    </Label>
-   <Label layoutX="16.0" layoutY="335.0" prefHeight="33.0" prefWidth="160.0" text="Code postal">
+   <Label layoutX="16.0" layoutY="335.0" prefHeight="33.0" prefWidth="160.0" text="Code postal*">
       <font>
          <Font size="20.0" />
       </font>
    </Label>
-   <Label layoutX="16.0" layoutY="379.0" prefHeight="33.0" prefWidth="160.0" text="Ville">
+   <Label layoutX="16.0" layoutY="379.0" prefHeight="33.0" prefWidth="160.0" text="Ville*">
       <font>
          <Font size="20.0" />
       </font>
    </Label>
-   <Label layoutX="16.0" layoutY="424.0" prefHeight="33.0" prefWidth="160.0" text="Adresse">
+   <Label layoutX="16.0" layoutY="424.0" prefHeight="33.0" prefWidth="160.0" text="Adresse*">
       <font>
          <Font size="20.0" />
       </font>
@@ -60,7 +60,7 @@
    <TextField fx:id="codePostal" layoutX="176.0" layoutY="335.0" prefHeight="33.0" prefWidth="201.0" />
    <TextField fx:id="ville" layoutX="176.0" layoutY="379.0" prefHeight="33.0" prefWidth="201.0" />
    <!--<TextField fx:id="adresse" layoutX="176.0" layoutY="424.0" prefHeight="33.0" prefWidth="201.0" />-->
-   <Button layoutX="156.0" layoutY="595.0" mnemonicParsing="false" onAction="#valider" prefHeight="39.0" prefWidth="98.0" text="Valider">
+   <Button layoutX="156.0" layoutY="595.0" mnemonicParsing="false" onAction="#enregistrer" prefHeight="39.0" prefWidth="98.0" text="Enregistrer">
       <font>
          <Font size="18.0" />
       </font>
