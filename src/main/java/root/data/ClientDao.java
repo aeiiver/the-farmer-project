@@ -36,8 +36,8 @@ public class ClientDao extends Dao<Client, Integer> {
       preparedStatement.setInt(1, client.getIdClient());
       preparedStatement.setString(2, client.getNom());
       preparedStatement.setString(3, client.getPrenom());
-      preparedStatement.setString(4, client.getGps());
-      preparedStatement.setString(5, client.getNumTel());
+      preparedStatement.setString(4, client.getNumTel());
+      preparedStatement.setString(5, client.getGps());
       preparedStatement.setInt(6, client.getAdresse().getIdAdresse());
       preparedStatement.executeUpdate();
       return true;

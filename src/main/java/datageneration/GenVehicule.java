@@ -23,7 +23,7 @@ public class GenVehicule {
       Faker faker = new Faker();
       Connection singleConnection = SingleConnection.getInstance();
       int producteur = (int) Math.floor(Math.random() * sirets.size());
-      int poidsMax = (int) Math.floor(Math.random() * 10) + 1;
+      int poidsMax = faker.number().numberBetween(50, 500);
       String immatriculation = faker.regexify("[A-Z]{2}-[0-9]{3}-[A-Z]{2}");
       Vehicule vehicule = new Vehicule(immatriculation, poidsMax,
           new ProducteurDao(singleConnection).get(sirets.get(producteur)));

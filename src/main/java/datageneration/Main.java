@@ -3,8 +3,6 @@ package datageneration;
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.ArrayList;
-
-import com.github.javafaker.Faker;
 import root.data.SingleConnection;
 import root.data.VehiculeDao;
 
@@ -20,12 +18,13 @@ public class Main {
    * @throws IOException Exception en cas d'erreur sur un URL lors de la génération d'adresses.
    */
   public static void main(String[] args) throws IOException {
-    int nbClients = 200;
+    int nbProducteurs = 50;
+    int nbClients = nbProducteurs * 4;
     Connection singleConnection = SingleConnection.getInstance();
 
-    ArrayList<String> sirets = GenProducteur.generate(50);
+    ArrayList<String> sirets = GenProducteur.generate(nbProducteurs);
     GenClient.generate(nbClients);
-    GenVehicule.generate(75, sirets);
+    GenVehicule.generate((int) (nbProducteurs * 1.5), sirets);
 
     for (String siret : sirets) {
       int nbCommandes = 50;
@@ -33,7 +32,7 @@ public class Main {
       for (int i = 0; i < nbCommandes / nbCommandesParTournee; i++) {
         GenCommande.generate(nbCommandesParTournee, siret, nbClients);
         GenTournee.generate(nbCommandes / nbCommandesParTournee,
-            nbCommandes, siret, new VehiculeDao(singleConnection).getAll());
+            nbCommandes, siret, new VehiculeDao(singleConnection).getAll(), nbCommandesParTournee);
       }
     }
   }

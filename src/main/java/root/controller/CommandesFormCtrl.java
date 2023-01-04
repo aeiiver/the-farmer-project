@@ -34,8 +34,8 @@ public class CommandesFormCtrl {
                           int numCom) {
     /* Validation de la saisie */
     // Vérifie si champs vides
-    if (libelleSaisi.isEmpty() || poidsSaisi.isEmpty() || clientChoisi == null ||
-        dateChoisie == null || heureDebSaisie.isEmpty() || heureFinSaisie.isEmpty()) {
+    if (libelleSaisi.isEmpty() || poidsSaisi.isEmpty() || clientChoisi == null
+        || dateChoisie == null || heureDebSaisie.isEmpty() || heureFinSaisie.isEmpty()) {
       StageUtil.afficheAlerte("Tous les champs doivent être renseignés.", fenetre);
       return;
     }

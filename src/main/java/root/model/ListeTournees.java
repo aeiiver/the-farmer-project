@@ -1,6 +1,5 @@
 package root.model;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -8,7 +7,6 @@ import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import root.data.SingleConnection;
-import root.data.ProducteurDao;
 import root.data.TourneeDao;
 
 /**

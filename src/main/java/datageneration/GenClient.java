@@ -3,6 +3,8 @@ package datageneration;
 import com.github.javafaker.Faker;
 import java.io.IOException;
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.Comparator;
 import root.data.ClientDao;
 import root.data.SingleConnection;
 import root.model.Adresse;
@@ -35,9 +37,22 @@ public class GenClient {
       GenAdresse genAdresse = new GenAdresse();
       Adresse adresse = genAdresse.genAdresse();
       Connection singleConnection = SingleConnection.getInstance();
+      String num = "0" + faker.phoneNumber().cellPhone().replace(".", "")
+          .replace("-", "").substring(1, 10);
+      int idMax = 1;
+      ArrayList<Client> allClient = new ClientDao(singleConnection).getAll();
 
-      Client client = new Client(faker.name().firstName(),
-          faker.name().lastName(), faker.phoneNumber().phoneNumber(),
+      if (allClient != null) {
+        idMax = allClient.stream()
+            .max(Comparator.comparing(Client::getIdClient))
+            .orElse(new Client(2, "", "", "", "",
+                new Adresse(136, "", "", "", "", "", 0, "", ""))).getIdClient();
+      }
+      idMax++;
+
+
+      Client client = new Client(idMax, faker.name().firstName(),
+          faker.name().lastName(), num,
           genAdresse.getGps(), adresse);
       new ClientDao(singleConnection).insert(client);
     }

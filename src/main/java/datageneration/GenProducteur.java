@@ -2,9 +2,7 @@ package datageneration;
 
 import com.github.javafaker.Faker;
 import java.io.IOException;
-import java.sql.Connection;
 import java.util.ArrayList;
-
 import org.mindrot.jbcrypt.BCrypt;
 import root.data.ProducteurDao;
 import root.data.SingleConnection;
@@ -42,17 +40,17 @@ public class GenProducteur {
 
       String siret = faker.number().digits(14);
       listSiret.add(siret);
-      Connection singleConnection = SingleConnection.getInstance();
       String mdp = faker.internet().password(8, 16);
       String sel = BCrypt.gensalt();
       String mdpChiffre = BCrypt.hashpw(mdp, sel);
-      String num = "0" + faker.phoneNumber().cellPhone().replace(".", "").replace("-", "").substring(1, 10);
+      String num = "0" + faker.phoneNumber().cellPhone().replace(".", "")
+          .replace("-", "").substring(1, 10);
 
       Producteur producteur = new Producteur(siret,
           faker.internet().emailAddress(), faker.name().firstName(),
           faker.name().lastName(), num,
           mdpChiffre, adresse);
-      new ProducteurDao(singleConnection).insert(producteur);
+      new ProducteurDao(SingleConnection.getInstance()).insert(producteur);
     }
     return listSiret;
   }

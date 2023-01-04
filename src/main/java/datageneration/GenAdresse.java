@@ -9,8 +9,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
-
 import root.data.AdresseDao;
 import root.data.SingleConnection;
 import root.model.Adresse;
@@ -43,46 +43,36 @@ public class GenAdresse {
    * @throws IOException Si l'adresse n'a pas pu être générée.
    */
   public Adresse genAdresse() throws IOException {
-    Adresse adresse = null;
     String json = getAddressJson();
-    String typeRue = json.substring(json.indexOf("name") + 7, json.indexOf("postcode") - 3);
+    String typeRue = json.substring(json.indexOf("label") + 8, json.indexOf("score") - 3);
     String[] typeRueSplit = typeRue.split(" ");
-    int valRue = 2;
-    int numero;
-    try {
-      numero = Integer.parseInt(typeRueSplit[0]);
-    } catch (NumberFormatException e) {
-      valRue = 3;
-      numero = 0;
-    }
-    if (typeRueSplit[1].equals("Lieu")) {
-      for (int i = 4; i < typeRueSplit.length - 1; i++) {
-        typeRueSplit[3] += typeRueSplit[i + 1];
-      }
-    } else {
-      for (int i = 2; i < typeRueSplit.length - 1; i++) {
-        typeRueSplit[2] += " " + typeRueSplit[i + 1];
+    int numero = 0;
+    String codePostal = "";
+    for (String str : typeRueSplit) {
+      if (str.matches("[0-9]{5}")) {
+        codePostal = str;
+      } else if (str.matches("[0-9]{1,}")) {
+        numero = Integer.parseInt(typeRueSplit[0]);
       }
     }
-    String cityName = json.substring(json.indexOf("\"city\"") + 8,
-        json.indexOf("\"", json.indexOf("\"city\"") + 9));
+    String city = typeRue.substring(typeRue.indexOf(codePostal)).replace(codePostal, "").trim();
+    String rue = typeRue.substring(typeRue.indexOf(numero) + 1,
+        typeRue.indexOf(codePostal)).replace(Integer.toString(numero), "").trim();
 
     ArrayList<Adresse> allAdresse = new AdresseDao(SingleConnection.getInstance()).getAll();
-
-    int idMax = 2;
-
+    int idMax = 1;
     if (allAdresse != null) {
       idMax = new AdresseDao(SingleConnection.getInstance()).getAll().stream()
           .max(Comparator.comparing(Adresse::getIdAdresse))
           .orElse(new Adresse(3, "", "", "", "", "", 0, "", "")).getIdAdresse();
     }
-
-    System.out.println("idMax = " + idMax);
+    idMax++;
+    Adresse adresse;
     adresse = new Adresse(idMax, "France",
-        json.substring(json.indexOf("postcode") + 11, json.indexOf("postcode") + 16),
-        cityName,
-        typeRueSplit[1],
-        typeRueSplit[valRue],
+        codePostal,
+        city,
+        "",
+        rue,
         numero,
         "", ""
     );
