@@ -19,7 +19,8 @@ public class Validateur {
   }
 
   public static boolean validerImmatriculation(String texte) {
-    return texte.matches("[A-Z]{2}-[0-9]{3}-[A-Z]{2}");
+    return texte.matches("[A-Z]{2}-[0-9]{3}-[A-Z]{2}")
+        || texte.matches("[A-Z]{2}[0-9]{3}[A-Z]{2}");
   }
 
   public static boolean validerMail(String texte) {

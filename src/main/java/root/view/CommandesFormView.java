@@ -15,7 +15,6 @@ import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import root.StageUtil;
 import root.controller.CommandesFormCtrl;
-import root.controller.FormView;
 import root.model.Client;
 import root.model.Commande;
 import root.model.SessionProducteur;

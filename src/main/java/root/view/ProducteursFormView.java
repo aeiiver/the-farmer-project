@@ -9,7 +9,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import root.StageUtil;
-import root.controller.FormView;
 import root.controller.ProducteursFormCtrl;
 import root.model.Producteur;
 

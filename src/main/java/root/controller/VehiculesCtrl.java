@@ -3,6 +3,8 @@ package root.controller;
 import javafx.stage.Stage;
 import root.SceneChanger;
 import root.StageUtil;
+import root.data.SingleConnection;
+import root.data.VehiculeDao;
 import root.model.Vehicule;
 
 /**
@@ -30,7 +32,11 @@ public class VehiculesCtrl {
    */
   public void supprimerVehicule(Vehicule vehicule) {
     // TODO: Supprimer un véhicule du modèle
+    VehiculeDao dao = new VehiculeDao(SingleConnection.getInstance());
     boolean reponse = StageUtil.afficheConfirmation(fenetre);
+    if (reponse) {
+      dao.delete(vehicule);
+    }
   }
 
   /**

@@ -1,4 +1,4 @@
-package root.controller;
+package root.view;
 
 /**
  * Interface d'une vue de formulaire pour un modèle T.
