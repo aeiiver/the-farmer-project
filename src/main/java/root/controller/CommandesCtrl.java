@@ -2,6 +2,7 @@ package root.controller;
 
 import javafx.stage.Stage;
 import root.SceneChanger;
+import root.StageUtil;
 import root.model.Commande;
 import root.model.ListeCommandes;
 import root.view.CommandesFormView;
@@ -30,7 +31,11 @@ public class CommandesCtrl {
    * Supprime une commande du modèle.
    */
   public void supprimerCommande(Commande commande) {
-    modele.supprimer(commande);
+    boolean estDaccord = StageUtil.afficheConfirmation(fenetre);
+
+    if (estDaccord) {
+      modele.supprimer(commande);
+    }
   }
 
   /**

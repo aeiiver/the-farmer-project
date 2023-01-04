@@ -87,6 +87,8 @@ public class StageUtil {
 
     ButtonType oui = new ButtonType("Oui", ButtonBar.ButtonData.YES);
     ButtonType non = new ButtonType("Non", ButtonBar.ButtonData.NO);
+    alerte.getButtonTypes().set(0, non);
+    alerte.getButtonTypes().set(1, oui);
 
     Optional<ButtonType> reponse = alerte.showAndWait();
 
