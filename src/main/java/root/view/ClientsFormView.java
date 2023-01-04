@@ -2,14 +2,13 @@ package root.view;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
-import root.StageUtil;
 import root.controller.ClientsFormCtrl;
-import root.model.Client;
+import root.model.*;
 
 /**
  * Classe de vue pour le formulaire d'ajout d'un client.
@@ -67,23 +66,69 @@ public class ClientsFormView implements Initializable, FormView<Client> {
    */
   private ClientsFormCtrl ctrl;
 
+  /**
+   * Reflète l'ajout ou modification dans le modèle et redirige
+   * l'utilisateur vers la vue sur la liste des clients.
+   */
   @FXML
-  private void valider() {
-    // TODO
+  private void enregistrer() {
+    String nomSaisi = nom.getText().trim();
+    String prenomSaisi = prenom.getText().trim();
+    String numTelSaisi = numTel.getText().trim();
+    String gpsSaisi = gps.getText().trim();
+    String paysSaisi = pays.getText().trim();
+    String villeSaisi = ville.getText().trim();
+    String codePostalSaisi = codePostal.getText().trim();
+    String adresseSaisi = adresse.getText().trim();
+
+    ctrl.enregistrer(nomSaisi, prenomSaisi, numTelSaisi, gpsSaisi,
+            paysSaisi, villeSaisi, codePostalSaisi, adresseSaisi);
+  }
+
+  /**
+   * Redirige l'utilisateur vers la vue sur la liste des tournées.
+   */
+  @FXML
+  private void annuler() {
+    ctrl.annuler();
   }
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    StageUtil.onWindowLoad(root, () -> {
-      Stage fenetre = StageUtil.getFenetre(root);
-      ctrl = new ClientsFormCtrl(fenetre);
-    });
+    // TODO
   }
 
-  @Override
+  /**
+   * Charge les données d'un client dans les champs du formulaire.
+   *
+   * @param client Le client à charger.
+   */
   public void chargeChamps(Client client) {
-    // TODO
+
+    // Nom
+    nom.setText(client.getNom());
+
+    // Prénom
+    prenom.setText(client.getPrenom());
+
+    // Numéro de téléphone
+    numTel.setText(client.getNumTel());
+
+    // Coordonnées GPS
+    gps.setText(client.getGps());
+
+    // Pays
+    pays.setText(client.getAdresse().getPays());
+
+    // Ville
+    ville.setText(client.getAdresse().getVille());
+
+    // Code Postal
+    codePostal.setText(client.getAdresse().getCodePost());
+
+    // Adresse
+    adresse.setText(client.getAdresse().getNumero() + " " + client.getAdresse().getMention() + " " +
+            client.getAdresse().getVoie() + " " + client.getAdresse().getNom() + " " + client.getAdresse().getComplement());
   }
 
 }
