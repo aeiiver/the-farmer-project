@@ -32,12 +32,16 @@ public class Validateur {
     return texte.matches("^(\\d ?){14}$");
   }
 
-  public static boolean validerNomPropre(String texte) {
+  public static boolean validerPseudo(String texte) {
     return texte.matches("^[A-Za-z0-9]+$");
   }
 
-  public static boolean nomPropreValide(String texte) {
+  public static boolean validerNomPropre(String texte) {
     return texte.matches("^[A-Z](a-z)+([ -A-Z](a-z)+)*$");
+  }
+
+  public static boolean validerNumTel(String texte) {
+    return texte.matches("^0[1-9]( ?[0-9]{2}){4}$");
   }
 
 }
