@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="408.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.view.ClientsFormView">
+<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="648.0" prefWidth="408.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.view.ClientsFormView">
    <Label alignment="CENTER" layoutY="31.0" prefHeight="47.0" prefWidth="408.0" text="Ajouter un client">
       <font>
          <Font size="32.0" />
@@ -59,10 +59,20 @@
    <TextField fx:id="pays" layoutX="176.0" layoutY="292.0" prefHeight="33.0" prefWidth="201.0" />
    <TextField fx:id="codePostal" layoutX="176.0" layoutY="335.0" prefHeight="33.0" prefWidth="201.0" />
    <TextField fx:id="ville" layoutX="176.0" layoutY="379.0" prefHeight="33.0" prefWidth="201.0" />
-   <TextField fx:id="adresse" layoutX="176.0" layoutY="424.0" prefHeight="33.0" prefWidth="201.0" />
-   <Button layoutX="155.0" layoutY="476.0" mnemonicParsing="false" onAction="#valider" prefHeight="39.0" prefWidth="98.0" text="Valider">
+   <!--<TextField fx:id="adresse" layoutX="176.0" layoutY="424.0" prefHeight="33.0" prefWidth="201.0" />-->
+   <Button layoutX="156.0" layoutY="595.0" mnemonicParsing="false" onAction="#valider" prefHeight="39.0" prefWidth="98.0" text="Valider">
       <font>
          <Font size="18.0" />
       </font>
    </Button>
+   <TextField fx:id="numeroAdresse" layoutX="175.0" layoutY="424.0" prefHeight="33.0" prefWidth="56.0" promptText="numéro" />
+   <TextField fx:id="mention" layoutX="231.0" layoutY="424.0" prefHeight="33.0" prefWidth="63.0" promptText="mention" />
+   <TextField fx:id="typeVoie" layoutX="294.0" layoutY="424.0" prefHeight="33.0" prefWidth="83.0" promptText="type de voie" />
+   <TextField fx:id="nomVoie" layoutX="176.0" layoutY="465.0" prefHeight="33.0" prefWidth="201.0" promptText="nom de voie*" />
+   <TextField fx:id="complementAdresse" layoutX="176.0" layoutY="508.0" prefHeight="33.0" prefWidth="201.0" promptText="complément d'adresse" />
+   <Label layoutX="9.0" layoutY="553.0" prefHeight="33.0" prefWidth="391.0" text="Les champs obligatoire sont représenter par une *" textFill="#000000f0">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </Label>
 </Pane>
