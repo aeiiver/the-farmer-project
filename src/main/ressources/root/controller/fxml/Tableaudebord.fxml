@@ -12,7 +12,7 @@
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.view.TableaudebordView">
     <fx:include source="MenubarProducteur.fxml" />
     <HBox prefHeight="115.0" prefWidth="1013.0">
-        <ListView fx:id="listeCommandesTourneeSelectionee" orientation="HORIZONTAL" HBox.hgrow="ALWAYS" />
+        <ListView fx:id="listeCommandesTourneeSelectionee" orientation="HORIZONTAL" HBox.hgrow="ALWAYS"/>
         <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
             <HBox.margin>
                 <Insets />

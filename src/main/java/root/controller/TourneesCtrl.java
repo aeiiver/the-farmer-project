@@ -2,6 +2,7 @@ package root.controller;
 
 import javafx.stage.Stage;
 import root.SceneChanger;
+import root.StageUtil;
 import root.model.ListeTournees;
 import root.model.Tournee;
 import root.view.TourneesFormView;
@@ -30,7 +31,11 @@ public class TourneesCtrl {
    * Supprime une commande du modèle.
    */
   public void supprimerTournee(Tournee tournee) {
-    modele.supprimer(tournee);
+    boolean estDaccord = StageUtil.afficheConfirmation(fenetre);
+
+    if (estDaccord) {
+      modele.supprimer(tournee);
+    }
   }
 
   /**
