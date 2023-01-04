@@ -46,7 +46,7 @@
     - [x] Suppression de véhicules
 
 ### Génération de données
-    - [ ] Génération d'adresse
+    - [x] Génération d'adresse
     - [x] Génération de client
     - [ ] Génération de commandes
     - [ ] Génération de tournées

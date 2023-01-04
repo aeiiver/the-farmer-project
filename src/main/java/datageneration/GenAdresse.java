@@ -51,17 +51,22 @@ public class GenAdresse {
     for (String str : typeRueSplit) {
       if (str.matches("[0-9]{5}")) {
         codePostal = str;
-      } else if (str.matches("[0-9]{1,}")) {
-        numero = Integer.parseInt(typeRueSplit[0]);
+      } else if (str.matches("[0-9]+")) {
+        numero = Integer.parseInt(str);
       }
     }
     String city = typeRue.substring(typeRue.indexOf(codePostal)).replace(codePostal, "").trim();
-    String rue = typeRue.substring(typeRue.indexOf(numero) + 1,
-        typeRue.indexOf(codePostal)).replace(Integer.toString(numero), "").trim();
+    String rue;
+    if (numero == 0) {
+      rue = typeRue.substring(0, typeRue.indexOf(codePostal) - 1).trim();
+    } else {
+      rue = typeRue.substring((String.valueOf(numero).equals(typeRueSplit[0])) ? typeRueSplit[0].length() + 1 : 0, typeRue.indexOf(codePostal)
+      ).replace(Integer.toString(numero), "").trim();
+    }
 
-    ArrayList<Adresse> allAdresse = new AdresseDao(SingleConnection.getInstance()).getAll();
+
     int idMax = 1;
-    if (allAdresse != null) {
+    if (new AdresseDao(SingleConnection.getInstance()).getAll() != null) {
       idMax = new AdresseDao(SingleConnection.getInstance()).getAll().stream()
           .max(Comparator.comparing(Adresse::getIdAdresse))
           .orElse(new Adresse(3, "", "", "", "", "", 0, "", "")).getIdAdresse();
