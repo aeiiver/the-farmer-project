@@ -9,7 +9,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import root.StageUtil;
 import root.controller.ProducteursCtrl;
-import root.model.Producteur;
+import root.model.*;
 
 /**
  * Classe de vue pour la liste des producteurs.
@@ -46,10 +46,11 @@ public class ProducteursView implements Initializable {
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
+    ListeProducteurs modele = ((SessionAdmin) SingleSession.getSession()).getListeProducteurs();
 
     StageUtil.onWindowLoad(root, () -> {
       Stage fenetre = StageUtil.getFenetre(root);
-      ctrl = new ProducteursCtrl(fenetre);
+      ctrl = new ProducteursCtrl(fenetre,modele);
     });
 
   }
