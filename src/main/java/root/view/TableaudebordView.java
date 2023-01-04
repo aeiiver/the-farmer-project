@@ -1,23 +1,30 @@
 package root.view;
 
+import com.gluonhq.maps.MapPoint;
+import com.gluonhq.maps.MapView;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Orientation;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import root.StageUtil;
 import root.controller.TableaudebordCtrl;
 import root.model.Commande;
+import root.model.ListeCommandes;
+import root.model.ListeTournees;
+import root.model.PoiLayer;
+import root.model.SessionProducteur;
+import root.model.SingleSession;
 import root.model.Tournee;
 import root.model.list.ListeCommandes;
 import root.model.list.ListeTournees;
 import root.model.session.SessionProducteur;
 import root.model.session.SingleSession;
-
 
 /**
  * Classe de vue pour le tableau de bord.
@@ -30,6 +37,8 @@ public class TableaudebordView implements Initializable {
   private ListView<Commande> listeCommandesTourneeSelectionee;
   @FXML
   private ListView<Tournee> listeTourneesCourantes;
+  @FXML
+  private MapView carte;
 
   /**
    * La fenêtre dans laquelle la vue a été chargée.
@@ -57,34 +66,45 @@ public class TableaudebordView implements Initializable {
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    ListeCommandes modeleCommande =
-        ((SessionProducteur) SingleSession.getSession()).getListeCommandes();
-    ListeTournees modeleTournee =
-        ((SessionProducteur) SingleSession.getSession()).getListeTournees();
 
-    // Quand on détecte que 'root' est attaché à une scène et que cette scène est attachée
-    // à une fenêtre, on peut initialiser 'fenetre' et 'ctrl' sans obtenir de null pointer.
-    root.sceneProperty().addListener((observableScene, oldScene, newScene) -> {
-
-      if (oldScene == null && newScene != null) {
-        newScene.windowProperty().addListener((observableWindow, oldWindow, newWindow) -> {
-
-          fenetre = StageUtil.getFenetre(root);
-          ctrl = new TableaudebordCtrl(fenetre);
-
-        });
-      }
-      ObservableList<Commande> commandes = (ObservableList<Commande>) modeleCommande.getCommandes();
-      ObservableList<Tournee> tournees = (ObservableList<Tournee>) modeleTournee.getTournees();
-      if (!(commandes == null)) {
-        listeCommandesTourneeSelectionee.setItems(commandes);
-        listeCommandesTourneeSelectionee.setOrientation(Orientation.HORIZONTAL);
-      }
-      if (!(tournees == null)) {
-        listeTourneesCourantes.setItems(tournees);
-      }
+    /* Charge quand la fenêtre est chargée */
+    StageUtil.onWindowLoad(root, () -> {
+      // Charge le contrôleur
+      fenetre = StageUtil.getFenetre(root);
+      ctrl = new TableaudebordCtrl(fenetre);
     });
 
+    /* Remplis les listes */
+    ListeCommandes modeleListeCommandes =
+        ((SessionProducteur) SingleSession.getSession()).getListeCommandes();
+    ListeTournees modeleListeTournees =
+        ((SessionProducteur) SingleSession.getSession()).getListeTournees();
+
+    ObservableList<Commande> commandes =
+        (ObservableList<Commande>) modeleListeCommandes.getCommandes();
+    ObservableList<Tournee> tournees = (ObservableList<Tournee>) modeleListeTournees.getTournees();
+
+    if (!(commandes == null)) {
+      listeCommandesTourneeSelectionee.setItems(commandes);
+    }
+    if (!(tournees == null)) {
+      listeTourneesCourantes.setItems(tournees);
+    }
+
+    /* Carte */
+    // Prépare la carte
+    carte.setCenter(46.8332, 2.76008);
+    carte.setZoom(6);
+
+    // Prépare une couche de marqueurs
+    PoiLayer poiLayer = new PoiLayer();
+    poiLayer.addPoint(new MapPoint(46.8332, 2.76008), new Circle(5, Color.BLUE)); // centre initial
+    poiLayer.addPoint(new MapPoint(46.5332, 2.66008), new Circle(5, Color.RED));
+    poiLayer.addPoint(new MapPoint(46.7332, 2.86008), new Circle(5, Color.DARKBLUE));
+    poiLayer.addPoint(new MapPoint(46.8312, 2.56008), new Circle(5, Color.DARKRED));
+
+    // Ajoute la couche à la carte
+    carte.addLayer(poiLayer);
   }
 
 }

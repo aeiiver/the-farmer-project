@@ -23,7 +23,7 @@
             <Label text="Calendrier" />
         </VBox>
     </HBox>
-    <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+    <HBox VBox.vgrow="ALWAYS">
         <VBox>
             <ListView fx:id="listeTourneesCourantes" prefWidth="192.0" VBox.vgrow="ALWAYS" />
             <HBox alignment="TOP_CENTER" spacing="8.0">
@@ -32,6 +32,8 @@
                 <Button mnemonicParsing="false" onAction="#editerTournee" text="Éditer" />
             </HBox>
         </VBox>
-        <!--<MapView prefHeight="485.0" prefWidth="811.0" fx:id="mapView"/>-->
+        <VBox HBox.hgrow="ALWAYS">
+            <MapView fx:id="carte" VBox.vgrow="ALWAYS"/>
+        </VBox>
     </HBox>
 </VBox>
