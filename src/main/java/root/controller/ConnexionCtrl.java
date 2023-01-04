@@ -108,7 +108,7 @@ public class ConnexionCtrl {
    */
   private boolean valideIdentifiants(String identifiant, boolean estAdmin) {
     if (estAdmin) {
-      return Validateur.validerMail(identifiant) || Validateur.validerNomPropre(identifiant);
+      return Validateur.validerMail(identifiant) || Validateur.validerPseudo(identifiant);
     }
     return Validateur.validerMail(identifiant) || Validateur.validerSiret(identifiant);
   }

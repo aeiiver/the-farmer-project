@@ -51,12 +51,12 @@ public class ProducteursFormCtrl {
       messageErreur += "La ville doit faire entre 2 et 100 characters,"
               + " commencer par une majuscule, les accent sont exclus.\n";
     }
-    if (!Validateur.nomPropreValide(nomSaisi)) {
+    if (!Validateur.validerNomPropre(nomSaisi)) {
       //Todo revoir le regex du nom et adapter le message d'erreur
       messageErreur += "Le nom doit commencer par une majuscule et ne doit "
               + "pas contenir plusieurs tiret ou espace d'affiler\n";
     }
-    if (!Validateur.nomPropreValide(prenomSaisi)) {
+    if (!Validateur.validerNomPropre(prenomSaisi)) {
       //Todo revoir le regex du prénom et adapter le message d'erreur
       messageErreur += "Le prénom doit commencer par une majuscule et ne doit "
               + "pas contenir plusieurs tiret ou espace d'affiler\n";
