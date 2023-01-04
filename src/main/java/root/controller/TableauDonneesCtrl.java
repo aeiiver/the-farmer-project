@@ -8,7 +8,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.VBox;
 import root.StageUtil;
 import root.data.Dao;
-import root.view.FormView;
+import root.view.form.FormView;
 
 /**
  * Contrôleur de la vue "TableauDonnees".

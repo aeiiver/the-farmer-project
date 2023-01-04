@@ -5,7 +5,7 @@
 <?import javafx.scene.control.MenuItem?>
 
 <MenuBar fx:id="root" layoutY="2.0" prefHeight="25.0" prefWidth="1013.0" xmlns="http://javafx.com/javafx/19"
-         xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.view.MenubarProducteurView">
+         xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.view.menubar.MenubarProducteurView">
     <Menu mnemonicParsing="false" text="Tableau de bord">
         <MenuItem mnemonicParsing="false" onAction="#gotoTableaudebord" text="Tableau de bord"/>
     </Menu>

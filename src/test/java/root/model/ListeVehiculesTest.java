@@ -4,8 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
+import root.model.list.ListeVehicules;
 
 class ListeVehiculesTest {
 

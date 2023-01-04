@@ -2,6 +2,7 @@ package root.model;
 
 import java.sql.Time;
 import java.util.ArrayList;
+import root.model.list.ListeCommandes;
 
 /**
  * Classe de modèle pour la tournée.

@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 
 <VBox fx:id="root" prefHeight="625.0" prefWidth="1013.0" xmlns="http://javafx.com/javafx/19"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.view.VehiculesView">
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.view.list.VehiculesView">
     <fx:include source="MenubarProducteur.fxml"/>
     <VBox prefHeight="200.0" prefWidth="100.0" spacing="8.0" VBox.vgrow="ALWAYS">
         <VBox.margin>

@@ -10,8 +10,8 @@ import root.data.AdminDao;
 import root.data.Dao;
 import root.data.ProducteurDao;
 import root.data.SingleConnection;
-import root.model.SingleSession;
 import root.model.Utilisateur;
+import root.model.session.SingleSession;
 
 /**
  * Classe contrôleuse pour la vue sur l'écran de connexion utilisateur.

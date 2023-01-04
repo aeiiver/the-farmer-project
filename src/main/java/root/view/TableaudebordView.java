@@ -12,11 +12,11 @@ import javafx.stage.Stage;
 import root.StageUtil;
 import root.controller.TableaudebordCtrl;
 import root.model.Commande;
-import root.model.ListeCommandes;
-import root.model.ListeTournees;
-import root.model.SessionProducteur;
-import root.model.SingleSession;
 import root.model.Tournee;
+import root.model.list.ListeCommandes;
+import root.model.list.ListeTournees;
+import root.model.session.SessionProducteur;
+import root.model.session.SingleSession;
 
 
 /**

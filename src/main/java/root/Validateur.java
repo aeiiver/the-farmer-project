@@ -9,6 +9,12 @@ public class Validateur {
     return texte.matches("^\\d+$");
   }
 
+  /**
+   * Valide si le texte est une heure.
+   *
+   * @param texte le texte à valider
+   * @return true si le texte est une heure, false sinon
+   */
   public static boolean validerHeure(String texte) {
     if (!texte.matches("^\\d{1,2}$")) {
       return false;
