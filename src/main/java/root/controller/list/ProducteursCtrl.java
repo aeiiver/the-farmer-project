@@ -3,8 +3,12 @@ package root.controller.list;
 import javafx.stage.Stage;
 import root.SceneChanger;
 import root.StageUtil;
+import root.data.ProducteurDao;
+import root.data.SingleConnection;
 import root.model.Producteur;
 import root.model.list.ListeProducteurs;
+import root.model.session.SessionAdmin;
+import root.model.session.SingleSession;
 import root.view.form.ProducteursFormView;
 
 /**
@@ -32,9 +36,13 @@ public class ProducteursCtrl {
    * Supprime un producteur du modèle.
    */
   public void supprimerProducteur(Producteur producteur) {
-    boolean estDaccord = StageUtil.afficheConfirmation(fenetre);
+    ProducteurDao dao = new ProducteurDao(SingleConnection.getInstance());
+    ListeProducteurs listeProducteurs =
+        ((SessionAdmin) SingleSession.getSession()).getListeProducteurs();
+    boolean reponse = StageUtil.afficheConfirmation(fenetre);
 
-    if (estDaccord) {
+    if (reponse) {
+      dao.delete(producteur);
       model.supprimer(producteur);
     }
   }

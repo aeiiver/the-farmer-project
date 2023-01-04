@@ -26,7 +26,8 @@ public class Validateur {
 
   public static boolean validerImmatriculation(String texte) {
     return texte.matches("[A-Z]{2}-[0-9]{3}-[A-Z]{2}")
-        || texte.matches("[A-Z]{2}[0-9]{3}[A-Z]{2}");
+        || texte.matches("[A-Z]{2}[0-9]{3}[A-Z]{2}")
+        || texte.matches("[A-Z]{2} [0-9]{3} [A-Z]{2}");
   }
 
   public static boolean validerMail(String texte) {
@@ -48,6 +49,30 @@ public class Validateur {
 
   public static boolean validerNumTel(String texte) {
     return texte.matches("^0[1-9]( ?[0-9]{2}){4}$");
+  }
+
+  public static boolean validerCodePostal(String texte) {
+    return texte.matches("^([12][AB])$|^([0-9]{5})$");
+  }
+
+  public static boolean validerMdp(String texte) {
+    return texte.matches("^(?=.*\\d)(?=.*[a-zàáâäãçéèêëìíîïñòóôöùùûüýÿ])"
+        + "(?=.*[A-ZÀÁÂÄÃÇÉÈÊËÌÍÎÏÑÒÓÔÖÙÚÛÜÝŸ])"
+        + "(?=.*([^\\w0-9ÀÁÂÄÃÇÉÈÊËÌÍÎÏÑÒÓÔÖÙÚÛÜÝŸàáâäãçéèêëìíîïñòóôöùùûüýÿ]|_))(.{8,})$");
+  }
+
+  public static boolean validerPays(String texte) {
+    return texte.matches("^France$");
+  }
+
+  public static boolean validerAdresse(String texte) {
+    //TODO
+    return false;
+  }
+
+  public static boolean validerVille(String texte) {
+    //TODO
+    return texte.matches("^[A-Za-z -]+$");
   }
 
 }

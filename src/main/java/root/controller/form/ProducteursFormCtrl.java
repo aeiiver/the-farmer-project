@@ -61,7 +61,7 @@ public class ProducteursFormCtrl {
       messageErreur += "Le prénom doit commencer par une majuscule et ne doit "
               + "pas contenir plusieurs tiret ou espace d'affiler\n";
     }
-    if (!numTelSaisi.matches("^0[1-9]( ?[0-9]{2}){4}$")) {
+    if (!Validateur.validerNumTel(numTelSaisi)) {
       messageErreur += "Le numéro de téléphone doit faire 10 chiffres"
               + " dont les 2 premier vont de 01 à 09 \n";
     }
@@ -70,16 +70,14 @@ public class ProducteursFormCtrl {
       messageErreur += "l'adresse doit contenir au moins 10"
               + " characters et jusqu'a 225 characters.\n";
     }
-    if (!codePostSaisi.matches("^([12][AB])$|^([0-9]{5})$")) {
+    if (!Validateur.validerCodePostal(codePostSaisi)) {
       messageErreur += "Seul les département de la France métropolitaine"
               + " + corse sont autoriser.\n";
     }
-    if (!paysSaisi.matches("^France$")) {
+    if (!Validateur.validerPays(paysSaisi)) {
       messageErreur += "La France est le seul pays autoriser pour le moment.\n";
     }
-    if (!mdpSaisi.matches("^(?=.*\\d)(?=.*[a-zàáâäãçéèêëìíîïñòóôöùùûüýÿ])"
-            + "(?=.*[A-ZÀÁÂÄÃÇÉÈÊËÌÍÎÏÑÒÓÔÖÙÚÛÜÝŸ])"
-            + "(?=.*([^\\w0-9ÀÁÂÄÃÇÉÈÊËÌÍÎÏÑÒÓÔÖÙÚÛÜÝŸàáâäãçéèêëìíîïñòóôöùùûüýÿ]|_))(.{8,})$")) {
+    if (!Validateur.validerMdp(mdpSaisi)) {
       messageErreur += "Le mot de passe doit contenir : \n- Au moins une minuscule une majuscule "
               + "\n- Au moins un chiffre \n- Au moins un character spéciale "
               + "\n- doit faire plus de 8 characters. \n";
@@ -96,6 +94,7 @@ public class ProducteursFormCtrl {
     String[] elementAdresse = adresseSaisi.split(" ");
     // Todo Problème sur la gestion de l'adresse
     //  (si il n'y a pas de numéro, les élément optionnel etc...)
+    // Pour le numéro, regarde comment j'ai fait dans la génération de données.
 
     Adresse adresseResultante = new Adresse(paysSaisi, codePostSaisi, villeSaisi, elementAdresse[1],
             elementAdresse[2], Integer.parseInt(elementAdresse[0]), elementAdresse[3],
