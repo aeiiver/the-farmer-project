@@ -3,7 +3,6 @@ package root.view;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,10 +13,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import root.StageUtil;
-import root.controller.TableauDonneesCtrl;
 import root.controller.VehiculesCtrl;
-import root.data.SingleConnection;
-import root.data.VehiculeDao;
 import root.model.ListeVehicules;
 import root.model.SessionProducteur;
 import root.model.SingleSession;

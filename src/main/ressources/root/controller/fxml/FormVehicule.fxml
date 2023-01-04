@@ -21,7 +21,7 @@
    <TextField layoutX="161.0" layoutY="106.0" prefHeight="38.0"
               prefWidth="208.0" fx:id="immatriculation"/>
    <Label layoutX="9.0" layoutY="107.0" prefHeight="38.0" prefWidth="151.0"
-          text="Immatriculation" fx:id="LabelImmatriculation">
+          text="Immatriculation" fx:id="labelImmatriculation">
       <font>
          <Font size="20.0"/>
       </font>

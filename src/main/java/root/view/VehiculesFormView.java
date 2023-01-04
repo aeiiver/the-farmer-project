@@ -27,7 +27,7 @@ public class VehiculesFormView implements Initializable, FormView<Vehicule> {
    */
 
   @FXML
-  private Label LabelImmatriculation;
+  private Label labelImmatriculation;
 
   @FXML
   private TextField immatriculation;
@@ -39,6 +39,10 @@ public class VehiculesFormView implements Initializable, FormView<Vehicule> {
 
   private VehiculesFormCtrl ctrl;
 
+  /**
+   * Méthode réagissant à l'appui sur le bouton de validation du formulaire
+   * d'ajout ou d'édition de véhicules.
+   */
   public void valider() {
     String immatriculationSaisie = immatriculation.getText().trim();
     String poidsMaxSaisi = poidsMax.getText().trim();
@@ -60,7 +64,7 @@ public class VehiculesFormView implements Initializable, FormView<Vehicule> {
   public void chargeChamps(Vehicule modele) {
     immatriculation.setText(modele.getImmat());
     immatriculation.setVisible(false);
-    LabelImmatriculation.setVisible(false);
+    labelImmatriculation.setVisible(false);
     poidsMax.setText(String.valueOf(modele.getPoidsMax()));
   }
 
