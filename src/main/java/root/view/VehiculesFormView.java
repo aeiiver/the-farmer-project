@@ -4,11 +4,15 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import root.StageUtil;
+import root.controller.TableauDonneesCtrl;
 import root.controller.VehiculesFormCtrl;
+import root.data.SingleConnection;
+import root.data.VehiculeDao;
 import root.model.Vehicule;
 
 /**
@@ -21,6 +25,10 @@ public class VehiculesFormView implements Initializable, FormView<Vehicule> {
   /**
    * Champ de texte pour écrire la plaque d'immatriculation du véhicule.
    */
+
+  @FXML
+  private Label LabelImmatriculation;
+
   @FXML
   private TextField immatriculation;
   /**
@@ -51,6 +59,8 @@ public class VehiculesFormView implements Initializable, FormView<Vehicule> {
   @Override
   public void chargeChamps(Vehicule modele) {
     immatriculation.setText(modele.getImmat());
+    immatriculation.setVisible(false);
+    LabelImmatriculation.setVisible(false);
     poidsMax.setText(String.valueOf(modele.getPoidsMax()));
   }
 
