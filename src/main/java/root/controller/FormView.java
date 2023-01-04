@@ -1,15 +1,15 @@
 package root.controller;
 
 /**
- * Interface d'un contrôleur de formulaire.
+ * Interface d'une vue de formulaire pour un modèle T.
  */
-public interface FormCtrl<T> {
+public interface FormView<T> {
 
   /**
    * Charge dans les champs du formulaire les données d'un modèle.
    *
    * @param modele Le modèle à charger dans le formulaire.
    */
-  public void chargeChamps(T modele);
+  void chargeChamps(T modele);
 
 }

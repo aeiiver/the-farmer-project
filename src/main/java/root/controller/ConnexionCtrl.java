@@ -1,18 +1,9 @@
 package root.controller;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import org.mindrot.jbcrypt.BCrypt;
+import root.SceneChanger;
 import root.StageUtil;
 import root.data.AdminDao;
 import root.data.Dao;
@@ -27,16 +18,13 @@ import root.model.Utilisateur;
  * <p>Cette classe n'a pas de modèles en champs privés car il n'y a pas besoin
  * de mémoriser les saisies de l'utilisateur.</p>
  */
-public class ConnexionCtrl implements Initializable {
+public class ConnexionCtrl {
 
-  @FXML
-  private VBox root;
-  @FXML
-  private TextField identifiant;
-  @FXML
-  private TextField motdepasse;
-  @FXML
-  private CheckBox modeAdmin;
+  private Stage fenetre;
+
+  public ConnexionCtrl(Stage fenetre) {
+    this.fenetre = fenetre;
+  }
 
   /**
    * Vérifie que les identifiants saisis ont une correspondance dans la base de
@@ -63,53 +51,38 @@ public class ConnexionCtrl implements Initializable {
    * les saisies sont incorrectes.</p>
    */
   @FXML
-  private void verifieIdentifiants() throws IOException {
-    String identifiantSaisi = identifiant.getText().trim();
-    String motdepasseSaisi = motdepasse.getText();
-    boolean estAdmin = modeAdmin.isSelected();
-
+  public void verifieIdentifiants(String identifiant, String motdepasse, boolean estAdmin) {
     // Valide les champs
-    if (identifiantSaisi.isEmpty() || motdepasseSaisi.isEmpty()) {
-      StageUtil.afficheAlerte("Tous les champs doivent être renseignés.",
-          StageUtil.getFenetre(root));
+    if (identifiant.isEmpty() || motdepasse.isEmpty()) {
+      StageUtil.afficheAlerte("Tous les champs doivent être renseignés.", fenetre);
       return;
     }
-    if (!valideIdentifiants(identifiantSaisi, estAdmin)) {
-      StageUtil.afficheAlerte("L'identifiant ou le mot de passe saisi est invalide.",
-          StageUtil.getFenetre(root));
+    if (!valideIdentifiants(identifiant, estAdmin)) {
+      StageUtil.afficheAlerte("L'identifiant ou le mot de passe saisi est invalide.", fenetre);
       return;
     }
 
     // Vérifie les identifiants dans la base de données
-    Dao dao = (estAdmin)
-        ? new AdminDao(SingleConnection.getInstance())
-        : new ProducteurDao(SingleConnection.getInstance());
-    Utilisateur user = (Utilisateur) dao.get(identifiantSaisi);
+    Dao dao = (estAdmin) ? new AdminDao(SingleConnection.getInstance()) :
+        new ProducteurDao(SingleConnection.getInstance());
+    Utilisateur utilisateur = (Utilisateur) dao.get(identifiant);
 
-    String mdpChiffreStocke = user.getMdp();
-    boolean ok = BCrypt.checkpw(motdepasseSaisi, mdpChiffreStocke);
+    String hashRecupere = utilisateur.getMdp();
+    boolean motdepasseOk = BCrypt.checkpw(motdepasse, hashRecupere);
 
-    if (!ok) {
+    if (!motdepasseOk) {
       StageUtil.afficheAlerte("L'identifiant et le mot de passe saisis ne correspondent pas.",
-          StageUtil.getFenetre(root));
+          fenetre);
       return;
     }
 
     // L'utilisateur a saisi ses identifiants correctement.
-    SingleSession.ouvreSession(identifiantSaisi, estAdmin);
-
-    String ressource = "/root/controller/fxml/Tableaudebord.fxml";
-    FXMLLoader loader = new FXMLLoader(getClass().getResource(ressource));
-    Parent tableaudebord = loader.load();
-
-    String ressourceAdmin = "/root/controller/fxml/TableaudebordAdmin.fxml";
-    FXMLLoader loaderAdmin = new FXMLLoader(getClass().getResource(ressourceAdmin));
-    Parent tableaudebordAdmin = loaderAdmin.load();
+    SingleSession.ouvreSession(identifiant, estAdmin);
 
     if (estAdmin) {
-      StageUtil.getFenetre(root).setScene(new Scene(tableaudebordAdmin));
+      SceneChanger.voirTableaudebordAdmin(fenetre);
     } else {
-      StageUtil.getFenetre(root).setScene(new Scene(tableaudebord));
+      SceneChanger.voirTableaudebord(fenetre);
     }
 
   }
@@ -132,7 +105,7 @@ public class ConnexionCtrl implements Initializable {
    *
    * @return true si les identifiants sont valides, false sinon.
    */
-  public boolean valideIdentifiants(String identifiant, boolean estAdmin) {
+  private boolean valideIdentifiants(String identifiant, boolean estAdmin) {
     String mailPattern =
         "^[A-Za-z0-9]+([-_.][A-Za-z0-9]+)*@[A-Za-z0-9]+([-_.][A-Za-z0-9]+)*\\.[a-z]{2,3}$";
 
@@ -146,17 +119,4 @@ public class ConnexionCtrl implements Initializable {
     return identifiant.matches(mailPattern + "|" + siretPattern);
   }
 
-  @Override
-  public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    root.setOnKeyPressed(keyEvent -> {
-      if (keyEvent.getCode() == KeyCode.ENTER) {
-        try {
-          verifieIdentifiants();
-        } catch (IOException e) {
-          throw new RuntimeException(e);
-        }
-      }
-    });
-  }
 }

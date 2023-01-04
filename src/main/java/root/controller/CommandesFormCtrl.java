@@ -1,21 +1,11 @@
 package root.controller;
 
-import java.net.URL;
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
-import javafx.util.StringConverter;
+import javafx.stage.Stage;
 import root.StageUtil;
+import root.Validateur;
 import root.model.Client;
 import root.model.Commande;
 import root.model.ListeCommandes;
@@ -27,61 +17,43 @@ import root.model.SingleSession;
 /**
  * Classe contrôleuse pour la vue et modèle du formulaire d'ajout et modification d'une commande.
  */
-public class CommandesFormCtrl implements Initializable, FormCtrl<Commande> {
+public class CommandesFormCtrl {
 
-  @FXML
-  private VBox root;
-  @FXML
-  private TextField libelle;
-  @FXML
-  private TextField poids;
-  @FXML
-  private ChoiceBox<Client> clients;
-  @FXML
-  private DatePicker date;
-  @FXML
-  private TextField heureDeb;
-  @FXML
-  private TextField heureFin;
+  private Stage fenetre;
 
-  private Optional<Integer> numero = Optional.empty();
+  public CommandesFormCtrl(Stage fenetre) {
+    this.fenetre = fenetre;
+  }
 
   /**
    * Reflète l'ajout ou modification dans le modèle et redirige
    * l'utilisateur vers la vue sur la liste des commandes.
    */
-  @FXML
-  private void enregistrer() {
-    String libelleSaisi = libelle.getText();
-    String poidsSaisi = poids.getText();
-    Client clientChoisi = clients.getSelectionModel().getSelectedItem();
-    LocalDate dateChoisie = date.getValue();
-    String heureDebSaisie = heureDeb.getText();
-    String heureFinSaisie = heureFin.getText();
-
+  public void enregistrer(String libelleSaisi, String poidsSaisi, Client clientChoisi,
+                          LocalDate dateChoisie, String heureDebSaisie, String heureFinSaisie,
+                          int numCom) {
     /* Validation de la saisie */
     // Vérifie si champs vides
-    if (libelleSaisi.isEmpty() || poidsSaisi.isEmpty() || clientChoisi == null
-        || dateChoisie == null || heureDebSaisie.isEmpty() || heureFinSaisie.isEmpty()) {
-      StageUtil.afficheAlerte("Tous les champs doivent être renseignés.",
-          StageUtil.getFenetre(root));
+    if (libelleSaisi.isEmpty() || poidsSaisi.isEmpty() || clientChoisi == null ||
+        dateChoisie == null || heureDebSaisie.isEmpty() || heureFinSaisie.isEmpty()) {
+      StageUtil.afficheAlerte("Tous les champs doivent être renseignés.", fenetre);
       return;
     }
 
     // Vérifie si types de valeur invalides
     String messageErreur = "";
 
-    if (!validerNombre(poidsSaisi)) {
+    if (!Validateur.validerNombre(poidsSaisi)) {
       messageErreur += "Le poids saisi n'est pas un nombre entier.\n";
     }
-    if (!validerHeure(heureDebSaisie)) {
+    if (!Validateur.validerHeure(heureDebSaisie)) {
       messageErreur += "L'heure de départ saisie n'est pas une heure valide.\n";
     }
-    if (!validerHeure(heureFinSaisie)) {
+    if (!Validateur.validerHeure(heureFinSaisie)) {
       messageErreur += "L'heure de fin saisie n'est pas une heure valide.\n";
     }
     if (!messageErreur.isEmpty()) {
-      StageUtil.afficheAlerte(messageErreur, StageUtil.getFenetre(root));
+      StageUtil.afficheAlerte(messageErreur, fenetre);
       return;
     }
 
@@ -93,7 +65,7 @@ public class CommandesFormCtrl implements Initializable, FormCtrl<Commande> {
 
     if (heureDebValide.equals(heureFinValide) || heureDebValide.after(heureFinValide)) {
       StageUtil.afficheAlerte("L'heure de départ est égale ou supérieure à l'heure de fin.",
-          StageUtil.getFenetre(root));
+          fenetre);
       return;
     }
 
@@ -102,88 +74,25 @@ public class CommandesFormCtrl implements Initializable, FormCtrl<Commande> {
     Producteur producteur = (Producteur) session.getUtilisateur();
     ListeCommandes listeCommandes = session.getListeCommandes();
 
-    Commande com =
-        new Commande(-1, libelleSaisi, poidsValide, dateValide, heureDebValide, heureFinValide,
+    Commande commande =
+        new Commande(libelleSaisi, poidsValide, dateValide, heureDebValide, heureFinValide,
             producteur, clientChoisi);
 
-    numero.ifPresentOrElse(numero -> {
-      com.setNumCom(numero);
-      listeCommandes.editer(com);
-
-    }, () -> {
-      listeCommandes.ajouter(com);
-    });
-
-    StageUtil.getFenetre(root).close();
-  }
-
-  private boolean validerNombre(String texte) {
-    return texte.matches("^\\d+$");
-  }
-
-  private boolean validerHeure(String texte) {
-    if (!texte.matches("^\\d{1,2}$")) {
-      return false;
+    if (numCom > 0) {
+      commande.setNumCom(numCom);
+      listeCommandes.editer(commande);
+    } else {
+      listeCommandes.ajouter(commande);
     }
-    int nombre = Integer.parseInt(texte);
 
-    return 0 <= nombre && nombre <= 23;
+    fenetre.close();
   }
 
   /**
    * Redirige l'utilisateur vers la vue sur la liste des commandes.
    */
-  @FXML
-  private void annuler() {
-    StageUtil.getFenetre(root).close();
-  }
-
-  @Override
-  public void initialize(URL url, ResourceBundle resourceBundle) {
-    /* Lister tous les clients dans la ChoiceBox */
-    List<Client> clientsStockes =
-        ((SessionProducteur) SingleSession.getSession()).getListeClients().getClients();
-    clients.getItems().addAll(clientsStockes);
-
-    // On définit comment on veut afficher un objet Client dans la ChoiceBox.
-    clients.setConverter(new StringConverter<>() {
-      @Override
-      public String toString(Client client) {
-        if (client == null) {
-          return "";
-        }
-        return client.getPrenomNom();
-      }
-
-      @Override
-      public Client fromString(String s) {
-        return null;
-      }
-    });
-  }
-
-  /**
-   * Charge des valeurs dans les champs.
-   *
-   * @param commande Le modèle qui contient les données à charger.
-   */
-  public void chargeChamps(Commande commande) {
-    numero = Optional.of(commande.getNumCom());
-
-    libelle.setText(commande.getLibelle());
-    poids.setText(String.valueOf(commande.getPoids()));
-
-    int index = clients.getItems().indexOf(commande.getClient());
-    clients.getSelectionModel().select(index);
-
-    date.setValue(commande.getDateCom().toLocalDate());
-
-    Calendar calendrier = Calendar.getInstance();
-    calendrier.setTime(commande.getHeureDeb());
-    heureDeb.setText(String.valueOf(calendrier.get(Calendar.HOUR_OF_DAY)));
-
-    calendrier.setTime(commande.getHeureFin());
-    heureFin.setText(String.valueOf(calendrier.get(Calendar.HOUR_OF_DAY)));
+  public void annuler() {
+    fenetre.close();
   }
 
 }

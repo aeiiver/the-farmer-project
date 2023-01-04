@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 
 <VBox fx:id="root" alignment="TOP_CENTER" spacing="40.0" xmlns="http://javafx.com/javafx/19"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.controller.ConnexionCtrl">
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.view.ConnexionView">
     <padding>
         <Insets bottom="28.0" left="28.0" right="28.0" top="28.0"/>
     </padding>

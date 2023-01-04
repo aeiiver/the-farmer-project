@@ -7,7 +7,7 @@ import root.view.CompteView;
 /**
  * Classe contrôleuse pour la vue et modèle du compte de l'utilisateur.
  */
-public class CompteCtrl extends MainCtrl {
+public class CompteCtrl {
 
   /**
    * Modèle de l'utilisateur.
@@ -22,13 +22,6 @@ public class CompteCtrl extends MainCtrl {
    * @see CompteCtrl#getView()
    */
   private CompteView view;
-
-  /**
-   * Constructeur de la classe.
-   */
-  public CompteCtrl(Stage primaryStage) {
-    super(primaryStage);
-  }
 
   /**
    * Reflète les modifications du compte dans le modèle.

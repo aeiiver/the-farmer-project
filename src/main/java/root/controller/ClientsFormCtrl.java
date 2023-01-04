@@ -1,13 +1,13 @@
 package root.controller;
 
-import javafx.stage.Stage;
+import root.model.Client;
 import root.model.ListeClients;
 import root.view.ClientsFormView;
 
 /**
  * Classe contrôleuse pour la vue et modèle du formulaire d'ajout et modification d'un client.
  */
-public class ClientsFormCtrl extends MainCtrl {
+public class ClientsFormCtrl implements FormView<Client> {
 
   /**
    * Modèle de la liste des clients.
@@ -22,13 +22,6 @@ public class ClientsFormCtrl extends MainCtrl {
    * @see ClientsFormCtrl#getView()
    */
   private ClientsFormView view;
-
-  /**
-   * Constructeur de la classe.
-   */
-  public ClientsFormCtrl(Stage primaryStage) {
-    super(primaryStage);
-  }
 
   /**
    * Reflète l'ajout ou modification dans le modèle et redirige
@@ -77,6 +70,11 @@ public class ClientsFormCtrl extends MainCtrl {
    */
   public void setView(ClientsFormView view) {
     this.view = view;
+  }
+
+  @Override
+  public void chargeChamps(Client modele) {
+    // TODO
   }
 
 }

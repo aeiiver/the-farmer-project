@@ -1,10 +1,6 @@
 package root;
 
-import java.io.IOException;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
@@ -27,15 +23,13 @@ public class Main extends Application {
    * @param fenetre La fenêtre principale de l'application.
    */
   @Override
-  public void start(Stage fenetre) throws IOException {
+  public void start(Stage fenetre) {
     System.setProperty("javafx.platform", "desktop");
     System.setProperty("http.agent", "Gluon Mobile/1.0.3");
-    String ressource = "/root/controller/fxml/Connexion.fxml";
-    FXMLLoader loader = new FXMLLoader(getClass().getResource(ressource));
-    Parent ecranConnexion = loader.load();
+
+    SceneChanger.voirConnexion(fenetre);
 
     fenetre.setTitle("Betteraves et Potimarrons");
-    fenetre.setScene(new Scene(ecranConnexion));
     fenetre.show();
   }
 

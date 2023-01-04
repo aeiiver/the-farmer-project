@@ -1,16 +1,14 @@
 package root.controller;
 
-import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
+import root.SceneChanger;
 import root.model.ListeVehicules;
 import root.view.VehiculesView;
-
-import static root.StageUtil.valideSuppression;
 
 /**
  * Classe contrôleuse pour la vue et modèle de la liste des véhicules.
  */
-public class VehiculesCtrl extends MainCtrl  {
+public class VehiculesCtrl {
 
   /**
    * Modèle de la liste des véhicules.
@@ -27,18 +25,11 @@ public class VehiculesCtrl extends MainCtrl  {
   private VehiculesView view;
 
   /**
-   * Constructeur de la classe.
-   */
-  public VehiculesCtrl(Stage primaryStage) {
-    super(primaryStage);
-  }
-
-  /**
    * Affiche la vue du formulaire d'ajout d'un véhicule.
    */
   public void ajouterVehicules() {
-    changeScene(new FXMLLoader(getClass().getResource("/root/controller/FormVehicule.fxml")));
-
+    // TODO refaire
+    SceneChanger.voirFormVehicule(new Stage());
   }
 
   /**
@@ -53,8 +44,8 @@ public class VehiculesCtrl extends MainCtrl  {
    * Affiche la vue du formulaire de modification d'un véhicule.
    */
   public void editerVehicules() {
-    changeScene(new FXMLLoader(getClass().getResource("/root/controller/FormVehicule.fxml")));
-    //TODO récupérer l'élément sélectionné.
+    // TODO refaire
+    SceneChanger.voirFormVehicule(new Stage());
   }
 
   /**

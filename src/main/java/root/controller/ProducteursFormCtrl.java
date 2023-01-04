@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import root.StageUtil;
 import root.data.ProducteurDao;
 import root.data.SingleConnection;
@@ -23,7 +22,7 @@ import root.view.ProducteursFormView;
 /**
  * Classe contrôleuse pour la vue et modèle du formulaire d'ajout et modification d'un producteur.
  */
-public class ProducteursFormCtrl extends MainCtrl {
+public class ProducteursFormCtrl implements FormView<Producteur> {
 
   @FXML
   private Pane root;
@@ -70,15 +69,6 @@ public class ProducteursFormCtrl extends MainCtrl {
 
   @FXML
   private TextField mail;
-
-
-
-  /**
-   * Constructeur vide de la classe.
-   */
-  public ProducteursFormCtrl(Stage primaryStage) {
-    super(primaryStage);
-  }
 
   /**
    * Reflète l'ajout ou modification dans le modèle et redirige
@@ -219,5 +209,10 @@ public class ProducteursFormCtrl extends MainCtrl {
   public void setView(ProducteursFormView view) {
     this.view = view;
   }
-  
+
+  @Override
+  public void chargeChamps(Producteur modele) {
+    // TODO implémenter
+  }
+
 }

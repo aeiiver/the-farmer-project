@@ -160,6 +160,8 @@ public class TourneeDao extends Dao<Tournee, Integer> {
   @Override
   public boolean update(Tournee tournee) {
     try {
+      connexion.setAutoCommit(false);
+
       // Met à jour la tournée dans la base
       String query = "UPDATE Tournee SET "
           + "libelle = ?, heureMin = ?, heureMax = ?, immat = ? "
@@ -168,7 +170,7 @@ public class TourneeDao extends Dao<Tournee, Integer> {
 
       preparedStatement.setString(1, tournee.getLibelle());
       preparedStatement.setTime(2, tournee.getHeureMin());
-      preparedStatement.setTime(3, tournee.getHeureMin());
+      preparedStatement.setTime(3, tournee.getHeureMax());
       preparedStatement.setString(4, tournee.getVehicule().getImmat());
       preparedStatement.setInt(5, tournee.getNumTournee());
       preparedStatement.executeUpdate();
@@ -191,6 +193,7 @@ public class TourneeDao extends Dao<Tournee, Integer> {
       preparedStatement.executeBatch();
       connexion.commit();
 
+      connexion.setAutoCommit(true);
       return true;
 
     } catch (Exception e) {

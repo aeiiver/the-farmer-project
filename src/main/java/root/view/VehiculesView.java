@@ -9,7 +9,7 @@ import root.controller.VehiculesCtrl;
 /**
  * Classe de vue pour la liste des véhicules.
  */
-public class VehiculesView extends MainView {
+public class VehiculesView {
 
   /**
    * Menu de navigation sur la fênetre.
@@ -42,15 +42,5 @@ public class VehiculesView extends MainView {
    * @see VehiculesCtrl
    */
   private VehiculesCtrl ctrl;
-
-  /**
-   * Constructeur de classe.
-   *
-   * @param ctrl Le contrôleur de cette vue.
-   */
-  public VehiculesView(VehiculesCtrl ctrl) {
-    super(ctrl);
-    this.ctrl = ctrl;
-  }
 
 }

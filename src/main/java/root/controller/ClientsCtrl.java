@@ -2,13 +2,14 @@ package root.controller;
 
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
+import root.StageUtil;
 import root.model.ListeClients;
 import root.view.ClientsView;
 
 /**
  * Classe contrôleuse pour la vue et modèle de la liste des clients.
  */
-public class ClientsCtrl extends MainCtrl {
+public class ClientsCtrl {
 
   /**
    * Modèle de la liste des clients.
@@ -25,17 +26,11 @@ public class ClientsCtrl extends MainCtrl {
   private ClientsView view;
 
   /**
-   * Constructeur de la classe.
-   */
-  public ClientsCtrl(Stage primaryStage) {
-    super(primaryStage);
-  }
-
-  /**
    * Affiche la vue du formulaire d'ajout d'un client.
    */
   public void ajouterClient() {
-    changeScene(new FXMLLoader(getClass().getResource("/root/controller/fxml/FormClient.fxml")));
+    // TODO refaire
+    //StageUtil.changeScene(new FXMLLoader(getClass().getResource("/root/controller/fxml/FormClient.fxml")));
   }
 
   /**
@@ -48,7 +43,8 @@ public class ClientsCtrl extends MainCtrl {
    * Affiche la vue du formulaire de modification d'un client.
    */
   public void editerClient() {
-    changeScene(new FXMLLoader(getClass().getResource("/root/controller/fxml/FormClient.fxml")));
+    // TODO refaire
+    //StageUtil.changeScene(new FXMLLoader(getClass().getResource("/root/controller/fxml/FormClient.fxml")));
   }
 
   /**

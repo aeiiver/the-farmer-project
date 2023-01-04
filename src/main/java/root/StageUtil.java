@@ -87,4 +87,19 @@ public class StageUtil {
     return (Stage) root.getScene().getWindow();
   }
 
+  /**
+   * Exécute une fonction après le chargement d'une fenêtre à laquelle un élément FXML appartient.
+   *
+   * @param root L'élément FXML.
+   * @param fonction Le code à exécuter.
+   */
+  public static void onWindowLoad(Parent root, Runnable fonction) {
+    root.sceneProperty().addListener((observableScene, oldScene, newScene) -> {
+      if (oldScene == null && newScene != null) {
+        newScene.windowProperty()
+            .addListener((observableWindow, oldWindow, newWindow) -> fonction.run());
+      }
+    });
+  }
+
 }

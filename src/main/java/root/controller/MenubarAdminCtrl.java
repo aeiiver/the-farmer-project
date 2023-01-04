@@ -1,26 +1,48 @@
 package root.controller;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.Initializable;
 import javafx.scene.control.MenuBar;
 import javafx.stage.Stage;
+import root.SceneChanger;
 import root.StageUtil;
+import root.model.SingleSession;
 
 /**
- * Classe contrôleuse de la barre de menu administateur.
+ * Contrôleur associé à la barre de menus administrateur.
  */
-public class MenubarAdminCtrl {
+public class MenubarAdminCtrl implements Initializable {
 
-  @FXML
-  private MenuBar root;
+  public MenuBar root;
+  private Stage fenetre;
 
-  public void gotoTableaudebord(ActionEvent actionEvent) {
-    gotoTableaudebord(actionEvent);
+  public void gotoTableaudebord() {
+    SceneChanger.voirTableaudebordAdmin(fenetre);
   }
 
-  public void gotoListeProducteurs(ActionEvent actionEvent) {
+  public void gotoListeProducteurs() {
+    SceneChanger.voirListeProducteurs(fenetre);
   }
 
-  public void gotoFormProducteur(ActionEvent actionEvent) {
+  public void gotoFormProducteur() {
+    SceneChanger.voirFormProducteur(fenetre);
   }
+
+  public void gotoCompte() {
+    SceneChanger.voirCompteAdmin(fenetre);
+  }
+
+  public void deconnexion() {
+    SingleSession.fermeSession();
+    SceneChanger.voirConnexion(fenetre);
+  }
+
+  @Override
+  public void initialize(URL url, ResourceBundle resourceBundle) {
+    StageUtil.onWindowLoad(root, () -> {
+      fenetre = StageUtil.getFenetre(root);
+    });
+  }
+
 }

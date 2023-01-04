@@ -1,83 +1,44 @@
 package root.controller;
 
 import javafx.stage.Stage;
+import root.SceneChanger;
 import root.model.ListeTournees;
-import root.view.TourneesView;
+import root.model.Tournee;
+import root.view.TourneesFormView;
 
 /**
  * Classe contrôleuse pour la vue et modèle de la liste des tournées.
  */
-public class TourneesCtrl extends MainCtrl  {
+public class TourneesCtrl {
 
-  /**
-   * Contrôleur de la vue du formulaire d'ajout et modification d'une tournée.
-   */
-  private ListeTournees model;
+  private Stage fenetre;
+  private ListeTournees modele;
 
-  /**
-   * Vue de la liste des tournées.
-   */
-  private TourneesView view;
-
-  /**
-   * Constructeur de la classe.
-   */
-  public TourneesCtrl(Stage primaryStage) {
-    super(primaryStage);
+  public TourneesCtrl(Stage fenetre, ListeTournees modele) {
+    this.fenetre = fenetre;
+    this.modele = modele;
   }
 
   /**
    * Affiche la vue du formulaire d'ajout d'une tournée.
    */
   public void ajouterTournee() {
+    SceneChanger.voirFormTournee(fenetre);
   }
 
   /**
    * Supprime une commande du modèle.
    */
-  public void supprimerTournee() {
+  public void supprimerTournee(Tournee tournee) {
+    modele.supprimer(tournee);
   }
 
   /**
    * Affiche la vue du formulaire de modification d'une tournée.
    */
-  public void editerTournee() {
-  }
-
-  /**
-   * Retourne le modèle associé à ce contrôleur.
-   *
-   * @return Le modèle.
-   */
-  public ListeTournees getModel() {
-    return model;
-  }
-
-  /**
-   * Change le modèle courant avec un nouveau.
-   *
-   * @param model Le nouveau modèle.
-   */
-  public void setModel(ListeTournees model) {
-    this.model = model;
-  }
-
-  /**
-   * Retourne la vue associée à ce contrôleur.
-   *
-   * @return La vue.
-   */
-  public TourneesView getView() {
-    return view;
-  }
-
-  /**
-   * Change la vue courante avec une nouvelle.
-   *
-   * @param view La vue nouvelle.
-   */
-  public void setView(TourneesView view) {
-    this.view = view;
+  public void editerTournee(Tournee tournee) {
+    TourneesFormView vue = (TourneesFormView) SceneChanger.voirFormTournee(fenetre);
+    vue.chargeChamps(tournee);
   }
 
 }

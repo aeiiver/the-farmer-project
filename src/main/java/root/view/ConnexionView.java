@@ -1,121 +1,73 @@
 package root.view;
 
-import javafx.event.ActionEvent;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import root.StageUtil;
 import root.controller.ConnexionCtrl;
-import root.controller.MainCtrl;
 
 /**
  * Classe de vue pour la connexion.
  */
-public class ConnexionView extends MainView {
+public class ConnexionView implements Initializable {
 
   /**
-   * Text d'indication pour la saisie de l'identifiant.
+   * L'élément racine du fichier FXML.
    */
-  private Label identifiantLabel;
+  @FXML
+  private VBox root;
   /**
    * Zone de saisie de l'identifiant.
    */
   @FXML
   private TextField identifiant;
-
   /**
    * Zone de saisie du mot de passe.
    */
   @FXML
   private PasswordField motdepasse;
-
   /**
-   * Selectionneur du mode de connexion.
-   * Soit Producteur, soit administrateur.
+   * Selection du mode de connexion.
+   * Si la case est cochée, l'utilisateur se connecte en tant qu'administrateur.
    */
   @FXML
-  private CheckBox mode;
+  private CheckBox modeAdmin;
 
   /**
-   * Text des messages d'erreurs.
-   * Sera modifier en cas d'échec de la connexion.
-   *
-   * @see ConnexionView#setMessage(String)
+   * Le contrôleur de la vue.
    */
+  private ConnexionCtrl ctrl;
+
   @FXML
-  private Label message;
+  private void verifieIdentifiants() {
+    String identifiantSaisi = identifiant.getText().trim();
+    String motdepasseSaisi = motdepasse.getText().trim();
+    boolean estAdmin = modeAdmin.isSelected();
 
-  /**
-   * Bouton permettant de lancer la tentative de connexion.
-   */
-  private Button connexionButton;
-
-  /**
-   * Constructeur de classe.
-   *
-   * @param ctrl Le contrôleur de cette vue.
-   */
-  public ConnexionView(ConnexionCtrl ctrl) {
-    super(new MainCtrl(new Stage()));
+    ctrl.verifieIdentifiants(identifiantSaisi, motdepasseSaisi, estAdmin);
   }
 
-  /**
-   * Retourne l'identifiant saisi.
-   *
-   * @return identifiant saisi
-   */
-  public String getIdentifiant() {
-    String retour = "";
-    if (identifiant != null) {
-      retour = identifiant.getText();
-    }
-    return retour;
+  @Override
+  public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    StageUtil.onWindowLoad(root, () -> {
+      Stage fenetreCourante = StageUtil.getFenetre(root);
+      ctrl = new ConnexionCtrl(fenetreCourante);
+    });
+
+    // Quand on appuie sur la touche Entrée, on lance la tentative de connexion.
+    root.setOnKeyPressed(keyEvent -> {
+      if (keyEvent.getCode() == KeyCode.ENTER) {
+        verifieIdentifiants();
+      }
+    });
   }
 
-  /**
-   * Retourne le mot de passe saisi.
-   *
-   * @return mot de passe saisi
-   */
-  public String getMdp() {
-    String retour = "";
-    if (motdepasse != null) {
-      retour = motdepasse.getText();
-    }
-    return retour;
-  }
-
-  /**
-   * Retourne le mode de connexion.
-   *
-   * @return mode de connexion
-   */
-  public boolean getConnexionMode() {
-    boolean retour = false;
-    if (mode != null) {
-      retour = mode.isSelected();
-    }
-    return retour;
-  }
-
-  /**
-   * Change le contenu du message à afficher en cas d'erreur.
-   *
-   * @param msg Le message à afficher.
-   */
-  public void setMessage(String msg) {
-    this.message.setText(msg);
-  }
-
-  /**
-   * Méthode appelée lors du clic sur le bouton de connexion.
-   *
-   * @param actionEvent Evènement de clic.
-   */
-  public void connexion(ActionEvent actionEvent) {
-    actionEvent.consume();
-  }
 }

@@ -1,55 +1,111 @@
 package root.view;
 
+import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.ResourceBundle;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.MenuBar;
+import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import root.StageUtil;
 import root.controller.CommandesCtrl;
-import root.controller.MainCtrl;
+import root.model.Commande;
+import root.model.ListeCommandes;
+import root.model.SessionProducteur;
+import root.model.SingleSession;
 
 /**
  * Classe de vue pour la liste des commandes.
  */
-public class CommandesView extends MainView {
-
-  /**
-   * Menu de navigation sur la fênetre.
-   */
-  private MenuBar menu;
-  /**
-   * Liste pour afficher la liste des commandes existantes.
-   */
-  private ListView listeCommandes;
-  /**
-   * Bouton pour ajouter une nouvelle commande.
-   */
-  private Button ajouterCommande;
-  /**
-   * Bouton pour supprimer une commande déjà existante.
-   */
-  private Button supprimerCommande;
-  /**
-   * Bouton pour modifier une commande déjà existante.
-   */
-  private Button editerCommande;
+public class CommandesView implements Initializable {
 
   @FXML
-  private Label titre;
+  private VBox root;
+  @FXML
+  private TableView<Commande> tableau;
 
   /**
-   * Constructeur de classe.
-   *
-   * @param ctrl Le contrôleur de cette vue.
+   * Le contrôleur de la vue.
    */
-  public CommandesView(CommandesCtrl ctrl) {
-    super(new MainCtrl(new Stage()));
+  private CommandesCtrl ctrl;
+
+  @FXML
+  private void ajouter() {
+    ctrl.ajouterCommande();
   }
 
   @FXML
-  public void initialize() {
-    assert this.titre != null : "Liste des commandes";
+  private void supprimer() {
+    Commande modele = tableau.getSelectionModel().getSelectedItem();
+
+    // Ne rien faire si on clique sur "Supprimer" avec aucune sélection
+    if (modele == null) {
+      return;
+    }
+
+    ctrl.supprimerCommande(modele);
+  }
+
+  @FXML
+  private void editer() {
+    Commande modele = tableau.getSelectionModel().getSelectedItem();
+
+    // Ne rien faire si on clique sur "Editer" avec aucune sélection
+    if (modele == null) {
+      return;
+    }
+
+    ctrl.editerCommande(modele);
+  }
+
+  @Override
+  public void initialize(URL url, ResourceBundle resourceBundle) {
+    ListeCommandes modele = ((SessionProducteur) SingleSession.getSession()).getListeCommandes();
+
+    StageUtil.onWindowLoad(root, () -> {
+      Stage fenetreCourante = StageUtil.getFenetre(root);
+      ctrl = new CommandesCtrl(fenetreCourante, modele);
+    });
+
+    ObservableList<Commande> commandes = (ObservableList<Commande>) modele.getCommandes();
+    tableau.getColumns().setAll(colonnes());
+    tableau.setItems(commandes);
+  }
+
+  private List<TableColumn<Commande, String>> colonnes() {
+    final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
+
+    // On définit les colonnes qu'on veut afficher...
+    final TableColumn<Commande, String> numero = new TableColumn<>("Numéro");
+    final TableColumn<Commande, String> libelle = new TableColumn<>("Libellé");
+    final TableColumn<Commande, String> poids = new TableColumn<>("Poids");
+    final TableColumn<Commande, String> date = new TableColumn<>("Date");
+    final TableColumn<Commande, String> heureDeb = new TableColumn<>("Heure de départ");
+    final TableColumn<Commande, String> heureFin = new TableColumn<>("Heure de fin");
+    final TableColumn<Commande, String> client = new TableColumn<>("Client");
+
+    // On définit pour chaque colonne quelle partie de l'objet "Commande" on veut afficher...
+    numero.setCellValueFactory(
+        cell -> new SimpleStringProperty(String.valueOf(cell.getValue().getNumCom())));
+    libelle.setCellValueFactory(
+        cell -> new SimpleStringProperty(String.valueOf(cell.getValue().getLibelle())));
+    poids.setCellValueFactory(
+        cell -> new SimpleStringProperty(String.valueOf(cell.getValue().getPoids())));
+    date.setCellValueFactory(
+        cell -> new SimpleStringProperty(dateFormatter.format(cell.getValue().getDateCom())));
+    heureDeb.setCellValueFactory(
+        cell -> new SimpleStringProperty(String.valueOf(cell.getValue().getHeureDeb())));
+    heureFin.setCellValueFactory(
+        cell -> new SimpleStringProperty(String.valueOf(cell.getValue().getHeureFin())));
+    client.setCellValueFactory(
+        cell -> new SimpleStringProperty(cell.getValue().getClient().getPrenomNom()));
+
+    return List.of(numero, libelle, poids, date, heureDeb, heureFin, client);
   }
 
 }

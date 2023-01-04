@@ -1,129 +1,181 @@
 package root.view;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import javafx.scene.control.Button;
+import java.net.URL;
+import java.util.Calendar;
+import java.util.List;
+import java.util.ResourceBundle;
+import java.util.stream.IntStream;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import root.controller.MainCtrl;
+import javafx.util.StringConverter;
+import root.StageUtil;
+import root.controller.FormView;
 import root.controller.TourneesFormCtrl;
+import root.model.Commande;
+import root.model.SessionProducteur;
+import root.model.SingleSession;
+import root.model.Tournee;
 import root.model.Vehicule;
 
 /**
  * Classe de vue pour le formulaire d'ajout d'une tournée.
  */
-public class TourneesFormView extends MainView {
+public class TourneesFormView implements Initializable, FormView<Tournee> {
 
-  /**
-   * Texte à côté du champ de texte pour le libelle de la tournée.
-   */
-  private Label libelleLabel;
-  /**
-   * Champ de texte pour écrire le libelle de la tournée.
-   *
-   * @see TourneesFormView#getLibelle()
-   */
+  @FXML
+  private VBox root;
+  @FXML
   private TextField libelle;
-  /**
-   * Texte à côté du calendrier pour la date de la tournée.
-   */
-  private Label dateLabel;
-  /**
-   * Calendrier pour choisir la date de la tournée.
-   *
-   * @see TourneesFormView#getDate()
-   */
-  private DatePicker date;
-  /**
-   * Texte à côté du menu déroulant pour le véhicule à utiliser pour la tournée.
-   */
-  private Label vehiculeLabel;
-  /**
-   * Menu déroulant pour choisir un véhicule pour la tournée.
-   *
-   * @see TourneesFormView#getVehicule()
-   */
-  private ChoiceBox vehicule;
-  /**
-   * Texte à côté de la liste des commandes à mettre dans la tournée.
-   */
-  private Label commandesLabel;
-  /**
-   * Liste des commandes à choisir pour la tournée.
-   *
-   * @see TourneesFormView#getCommandes()
-   */
-  private ListView commandes;
-  /**
-   * Permet d'afficher le message d'erreur.
-   */
-  private Label message;
-  /**
-   * Bouton pour enregistrer les champs du formulaire.
-   */
-  private Button enregistrer;
-  /**
-   * Bouton pour annuler le formulaire.
-   */
-  private Button annuler;
+  @FXML
+  private TextField heureMin;
+  @FXML
+  private TextField heureMax;
+  @FXML
+  private ChoiceBox<Vehicule> vehicules;
+  @FXML
+  private ListView<Commande> commandes;
+
+  private int numTournee = -1;
+
+  private TourneesFormCtrl ctrl;
 
   /**
-   * Constructeur de classe.
-   *
-   * @param ctrl Le contrôleur de cette vue.
+   * Reflète l'ajout ou modification dans le modèle et redirige
+   * l'utilisateur vers la vue sur la liste des tournées.
    */
-  public TourneesFormView(TourneesFormCtrl ctrl) {
-    super(new MainCtrl(new Stage()));
+  @FXML
+  private void enregistrer() {
+    String libelleSaisi = libelle.getText().trim();
+    String heureMinSaisie = heureMin.getText().trim();
+    String heureMaxSaisie = heureMax.getText().trim();
+    Vehicule vehiculeChoisi = vehicules.getSelectionModel().getSelectedItem();
+    List<Commande> commandesSelectionnees = commandes.getSelectionModel().getSelectedItems();
+
+    ctrl.enregistrer(libelleSaisi, heureMinSaisie, heureMaxSaisie, vehiculeChoisi,
+        commandesSelectionnees, numTournee);
   }
 
   /**
-   * Retourne le libellé de la tournée saisi.
-   *
-   * @return Le libellé saisi.
+   * Redirige l'utilisateur vers la vue sur la liste des tournées.
    */
-  public String getLibelle() {
-    return null;
+  @FXML
+  private void annuler() {
+    ctrl.annuler();
+  }
+
+  @Override
+  public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    StageUtil.onWindowLoad(root, () -> {
+      Stage fenetreCourante = StageUtil.getFenetre(root);
+      ctrl = new TourneesFormCtrl(fenetreCourante);
+    });
+
+    SessionProducteur session = (SessionProducteur) SingleSession.getSession();
+
+    /* Lister tous les véhicules dans la ChoiceBox */
+    List<Vehicule> vehiculesStockes = session.getListeVehicules().getVehicules();
+    vehicules.getItems().addAll(vehiculesStockes);
+
+    // On définit comment on veut afficher un objet "Vehicule" dans la ChoiceBox.
+    vehicules.setConverter(new StringConverter<>() {
+      @Override
+      public String toString(Vehicule vehicule) {
+        if (vehicule == null) {
+          return "";
+        }
+        return String.format("%s (%d kg)", vehicule.getImmat(), vehicule.getPoidsMax());
+      }
+
+      @Override
+      public Vehicule fromString(String s) {
+        return null;
+      }
+    });
+
+    /* Lister toutes les commandes dans la ListView */
+
+    /*
+    TODO
+    Comportement attendu: Retirer une commande d'une tournée devrait la faire apparaître parmi dans
+    la ListView quand on ajoute ou édite une autre tournée.
+
+    Bug: Quand on supprime ou modifie une tournée, l'état de l'application n'est pas au
+    courant des changements faits aux commandes (leur champ "numTournee" est muté).
+    Résultat après le filtre: les commandes qu'on retire d'une tournée ne s'affichent pas
+    dans la ListView alors qu'elles devraient.
+    */
+    // List<Commande> commandesStockeesLibres = session.getListeCommandes().getCommandes()
+    //        .stream()
+    //        .filter(commande -> commande.getNumTournee() <= 0)
+    //        .toList();
+
+    List<Commande> commandesStockeesLibres = session.getListeCommandes().getCommandes();
+    commandes.getItems().addAll(commandesStockeesLibres);
+
+    commandes.prefHeight(commandes.getFixedCellSize() * 3);
+    commandes.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+    // On définit comment on veut afficher un objet "Commande" dans la ListView.
+    commandes.setCellFactory(listview -> new ListCell<>() {
+      @Override
+      protected void updateItem(Commande item, boolean empty) {
+        super.updateItem(item, empty);
+
+        if (item == null || empty) {
+          setGraphic(null);
+          return;
+        }
+        setGraphic(new Text(String.format("%s (%d kg)", item.getLibelle(), item.getPoids())));
+      }
+
+    });
   }
 
   /**
-   * Retourne la date saisie qui indique le jour où la tournée devra se réaliser.
+   * Charge les données d'une tournée dans les champs du formulaire.
    *
-   * @return La date saisie.
+   * @param tournee La tournée à charger.
    */
-  public LocalDate getDate() {
-    return date.getValue();
-  }
+  public void chargeChamps(Tournee tournee) {
+    numTournee = tournee.getNumTournee();
 
-  /**
-   * Retourne le véhicule désigné pour la tournée.
-   *
-   * @return Le véhicule désigné.
-   */
-  public Vehicule getVehicule() {
-    return null;
-  }
+    // Libellé
+    libelle.setText(tournee.getLibelle());
 
-  /**
-   * Retourne les commandes à insérer dans la tournée.
-   *
-   * @return La liste des commandes choisies.
-   */
-  public ArrayList<String> getCommandes() {
-    // hint: commandes.getSelectionModel().getSelectedItems() stuff...
-    return null;
-  }
+    // Heure minimale
+    Calendar calendrier = Calendar.getInstance();
+    calendrier.setTime(tournee.getHeureMin());
+    heureMin.setText(String.valueOf(calendrier.get(Calendar.HOUR_OF_DAY)));
 
-  /**
-   * Change le contenu du message à afficher en cas d'erreur.
-   *
-   * @param msg Le message à afficher.
-   */
-  public void setMessage(String msg) {
-    this.message.setText(msg);
+    // Heure maximale
+    calendrier.setTime(tournee.getHeureMax());
+    heureMax.setText(String.valueOf(calendrier.get(Calendar.HOUR_OF_DAY)));
+
+    // Véhicule
+    int index = vehicules.getItems().indexOf(tournee.getVehicule());
+    vehicules.getSelectionModel().select(index);
+
+    // Commandes de la tournée
+    ObservableList<Commande> itemsFromListView = commandes.getItems();
+
+    int[] indices = IntStream.range(0, itemsFromListView.size()).filter(i -> {
+      List<Commande> commandesStockees = tournee.getCommandes();
+
+      return commandesStockees.contains(itemsFromListView.get(i));
+    }).toArray();
+    if (indices.length > 0) {
+      commandes.getSelectionModel().selectIndices(indices[0], indices);
+    }
   }
 
 }

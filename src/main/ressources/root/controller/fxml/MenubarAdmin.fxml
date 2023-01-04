@@ -10,7 +10,11 @@
         <MenuItem mnemonicParsing="false" onAction="#gotoTableaudebord" text="Tableau de bord"/>
     </Menu>
     <Menu mnemonicParsing="false" text="Commandes">
-        <MenuItem mnemonicParsing="false" onAction="#gotoListeProducteurs" text="Les Producteurs"/>
+        <MenuItem mnemonicParsing="false" onAction="#gotoListeProducteurs" text="Producteurs"/>
         <MenuItem mnemonicParsing="false" onAction="#gotoFormProducteur" text="Nouveau producteur"/>
+    </Menu>
+    <Menu mnemonicParsing="false" text="Compte">
+        <MenuItem mnemonicParsing="false" onAction="#gotoCompte" text="Mon compte"/>
+        <MenuItem mnemonicParsing="false" onAction="#deconnexion" text="Déconnexion"/>
     </Menu>
 </MenuBar>

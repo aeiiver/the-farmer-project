@@ -10,7 +10,7 @@ import root.controller.CompteCtrl;
 /**
  * Classe de vue pour la modification des informations du compte.
  */
-public class CompteView extends MainView {
+public class CompteView {
 
   /**
    * Menu de navigation sur la fênetre.
@@ -49,13 +49,6 @@ public class CompteView extends MainView {
    */
   private CompteCtrl ctrl;
 
-  /**
-   * Constructeur de classe.
-   *
-   * @param ctrl Le contrôleur de cette vue.
-   */
-  public CompteView(CompteCtrl ctrl) {
-    super(ctrl);
-  }
+
 
 }

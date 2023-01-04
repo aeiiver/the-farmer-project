@@ -7,7 +7,7 @@ import root.view.ProducteursView;
 /**
  * Classe contrôleuse pour la vue et modèle de la liste des producteurs.
  */
-public class ProducteursCtrl extends MainCtrl {
+public class ProducteursCtrl {
 
   /**
    * Modèle de la liste des producteurs.
@@ -22,13 +22,6 @@ public class ProducteursCtrl extends MainCtrl {
    * @see ProducteursCtrl#getView()
    */
   private ProducteursView view;
-
-  /**
-   * Constructeur vide de la classe.
-   */
-  public ProducteursCtrl(Stage primaryStage) {
-    super(primaryStage);
-  }
 
   /**
    * Affiche la vue du formulaire d'ajout de producteur.

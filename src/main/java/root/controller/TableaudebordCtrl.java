@@ -1,37 +1,30 @@
 package root.controller;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
-import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 /**
  * Classe contrôleuse pour la vue et modèle du tableau de bord.
  */
 public class TableaudebordCtrl {
 
-  @FXML
-  private VBox root;
-  @FXML
-  private ListView<String> listeCommandesTourneeSelectionee;
-  @FXML
-  private ListView<String> listeTourneesCourantes;
+  private Stage fenetre;
 
-  @FXML
-  private void ajouterTournee() {
+  public TableaudebordCtrl(Stage fenetre) {
+    this.fenetre = fenetre;
   }
 
-  @FXML
-  private void supprimerTournee() {
+  public void ajouterTournee() {
+    // TODO
   }
 
-  @FXML
-  private void editerTournee() {
+
+  public void supprimerTournee() {
+    // TODO
   }
 
-  @FXML
-  public void initialize() {
 
-
+  public void editerTournee() {
+    // TODO
   }
 
 }

@@ -9,7 +9,7 @@
 <VBox xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             prefHeight="400.0" prefWidth="600.0"
-            fx:controller="root.controller.TableaudebordAdminCtrl"
+            fx:controller="root.view.TableaudebordAdminView"
             fx:id="root">
     <fx:include source="MenubarAdmin.fxml" />
     <ListView fx:id="listeProducteurs" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS"/>

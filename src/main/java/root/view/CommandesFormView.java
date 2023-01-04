@@ -1,163 +1,121 @@
 package root.view;
 
+import java.net.URL;
 import java.time.LocalDate;
-import javafx.scene.control.Button;
+import java.util.Calendar;
+import java.util.List;
+import java.util.ResourceBundle;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
+import root.StageUtil;
 import root.controller.CommandesFormCtrl;
-import root.controller.MainCtrl;
+import root.controller.FormView;
+import root.model.Client;
+import root.model.Commande;
+import root.model.SessionProducteur;
+import root.model.SingleSession;
 
 /**
  * Classe de vue pour le formulaire d'ajout d'une commande.
  */
-public class CommandesFormView extends MainView {
+public class CommandesFormView implements Initializable, FormView<Commande> {
 
-  /**
-   * Texte à côté du champ de texte pour le libelle.
-   */
-  private Label libelleLabel;
-  /**
-   * Champ de texte pour écrire le nom de la commande.
-   *
-   * @see CommandesFormView#getLibelle()
-   */
+  @FXML
+  private VBox root;
+  @FXML
   private TextField libelle;
-  /**
-   * Texte à côté du champ de texte pour le poids.
-   */
-  private Label poidsLabel;
-  /**
-   * Champ de texte pour écrire le poids maximum de la commande.
-   *
-   * @see CommandesFormView#getPoids()
-   */
+  @FXML
   private TextField poids;
-  /**
-   * Texte à côté du menu déroulant pour choisir le client à livrer.
-   */
-  private Label clientLabel;
-  /**
-   * Menu déroulant pour choisir à quel client appartient la commande.
-   *
-   * @see CommandesFormView#getClient()
-   */
-  private ChoiceBox client;
-  /**
-   * Texte à côté du calendrier pour choisir la date.
-   */
-  private Label dateLabel;
-  /**
-   * Calendrier pour choisir la date de la commande.
-   *
-   * @see CommandesFormView#getDate()
-   */
+  @FXML
+  private ChoiceBox<Client> clients;
+  @FXML
   private DatePicker date;
-  /**
-   * Texte à côté du champ de texte pour l'heure minimale de livraison.
-   */
-  private Label heureDebLabel;
-  /**
-   * Champ de texte pour écrire l'heure minimale de livraison.
-   *
-   * @see CommandesFormView#getHeureDeb()
-   */
+  @FXML
   private TextField heureDeb;
-  /**
-   * Texte à côté du champ de texte pour l'heure maximale de livraison.
-   */
-  private Label heureFinLabel;
-  /**
-   * Champ de texte pour écrire l'heure maximale de livraison.
-   *
-   * @see CommandesFormView#getHeureFin()
-   */
+  @FXML
   private TextField heureFin;
-  /**
-   * Permet d'afficher le message d'erreur.
-   */
-  private Label message;
-  /**
-   * Bouton pour enregistrer les champs du formulaire.
-   */
-  private Button enregistrer;
-  /**
-   * Bouton pour annuler le formulaire.
-   */
-  private Button annuler;
 
-  /**
-   * Constructeur de classe.
-   *
-   * @param ctrl Le contrôleur de cette vue.
-   */
-  public CommandesFormView(CommandesFormCtrl ctrl) {
-    super(new MainCtrl(new Stage()));
+  private int numCom = -1;
+
+  private CommandesFormCtrl ctrl;
+
+  @FXML
+  private void enregistrer() {
+    String libelleSaisi = libelle.getText();
+    String poidsSaisi = poids.getText();
+    Client clientChoisi = clients.getSelectionModel().getSelectedItem();
+    LocalDate dateChoisie = date.getValue();
+    String heureDebSaisie = heureDeb.getText();
+    String heureFinSaisie = heureFin.getText();
+
+    ctrl.enregistrer(libelleSaisi, poidsSaisi, clientChoisi, dateChoisie, heureDebSaisie,
+        heureFinSaisie, numCom);
+  }
+
+  @FXML
+  private void annuler() {
+    ctrl.annuler();
+  }
+
+  @Override
+  public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    StageUtil.onWindowLoad(root, () -> {
+      Stage fenetreCourante = StageUtil.getFenetre(root);
+      ctrl = new CommandesFormCtrl(fenetreCourante);
+    });
+
+    /* Lister tous les clients dans la ChoiceBox */
+    List<Client> clientsStockes =
+        ((SessionProducteur) SingleSession.getSession()).getListeClients().getClients();
+    clients.getItems().addAll(clientsStockes);
+
+    // On définit comment on veut afficher un objet Client dans la ChoiceBox.
+    clients.setConverter(new StringConverter<>() {
+      @Override
+      public String toString(Client client) {
+        if (client == null) {
+          return "";
+        }
+        return client.getPrenomNom();
+      }
+
+      @Override
+      public Client fromString(String s) {
+        return null;
+      }
+    });
   }
 
   /**
-   * Retourne la saisie du libelle.
+   * Charge les données d'une commande dans les champs du formulaire.
    *
-   * @return Le libelle saisi.
+   * @param commande La commande à charger.
    */
-  public String getLibelle() {
-    return null;
-  }
+  @Override
+  public void chargeChamps(Commande commande) {
+    numCom = commande.getNumCom();
 
-  /**
-   * Retourne la saisie du poids.
-   *
-   * @return Le poids saisie.
-   */
-  public double getPoids() {
-    return 0;
-  }
+    libelle.setText(commande.getLibelle());
+    poids.setText(String.valueOf(commande.getPoids()));
 
-  /**
-   * Retourne la saisie du client à qui délivrer la commande.
-   *
-   * @return Le client saisi.
-   */
-  public String getClient() {
-    return null;
-  }
+    int index = clients.getItems().indexOf(commande.getClient());
+    clients.getSelectionModel().select(index);
 
-  /**
-   * Retourne la saisie de la date de livraison.
-   *
-   * @return La date de livraison saisie.
-   */
-  public LocalDate getDate() {
-    return date.getValue();
-  }
+    date.setValue(commande.getDateCom().toLocalDate());
 
-  /**
-   * Retourne la saisie de l'heure de livraison minimale.
-   *
-   * @return L'heure de livraison minimale saisie.
-   */
-  public int getHeureDeb() {
-    return 0;
-  }
+    Calendar calendrier = Calendar.getInstance();
+    calendrier.setTime(commande.getHeureDeb());
+    heureDeb.setText(String.valueOf(calendrier.get(Calendar.HOUR_OF_DAY)));
 
-  /**
-   * Retourne la saisie de l'heure de livraison maximale.
-   *
-   * @return L'heure de livraison maximale saisie.
-   */
-  public int getHeureFin() {
-    return 0;
-  }
-
-  /**
-   * Change le contenu du message à afficher en cas d'erreur.
-   *
-   * @param msg Le message à afficher.
-   */
-  public void setMessage(String msg) {
-    this.message.setText(msg);
+    calendrier.setTime(commande.getHeureFin());
+    heureFin.setText(String.valueOf(calendrier.get(Calendar.HOUR_OF_DAY)));
   }
 
 }

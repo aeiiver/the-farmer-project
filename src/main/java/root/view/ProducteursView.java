@@ -8,7 +8,7 @@ import root.controller.ProducteursCtrl;
 /**
  * Classe de vue pour la liste des producteurs.
  */
-public class ProducteursView extends MainView {
+public class ProducteursView {
 
   /**
    * Menu de navigation sur la fênetre.
@@ -39,13 +39,6 @@ public class ProducteursView extends MainView {
    */
   private ProducteursCtrl ctrl;
 
-  /**
-   * Constructeur de classe.
-   *
-   * @param ctrl Le contrôleur de cette vue.
-   */
-  public ProducteursView(ProducteursCtrl ctrl) {
-    super(ctrl);
-  }
+
 
 }

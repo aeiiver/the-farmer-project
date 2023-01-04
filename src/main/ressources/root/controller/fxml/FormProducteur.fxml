@@ -9,7 +9,7 @@
 
 <Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
       prefHeight="602.0" prefWidth="408.0" xmlns="http://javafx.com/javafx/19"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.controller.ProducteursFormCtrl">
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.view.ProducteursFormView">
    <Label alignment="CENTER" layoutY="31.0" prefHeight="47.0" prefWidth="408.0" text="Ajouter un producteur">
       <font>
          <Font size="32.0" />
