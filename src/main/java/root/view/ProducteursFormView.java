@@ -1,183 +1,78 @@
 package root.view;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import root.StageUtil;
+import root.controller.FormView;
 import root.controller.ProducteursFormCtrl;
+import root.model.Producteur;
 
 /**
  * Classe de vue pour l'ajout de producteurs.
  */
-public class ProducteursFormView {
+public class ProducteursFormView implements Initializable, FormView<Producteur> {
 
-  /**
-   * Texte à côté du champ de texte pour le numéro SIRET du producteur.
-   */
-  private Label siretLabel;
-  /**
-   * Champ de texte pour écrire le numéro SIRET du producteur.
-   *
-   * @see ProducteursFormView#getSiret()
-   */
+  @FXML
+  private Pane root;
+  @FXML
   private TextField siret;
-  /**
-   * Texte à côté du champ de texte pour le nom du producteur.
-   */
-  private Label nomLabel;
-  /**
-   * Champ de texte pour écrire le nom du producteur.
-   *
-   * @see ProducteursFormView#getNom()
-   */
+  @FXML
   private TextField nom;
-  /**
-   * Texte à côté du champ de texte pour le prénom du producteur.
-   */
-  private Label prenomLabel;
-  /**
-   * Champ de texte pour écrire le prénom du producteur.
-   *
-   * @see ProducteursFormView#getPrenom()
-   */
+  @FXML
   private TextField prenom;
-  /**
-   * Texte à côté du champ de texte pour le numéro de téléphone du producteur.
-   */
-  private Label numTelLabel;
-  /**
-   * Champ de texte pour écrire le numéro téléphone du producteur.
-   *
-   * @see ProducteursFormView#getNumTel()
-   */
+  @FXML
   private TextField numTel;
-  /**
-   * Texte à côté du champ de texte pour l'adresse du producteur.
-   */
-  private Label adresseLabel;
-  /**
-   * Champ de texte pour écrire l'adresse du producteur.
-   *
-   * @see ProducteursFormView#getAdresse()
-   */
+  @FXML
   private TextField adresse;
-  /**
-   * Texte à côté du champ de texte pour la ville du producteur.
-   */
-  private Label villeLabel;
-  /**
-   * Champ de texte pour écrire la ville du producteur.
-   *
-   * @see ProducteursFormView#getVille()
-   */
+  @FXML
   private TextField ville;
-  /**
-   * Texte à côté du champ de texte pour le code postal du producteur.
-   */
-  private Label codePostLabel;
-  /**
-   * Champ de texte pour écrire le code postal du producteur.
-   *
-   * @see ProducteursFormView#getCodePost()
-   */
+  @FXML
   private TextField codePost;
-  /**
-   * Contenue du message d'erreur.
-   */
-
-  private Label paysLabel;
-
+  @FXML
   private TextField pays;
-
-  private Label mdpLabel;
-
+  @FXML
   private PasswordField mdp;
-
-  private Label mailLabel;
-
+  @FXML
   private TextField mail;
-  private Label message;
-  /**
-   * Bouton pour enregistrer les champs du formulaire.
-   */
-  private Button enregistrer;
-  /**
-   * Bouton pour annuler le formulaire.
-   */
-  private Button annuler;
 
+  private ProducteursFormCtrl ctrl;
 
+  @FXML
+  private void enregistrer() {
+    String siretSaisi = siret.getText();
+    String nomSaisi = nom.getText();
+    String prenomSaisi = prenom.getText();
+    String numTelSaisi = numTel.getText();
+    String adresseSaisi = adresse.getText();
+    String codePostSaisi = codePost.getText();
+    String paysSaisi = pays.getText();
+    String mdpSaisi = mdp.getText();
+    String mailSaisi = mail.getText();
+    String villeSaisi = ville.getText();
 
-  /**
-   * Retourne le numéro SIRET  saisi.
-   *
-   * @return Le numéro SIRET  saisi.
-   */
-  public String getSiret() {
-    return null;
+    ctrl.enregistrer(siretSaisi, nomSaisi, prenomSaisi, numTelSaisi, adresseSaisi, codePostSaisi,
+        paysSaisi, mdpSaisi, mailSaisi, villeSaisi);
   }
 
-  /**
-   * Retourne le nom saisi.
-   *
-   * @return Le nom saisi.
-   */
-  public String getNom() {
-    return null;
+  @Override
+  public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    StageUtil.onWindowLoad(root, () -> {
+      Stage fenetre = StageUtil.getFenetre(root);
+      ctrl = new ProducteursFormCtrl(fenetre);
+    });
+
   }
 
-  /**
-   * Retourne le prénom saisi.
-   *
-   * @return Le prénom saisi.
-   */
-  public String getPrenom() {
-    return null;
-  }
+  @Override
+  public void chargeChamps(Producteur modele) {
 
-  /**
-   * Retourne le numéro de téléphone saisi.
-   *
-   * @return Le numéro de téléphone saisi.
-   */
-  public String getNumTel() {
-    return null;
-  }
-
-  /**
-   * Retourne l'adresse saisie.
-   *
-   * @return L'adresse saisie.
-   */
-  public String getAdresse() {
-    return null;
-  }
-
-  /**
-   * Retourne la ville saisie.
-   *
-   * @return La ville saisie.
-   */
-  public String getVille() {
-    return null;
-  }
-
-  /**
-   * Retourne le code postal saisi.
-   *
-   * @return Le code postal saisi.
-   */
-  public String getCodePost() {
-    return null;
-  }
-
-  /**
-   * Change le contenu du message à afficher en cas d'erreur.
-   *
-   * @param msg Le message à afficher.
-   */
-  public void setMessage(String msg) {
-    this.message.setText(msg);
   }
 
 }

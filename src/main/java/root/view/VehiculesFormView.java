@@ -1,20 +1,21 @@
 package root.view;
 
-
-import javafx.event.ActionEvent;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import root.StageUtil;
+import root.controller.FormView;
 import root.controller.VehiculesFormCtrl;
-
-import java.beans.EventHandler;
+import root.model.Vehicule;
 
 /**
  * Classe de vue pour l'ajout de véhicules.
  */
-public class VehiculesFormView {
+public class VehiculesFormView implements Initializable, FormView<Vehicule> {
 
   @FXML
   private Pane root;
@@ -28,45 +29,30 @@ public class VehiculesFormView {
    */
   @FXML
   private TextField poidsMax;
-  /**
-   * Bouton pour enregistrer les champs du formulaire.
-   */
-  private Button enregistrer;
-  /**
-   * Bouton pour annuler le formulaire.
-   */
-  private Button annuler;
 
-  private VehiculesFormCtrl controller = new VehiculesFormCtrl();
-
-  /**
-   * Retourne le numéro d'immatriculation saisi.
-   *
-   * @return Le numéro d'immatriculation saisi.
-   */
-  private String getImmat() {
-    return immatriculation.getText();
-  }
-
-  /**
-   * Retourne la capacité maximale de transport saisie.
-   *
-   * @return La capacité saisie.
-   */
-  private String getCapacitePoids() {
-    return poidsMax.getText();
-  }
-
-  public void setImmat(String immat) {
-    this.immatriculation.setText(immat);
-  }
-
-  public void setCapacitePoids(double capacitePoids) {
-    this.poidsMax.setText(String.valueOf(capacitePoids));
-  }
+  private VehiculesFormCtrl ctrl;
 
   public void valider() {
-    System.out.println(getImmat());
-    controller.enregistrer(getImmat(), getCapacitePoids(), root);
+    String immatriculationSaisie = immatriculation.getText().trim();
+    String poidsMaxSaisi = poidsMax.getText().trim();
+
+    ctrl.enregistrer(immatriculationSaisie, poidsMaxSaisi);
   }
+
+  @Override
+  public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    StageUtil.onWindowLoad(root, () -> {
+      Stage fenetre = StageUtil.getFenetre(root);
+      ctrl = new VehiculesFormCtrl(fenetre);
+    });
+
+  }
+
+  @Override
+  public void chargeChamps(Vehicule modele) {
+    immatriculation.setText(modele.getImmat());
+    poidsMax.setText(String.valueOf(modele.getPoidsMax()));
+  }
+
 }

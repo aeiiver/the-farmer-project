@@ -17,4 +17,26 @@ public class Validateur {
 
     return 0 <= nombre && nombre <= 23;
   }
+
+  public static boolean validerImmatriculation(String texte) {
+    return texte.matches("[A-Z]{2}-[0-9]{3}-[A-Z]{2}");
+  }
+
+  public static boolean validerMail(String texte) {
+    return texte.matches(
+        "^[A-Za-z0-9]+([-_.][A-Za-z0-9]+)*@[A-Za-z0-9]+([-_.][A-Za-z0-9]+)*\\.[a-z]{2,}$");
+  }
+
+  public static boolean validerSiret(String texte) {
+    return texte.matches("^(\\d ?){14}$");
+  }
+
+  public static boolean validerNomPropre(String texte) {
+    return texte.matches("^[A-Za-z0-9]+$");
+  }
+
+  public static boolean nomPropreValide(String texte) {
+    return texte.matches("^[A-Z](a-z)+([ -A-Z](a-z)+)*$");
+  }
+
 }

@@ -1,10 +1,13 @@
 package root;
 
 import java.io.IOException;
+import java.util.Optional;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -66,15 +69,28 @@ public class StageUtil {
     alerte.showAndWait();
   }
 
-  public static void valideSuppression(Object objet, Stage fenetreParente) {
+  /**
+   * Affiche une fenêtre de dialogue demandant à l'utilisateur de confirmer avant de continuer.
+   *
+   * <p>L'utilisateur est obligé de cliquer sur le bouton "Oui" ou "Non" pour continuer.</p>
+   *
+   * @param fenetreParente La fenêtre parente depuis laquelle la fenêtre s'affichera.
+   * @return true si l'utlisateur clique sur "Oui", false s'il clique sur "Non".
+   */
+  public static boolean afficheConfirmation(Stage fenetreParente) {
     Alert alerte = new Alert(Alert.AlertType.CONFIRMATION);
 
     alerte.setTitle("Suppression");
     alerte.setHeaderText(null);
-    alerte.setContentText("Voulez-vous vraiment supprimer cet élément?");
+    alerte.setContentText("Voulez-vous vraiment supprimer cet élément ?");
     alerte.initOwner(fenetreParente);
 
-    alerte.showAndWait();
+    ButtonType oui = new ButtonType("Oui", ButtonBar.ButtonData.YES);
+    ButtonType non = new ButtonType("Non", ButtonBar.ButtonData.NO);
+
+    Optional<ButtonType> reponse = alerte.showAndWait();
+
+    return reponse.orElse(non).equals(oui);
   }
 
   /**

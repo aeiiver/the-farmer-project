@@ -1,189 +1,90 @@
 package root.view;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import root.StageUtil;
 import root.controller.ClientsFormCtrl;
-import root.model.Adresse;
+import root.controller.FormView;
+import root.model.Client;
 
 /**
  * Classe de vue pour le formulaire d'ajout d'un client.
  */
-public class ClientsFormView {
+public class ClientsFormView implements Initializable, FormView<Client> {
 
   /**
-   * Texte à côté du champ de texte pour le nom du client.
+   * L'élément racine du fichier FXML chargé.
    */
-  private Label nomLabel;
+  @FXML
+  private Pane root;
   /**
    * Champ de texte pour écrire le nom du client.
-   *
-   * @see ClientsFormView#getNom()
    */
+  @FXML
   private TextField nom;
   /**
-   * Texte à côté du champ de texte pour le prénom du client.
-   */
-  private Label prenomLabel;
-  /**
    * Champ de texte pour écrire le prénom du client.
-   *
-   * @see ClientsFormView#getPrenom()
    */
+  @FXML
   private TextField prenom;
   /**
-   * Texte à côté du champ de texte pour le numéro téléphone du client.
-   */
-  private Label numTelLabel;
-  /**
    * Champ de texte pour écrire le numéro de téléphone du client.
-   *
-   * @see ClientsFormView#getNumTel()
    */
+  @FXML
   private TextField numTel;
   /**
-   * Texte à côté des champs de textes pour les coordonnées du client.
-   */
-  private Label coordonneesLabel;
-  /**
    * Champ de texte pour écrire la latitude des coordonnées du client.
-   *
-   * @see ClientsFormView#getLatitude()
    */
-  private TextField latitude;
+  @FXML
+  private TextField gps;
   /**
-   * Champ de texte pour écrire la longitude des coordonnées du client.
-   *
-   * @see ClientsFormView#getLongitude()
+   * Champ de texte pour écrire le pays du client.
    */
-  private TextField longitude;
-  /**
-   * Ensemble des information liée à l'adresse du client.
-   *
-   * @see Adresse
-   * @see ClientsFormView#getAdresse()
-   */
-  private Adresse adresseLabel;
-  /**
-   * Champ de texte pour écrire l'adresse du client.
-   *
-   * @see ClientsFormView#getAdresse()
-   */
-  private TextField adresse;
-  /**
-   * Texte à côté du champ de texte pour la ville du client.
-   */
-  private Label villeLabel;
+  @FXML
+  private TextField pays;
   /**
    * Champ de texte pour écrire le nom de la ville du client.
-   *
-   * @see ClientsFormView#getVille()
    */
+  @FXML
   private TextField ville;
   /**
-   * Texte à côté du champ de texte pour le code postal du client.
-   */
-  private Label codePostLabel;
-  /**
    * Champ de texte pour écrire le code postal du client.
-   *
-   * @see ClientsFormView#getCodePost()
    */
-  private TextField codePost;
+  @FXML
+  private TextField codePostal;
   /**
-   * Contenu du message d'erreur.
+   * Champ de texte pour écrire l'adresse du client.
    */
-  private Label message;
-  /**
-   * Bouton pour enregistrer les champs du formulaire.
-   */
-  private Button enregistrer;
-  /**
-   * Bouton pour annuler le formulaire.
-   */
-  private Button annuler;
-
-
+  @FXML
+  private TextField adresse;
 
   /**
-   * Retourne la saisie du nom.
-   *
-   * @return Le nom saisi.
+   * Contrôleur de la vue.
    */
-  public String getNom() {
-    return nom.getText();
+  private ClientsFormCtrl ctrl;
+
+  @FXML
+  private void valider() {
+    // TODO
   }
 
-  /**
-   * Retourne la saisie du prénom.
-   *
-   * @return Le prénom saisi.
-   */
-  public String getPrenom() {
-    return prenom.getText();
+  @Override
+  public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    StageUtil.onWindowLoad(root, () -> {
+      Stage fenetre = StageUtil.getFenetre(root);
+      ctrl = new ClientsFormCtrl(fenetre);
+    });
   }
 
-  /**
-   * Retourne la saisie du numéro de téléphone.
-   *
-   * @return Le numéro de téléphone saisi.
-   */
-  public String getNumTel() {
-    return numTel.getText();
-  }
-
-  /**
-   * Retourne la saisie de la latitude.
-   *
-   * @return La latitude saisie.
-   */
-  public double getLatitude() {
-    return Double.parseDouble(latitude.getText());
-  }
-
-  /**
-   * Retourne la saisie de la longitude.
-   *
-   * @return La longitude saisie.
-   */
-  public double getLongitude() {
-    return Double.parseDouble(longitude.getText());
-  }
-
-  /**
-   * Retourne la saisie de l'adresse.
-   *
-   * @return L'adresse saisie.
-   */
-  public String getAdresse() {
-    return adresse.getText();
-  }
-
-  /**
-   * Retourne la saisie du nom de la ville.
-   *
-   * @return Le nom de la ville saisi.
-   */
-  public String getVille() {
-    return ville.getText();
-  }
-
-  /**
-   * Retourne la saisie du code postal.
-   *
-   * @return Le code postal saisi.
-   */
-  public String getCodePost() {
-    return codePost.getText();
-  }
-
-  /**
-   * Change le contenu du message à afficher en cas d'erreur.
-   *
-   * @param msg Le message à afficher.
-   */
-  public void setMessage(String msg) {
-    this.message.setText(msg);
+  @Override
+  public void chargeChamps(Client client) {
+    // TODO
   }
 
 }

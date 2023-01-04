@@ -5,6 +5,7 @@ import javafx.stage.Stage;
 import org.mindrot.jbcrypt.BCrypt;
 import root.SceneChanger;
 import root.StageUtil;
+import root.Validateur;
 import root.data.AdminDao;
 import root.data.Dao;
 import root.data.ProducteurDao;
@@ -106,17 +107,10 @@ public class ConnexionCtrl {
    * @return true si les identifiants sont valides, false sinon.
    */
   private boolean valideIdentifiants(String identifiant, boolean estAdmin) {
-    String mailPattern =
-        "^[A-Za-z0-9]+([-_.][A-Za-z0-9]+)*@[A-Za-z0-9]+([-_.][A-Za-z0-9]+)*\\.[a-z]{2,3}$";
-
     if (estAdmin) {
-      // On est un admin
-      String pseudoPattern = "^[A-Za-z0-9]+$"; // Pas sûr de ce pattern...
-      return identifiant.matches(mailPattern + "|" + pseudoPattern);
+      return Validateur.validerMail(identifiant) || Validateur.validerNomPropre(identifiant);
     }
-    // On est un producteur
-    String siretPattern = "^\\d{14}$";
-    return identifiant.matches(mailPattern + "|" + siretPattern);
+    return Validateur.validerMail(identifiant) || Validateur.validerSiret(identifiant);
   }
 
 }

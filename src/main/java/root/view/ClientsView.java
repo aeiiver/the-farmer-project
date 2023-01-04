@@ -1,36 +1,47 @@
 package root.view;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.MenuBar;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.TableView;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import root.StageUtil;
 import root.controller.ClientsCtrl;
+import root.model.Client;
 
 /**
  * Classe de vue pour la liste des clients.
  */
-public class ClientsView {
+public class ClientsView implements Initializable {
 
-  /**
-   * Menu de navigation sur la fênetre.
-   */
-  private MenuBar menu;
-  /**
-   * Liste pour afficher la liste des clients existants.
-   */
-  private ListView listeClients;
-  /**
-   * Bouton pour ajouter un nouveau client.
-   */
-  private Button ajouterClient;
-  /**
-   * Bouton pour supprimer un client déjà existant.
-   */
-  private Button supprimerClient;
-  /**
-   * Bouton pour modifier un client déjà existant.
-   */
-  private Button editerClient;
+  @FXML
+  private VBox root;
+  @FXML
+  private TableView<Client> tableau;
 
+  private ClientsCtrl ctrl;
 
+  @FXML
+  private void ajouter() {
+  }
+
+  @FXML
+  private void supprimer() {
+  }
+
+  @FXML
+  private void editer() {
+  }
+
+  @Override
+  public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    StageUtil.onWindowLoad(root, () -> {
+      Stage fenetre = StageUtil.getFenetre(root);
+      ctrl = new ClientsCtrl(fenetre);
+    });
+  }
 
 }

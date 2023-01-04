@@ -1,44 +1,57 @@
 package root.view;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.MenuBar;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.TableView;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import root.StageUtil;
 import root.controller.ProducteursCtrl;
+import root.model.Producteur;
 
 /**
  * Classe de vue pour la liste des producteurs.
  */
-public class ProducteursView {
+public class ProducteursView implements Initializable {
 
-  /**
-   * Menu de navigation sur la fênetre.
-   */
-  private MenuBar menu;
-  /**
-   * Liste pour afficher la liste des producteurs existants.
-   */
-  private ListView listeProducteurs;
-  /**
-   * Bouton pour ajouter un nouveau producteur.
-   */
-  private Button ajouterProducteur;
-  /**
-   * Bouton pour supprimer un producteur déjà existant.
-   */
-  private Button supprimerProducteur;
-  /**
-   * Bouton pour modifier un producteur déjà existant.
-   */
-  private Button editerProducteur;
+  @FXML
+  private VBox root;
+  @FXML
+  private TableView<Producteur> tableau;
 
   /**
    * Contrôleur gérant la vue de la liste des producteurs.
    *
-   * @see ProducteursView#ProducteursView(ProducteursCtrl)
    * @see ProducteursCtrl
    */
   private ProducteursCtrl ctrl;
 
+  @FXML
+  private void ajouter() {
+    // TODO cliquer sur "ajouter" devrait ouvrir le formulaire
+  }
 
+  @FXML
+  private void supprimer() {
+    // TODO cliquer sur "supprimer" devrait supprimer le producteur sélectionné
+  }
+
+  @FXML
+  private void editer() {
+    // TODO cliquer sur "supprimer" devrait modifier le producteur sélectionné
+    // et ouvrir le formulaire
+  }
+
+  @Override
+  public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    StageUtil.onWindowLoad(root, () -> {
+      Stage fenetre = StageUtil.getFenetre(root);
+      ctrl = new ProducteursCtrl(fenetre);
+    });
+
+  }
 
 }

@@ -6,19 +6,12 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="408.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="408.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.view.ClientsFormView">
    <Label alignment="CENTER" layoutY="31.0" prefHeight="47.0" prefWidth="408.0" text="Ajouter un client">
       <font>
          <Font size="32.0" />
       </font>
    </Label>
-   <Button layoutX="155.0" layoutY="476.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="98.0" text="Valider">
-      <font>
-         <Font size="18.0" />
-      </font>
-   </Button>
-   <TextField layoutX="176.0" layoutY="249.0" prefHeight="33.0" prefWidth="201.0" />
-   <TextField layoutX="176.0" layoutY="292.0" prefHeight="33.0" prefWidth="201.0" />
    <Label layoutX="16.0" layoutY="121.0" prefHeight="33.0" prefWidth="160.0" text="Nom">
       <font>
          <Font size="20.0" />
@@ -49,20 +42,27 @@
          <Font size="20.0" />
       </font>
    </Label>
-   <TextField layoutX="176.0" layoutY="335.0" prefHeight="33.0" prefWidth="201.0" />
    <Label layoutX="16.0" layoutY="379.0" prefHeight="33.0" prefWidth="160.0" text="Ville">
       <font>
          <Font size="20.0" />
       </font>
    </Label>
-   <TextField layoutX="176.0" layoutY="379.0" prefHeight="33.0" prefWidth="201.0" />
    <Label layoutX="16.0" layoutY="424.0" prefHeight="33.0" prefWidth="160.0" text="Adresse">
       <font>
          <Font size="20.0" />
       </font>
    </Label>
-   <TextField layoutX="176.0" layoutY="424.0" prefHeight="33.0" prefWidth="201.0" />
-   <TextField layoutX="176.0" layoutY="205.0" prefHeight="33.0" prefWidth="201.0" />
-   <TextField layoutX="176.0" layoutY="162.0" prefHeight="33.0" prefWidth="201.0" />
-   <TextField layoutX="176.0" layoutY="121.0" prefHeight="33.0" prefWidth="201.0" />
+   <TextField fx:id="nom" layoutX="176.0" layoutY="121.0" prefHeight="33.0" prefWidth="201.0" />
+   <TextField fx:id="prenom" layoutX="176.0" layoutY="162.0" prefHeight="33.0" prefWidth="201.0" />
+   <TextField fx:id="numTel" layoutX="176.0" layoutY="205.0" prefHeight="33.0" prefWidth="201.0" />
+   <TextField fx:id="gps" layoutX="176.0" layoutY="249.0" prefHeight="33.0" prefWidth="201.0" />
+   <TextField fx:id="pays" layoutX="176.0" layoutY="292.0" prefHeight="33.0" prefWidth="201.0" />
+   <TextField fx:id="codePostal" layoutX="176.0" layoutY="335.0" prefHeight="33.0" prefWidth="201.0" />
+   <TextField fx:id="ville" layoutX="176.0" layoutY="379.0" prefHeight="33.0" prefWidth="201.0" />
+   <TextField fx:id="adresse" layoutX="176.0" layoutY="424.0" prefHeight="33.0" prefWidth="201.0" />
+   <Button layoutX="155.0" layoutY="476.0" mnemonicParsing="false" onAction="#valider" prefHeight="39.0" prefWidth="98.0" text="Valider">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Button>
 </Pane>

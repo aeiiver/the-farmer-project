@@ -1,16 +1,9 @@
 package root.controller;
 
-import java.net.URL;
 import java.sql.Connection;
-import java.util.ResourceBundle;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import root.StageUtil;
+import root.Validateur;
 import root.data.SingleConnection;
 import root.data.VehiculeDao;
 import root.model.ListeVehicules;
@@ -18,40 +11,40 @@ import root.model.Producteur;
 import root.model.SessionProducteur;
 import root.model.SingleSession;
 import root.model.Vehicule;
-import root.view.ConnexionView;
-import root.view.VehiculesFormView;
-import root.view.VehiculesView;
 
 /**
  * Classe contrôleuse pour la vue et modèle du formulaire d'ajout et modification d'un véhicule.
  */
-public class VehiculesFormCtrl implements Initializable {
+public class VehiculesFormCtrl {
 
-  Pane root;
+  private Stage fenetre;
+
+  public VehiculesFormCtrl(Stage fenetre) {
+    this.fenetre = fenetre;
+  }
+
   /**
    * Reflète l'ajout ou modification dans le modèle et redirige
    * l'utilisateur vers la vue sur la liste des véhicules.
    */
-  public void enregistrer(String immat, String poids, Pane root) {
-    this.root = root;
-    if (immat.isEmpty() || poids.isEmpty()) {
-      StageUtil.afficheAlerte("Tous les champs doivent être renseignés.",
-          StageUtil.getFenetre(root));
+  public void enregistrer(String immat, String poidsMax) {
+    if (immat.isEmpty() || poidsMax.isEmpty()) {
+      StageUtil.afficheAlerte("Tous les champs doivent être renseignés.", fenetre);
       return;
     }
 
     String messageErreur = "";
-    if (!immat.matches("[A-Z]{2}-[0-9]{3}-[A-Z]{2}")) {
-      messageErreur += "L'immatriculation doit être au format XX-000-XX\n";
+    if (!Validateur.validerImmatriculation(immat)) {
+      messageErreur += "L'immatriculation doit être au format XX-000-XX.\n";
     }
-    if (!poids.matches("[0-9]{1,}")) {
-      messageErreur += "Le poids doit être un nombre entier\n";
+    if (!Validateur.validerNombre(poidsMax)) {
+      messageErreur += "Le poids doit être un nombre entier.\n";
     }
     if (!messageErreur.isEmpty()) {
-      StageUtil.afficheAlerte(messageErreur, StageUtil.getFenetre(root));
+      StageUtil.afficheAlerte(messageErreur, fenetre);
       return;
     }
-    int poidsValide = Integer.parseInt(poids);
+    int poidsValide = Integer.parseInt(poidsMax);
 
     SessionProducteur session = (SessionProducteur) SingleSession.getSession();
     Producteur producteur = (Producteur) session.getUtilisateur();
@@ -64,37 +57,15 @@ public class VehiculesFormCtrl implements Initializable {
     } else {
       listeVehicules.editer(new Vehicule(immat, poidsValide, producteur));
     }
-    StageUtil.getFenetre(root).close();
+
+    fenetre.close();
   }
 
   /**
    * Redirige l'utilisateur vers la vue sur la liste des véhicules.
    */
   public void cancel() {
-    StageUtil.getFenetre(root).close();
+    fenetre.close();
   }
 
-  /**
-   * Charge les champs du formulaire lors d'une édition.
-   *
-   * @param modeleObj Le véhicule à éditer.
-   */
-  public void chargeChamps(Object modeleObj) {
-    Vehicule modele = (Vehicule) modeleObj;
-
-    VehiculesFormView view = new VehiculesFormView();
-    view.setImmat(modele.getImmat());
-    view.setCapacitePoids(modele.getPoidsMax());
-  }
-
-  /**
-   * Initialise la vue.
-   *
-   * @param url L'URL de la vue.
-   * @param resourceBundle Les ressources de la vue.
-   */
-  @Override
-  public void initialize(URL url, ResourceBundle resourceBundle) {
-
-  }
 }

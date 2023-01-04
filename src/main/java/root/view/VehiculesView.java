@@ -1,46 +1,63 @@
 package root.view;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.MenuBar;
+import javafx.fxml.Initializable;
+import javafx.scene.control.TableView;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import root.StageUtil;
 import root.controller.VehiculesCtrl;
+import root.model.Vehicule;
 
 /**
  * Classe de vue pour la liste des véhicules.
  */
-public class VehiculesView {
+public class VehiculesView implements Initializable {
 
-  /**
-   * Menu de navigation sur la fênetre.
-   */
-  private MenuBar menu;
-  /**
-   * Liste pour afficher la liste des véhicules existants.
-   */
-  private ListView listeVehicules;
-  /**
-   * Bouton pour ajouter un nouveau véhicule.
-   */
-  @FXML
-  private Button ajouter;
-  /**
-   * Bouton pour supprimer un véhicule déjà existant.
-   */
-  @FXML
-  private Button supprimer;
-  /**
-   * Bouton pour modifier un véhicule déjà existant.
-   */
-  @FXML
-  private Button editer;
+  public VBox root;
+  public TableView<Vehicule> tableau;
 
-  /**
-   * Contrôleur gérant la vue de la liste des véhicules.
-   *
-   * @see VehiculesView#VehiculesView(VehiculesCtrl)
-   * @see VehiculesCtrl
-   */
   private VehiculesCtrl ctrl;
+
+  @FXML
+  private void ajouter() {
+    ctrl.ajouterVehicule();
+  }
+
+  @FXML
+  private void supprimer() {
+    Vehicule modele = tableau.getSelectionModel().getSelectedItem();
+
+    // Ne rien faire si on clique sur "Supprimer" avec aucune sélection
+    if (modele == null) {
+      return;
+    }
+
+    ctrl.supprimerVehicule(modele);
+  }
+
+  @FXML
+  private void editer() {
+    Vehicule modele = tableau.getSelectionModel().getSelectedItem();
+
+    // Ne rien faire si on clique sur "Editer" avec aucune sélection
+    if (modele == null) {
+      return;
+    }
+
+    ctrl.editerVehicule(modele);
+  }
+
+  @Override
+  public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    StageUtil.onWindowLoad(root, () -> {
+      Stage fenetre = StageUtil.getFenetre(root);
+      ctrl = new VehiculesCtrl(fenetre);
+    });
+
+  }
 
 }
