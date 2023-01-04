@@ -216,9 +216,12 @@ public class Producteur extends Utilisateur {
         return false;
       }
     }
-
-    //TODO verifier hash du mot de passe...
     return this.getMdp().equals(existant.getMdp());
+  }
+
+  public String toString() {
+    return this.siret + " " + this.nom + " " + this.prenom
+        + " " + this.numTel + " " + this.adresse;
   }
 
 }

@@ -94,19 +94,22 @@ public class ProducteurDao extends Dao<Producteur, String> {
     try {
       String query = "SELECT * FROM Producteur";
       PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      ResultSet rs = preparedStatement.executeQuery();
       ArrayList<Producteur> producteurs = new ArrayList<>();
-      while (preparedStatement.executeQuery().next()) {
+
+      while (rs.next()) {
         producteurs.add(new Producteur(
-            preparedStatement.executeQuery().getString("nomProd"),
-            preparedStatement.executeQuery().getString("SIRET"),
-            preparedStatement.executeQuery().getString("prenomProd"),
-            preparedStatement.executeQuery().getString("numTel"),
-            preparedStatement.executeQuery().getString("mdp"),
-            preparedStatement.executeQuery().getString("mail"),
-            new AdresseDao(connexion).get(preparedStatement.executeQuery().getInt("idAdresse"))
+            rs.getString("SIRET"),
+            rs.getString("mail"),
+            rs.getString("nomProd"),
+            rs.getString("prenomProd"),
+            rs.getString("numTel"),
+            rs.getString("mdp"),
+            new AdresseDao(connexion).get(rs.getInt("idAdresse"))
         ));
       }
       return producteurs;
+
     } catch (Exception e) {
       e.printStackTrace();
       return null;

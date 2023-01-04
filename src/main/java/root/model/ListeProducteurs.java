@@ -1,6 +1,10 @@
 package root.model;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import root.data.ClientDao;
 import root.data.ProducteurDao;
 import root.data.SingleConnection;
@@ -19,7 +23,7 @@ public class ListeProducteurs {
    * @see ListeProducteurs#supprimer(Producteur)
    * @see Producteur
    */
-  private ArrayList<Producteur> producteurs;
+  private ObservableList<Producteur> producteurs;
 
   /**
    * Le DAO qui permet au modèle d'interagir avec la base de données.
@@ -30,8 +34,8 @@ public class ListeProducteurs {
    * Constructeur.
    */
   public ListeProducteurs() {
-    producteurs = new ArrayList<>();
     producteurDao = new ProducteurDao(SingleConnection.getInstance());
+    producteurs = FXCollections.observableArrayList(producteurDao.getAll());
   }
 
   /**
@@ -39,7 +43,7 @@ public class ListeProducteurs {
    *
    * @return producteurs la liste des producteurs
    */
-  public ArrayList<Producteur> getProducteurs() {
+  public List<Producteur> getProducteurs() {
     return producteurs;
   }
 
