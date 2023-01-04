@@ -44,7 +44,6 @@ public class CompteView {
   /**
    * Contrôleur gérant la vue de la modification des informations du compte.
    *
-   * @see CompteView#CompteView(CompteCtrl)
    * @see CompteCtrl
    */
   private CompteCtrl ctrl;

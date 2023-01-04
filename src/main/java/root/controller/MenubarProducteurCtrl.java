@@ -12,10 +12,13 @@ import root.model.SingleSession;
 /**
  * Contrôleur associé à la barre de menus producteur.
  */
-public class MenubarProducteurCtrl implements Initializable {
+public class MenubarProducteurCtrl {
 
-  public MenuBar root;
-  private Stage fenetre;
+  public Stage fenetre;
+
+  public MenubarProducteurCtrl(Stage fenetre) {
+    this.fenetre = fenetre;
+  }
 
   public void gotoTableaudebord() {
     SceneChanger.voirTableaudebord(fenetre);
@@ -60,13 +63,6 @@ public class MenubarProducteurCtrl implements Initializable {
   public void deconnexion() {
     SingleSession.fermeSession();
     SceneChanger.voirConnexion(fenetre);
-  }
-
-  @Override
-  public void initialize(URL url, ResourceBundle resourceBundle) {
-    StageUtil.onWindowLoad(root, () -> {
-      fenetre = StageUtil.getFenetre(root);
-    });
   }
 
 }

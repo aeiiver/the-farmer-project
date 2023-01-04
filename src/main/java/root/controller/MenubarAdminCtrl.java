@@ -12,10 +12,12 @@ import root.model.SingleSession;
 /**
  * Contrôleur associé à la barre de menus administrateur.
  */
-public class MenubarAdminCtrl implements Initializable {
-
-  public MenuBar root;
+public class MenubarAdminCtrl {
   private Stage fenetre;
+
+  public MenubarAdminCtrl(Stage fenetre) {
+    this.fenetre = fenetre;
+  }
 
   public void gotoTableaudebord() {
     SceneChanger.voirTableaudebordAdmin(fenetre);
@@ -36,13 +38,6 @@ public class MenubarAdminCtrl implements Initializable {
   public void deconnexion() {
     SingleSession.fermeSession();
     SceneChanger.voirConnexion(fenetre);
-  }
-
-  @Override
-  public void initialize(URL url, ResourceBundle resourceBundle) {
-    StageUtil.onWindowLoad(root, () -> {
-      fenetre = StageUtil.getFenetre(root);
-    });
   }
 
 }
