@@ -6,6 +6,8 @@ import root.StageUtil;
 import root.data.SingleConnection;
 import root.data.VehiculeDao;
 import root.model.ListeVehicules;
+import root.model.SessionProducteur;
+import root.model.SingleSession;
 import root.model.Vehicule;
 import root.view.VehiculesFormView;
 
@@ -33,9 +35,9 @@ public class VehiculesCtrl {
    * @param vehicule Le véhicule à supprimer
    */
   public void supprimerVehicule(Vehicule vehicule) {
-    // TODO: Supprimer un véhicule du modèle
     VehiculeDao dao = new VehiculeDao(SingleConnection.getInstance());
-    ListeVehicules listeVehicules = new ListeVehicules();
+    ListeVehicules listeVehicules =
+        ((SessionProducteur) SingleSession.getSession()).getListeVehicules();
     boolean reponse = StageUtil.afficheConfirmation(fenetre);
     System.out.println(reponse);
     if (reponse) {

@@ -32,11 +32,21 @@ public class VehiculesView implements Initializable {
 
   private VehiculesCtrl ctrl;
 
+  /**
+   * Méthode s'exécutant lors de l'appui sur le bouton "ajouter" afin d'ajouter
+   * un des véhicules.
+   *
+   */
   @FXML
   private void ajouter() {
     ctrl.ajouterVehicule();
   }
 
+  /**
+   * Méthode s'exécutant lors de l'appui sur le bouton "supprimer" afin de supprimer
+   * un des véhicules.
+   *
+   */
   @FXML
   private void supprimer() {
     Vehicule modele = tableau.getSelectionModel().getSelectedItem();
@@ -49,6 +59,11 @@ public class VehiculesView implements Initializable {
     ctrl.supprimerVehicule(modele);
   }
 
+  /**
+   * Méthode s'exécutant lors de l'appui sur le bouton "éditer" afin de modifier
+   * un des véhicules.
+   *
+   */
   @FXML
   private void editer() {
     Vehicule modele = tableau.getSelectionModel().getSelectedItem();
@@ -61,6 +76,12 @@ public class VehiculesView implements Initializable {
     ctrl.editerVehicule(modele);
   }
 
+  /**
+   * Initialise la vue de la liste des véhicules.
+   *
+   * @param url url de la vue
+   * @param resourceBundle ressource de la vue.
+   */
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     ListeVehicules modele = ((SessionProducteur) SingleSession.getSession()).getListeVehicules();
