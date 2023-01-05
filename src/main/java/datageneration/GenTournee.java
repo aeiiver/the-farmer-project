@@ -38,6 +38,7 @@ public class GenTournee {
         heureMax = commandes.get(j).getHeureFin();
       }
     }
+    //TODO erreur ici
     Producteur producteur = new CommandeDao(singleConnection).get(commandes.get(0).getNumCom()).getProducteur();
     Vehicule vehicule = new VehiculeDao(singleConnection).get(vehicules.get(vehiculeId).getImmat());
 

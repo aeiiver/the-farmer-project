@@ -48,7 +48,7 @@
 ### Génération de données
 - [x] Génération d'adresse
 - [x] Génération de client
-- [ ] Génération de commandes
+- [x] Génération de commandes
 - [ ] Génération de tournées
 - [x] Générations de producteurs
 - [x] Génération de véhicules 
