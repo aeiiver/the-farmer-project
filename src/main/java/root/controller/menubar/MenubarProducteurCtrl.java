@@ -2,7 +2,9 @@ package root.controller.menubar;
 
 import javafx.stage.Stage;
 import root.SceneChanger;
+import root.model.Producteur;
 import root.model.session.SingleSession;
+import root.view.form.ProducteursFormView;
 
 /**
  * Contrôleur associé à la barre de menus producteur.
@@ -97,7 +99,8 @@ public class MenubarProducteurCtrl {
    * Affiche le formulaire de modification du compte du producteur connecté.
    */
   public void gotoCompte() {
-    SceneChanger.voirCompteProducteur(fenetre);
+    ProducteursFormView vue = (ProducteursFormView) SceneChanger.voirFormProducteur(fenetre);
+    vue.chargeChamps((Producteur) SingleSession.getSession().getUtilisateur());
   }
 
   /**

@@ -111,7 +111,6 @@ public class ProducteursFormView implements Initializable, FormView<Producteur> 
     numTel.setText(modele.getNumTel());
     codePost.setText(modele.getAdresse().getCodePost());
     pays.setText(modele.getAdresse().getPays());
-    mdp.setText(modele.getMdp());
     mail.setText(modele.getMail());
     ville.setText(modele.getAdresse().getVille());
     numeroAdresse.setText(String.valueOf(modele.getAdresse().getNumero()));
