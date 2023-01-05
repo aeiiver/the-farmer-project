@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 import root.model.Commande;
+import root.model.Producteur;
 
 /**
  * Cette classe est utilisée pour accéder à la table Commande.
@@ -212,6 +213,65 @@ public class CommandeDao extends Dao<Commande, Integer> {
     } catch (Exception e) {
       e.printStackTrace();
       return false;
+    }
+  }
+
+  public ArrayList<Commande> getCommandeByProducteur(Producteur producteur) {
+    try {
+      String query = "SELECT * FROM Commande WHERE SIRET = ?";
+      PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      preparedStatement.setString(1, producteur.getSiret());
+      ResultSet resultat = preparedStatement.executeQuery();
+
+      ArrayList<Commande> commandes = new ArrayList<>();
+
+      while (resultat.next()) {
+        commandes.add(new Commande(
+            resultat.getInt("numCom"),
+            resultat.getString("libelle"),
+            resultat.getInt("poids"),
+            resultat.getDate("dateCom"),
+            resultat.getTime("heureDeb"),
+            resultat.getTime("heureFin"),
+            new ProducteurDao(connexion).get((resultat.getString("SIRET"))),
+            new ClientDao(connexion).get(resultat.getInt("idClient")),
+            resultat.getInt("numTournee")));
+      }
+      return commandes;
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
+
+  public ArrayList<Commande> getCommandeCourante(Producteur producteur) {
+    try {
+      String query = "SELECT * FROM Commande WHERE SIRET = ? AND dateCom = CURDATE() - 1";
+      ;
+      PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      preparedStatement.setString(1, producteur.getSiret());
+      ResultSet resultat = preparedStatement.executeQuery();
+
+      ArrayList<Commande> commandes = new ArrayList<>();
+
+      while (resultat.next()) {
+        commandes.add(new Commande(
+            resultat.getInt("numCom"),
+            resultat.getString("libelle"),
+            resultat.getInt("poids"),
+            resultat.getDate("dateCom"),
+            resultat.getTime("heureDeb"),
+            resultat.getTime("heureFin"),
+            new ProducteurDao(connexion).get((resultat.getString("SIRET"))),
+            new ClientDao(connexion).get(resultat.getInt("idClient")),
+            resultat.getInt("numTournee")));
+      }
+      return commandes;
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
     }
   }
 

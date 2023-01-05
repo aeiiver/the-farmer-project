@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import root.model.Commande;
+import root.model.Producteur;
 import root.model.Tournee;
 import root.model.Vehicule;
 
@@ -228,6 +229,70 @@ public class TourneeDao extends Dao<Tournee, Integer> {
     } catch (Exception e) {
       e.printStackTrace();
       return false;
+    }
+  }
+
+  public ArrayList<Tournee> getAllByProducteur(Producteur producteur) {
+    try {
+      String query = "SELECT * FROM Tournee INNER JOIN Commande USING(numTournee) WHERE SIRET = ?";
+      PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      preparedStatement.setString(1, producteur.getSiret());
+      ResultSet resultat = preparedStatement.executeQuery();
+
+      ArrayList<Tournee> tournees = new ArrayList<>();
+
+      while (resultat.next()) {
+        int id = resultat.getInt("numTournee");
+        Vehicule vehicule = new VehiculeDao(connexion).get(resultat.getString("immat"));
+
+        Tournee tournee = new Tournee(
+            id,
+            resultat.getString("libelle"),
+            resultat.getTime("heureMin"),
+            resultat.getTime("heureMax"),
+            producteur,
+            vehicule);
+        tournee.setCommandes(new CommandeDao(connexion).getAllByNumTournee(id));
+
+        tournees.add(tournee);
+      }
+      return tournees;
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
+
+  public ArrayList<Tournee> getTourneeCourante(Producteur producteur) {
+    try {
+      String query = "SELECT * FROM Tournee INNER JOIN Commande USING(numTournee) WHERE SIRET = ? AND dateCom > CURDATE() - 1";
+      PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      preparedStatement.setString(1, producteur.getSiret());
+      ResultSet resultat = preparedStatement.executeQuery();
+
+      ArrayList<Tournee> tournees = new ArrayList<>();
+
+      while (resultat.next()) {
+        int id = resultat.getInt("numTournee");
+        Vehicule vehicule = new VehiculeDao(connexion).get(resultat.getString("immat"));
+
+        Tournee tournee = new Tournee(
+            id,
+            resultat.getString("libelle"),
+            resultat.getTime("heureMin"),
+            resultat.getTime("heureMax"),
+            producteur,
+            vehicule);
+        tournee.setCommandes(new CommandeDao(connexion).getAllByNumTournee(id));
+
+        tournees.add(tournee);
+      }
+      return tournees;
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
     }
   }
 
