@@ -74,15 +74,19 @@ public class CommandeDao extends Dao<Commande, Integer> {
       String query = "SELECT * FROM Commande WHERE numCom = ?";
       PreparedStatement preparedStatement = connexion.prepareStatement(query);
       preparedStatement.setInt(1, id);
-      return new Commande(
-          preparedStatement.executeQuery().getInt("numCom"),
-          preparedStatement.executeQuery().getString("libelle"),
-          preparedStatement.executeQuery().getInt("poids"),
-          preparedStatement.executeQuery().getDate("dateCom"),
-          preparedStatement.executeQuery().getTime("heureDeb"),
-          preparedStatement.executeQuery().getTime("heureFin"),
-          new ProducteurDao(connexion).get(preparedStatement.executeQuery().getString("SIRET")),
-          new ClientDao(connexion).get(preparedStatement.executeQuery().getInt("idClient")));
+
+      ResultSet resultat = preparedStatement.executeQuery();
+
+      return resultat.next() ? new Commande(
+          resultat.getInt("numCom"),
+          resultat.getString("libelle"),
+          resultat.getInt("poids"),
+          resultat.getDate("dateCom"),
+          resultat.getTime("heureDeb"),
+          resultat.getTime("heureFin"),
+          new ProducteurDao(connexion).get(resultat.getString("SIRET")),
+          new ClientDao(connexion).get(resultat.getInt("idClient")))
+          : null;
     } catch (Exception e) {
       e.printStackTrace();
       return null;
@@ -210,5 +214,5 @@ public class CommandeDao extends Dao<Commande, Integer> {
       return false;
     }
   }
-  
+
 }

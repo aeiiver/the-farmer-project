@@ -22,8 +22,13 @@ public class Main {
     int nbClients = nbProducteurs * 4;
 
     int nbProducteursGen = (GenProducteur.generate(nbProducteurs)).size();
+    System.out.println("Génération des producteurs terminée");
+
     GenClient.generate(nbClients);
+    System.out.println("Génération des clients terminée");
+
     GenVehicule.generate((int) (nbProducteurs * 1.5));
+    System.out.println("Génération des véhicules terminée");
 
     for (int i = 0; i < nbProducteursGen; i++) {
       int nbCommandes = 50;
@@ -32,5 +37,6 @@ public class Main {
         GenCommande.generate(nbCommandesParTournee);
       }
     }
+    System.out.println("Génération des tournées terminé");
   }
 }

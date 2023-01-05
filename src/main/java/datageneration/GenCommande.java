@@ -34,11 +34,11 @@ public class GenCommande {
       Faker faker = new Faker();
       Time min = Time.valueOf(faker.date().future(1, TimeUnit.DAYS).toString().split(" ")[3]);
       Time max = Time.valueOf(faker.date().future(1, TimeUnit.DAYS).toString().split(" ")[3]);
-      while (min.before(Time.valueOf("21:00:00")) && min.after(Time.valueOf("06:00:00"))) {
+      while (min.after(Time.valueOf("21:00:00")) && min.before(Time.valueOf("06:00:00"))) {
         min = Time.valueOf(faker.date().future(1, TimeUnit.DAYS).toString().split(" ")[3]);
 
       }
-      while (max.before(Time.valueOf("21:00:00")) && max.after(Time.valueOf("06:00:00"))) {
+      while (max.after(Time.valueOf("21:00:00")) && max.before(Time.valueOf("06:00:00"))) {
         max = Time.valueOf(faker.date().future(1, TimeUnit.DAYS).toString().split(" ")[3]);
       }
 
@@ -64,8 +64,9 @@ public class GenCommande {
               libelle.substring(0, min(20, libelle.length() - 1)),
               faker.number().numberBetween(1, 80), date, min, max,
               producteur, client);
-          commandes.add(commande);
           new CommandeDao(singleConnection).insert(commande);
+          commandes.add(commande);
+          System.out.printf("J'ai inséré commande #%d\n", commande.getNumCom());
         }
       }
     }
