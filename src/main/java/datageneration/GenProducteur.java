@@ -42,7 +42,7 @@ public class GenProducteur {
       Adresse adresse = genAdresse.genAdresse();
 
       String siret = faker.number().digits(14);
-      String mdp = faker.internet().password(8, 16);
+      String mdp = faker.internet().password(4, 6);
       String sel = BCrypt.gensalt();
       String mdpChiffre = BCrypt.hashpw(mdp, sel);
       String num = "0" + faker.phoneNumber().cellPhone().replace(".", "")

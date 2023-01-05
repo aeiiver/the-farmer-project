@@ -18,7 +18,9 @@ import root.data.CommandeDao;
 import root.data.SingleConnection;
 import root.data.TourneeDao;
 import root.model.Commande;
+import root.model.Producteur;
 import root.model.Tournee;
+import root.model.session.SingleSession;
 
 public class CalendrierView implements Initializable {
   @FXML
@@ -41,8 +43,9 @@ public class CalendrierView implements Initializable {
     cal.set(year, month, 1);
     int firstDayOfMonth = cal.get(Calendar.DAY_OF_WEEK);
 
-    /*
-    ArrayList<Tournee> tournees = new TourneeDao(SingleConnection.getInstance()).getAll();
+    Producteur producteur = (Producteur) SingleSession.getSession().getUtilisateur();
+
+    ArrayList<Tournee> tournees = new TourneeDao(SingleConnection.getInstance()).getTourneeCourante(producteur);
     ArrayList<Integer> datesTournees = new ArrayList<>();
     for (Tournee tournee : tournees) {
       Date date = tournee.getCommandes().get(0).getDateCom();
@@ -52,11 +55,7 @@ public class CalendrierView implements Initializable {
       if (monthCommande == month) {
         datesTournees.add(calendar.get(Calendar.DAY_OF_MONTH));
       }
-
-      //if (date.getTime())
     }
-
-     */
 
     int firstDay = 1;
     switch (firstDayOfMonth) {

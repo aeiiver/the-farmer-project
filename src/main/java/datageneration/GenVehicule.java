@@ -18,17 +18,18 @@ public class GenVehicule {
    *
    * @param nbVehicules Nombre de véhicules à générer.
    */
-  public static void generate(int nbVehicules) {
+  public static ArrayList<Vehicule> generate(int nbVehicules, Producteur producteur) {
+    ArrayList<Vehicule> vehicules = new ArrayList<>();
     for (int i = 0; i < nbVehicules; i++) {
       Faker faker = new Faker();
       Connection singleConnection = SingleConnection.getInstance();
-      ArrayList<Producteur> producteurs = new ProducteurDao(singleConnection).getAll();
-      int producteur = (int) Math.floor(Math.random() * producteurs.size() - 1) + 1;
       int poidsMax = faker.number().numberBetween(50, 500);
       String immatriculation = faker.regexify("[A-Z]{2}-[0-9]{3}-[A-Z]{2}");
       Vehicule vehicule = new Vehicule(immatriculation, poidsMax,
-          new ProducteurDao(singleConnection).get(producteurs.get(producteur).getSiret()));
+          new ProducteurDao(singleConnection).get(producteur.getSiret()));
+      vehicules.add(vehicule);
       new VehiculeDao(singleConnection).insert(vehicule);
     }
+    return vehicules;
   }
 }

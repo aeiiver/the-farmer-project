@@ -5,7 +5,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import root.data.SingleConnection;
 import root.data.VehiculeDao;
+import root.model.Producteur;
 import root.model.Vehicule;
+import root.model.session.SingleSession;
 
 /**
  * Classe de modèle pour la liste des véhicules.
@@ -32,7 +34,8 @@ public class ListeVehicules {
    */
   public ListeVehicules() {
     vehiculeDao = new VehiculeDao(SingleConnection.getInstance());
-    vehicules = FXCollections.observableArrayList(vehiculeDao.getAll());
+    vehicules = FXCollections.observableArrayList(vehiculeDao.getAllByProducteur(
+        (Producteur) SingleSession.getSession().getUtilisateur()));
   }
 
   /**

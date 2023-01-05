@@ -25,9 +25,6 @@ public class Main {
     GenClient.generate(nbClients);
     System.out.println("Génération des clients terminée");
 
-    GenVehicule.generate((int) (nbProducteurs * 1.5));
-    System.out.println("Génération des véhicules terminée");
-
     ArrayList<Producteur> producteurs = GenProducteur.generate(nbProducteurs);
     System.out.println("Génération des producteurs terminée");
 
@@ -38,6 +35,6 @@ public class Main {
         GenCommande.generate(nbCommandesParTournee, producteur);
       }
     }
-    System.out.println("Génération des tournées terminé");
+    System.out.println("Génération des tournées terminée");
   }
 }

@@ -1,5 +1,6 @@
 package datageneration;
 
+import static java.lang.Math.getExponent;
 import static java.lang.Math.min;
 
 import com.github.javafaker.Faker;
@@ -25,12 +26,10 @@ public class GenTournee {
    * @param commandes Les commandes de la tournée à ajouter.
    */
   public static void generate(ArrayList<Commande> commandes, Producteur producteur) {
-    ArrayList<Vehicule> vehicules = new VehiculeDao(SingleConnection.getInstance()).getAll();
     Faker faker = new Faker();
     Connection singleConnection = SingleConnection.getInstance();
     Time heureMin = null;
     Time heureMax = null;
-    int vehiculeId = (int) Math.floor(Math.random() * vehicules.size());
     for (int j = 0; j < commandes.size(); j++) {
       if (heureMin == null || heureMin.after(commandes.get(j).getHeureDeb())) {
         heureMin = commandes.get(j).getHeureDeb();
@@ -39,7 +38,7 @@ public class GenTournee {
         heureMax = commandes.get(j).getHeureFin();
       }
     }
-    Vehicule vehicule = new VehiculeDao(singleConnection).get(vehicules.get(vehiculeId).getImmat());
+    Vehicule vehicule = GenVehicule.generate(1, producteur).get(0);
 
     if (producteur != null && vehicule != null) {
       String phrase = faker.lorem().sentence();

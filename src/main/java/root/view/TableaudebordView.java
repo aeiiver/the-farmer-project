@@ -101,7 +101,7 @@ public class TableaudebordView implements Initializable {
           coucheMarqueur.effacerMarqueurs();
 
           commandesTournee.forEach(commande -> {
-            double[] gpsClient = Arrays.stream(commande.getClient().getGps().split(";"))
+            double[] gpsClient = Arrays.stream(commande.getClient().getGps().split(","))
                 .mapToDouble(Double::valueOf)
                 .toArray();
 

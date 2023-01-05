@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+
+import root.model.Producteur;
 import root.model.Vehicule;
 
 /**
@@ -145,6 +147,28 @@ public class VehiculeDao extends Dao<Vehicule, String> {
     } catch (Exception e) {
       e.printStackTrace();
       return false;
+    }
+  }
+
+  public ArrayList<Vehicule> getAllByProducteur(Producteur producteur) {
+    try {
+      String query = "SELECT * FROM Vehicule WHERE SIRET = ?";
+      PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      preparedStatement.setString(1, producteur.getSiret());
+      ResultSet resultat = preparedStatement.executeQuery();
+
+      ArrayList<Vehicule> vehicules = new ArrayList<>();
+
+      while (resultat.next()) {
+        vehicules.add(new Vehicule(
+            resultat.getString("immat"),
+            resultat.getInt("poidsMax"),
+            new ProducteurDao(connexion).get(resultat.getString("SIRET"))));
+      }
+      return vehicules;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
     }
   }
 

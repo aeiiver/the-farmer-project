@@ -1,6 +1,7 @@
 package root.view.list;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
@@ -13,6 +14,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import root.StageUtil;
 import root.controller.list.TourneesCtrl;
+import root.data.SingleConnection;
+import root.data.TourneeDao;
 import root.model.Producteur;
 import root.model.Tournee;
 import root.model.list.ListeTournees;
@@ -64,8 +67,8 @@ public class TourneesView implements Initializable {
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    Producteur producteur = (Producteur) SingleSession.getSession().getUtilisateur();
-    ListeTournees listeTournees = new ListeTournees(producteur);
+    ListeTournees listeTournees = new ListeTournees(
+        (Producteur) SingleSession.getSession().getUtilisateur());
 
     StageUtil.onWindowLoad(root, () -> {
       Stage fenetreCourante = StageUtil.getFenetre(root);
