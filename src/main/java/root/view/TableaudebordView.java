@@ -15,12 +15,12 @@ import javafx.stage.Stage;
 import root.StageUtil;
 import root.controller.TableaudebordCtrl;
 import root.model.Commande;
+import root.model.PoiLayer;
+import root.model.Tournee;
 import root.model.list.ListeCommandes;
 import root.model.list.ListeTournees;
-import root.model.PoiLayer;
 import root.model.session.SessionProducteur;
 import root.model.session.SingleSession;
-import root.model.Tournee;
 
 /**
  * Classe de vue pour le tableau de bord.
@@ -35,6 +35,8 @@ public class TableaudebordView implements Initializable {
   private ListView<Tournee> listeTourneesCourantes;
   @FXML
   private MapView carte;
+
+  private final CalendrierView calendrierView = new CalendrierView();
 
   /**
    * La fenêtre dans laquelle la vue a été chargée.

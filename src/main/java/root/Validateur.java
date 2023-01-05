@@ -24,6 +24,12 @@ public class Validateur {
     return 0 <= nombre && nombre <= 23;
   }
 
+  /**
+   * Valide si le texte est un numéro d'immatriculation.
+   *
+   * @param texte le texte à valider
+   * @return true si le texte est un numéro d'immatriculation, false sinon
+   */
   public static boolean validerImmatriculation(String texte) {
     return texte.matches("[A-Z]{2}-[0-9]{3}-[A-Z]{2}")
         || texte.matches("[A-Z]{2}[0-9]{3}[A-Z]{2}")
@@ -55,6 +61,12 @@ public class Validateur {
     return texte.matches("^([12][AB])$|^([0-9]{5})$");
   }
 
+  /**
+   * Valide si le mot de passe correspond aux demandes.
+   *
+   * @param texte le mot de passe à valider
+   * @return true si le mot de passe correspond aux demandes, false sinon
+   */
   public static boolean validerMdp(String texte) {
     return texte.matches("^(?=.*\\d)(?=.*[a-zàáâäãçéèêëìíîïñòóôöùûüýÿ])"
         + "(?=.*[A-ZÀÁÂÄÃÇÉÈÊËÌÍÎÏÑÒÓÔÖÙÚÛÜÝŸ])"

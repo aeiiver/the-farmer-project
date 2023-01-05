@@ -49,7 +49,7 @@
 - [x] Génération d'adresse
 - [x] Génération de client
 - [x] Génération de commandes
-- [ ] Génération de tournées
+- [x] Génération de tournées
 - [x] Générations de producteurs
 - [x] Génération de véhicules 
 

@@ -3,12 +3,10 @@ package root.view;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-//import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.VBox;
@@ -88,6 +86,9 @@ public class TableaudebordAdminView implements Initializable {
     return List.of(siret, nom, prenom, mail, numTel, adresse);
   }
 
+  /**
+  * Méthode qui définit les colonnes de la table des clients.
+   */
   public List<TableColumn<Client, String>> colonnesCli() {
 
     // On définit les colonnes qu'on veut afficher...

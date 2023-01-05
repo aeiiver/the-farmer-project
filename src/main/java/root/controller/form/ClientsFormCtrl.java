@@ -1,5 +1,7 @@
 package root.controller.form;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import javafx.stage.Stage;
 import root.StageUtil;
 import root.Validateur;
@@ -11,9 +13,6 @@ import root.model.Client;
 import root.model.list.ListeClients;
 import root.model.session.SessionProducteur;
 import root.model.session.SingleSession;
-
-import java.util.ArrayList;
-import java.util.Comparator;
 
 /**
  * Classe contrôleuse pour la vue et modèle du formulaire d'ajout et modification d'un client.

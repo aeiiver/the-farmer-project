@@ -1,10 +1,8 @@
 package root.view.list;
 
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,7 +13,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import root.StageUtil;
 import root.controller.list.ProducteursCtrl;
-import root.model.Producteur;
 import root.model.Producteur;
 import root.model.list.ListeProducteurs;
 import root.model.session.SessionAdmin;
