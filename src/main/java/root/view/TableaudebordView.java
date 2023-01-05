@@ -36,7 +36,7 @@ public class TableaudebordView implements Initializable {
   @FXML
   private MapView carte;
 
-  private final CalendrierView calendrierView = new CalendrierView();
+  //private final CalendrierView calendrierView = new CalendrierView();
 
   /**
    * La fenêtre dans laquelle la vue a été chargée.

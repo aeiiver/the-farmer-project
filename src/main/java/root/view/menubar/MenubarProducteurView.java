@@ -59,7 +59,7 @@ public class MenubarProducteurView implements Initializable {
   }
 
   public void deconnexion() {
-    ctrl.gotoCompte();
+    ctrl.deconnexion();
   }
 
   @Override
