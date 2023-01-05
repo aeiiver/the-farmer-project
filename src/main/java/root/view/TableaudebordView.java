@@ -50,7 +50,7 @@ public class TableaudebordView implements Initializable {
    */
   @FXML
   private void ajouterTournee() {
-    // TODO
+    ctrl.ajouterTournee();
   }
 
   /**
@@ -59,7 +59,12 @@ public class TableaudebordView implements Initializable {
    */
   @FXML
   private void supprimerTournee() {
-    // TODO
+    Tournee modele = listeTourneesCourantes.getSelectionModel().getSelectedItem();
+
+    if (modele == null) {
+      return;
+    }
+    ctrl.supprimerTournee(modele);
   }
 
   /**
@@ -68,7 +73,12 @@ public class TableaudebordView implements Initializable {
    */
   @FXML
   private void editerTournee() {
-    // TODO
+    Tournee modele = listeTourneesCourantes.getSelectionModel().getSelectedItem();
+
+    if (modele == null) {
+      return;
+    }
+    ctrl.editerTournee(modele);
   }
 
   /**
@@ -79,12 +89,15 @@ public class TableaudebordView implements Initializable {
    */
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
+    /* Initialise les listes */
+    Producteur producteur = (Producteur) SingleSession.getSession().getUtilisateur();
+    ListeTournees modeleListeTournees = new ListeTournees(producteur);
 
     /* Charge quand la fenêtre est chargée */
     StageUtil.onWindowLoad(root, () -> {
       // Charge le contrôleur
       Stage fenetre = StageUtil.getFenetre(root);
-      ctrl = new TableaudebordCtrl(fenetre);
+      ctrl = new TableaudebordCtrl(fenetre, modeleListeTournees);
     });
 
     /* Carte */
@@ -97,10 +110,6 @@ public class TableaudebordView implements Initializable {
 
     // Ajoute la couche à la carte
     carte.addLayer(coucheMarqueur);
-
-    /* Initilise les listes */
-    Producteur producteur = (Producteur) SingleSession.getSession().getUtilisateur();
-    ListeTournees modeleListeTournees = new ListeTournees(producteur);
 
     ObservableList<Tournee> tournees = (ObservableList<Tournee>) modeleListeTournees.getTournees();
     listeTourneesCourantes.setItems(tournees);
