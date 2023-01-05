@@ -15,8 +15,6 @@ import root.StageUtil;
 import root.controller.list.TourneesCtrl;
 import root.model.Tournee;
 import root.model.list.ListeTournees;
-import root.model.session.SessionProducteur;
-import root.model.session.SingleSession;
 
 /**
  * Classe de vue pour la liste des tournées.
@@ -64,14 +62,14 @@ public class TourneesView implements Initializable {
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    ListeTournees modele = ((SessionProducteur) SingleSession.getSession()).getListeTournees();
+    ListeTournees listeTournees = new ListeTournees();
 
     StageUtil.onWindowLoad(root, () -> {
       Stage fenetreCourante = StageUtil.getFenetre(root);
-      ctrl = new TourneesCtrl(fenetreCourante, modele);
+      ctrl = new TourneesCtrl(fenetreCourante, listeTournees);
     });
 
-    ObservableList<Tournee> tournees = (ObservableList<Tournee>) modele.getTournees();
+    ObservableList<Tournee> tournees = (ObservableList<Tournee>) listeTournees.getTournees();
     tableau.getColumns().setAll(colonnes());
     tableau.setItems(tournees);
   }

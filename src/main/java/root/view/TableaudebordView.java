@@ -19,8 +19,6 @@ import root.model.PoiLayer;
 import root.model.Tournee;
 import root.model.list.ListeCommandes;
 import root.model.list.ListeTournees;
-import root.model.session.SessionProducteur;
-import root.model.session.SingleSession;
 
 /**
  * Classe de vue pour le tableau de bord.
@@ -73,10 +71,8 @@ public class TableaudebordView implements Initializable {
     });
 
     /* Remplis les listes */
-    ListeCommandes modeleListeCommandes =
-        ((SessionProducteur) SingleSession.getSession()).getListeCommandes();
-    ListeTournees modeleListeTournees =
-        ((SessionProducteur) SingleSession.getSession()).getListeTournees();
+    ListeCommandes modeleListeCommandes = new ListeCommandes();
+    ListeTournees modeleListeTournees = new ListeTournees();
 
     ObservableList<Commande> commandes =
         (ObservableList<Commande>) modeleListeCommandes.getCommandes();

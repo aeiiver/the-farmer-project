@@ -9,7 +9,7 @@ import root.data.VehiculeDao;
 import root.model.Producteur;
 import root.model.Vehicule;
 import root.model.list.ListeVehicules;
-import root.model.session.SessionProducteur;
+import root.model.session.SessionUtilisateur;
 import root.model.session.SingleSession;
 
 
@@ -47,9 +47,9 @@ public class VehiculesFormCtrl {
     }
     int poidsValide = Integer.parseInt(poidsMax);
 
-    SessionProducteur session = (SessionProducteur) SingleSession.getSession();
+    SessionUtilisateur session = SingleSession.getSession();
     Producteur producteur = (Producteur) session.getUtilisateur();
-    ListeVehicules listeVehicules = session.getListeVehicules();
+    ListeVehicules listeVehicules = new ListeVehicules();
 
     Connection singleConnection = SingleConnection.getInstance();
     Vehicule edit = new VehiculeDao(singleConnection).get(immat);

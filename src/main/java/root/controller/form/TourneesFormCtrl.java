@@ -10,7 +10,7 @@ import root.model.Producteur;
 import root.model.Tournee;
 import root.model.Vehicule;
 import root.model.list.ListeTournees;
-import root.model.session.SessionProducteur;
+import root.model.session.SessionUtilisateur;
 import root.model.session.SingleSession;
 
 /**
@@ -64,9 +64,9 @@ public class TourneesFormCtrl {
     }
 
     /* Après validation de la saisie */
-    SessionProducteur session = (SessionProducteur) SingleSession.getSession();
+    SessionUtilisateur session = SingleSession.getSession();
     Producteur producteur = (Producteur) session.getUtilisateur();
-    ListeTournees listeTournees = session.getListeTournees();
+    ListeTournees listeTournees = new ListeTournees();
 
     Tournee tournee = new Tournee(libelle, heureMinValide, heureMaxValide, producteur, vehicule);
     tournee.getCommandes().addAll(commandes);

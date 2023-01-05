@@ -37,7 +37,7 @@ public class ListeTournees {
    */
   public ListeTournees() {
     tourneeDao = new TourneeDao(SingleConnection.getInstance());
-    tournees = FXCollections.observableArrayList(tourneeDao.getAll());
+    tournees = FXCollections.observableArrayList();
   }
 
   /**

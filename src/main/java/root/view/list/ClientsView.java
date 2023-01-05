@@ -15,8 +15,6 @@ import root.StageUtil;
 import root.controller.list.ClientsCtrl;
 import root.model.Client;
 import root.model.list.ListeClients;
-import root.model.session.SessionProducteur;
-import root.model.session.SingleSession;
 
 /**
  * Classe de vue pour la liste des clients.
@@ -61,7 +59,7 @@ public class ClientsView implements Initializable {
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    ListeClients modele = ((SessionProducteur) SingleSession.getSession()).getListeClients();
+    ListeClients modele = new ListeClients();
 
     StageUtil.onWindowLoad(root, () -> {
       Stage fenetreCourante = StageUtil.getFenetre(root);

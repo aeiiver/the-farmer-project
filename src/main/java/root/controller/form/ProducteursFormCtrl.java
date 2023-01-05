@@ -10,8 +10,6 @@ import root.data.SingleConnection;
 import root.model.Adresse;
 import root.model.Producteur;
 import root.model.list.ListeProducteurs;
-import root.model.session.SessionAdmin;
-import root.model.session.SingleSession;
 //TODO c'est quoi ce travaille de cochon là...
 
 /**
@@ -106,11 +104,7 @@ public class ProducteursFormCtrl {
       StageUtil.afficheAlerte(messageErreur, fenetre);
       return;
     }
-    SessionAdmin session = (SessionAdmin) SingleSession.getSession();
-    //Admin admin = (Admin) session.getUtilisateur();
-    ListeProducteurs listeProducteurs = session.getListeProducteurs();
-
-
+    ListeProducteurs listeProducteurs = new ListeProducteurs();
 
     Adresse adresse = new Adresse(paysSaisi, codePostSaisi, villeSaisi, typeVoie, nomVoie,
             Integer.parseInt(numeroAdresse), mention, complement);

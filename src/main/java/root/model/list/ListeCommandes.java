@@ -32,7 +32,7 @@ public class ListeCommandes {
    */
   public ListeCommandes() {
     commandeDao = new CommandeDao(SingleConnection.getInstance());
-    commandes = FXCollections.observableArrayList(commandeDao.getAll());
+    commandes = FXCollections.observableArrayList();
   }
 
   /**

@@ -22,8 +22,8 @@ import root.controller.form.TourneesFormCtrl;
 import root.model.Commande;
 import root.model.Tournee;
 import root.model.Vehicule;
-import root.model.session.SessionProducteur;
-import root.model.session.SingleSession;
+import root.model.list.ListeCommandes;
+import root.model.list.ListeVehicules;
 
 /**
  * Classe de vue pour le formulaire d'ajout d'une tournée.
@@ -79,10 +79,8 @@ public class TourneesFormView implements Initializable, FormView<Tournee> {
       ctrl = new TourneesFormCtrl(fenetreCourante);
     });
 
-    SessionProducteur session = (SessionProducteur) SingleSession.getSession();
-
     /* Lister tous les véhicules dans la ChoiceBox */
-    List<Vehicule> vehiculesStockes = session.getListeVehicules().getVehicules();
+    List<Vehicule> vehiculesStockes = new ListeVehicules().getVehicules();
     vehicules.getItems().addAll(vehiculesStockes);
 
     // On définit comment on veut afficher un objet "Vehicule" dans la ChoiceBox.
@@ -104,7 +102,7 @@ public class TourneesFormView implements Initializable, FormView<Tournee> {
     /* Lister toutes les commandes dans la ListView */
 
     /*
-    TODO
+    TODO 2x
     Comportement attendu: Retirer une commande d'une tournée devrait la faire apparaître parmi dans
     la ListView quand on ajoute ou édite une autre tournée.
 
@@ -118,7 +116,7 @@ public class TourneesFormView implements Initializable, FormView<Tournee> {
     //        .filter(commande -> commande.getNumTournee() <= 0)
     //        .toList();
 
-    List<Commande> commandesStockeesLibres = session.getListeCommandes().getCommandes();
+    List<Commande> commandesStockeesLibres = new ListeCommandes().getCommandes();
     commandes.getItems().addAll(commandesStockeesLibres);
 
     commandes.prefHeight(commandes.getFixedCellSize() * 3);

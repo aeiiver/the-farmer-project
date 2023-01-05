@@ -7,8 +7,6 @@ import root.data.SingleConnection;
 import root.data.VehiculeDao;
 import root.model.Vehicule;
 import root.model.list.ListeVehicules;
-import root.model.session.SessionProducteur;
-import root.model.session.SingleSession;
 import root.view.form.VehiculesFormView;
 
 /**
@@ -17,9 +15,11 @@ import root.view.form.VehiculesFormView;
 public class VehiculesCtrl {
 
   private Stage fenetre;
+  private  ListeVehicules modele;
 
-  public VehiculesCtrl(Stage fenetre) {
+  public VehiculesCtrl(Stage fenetre, ListeVehicules modele) {
     this.fenetre = fenetre;
+    this.modele = modele;
   }
 
   /**
@@ -36,13 +36,12 @@ public class VehiculesCtrl {
    */
   public void supprimerVehicule(Vehicule vehicule) {
     VehiculeDao dao = new VehiculeDao(SingleConnection.getInstance());
-    ListeVehicules listeVehicules =
-        ((SessionProducteur) SingleSession.getSession()).getListeVehicules();
+
     boolean reponse = StageUtil.afficheConfirmation(fenetre);
     System.out.println(reponse);
     if (reponse) {
       dao.delete(vehicule);
-      listeVehicules.supprimer(vehicule);
+      modele.supprimer(vehicule);
     }
   }
 

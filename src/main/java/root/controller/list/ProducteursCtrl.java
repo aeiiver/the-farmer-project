@@ -7,8 +7,6 @@ import root.data.ProducteurDao;
 import root.data.SingleConnection;
 import root.model.Producteur;
 import root.model.list.ListeProducteurs;
-import root.model.session.SessionAdmin;
-import root.model.session.SingleSession;
 import root.view.form.ProducteursFormView;
 
 /**
@@ -37,8 +35,6 @@ public class ProducteursCtrl {
    */
   public void supprimerProducteur(Producteur producteur) {
     ProducteurDao dao = new ProducteurDao(SingleConnection.getInstance());
-    ListeProducteurs listeProducteurs =
-        ((SessionAdmin) SingleSession.getSession()).getListeProducteurs();
     boolean reponse = StageUtil.afficheConfirmation(fenetre);
 
     if (reponse) {

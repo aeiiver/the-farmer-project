@@ -10,8 +10,9 @@ import root.model.Client;
 import root.model.Commande;
 import root.model.Producteur;
 import root.model.list.ListeCommandes;
-import root.model.session.SessionProducteur;
+import root.model.session.SessionUtilisateur;
 import root.model.session.SingleSession;
+
 
 /**
  * Classe contrôleuse pour la vue et modèle du formulaire d'ajout et modification d'une commande.
@@ -69,9 +70,9 @@ public class CommandesFormCtrl {
     }
 
     // Après validation de la saisie
-    SessionProducteur session = (SessionProducteur) SingleSession.getSession();
+    SessionUtilisateur session = SingleSession.getSession();
     Producteur producteur = (Producteur) session.getUtilisateur();
-    ListeCommandes listeCommandes = session.getListeCommandes();
+    ListeCommandes listeCommandes = new ListeCommandes();
 
     Commande commande =
         new Commande(libelleSaisi, poidsValide, dateValide, heureDebValide, heureFinValide,

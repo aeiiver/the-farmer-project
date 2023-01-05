@@ -16,8 +16,6 @@ import root.StageUtil;
 import root.controller.list.CommandesCtrl;
 import root.model.Commande;
 import root.model.list.ListeCommandes;
-import root.model.session.SessionProducteur;
-import root.model.session.SingleSession;
 
 /**
  * Classe de vue pour la liste des commandes.
@@ -65,14 +63,14 @@ public class CommandesView implements Initializable {
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    ListeCommandes modele = ((SessionProducteur) SingleSession.getSession()).getListeCommandes();
+    ListeCommandes listeCommandes = new ListeCommandes();
 
     StageUtil.onWindowLoad(root, () -> {
       Stage fenetreCourante = StageUtil.getFenetre(root);
-      ctrl = new CommandesCtrl(fenetreCourante, modele);
+      ctrl = new CommandesCtrl(fenetreCourante, listeCommandes);
     });
 
-    ObservableList<Commande> commandes = (ObservableList<Commande>) modele.getCommandes();
+    ObservableList<Commande> commandes = (ObservableList<Commande>) listeCommandes.getCommandes();
     tableau.getColumns().setAll(colonnes());
     tableau.setItems(commandes);
   }

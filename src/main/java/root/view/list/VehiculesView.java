@@ -16,8 +16,6 @@ import root.StageUtil;
 import root.controller.list.VehiculesCtrl;
 import root.model.Vehicule;
 import root.model.list.ListeVehicules;
-import root.model.session.SessionProducteur;
-import root.model.session.SingleSession;
 
 /**
  * Classe de vue pour la liste des véhicules.
@@ -84,14 +82,15 @@ public class VehiculesView implements Initializable {
    */
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    ListeVehicules modele = ((SessionProducteur) SingleSession.getSession()).getListeVehicules();
+    ListeVehicules listeVehicules = new ListeVehicules();
 
     StageUtil.onWindowLoad(root, () -> {
       Stage fenetre = StageUtil.getFenetre(root);
-      ctrl = new VehiculesCtrl(fenetre);
+      ctrl = new VehiculesCtrl(fenetre, listeVehicules);
     });
 
-    ObservableList<Vehicule> vehicules = (ObservableList<Vehicule>) modele.getVehicules();
+    ObservableList<Vehicule> vehicules =
+        (ObservableList<Vehicule>) listeVehicules.getVehicules();
     tableau.getColumns().setAll(colonnes());
     tableau.setItems(vehicules);
     tableau.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);

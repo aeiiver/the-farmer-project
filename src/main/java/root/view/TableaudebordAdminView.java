@@ -17,8 +17,6 @@ import root.model.Client;
 import root.model.Producteur;
 import root.model.list.ListeClients;
 import root.model.list.ListeProducteurs;
-import root.model.session.SessionAdmin;
-import root.model.session.SingleSession;
 
 /**
  * Classe de vue pour le tableau de bord administrateur.
@@ -36,10 +34,8 @@ public class TableaudebordAdminView implements Initializable {
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    ListeProducteurs modeleProducteurs =
-        ((SessionAdmin) SingleSession.getSession()).getListeProducteurs();
-    ListeClients modeleClients =
-        ((SessionAdmin) SingleSession.getSession()).getListeClients();
+    ListeProducteurs modeleProducteurs = new ListeProducteurs();
+    ListeClients modeleClients = new ListeClients();
 
     StageUtil.onWindowLoad(root, () -> {
       Stage fenetreCourante = StageUtil.getFenetre(root);

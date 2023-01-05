@@ -17,8 +17,7 @@ import root.StageUtil;
 import root.controller.form.CommandesFormCtrl;
 import root.model.Client;
 import root.model.Commande;
-import root.model.session.SessionProducteur;
-import root.model.session.SingleSession;
+import root.model.list.ListeClients;
 
 /**
  * Classe de vue pour le formulaire d'ajout d'une commande.
@@ -71,8 +70,7 @@ public class CommandesFormView implements Initializable, FormView<Commande> {
     });
 
     /* Lister tous les clients dans la ChoiceBox */
-    List<Client> clientsStockes =
-        ((SessionProducteur) SingleSession.getSession()).getListeClients().getClients();
+    List<Client> clientsStockes = new ListeClients().getClients();
     clients.getItems().addAll(clientsStockes);
 
     // On définit comment on veut afficher un objet Client dans la ChoiceBox.

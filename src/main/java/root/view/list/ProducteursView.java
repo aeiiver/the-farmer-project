@@ -15,8 +15,6 @@ import root.StageUtil;
 import root.controller.list.ProducteursCtrl;
 import root.model.Producteur;
 import root.model.list.ListeProducteurs;
-import root.model.session.SessionAdmin;
-import root.model.session.SingleSession;
 
 /**
  * Classe de vue pour la liste des producteurs.
@@ -62,7 +60,7 @@ public class ProducteursView implements Initializable {
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    ListeProducteurs modele = ((SessionAdmin) SingleSession.getSession()).getListeProducteurs();
+    ListeProducteurs modele = new ListeProducteurs();
 
     StageUtil.onWindowLoad(root, () -> {
       Stage fenetre = StageUtil.getFenetre(root);
@@ -102,4 +100,3 @@ public class ProducteursView implements Initializable {
   }
 
 }
-

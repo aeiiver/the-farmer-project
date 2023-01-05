@@ -11,8 +11,6 @@ import root.data.SingleConnection;
 import root.model.Adresse;
 import root.model.Client;
 import root.model.list.ListeClients;
-import root.model.session.SessionProducteur;
-import root.model.session.SingleSession;
 
 /**
  * Classe contrôleuse pour la vue et modèle du formulaire d'ajout et modification d'un client.
@@ -76,8 +74,7 @@ public class ClientsFormCtrl {
     }
 
     /* Après validation de la saisie */
-    SessionProducteur session = (SessionProducteur) SingleSession.getSession();
-    ListeClients listeClients = session.getListeClients();
+    ListeClients listeClients = new ListeClients();
 
     /* Récupération de l'id de l'adresse */
 

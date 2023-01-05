@@ -5,11 +5,12 @@ import root.model.Utilisateur;
 /**
  * Classe représentant la session utilisateur.
  */
-public abstract class SessionUtilisateur {
+public class SessionUtilisateur {
 
   protected Utilisateur utilisateur;
 
-  protected SessionUtilisateur() {
+  protected SessionUtilisateur(Utilisateur utilisateur) {
+    this.utilisateur = utilisateur;
   }
 
   public Utilisateur getUtilisateur() {

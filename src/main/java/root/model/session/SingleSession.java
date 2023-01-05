@@ -1,6 +1,10 @@
 package root.model.session;
 
-// Defensive programming be like:
+import root.data.AdminDao;
+import root.data.Dao;
+import root.data.ProducteurDao;
+import root.data.SingleConnection;
+import root.model.Producteur;
 
 /**
  * Singleton représentant la session utilisateur.
@@ -37,7 +41,14 @@ public class SingleSession {
     if (session != null) {
       throw new RuntimeException("Une session est déjà ouverte. Qui l'a ouverte avant vous ?");
     }
-    session = (estAdmin) ? new SessionAdmin(identifiant) : new SessionProducteur(identifiant);
+
+    if (estAdmin) {
+      AdminDao dao = new AdminDao(SingleConnection.getInstance());
+      session = new SessionUtilisateur(dao.get(identifiant));
+    } else {
+      ProducteurDao dao = new ProducteurDao(SingleConnection.getInstance());
+      session = new SessionUtilisateur(dao.get(identifiant));
+    }
   }
 
   /**
