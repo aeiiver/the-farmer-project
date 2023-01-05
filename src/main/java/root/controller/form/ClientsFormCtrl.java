@@ -100,7 +100,7 @@ public class ClientsFormCtrl {
       adresse.setIdAdresse(idMax + 1);
       new AdresseDao(SingleConnection.getInstance()).insert(adresse);
       new ClientDao(SingleConnection.getInstance()).insert(client);
-      listeClients.ajouter(client);
+      //listeClients.ajouter(client);
     } else {
       // Modification
       client.setIdClient(idClient);

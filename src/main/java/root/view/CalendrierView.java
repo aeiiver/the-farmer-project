@@ -1,5 +1,11 @@
 package root.view;
 
+
+import java.net.URL;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
@@ -7,18 +13,18 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import root.data.CommandeDao;
 import root.data.SingleConnection;
+import root.data.TourneeDao;
+import root.model.Commande;
 import root.model.Tournee;
 
-import java.net.URL;
-import java.sql.Date;
-import java.util.Calendar;
-import java.util.ResourceBundle;
-
-public class Calendrier implements Initializable {
+public class CalendrierView implements Initializable {
   @FXML
   private GridPane calendrier;
+
+  private Stage fenetre;
 
   /**
    * @param url
@@ -34,7 +40,20 @@ public class Calendrier implements Initializable {
     Calendar cal = Calendar.getInstance();
     cal.set(year, month, 1);
     int firstDayOfMonth = cal.get(Calendar.DAY_OF_WEEK);
-    System.out.println("firstDayOfMonth = " + firstDayOfMonth);
+
+    ArrayList<Tournee> tournees = new TourneeDao(SingleConnection.getInstance()).getAll();
+    ArrayList<Integer> datesTournees = new ArrayList<>();
+    for (Tournee tournee : tournees) {
+      Date date = tournee.getCommandes().get(0).getDateCom();
+      Calendar calendar = Calendar.getInstance();
+      calendar.setTime(date);
+      int monthCommande = calendar.get(Calendar.MONTH);
+      if (monthCommande == month) {
+        datesTournees.add(calendar.get(Calendar.DAY_OF_MONTH));
+      }
+
+      //if (date.getTime())
+    }
 
     int firstDay = 1;
     switch (firstDayOfMonth) {
@@ -46,7 +65,7 @@ public class Calendrier implements Initializable {
       case Calendar.SUNDAY -> firstDay = 7;
     }
     int day = 1;
-    System.out.println(cal.getActualMaximum(Calendar.DAY_OF_MONTH));
+
 
     for (int i = firstDay; i <= cal.getActualMaximum(Calendar.DAY_OF_MONTH);i++) {
       Label label = new Label();
@@ -61,6 +80,8 @@ public class Calendrier implements Initializable {
         label.setStyle("-fx-background-color: #00ff00");
       } else if (day < dayNow) {
         label.setStyle("-fx-background-color: #aaaaaa");
+      } else if (datesTournees.contains(day)) {
+        label.setStyle("-fx-background-color: #ff0000");
       } else {
         label.setStyle("-fx-background-color: #eeeeee");
       }
@@ -73,14 +94,5 @@ public class Calendrier implements Initializable {
       }
       day++;
     }
-  }
-
-  public void addDay(Tournee tournee) {
-    VBox vBox = new VBox();
-    Date date = new CommandeDao(SingleConnection.getInstance()).get(tournee.getNumTournee()).getDateCom();
-    if (date.getTime() == Calendar.MONTH) {
-      //calendrier.add(vBox, date.getTime() % 7, Calendar.MONTH / 7 + 1);
-    }
-
   }
 }

@@ -18,7 +18,7 @@
 - [x] Entrer les commandes des clients
 - [x] Consulter les commandes
 - [x] Modifier une commande
-- [ ] Supprimer une commande
+- [x] Supprimer une commande
 
 ### Gestion des clients : Alex
 - [x] Formulaire d'ajout de client
@@ -29,10 +29,10 @@
 
 ### Gestion de producteurs : Lou
 - [x] Formulaire d'ajout de producteurs
-- [ ] Ajout de producteur
-- [ ] Suppression de producteur
-- [ ] Modification de producteur
-- [ ] Consulter les producteurs
+- [x] Ajout de producteur
+- [x] Suppression de producteur
+- [x] Modification de producteur
+- [x] Consulter les producteurs
 
 ### Gestion de son compte
 - [ ] Page de modification de son compte
@@ -61,6 +61,6 @@
 - [ ] Implémentation du calendrier : Mattéo
 
 ### Tableau de bord administrateur
-- [ ] Affichage de la liste des producteurs
-- [ ] Affichage de la liste des clients
+- [x] Affichage de la liste des producteurs
+- [x] Affichage de la liste des clients
 - [x] Redirection vers les autres pages
