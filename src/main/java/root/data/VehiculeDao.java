@@ -30,7 +30,8 @@ public class VehiculeDao extends Dao<Vehicule, String> {
   public boolean insert(Vehicule vehicule) {
     try {
       String query = "INSERT INTO Vehicule (immat, poidsMax, SIRET) VALUES (?, ?, ?)";
-      PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      PreparedStatement preparedStatement = connexion.prepareStatement(query,
+          PreparedStatement.RETURN_GENERATED_KEYS);
       preparedStatement.setString(1, vehicule.getImmat());
       preparedStatement.setInt(2, vehicule.getPoidsMax());
       preparedStatement.setString(3, vehicule.getProprietaire().getSiret());

@@ -36,7 +36,8 @@ public class ProducteurDao extends Dao<Producteur, String> {
       String query = "INSERT INTO Producteur "
           + "(SIRET, mail, nomProd, prenomProd, numTel, mdp, idAdresse) "
           + "VALUES (?, ?, ?, ?, ?, ?, ?)";
-      PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      PreparedStatement preparedStatement = connexion.prepareStatement(query,
+          PreparedStatement.RETURN_GENERATED_KEYS);
 
       preparedStatement.setString(1, producteur.getSiret());
       preparedStatement.setString(2, producteur.getMail());

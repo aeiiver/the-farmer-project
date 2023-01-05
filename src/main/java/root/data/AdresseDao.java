@@ -3,6 +3,7 @@ package root.data;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import root.model.Adresse;
 
@@ -32,7 +33,8 @@ public class AdresseDao extends Dao<Adresse, Integer> {
       String query = "INSERT INTO Adresse "
           + "(pays, codePost, ville, voie, nom, numero, mention, complement) "
           + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-      PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      PreparedStatement preparedStatement = connexion.prepareStatement(query,
+          Statement.RETURN_GENERATED_KEYS);
       preparedStatement.setString(1, adresse.getPays());
       preparedStatement.setString(2, adresse.getCodePost());
       preparedStatement.setString(3, adresse.getVille());
