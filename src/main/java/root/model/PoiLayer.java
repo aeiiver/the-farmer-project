@@ -9,9 +9,7 @@ import javafx.scene.Node;
 import javafx.util.Pair;
 
 /**
- * Classe représentant une couche de marqueurs.
- *
- * <p>Voir documentation de <a href="https://github.com/gluonhq/maps/blob/master/maps/src/main/java/com/gluonhq/maps/MapLayer.java">MapLayer</a></p>
+ * Implémentation de {@link MapLayer} pour représenter une couche de marqueurs.
  */
 public class PoiLayer extends MapLayer {
 
@@ -49,6 +47,16 @@ public class PoiLayer extends MapLayer {
   public void addMarqueur(MapPoint point, Node element) {
     marqueurs.add(new Pair<>(point, element));
     getChildren().add(element);
+    markDirty();
+  }
+
+  /**
+   * Efface tous les marqueurs placés sur la couche.
+   */
+  public void effacerMarqueurs() {
+    marqueurs.clear();
+    getChildren().clear();
+    markDirty();
   }
 
 }

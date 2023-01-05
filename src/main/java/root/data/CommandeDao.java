@@ -216,7 +216,7 @@ public class CommandeDao extends Dao<Commande, Integer> {
     }
   }
 
-  public ArrayList<Commande> getCommandeByProducteur(Producteur producteur) {
+  public ArrayList<Commande> getAllByProducteur(Producteur producteur) {
     try {
       String query = "SELECT * FROM Commande WHERE SIRET = ?";
       PreparedStatement preparedStatement = connexion.prepareStatement(query);

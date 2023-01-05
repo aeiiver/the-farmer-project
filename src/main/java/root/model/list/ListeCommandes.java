@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import root.data.CommandeDao;
 import root.data.SingleConnection;
 import root.model.Commande;
+import root.model.Producteur;
 
 /**
  * Classe de modèle pour la liste des Commandes.
@@ -15,7 +16,7 @@ public class ListeCommandes {
   /**
    * Liste des commandes.
    *
-   * @see ListeCommandes#ListeCommandes()
+   * @see ListeCommandes#ListeCommandes(Producteur)
    * @see ListeCommandes#getCommandes()
    * @see ListeCommandes#ajouter(Commande)
    * @see ListeCommandes#supprimer(Commande)
@@ -28,11 +29,19 @@ public class ListeCommandes {
   private CommandeDao commandeDao;
 
   /**
-   * Constructeur.
+   * Constructeur avec une liste vide.
    */
   public ListeCommandes() {
     commandeDao = new CommandeDao(SingleConnection.getInstance());
     commandes = FXCollections.observableArrayList();
+  }
+
+  /**
+   * Constructeur avec une liste remplie de données de la base de données.
+   */
+  public ListeCommandes(Producteur producteur) {
+    commandeDao = new CommandeDao(SingleConnection.getInstance());
+    commandes = FXCollections.observableArrayList(commandeDao.getAllByProducteur(producteur));
   }
 
   /**

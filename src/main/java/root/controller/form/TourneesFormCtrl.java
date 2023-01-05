@@ -66,7 +66,7 @@ public class TourneesFormCtrl {
     /* Après validation de la saisie */
     SessionUtilisateur session = SingleSession.getSession();
     Producteur producteur = (Producteur) session.getUtilisateur();
-    ListeTournees listeTournees = new ListeTournees();
+    ListeTournees listeTournees = new ListeTournees(producteur);
 
     Tournee tournee = new Tournee(libelle, heureMinValide, heureMaxValide, producteur, vehicule);
     tournee.getCommandes().addAll(commandes);

@@ -13,8 +13,10 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import root.StageUtil;
 import root.controller.list.TourneesCtrl;
+import root.model.Producteur;
 import root.model.Tournee;
 import root.model.list.ListeTournees;
+import root.model.session.SingleSession;
 
 /**
  * Classe de vue pour la liste des tournées.
@@ -62,7 +64,8 @@ public class TourneesView implements Initializable {
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    ListeTournees listeTournees = new ListeTournees();
+    Producteur producteur = (Producteur) SingleSession.getSession().getUtilisateur();
+    ListeTournees listeTournees = new ListeTournees(producteur);
 
     StageUtil.onWindowLoad(root, () -> {
       Stage fenetreCourante = StageUtil.getFenetre(root);

@@ -16,7 +16,7 @@
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.view.TableaudebordView">
     <fx:include source="MenubarProducteur.fxml"/>
     <HBox>
-        <ListView fx:id="listeCommandesTourneeSelectionnee" maxHeight="150.0" orientation="HORIZONTAL"
+        <ListView fx:id="listeCommandes" maxHeight="150.0" orientation="HORIZONTAL"
                   HBox.hgrow="ALWAYS"/>
         <VBox alignment="TOP_CENTER" spacing="8.0">
             <Label alignment="CENTER" text="Calendrier">

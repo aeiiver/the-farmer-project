@@ -20,10 +20,12 @@ import javafx.util.StringConverter;
 import root.StageUtil;
 import root.controller.form.TourneesFormCtrl;
 import root.model.Commande;
+import root.model.Producteur;
 import root.model.Tournee;
 import root.model.Vehicule;
 import root.model.list.ListeCommandes;
 import root.model.list.ListeVehicules;
+import root.model.session.SingleSession;
 
 /**
  * Classe de vue pour le formulaire d'ajout d'une tournée.
@@ -116,7 +118,7 @@ public class TourneesFormView implements Initializable, FormView<Tournee> {
     //        .filter(commande -> commande.getNumTournee() <= 0)
     //        .toList();
 
-    List<Commande> commandesStockeesLibres = new ListeCommandes().getCommandes();
+    List<Commande> commandesStockeesLibres = new ListeCommandes((Producteur) SingleSession.getSession().getUtilisateur()).getCommandes();
     commandes.getItems().addAll(commandesStockeesLibres);
 
     commandes.prefHeight(commandes.getFixedCellSize() * 3);

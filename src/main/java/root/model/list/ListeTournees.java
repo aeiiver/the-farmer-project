@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import root.data.SingleConnection;
 import root.data.TourneeDao;
 import root.model.Commande;
+import root.model.Producteur;
 import root.model.Tournee;
 
 /**
@@ -19,7 +20,7 @@ public class ListeTournees {
   /**
    * Liste des tournées.
    *
-   * @see ListeTournees#ListeTournees()
+   * @see ListeTournees#ListeTournees(Producteur)
    * @see ListeTournees#getTournees()
    * @see ListeTournees#ajouter(Tournee)
    * @see ListeTournees#supprimer(Tournee)
@@ -33,11 +34,19 @@ public class ListeTournees {
   private TourneeDao tourneeDao;
 
   /**
-   * Constructeur.
+   * Constructeur avec une liste vide.
    */
   public ListeTournees() {
     tourneeDao = new TourneeDao(SingleConnection.getInstance());
     tournees = FXCollections.observableArrayList();
+  }
+
+  /**
+   * Constructeur avec une liste remplie de données de la base de données.
+   */
+  public ListeTournees(Producteur producteur) {
+    tourneeDao = new TourneeDao(SingleConnection.getInstance());
+    tournees = FXCollections.observableArrayList(tourneeDao.getAllByProducteur(producteur));
   }
 
   /**

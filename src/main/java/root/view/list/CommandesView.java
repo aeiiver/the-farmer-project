@@ -15,7 +15,9 @@ import javafx.stage.Stage;
 import root.StageUtil;
 import root.controller.list.CommandesCtrl;
 import root.model.Commande;
+import root.model.Producteur;
 import root.model.list.ListeCommandes;
+import root.model.session.SingleSession;
 
 /**
  * Classe de vue pour la liste des commandes.
@@ -63,7 +65,7 @@ public class CommandesView implements Initializable {
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    ListeCommandes listeCommandes = new ListeCommandes();
+    ListeCommandes listeCommandes = new ListeCommandes((Producteur) SingleSession.getSession().getUtilisateur());
 
     StageUtil.onWindowLoad(root, () -> {
       Stage fenetreCourante = StageUtil.getFenetre(root);
