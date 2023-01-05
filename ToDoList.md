@@ -54,9 +54,9 @@
 - [x] Génération de véhicules 
 
 ### Tableau de bord producteur
-- [ ] Intégration d'OSM : Théophane
+- [x] Intégration d'OSM : Théophane
 - [ ] Affichage de la liste des tournées courantes
-- [ ] Affichage de la liste des commandes courantes
+- [x] Affichage de la liste des commandes courantes
 - [x] Redirection vers les autres pages
 - [ ] Implémentation du calendrier : Mattéo
 
