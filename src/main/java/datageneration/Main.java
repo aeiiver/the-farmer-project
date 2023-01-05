@@ -22,14 +22,14 @@ public class Main {
     int nbProducteurs = 50;
     int nbClients = nbProducteurs * 4;
 
-    ArrayList<Producteur> producteurs = GenProducteur.generate(nbProducteurs);
-    System.out.println("Génération des producteurs terminée");
-
     GenClient.generate(nbClients);
     System.out.println("Génération des clients terminée");
 
     GenVehicule.generate((int) (nbProducteurs * 1.5));
     System.out.println("Génération des véhicules terminée");
+
+    ArrayList<Producteur> producteurs = GenProducteur.generate(nbProducteurs);
+    System.out.println("Génération des producteurs terminée");
 
     for (Producteur producteur : producteurs) {
       int nbCommandes = 50;

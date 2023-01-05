@@ -1,18 +1,19 @@
 package datageneration;
 
+import static java.lang.Math.min;
+
 import com.github.javafaker.Faker;
 import java.sql.Connection;
 import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Comparator;
-
-import root.data.*;
+import root.data.CommandeDao;
+import root.data.SingleConnection;
+import root.data.TourneeDao;
+import root.data.VehiculeDao;
 import root.model.Commande;
 import root.model.Producteur;
 import root.model.Tournee;
 import root.model.Vehicule;
-
-import static java.lang.Math.min;
 
 /**
  * Classe permettant de générer des tournées.

@@ -66,11 +66,12 @@ public class GenAdresse {
       }
 
     } else {
-      rue = typeRue.substring((String.valueOf(numero).equals(typeRueSplit[0])) ? typeRueSplit[0].length() + 1 : 0, typeRue.indexOf(codePostal)
+      rue = typeRue.substring((String.valueOf(numero).equals(typeRueSplit[0]))
+          ? typeRueSplit[0].length() + 1 : 0, typeRue.indexOf(codePostal)
       ).replace(Integer.toString(numero), "").trim();
     }
     Adresse adresse;
-    adresse = new Adresse( "France",
+    adresse = new Adresse("France",
         codePostal,
         city,
         "",
