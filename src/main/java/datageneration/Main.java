@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import root.data.SingleConnection;
 import root.data.VehiculeDao;
+import root.model.Producteur;
 
 /**
  * Classe chargée de lancer la génération de données fictives pour
@@ -18,10 +19,10 @@ public class Main {
    * @throws IOException Exception en cas d'erreur sur un URL lors de la génération d'adresses.
    */
   public static void main(String[] args) throws IOException {
-    int nbProducteurs = 10;
+    int nbProducteurs = 50;
     int nbClients = nbProducteurs * 4;
 
-    int nbProducteursGen = (GenProducteur.generate(nbProducteurs)).size();
+    ArrayList<Producteur> producteurs = GenProducteur.generate(nbProducteurs);
     System.out.println("Génération des producteurs terminée");
 
     GenClient.generate(nbClients);
@@ -30,11 +31,11 @@ public class Main {
     GenVehicule.generate((int) (nbProducteurs * 1.5));
     System.out.println("Génération des véhicules terminée");
 
-    for (int i = 0; i < nbProducteursGen; i++) {
+    for (Producteur producteur : producteurs) {
       int nbCommandes = 50;
       int nbCommandesParTournee = 10;
       for (int j = 0; j < nbCommandes / nbCommandesParTournee; j++) {
-        GenCommande.generate(nbCommandesParTournee);
+        GenCommande.generate(nbCommandesParTournee, producteur);
       }
     }
     System.out.println("Génération des tournées terminé");

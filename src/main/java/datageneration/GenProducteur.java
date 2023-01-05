@@ -30,8 +30,8 @@ public class GenProducteur {
    * @return liste des SIRET des producteurs générés.
    * @throws IOException Si le producteur n'a pas pu être généré.
    */
-  public static ArrayList<String> generate(int nbProducteur) throws IOException {
-    ArrayList<String> listSiret = new ArrayList<>();
+  public static ArrayList<Producteur> generate(int nbProducteur) throws IOException {
+    ArrayList<Producteur> listSiret = new ArrayList<>();
     for (int i = 0; i < nbProducteur; i++) {
       Faker faker = new Faker();
 
@@ -39,7 +39,6 @@ public class GenProducteur {
       Adresse adresse = genAdresse.genAdresse();
 
       String siret = faker.number().digits(14);
-      listSiret.add(siret);
       String mdp = faker.internet().password(8, 16);
       String sel = BCrypt.gensalt();
       String mdpChiffre = BCrypt.hashpw(mdp, sel);
@@ -51,6 +50,7 @@ public class GenProducteur {
           faker.internet().emailAddress(), faker.name().firstName(),
           faker.name().lastName(), num,
           mdpChiffre, adresse);
+      listSiret.add(producteur);
       new ProducteurDao(SingleConnection.getInstance()).insert(producteur);
     }
     return listSiret;

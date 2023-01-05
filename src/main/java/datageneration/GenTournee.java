@@ -23,8 +23,8 @@ public class GenTournee {
    *
    * @param commandes Les commandes de la tournée à ajouter.
    */
-  public static void generate(ArrayList<Commande> commandes) {
-    ArrayList<Vehicule> vehicules = new ArrayList<>();
+  public static void generate(ArrayList<Commande> commandes, Producteur producteur) {
+    ArrayList<Vehicule> vehicules = new VehiculeDao(SingleConnection.getInstance()).getAll();
     Faker faker = new Faker();
     Connection singleConnection = SingleConnection.getInstance();
     Time heureMin = null;
@@ -38,8 +38,6 @@ public class GenTournee {
         heureMax = commandes.get(j).getHeureFin();
       }
     }
-    //TODO erreur ici
-    Producteur producteur = new CommandeDao(singleConnection).get(commandes.get(0).getNumCom()).getProducteur();
     Vehicule vehicule = new VehiculeDao(singleConnection).get(vehicules.get(vehiculeId).getImmat());
 
     if (producteur != null && vehicule != null) {

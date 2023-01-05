@@ -25,11 +25,9 @@ public class GenCommande {
    *
    * @param nb Nombre de commandes à générer.
    */
-  public static void generate(int nb) {
-    ArrayList<Producteur> producteurs = new ProducteurDao(SingleConnection.getInstance()).getAll();
+  public static void generate(int nb, Producteur producteur) {
     ArrayList<Client> clients = new ClientDao(SingleConnection.getInstance()).getAll();
     ArrayList<Commande> commandes = new ArrayList<>();
-    System.out.println(producteurs);
     for (int i = 0; i < nb; i++) {
       Faker faker = new Faker();
       Time min = Time.valueOf(faker.date().future(1, TimeUnit.DAYS).toString().split(" ")[3]);
@@ -51,7 +49,6 @@ public class GenCommande {
       Date date = Date.valueOf(faker.number().numberBetween(2020, 2023) + "-"
           + faker.number().numberBetween(1, 12) + "-" + faker.number().numberBetween(1, 28));
 
-      Producteur producteur = producteurs.get(faker.number().numberBetween(0, producteurs.size() - 1));
       if (producteur == null) {
         System.out.println();
       } else {
@@ -66,10 +63,9 @@ public class GenCommande {
               producteur, client);
           new CommandeDao(singleConnection).insert(commande);
           commandes.add(commande);
-          System.out.printf("J'ai inséré commande #%d\n", commande.getNumCom());
         }
       }
     }
-    GenTournee.generate(commandes);
+    GenTournee.generate(commandes, producteur);
   }
 }
