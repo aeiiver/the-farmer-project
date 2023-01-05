@@ -41,6 +41,7 @@ public class CalendrierView implements Initializable {
     cal.set(year, month, 1);
     int firstDayOfMonth = cal.get(Calendar.DAY_OF_WEEK);
 
+    /*
     ArrayList<Tournee> tournees = new TourneeDao(SingleConnection.getInstance()).getAll();
     ArrayList<Integer> datesTournees = new ArrayList<>();
     for (Tournee tournee : tournees) {
@@ -54,6 +55,8 @@ public class CalendrierView implements Initializable {
 
       //if (date.getTime())
     }
+
+     */
 
     int firstDay = 1;
     switch (firstDayOfMonth) {
@@ -80,8 +83,8 @@ public class CalendrierView implements Initializable {
         label.setStyle("-fx-background-color: #00ff00");
       } else if (day < dayNow) {
         label.setStyle("-fx-background-color: #aaaaaa");
-      } else if (datesTournees.contains(day)) {
-        label.setStyle("-fx-background-color: #ff0000");
+      /*} else if (datesTournees.contains(day)) {
+        label.setStyle("-fx-background-color: #ff0000");*/
       } else {
         label.setStyle("-fx-background-color: #eeeeee");
       }
