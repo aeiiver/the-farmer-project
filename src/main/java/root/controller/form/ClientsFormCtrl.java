@@ -65,6 +65,12 @@ public class ClientsFormCtrl {
     if (!Validateur.validerCodePostal(codePostal)) {
       messageErreur += "Le code postal indiqué n'est pas valide.\n";
     }
+    if (!mention.isEmpty() && !Validateur.validerMention(mention)) {
+      messageErreur += "La mention de l'adresse indiqué n'est pas valide.\n";
+    }
+    if (!typeVoie.isEmpty() && !Validateur.validerTypeVoie(typeVoie)) {
+      messageErreur += "Le type de voie de l'adresse indiqué n'est pas valide.\n";
+    }
     if (!messageErreur.isEmpty()) {
       StageUtil.afficheAlerte(messageErreur, fenetre);
       return;
@@ -92,12 +98,7 @@ public class ClientsFormCtrl {
             .max(Comparator.comparing(Adresse::getIdAdresse))
             .orElse(new Adresse(3, "", "", "", "", "", 0, "", "")).getIdAdresse();
       }
-      int idNouveauClient = new ClientDao(SingleConnection.getInstance()).getAll().stream()
-          .max(Comparator.comparing(Client::getIdClient))
-          .orElse(new Client(3, "", "", "", "",
-              new Adresse(3, "", "", "", "", "", 0, "", ""))).getIdClient();
       adresse.setIdAdresse(idMax + 1);
-      client.setIdClient(idNouveauClient + 1);
       new AdresseDao(SingleConnection.getInstance()).insert(adresse);
       new ClientDao(SingleConnection.getInstance()).insert(client);
       listeClients.ajouter(client);

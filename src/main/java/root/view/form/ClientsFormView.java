@@ -115,7 +115,8 @@ public class ClientsFormView implements Initializable, FormView<Client> {
 
     ctrl.enregistrer(nomSaisi, prenomSaisi, numTelSaisi, gpsSaisi,
             paysSaisi, villeSaisi, codePostalSaisi, numeroAdresseSaisi,
-            mentionSaisi, typeVoieSaisi, nomVoieSaisi, complementAdresseSaisi, idClient);
+            mentionSaisi, typeVoieSaisi, nomVoieSaisi, complementAdresseSaisi,
+            idClient);
   }
 
   /**

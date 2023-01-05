@@ -91,7 +91,7 @@ public class Client {
    */
   public Client(String nom, String prenom, String numTel, String gps,
                 Adresse adresse) {
-    this.idClient = -1;
+    //this.idClient = -1;
     this.nom = nom;
     this.prenom = prenom;
     this.numTel = numTel;
