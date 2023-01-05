@@ -8,6 +8,7 @@ import root.data.ProducteurDao;
 import root.data.SingleConnection;
 import root.model.Adresse;
 import root.model.Producteur;
+import java.io.FileWriter;
 
 /**
  * Génération de producteurs aléatoires.
@@ -20,7 +21,7 @@ public class GenProducteur {
   * @throws IOException Si le producteur n'a pas pu être généré.
   */
   public static void main(String[] args) throws IOException {
-    generate(1);
+    generate(5);
   }
 
   /**
@@ -32,6 +33,8 @@ public class GenProducteur {
    */
   public static ArrayList<Producteur> generate(int nbProducteur) throws IOException {
     ArrayList<Producteur> listSiret = new ArrayList<>();
+    FileWriter fw = new FileWriter("InfoProducteur.txt");
+    fw.write("Nom   Prénom      Siret           mdp\n");
     for (int i = 0; i < nbProducteur; i++) {
       Faker faker = new Faker();
 
@@ -45,14 +48,23 @@ public class GenProducteur {
       String num = "0" + faker.phoneNumber().cellPhone().replace(".", "")
           .replace("-", "").substring(1, 10).replace(" ", "6")
           .replace(")", "7");
+      String nom = faker.name().lastName();
+      String prenom = faker.name().firstName();
+      String mail = faker.internet().emailAddress();
+      int indexOfArobase = mail.indexOf('@');
+      mail = nom + "." + prenom + mail.substring(indexOfArobase);
 
       Producteur producteur = new Producteur(siret,
-          faker.internet().emailAddress(), faker.name().firstName(),
-          faker.name().lastName(), num,
+          mail, nom,
+          prenom, num,
           mdpChiffre, adresse);
       listSiret.add(producteur);
       new ProducteurDao(SingleConnection.getInstance()).insert(producteur);
+
+
+      fw.write(nom + " " + prenom + " : " + siret + " " + mdp + "\n");
     }
+    fw.close();
     return listSiret;
   }
 }
