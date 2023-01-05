@@ -56,9 +56,9 @@ public class Validateur {
   }
 
   public static boolean validerMdp(String texte) {
-    return texte.matches("^(?=.*\\d)(?=.*[a-zàáâäãçéèêëìíîïñòóôöùùûüýÿ])"
+    return texte.matches("^(?=.*\\d)(?=.*[a-zàáâäãçéèêëìíîïñòóôöùûüýÿ])"
         + "(?=.*[A-ZÀÁÂÄÃÇÉÈÊËÌÍÎÏÑÒÓÔÖÙÚÛÜÝŸ])"
-        + "(?=.*([^\\w0-9ÀÁÂÄÃÇÉÈÊËÌÍÎÏÑÒÓÔÖÙÚÛÜÝŸàáâäãçéèêëìíîïñòóôöùùûüýÿ]|_))(.{8,})$");
+        + "(?=.*([^\\w0-9ÀÁÂÄÃÇÉÈÊËÌÍÎÏÑÒÓÔÖÙÚÛÜÝŸàáâäãçéèêëìíîïñòóôöùûüýÿ]|_))(.{8,})$");
   }
 
   public static boolean validerPays(String texte) {
@@ -66,11 +66,11 @@ public class Validateur {
   }
 
   public static  boolean validerMention(String texte) {
-    return texte.matches("^[a-z]{3,17}$");
+    return texte.matches("^[a-z]{3,17}$|^$");
   }
 
   public static boolean validerTypeVoie(String texte) {
-    return texte.matches("^[A-Z]([ -]?[a-zé]){3,10}$");
+    return texte.matches("^[A-Z]([ -]?[a-zé]){3,10}$|^$");
   }
 
   public static boolean validerComplement(String texte) {
@@ -79,7 +79,7 @@ public class Validateur {
 
   public static boolean validerVille(String texte) {
     //TODO
-    // ^[A-Z]([' -a-zA-Z]{2,100})$
+    // ^[A-Z]([' -a-zA-Z]{2,100})
     // Proposition de Lou pour le regex de la ville
     return texte.matches("^[A-Za-z -]+$");
   }

@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 
 <Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="712.0" prefWidth="408.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.view.form.ProducteursFormView">
-   <Button layoutX="155.0" layoutY="655.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="98.0" text="Valider">
+   <Button layoutX="155.0" layoutY="655.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="98.0" onAction="#enregistrer" text="Valider">
       <font>
          <Font size="18.0" />
       </font>

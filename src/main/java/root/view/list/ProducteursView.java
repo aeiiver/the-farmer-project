@@ -1,14 +1,21 @@
 package root.view.list;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.ResourceBundle;
+
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import root.StageUtil;
 import root.controller.list.ProducteursCtrl;
+import root.model.Producteur;
 import root.model.Producteur;
 import root.model.list.ListeProducteurs;
 import root.model.session.SessionAdmin;
@@ -33,18 +40,27 @@ public class ProducteursView implements Initializable {
 
   @FXML
   private void ajouter() {
-    // TODO cliquer sur "ajouter" devrait ouvrir le formulaire
+    ctrl.ajouterProducteur();
   }
 
   @FXML
   private void supprimer() {
-    // TODO cliquer sur "supprimer" devrait supprimer le producteur sélectionné
+    Producteur model = tableau.getSelectionModel().getSelectedItem();
+    // Ne rien faire si on clique sur "Supprimer" avec aucune sélection
+    if (model == null) {
+      return;
+    }
+    ctrl.supprimerProducteur(model);
   }
 
   @FXML
   private void editer() {
-    // TODO cliquer sur "supprimer" devrait modifier le producteur sélectionné
-    // et ouvrir le formulaire
+    Producteur model = tableau.getSelectionModel().getSelectedItem();
+    // Ne rien faire si on clique sur "Supprimer" avec aucune sélection
+    if (model == null) {
+      return;
+    }
+    ctrl.editerProducteur(model);
   }
 
   @Override
@@ -56,6 +72,37 @@ public class ProducteursView implements Initializable {
       ctrl = new ProducteursCtrl(fenetre, modele);
     });
 
+    ObservableList<Producteur> producteurs = (ObservableList<Producteur>) modele.getProducteurs();
+    tableau.getColumns().setAll(colonnes());
+    tableau.setItems(producteurs);
+
+  }
+
+  private List<TableColumn<Producteur, String>> colonnes() {
+    // On définit les colonnes qu'on veut afficher...
+    final TableColumn<Producteur, String> siret = new TableColumn<>("Siret");
+    final TableColumn<Producteur, String> nom = new TableColumn<>("Nom");
+    final TableColumn<Producteur, String> prenom = new TableColumn<>("Prénom");
+    final TableColumn<Producteur, String> mail = new TableColumn<>("Adresse mail");
+    final TableColumn<Producteur, String> numTel = new TableColumn<>("Numéro de téléphone");
+    final TableColumn<Producteur, String> adresse = new TableColumn<>("Adresse");
+
+    // On définit pour chaque colonne quelle partie de l'objet "Commande" on veut afficher...
+    siret.setCellValueFactory(
+            cell -> new SimpleStringProperty(cell.getValue().getSiret()));
+    nom.setCellValueFactory(
+            cell -> new SimpleStringProperty(cell.getValue().getNom()));
+    prenom.setCellValueFactory(
+            cell -> new SimpleStringProperty(cell.getValue().getPrenom()));
+    mail.setCellValueFactory(
+            cell -> new SimpleStringProperty(cell.getValue().getMail()));
+    numTel.setCellValueFactory(
+            cell -> new SimpleStringProperty(cell.getValue().getNumTel()));
+    adresse.setCellValueFactory(
+            cell -> new SimpleStringProperty(cell.getValue().getAdresse().toString()));
+
+    return List.of(siret, nom, prenom, mail, numTel, adresse);
   }
 
 }
+
