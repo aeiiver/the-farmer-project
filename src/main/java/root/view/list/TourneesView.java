@@ -36,11 +36,19 @@ public class TourneesView implements Initializable {
    */
   private TourneesCtrl ctrl;
 
+  /**
+   * Méthode déclenchée lors de l'appui sur le bouton "Ajouter".
+   * Permettant d'ouvrir la fenêtre d'ajout d'une tournée.
+   */
   @FXML
   private void ajouter() {
     ctrl.ajouterTournee();
   }
 
+  /**
+   * Méthode déclenchée lors de l'appui sur le bouton "supprimer".
+   * Permettant de supprimer la tournée sélectionnée.
+   */
   @FXML
   private void supprimer() {
     Tournee modele = tableau.getSelectionModel().getSelectedItem();
@@ -53,6 +61,10 @@ public class TourneesView implements Initializable {
     ctrl.supprimerTournee(modele);
   }
 
+  /**
+   * Méthode déclenchée lors de l'appui sur le bouton "modifier".
+   * Permettant de modifier la tournée sélectionnée.
+   */
   @FXML
   private void editer() {
     Tournee modele = tableau.getSelectionModel().getSelectedItem();
@@ -65,6 +77,12 @@ public class TourneesView implements Initializable {
     ctrl.editerTournee(modele);
   }
 
+  /**
+   * Méthode initialisant la vue.
+   *
+   * @param url L'URL de la vue.
+   * @param resourceBundle Le fichier de ressources de la vue.
+   */
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     ListeTournees listeTournees = new ListeTournees(

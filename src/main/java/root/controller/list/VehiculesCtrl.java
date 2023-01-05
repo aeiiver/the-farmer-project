@@ -17,6 +17,12 @@ public class VehiculesCtrl {
   private Stage fenetre;
   private  ListeVehicules modele;
 
+  /**
+   * Constructeur.
+   *
+   * @param fenetre La fenêtre principale de l'application.
+   * @param modele Le modèle de la liste des véhicules.
+   */
   public VehiculesCtrl(Stage fenetre, ListeVehicules modele) {
     this.fenetre = fenetre;
     this.modele = modele;

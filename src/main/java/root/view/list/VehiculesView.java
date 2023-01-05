@@ -96,6 +96,11 @@ public class VehiculesView implements Initializable {
     tableau.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
   }
 
+  /**
+   * Crée les colonnes du tableau.
+   *
+   * @return les colonnes du tableau.
+   */
   private List<TableColumn<Vehicule, String>> colonnes() {
     final TableColumn<Vehicule, String> Immat = new TableColumn<>("Immatriculation");
     final TableColumn<Vehicule, String> PoidsMax = new TableColumn<>("Charge maximale supportée");

@@ -14,7 +14,7 @@ public class SingleConnection {
   private static Connection connexion = null;
 
   /**
-   * Constructeur, privé pour empêcher l'instantiation.
+   * Constructeur, privé pour empêcher l'instanciation.
    */
   private SingleConnection() {
   }

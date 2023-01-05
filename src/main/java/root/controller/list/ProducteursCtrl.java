@@ -18,6 +18,12 @@ public class ProducteursCtrl {
 
   private ListeProducteurs model;
 
+  /**
+   * Constructeur.
+   *
+   * @param fenetre La fenêtre principale de l'application.
+   * @param model Le modèle de la liste des producteurs.
+   */
   public ProducteursCtrl(Stage fenetre, ListeProducteurs model) {
     this.fenetre = fenetre;
     this.model = model;

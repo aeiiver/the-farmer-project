@@ -22,6 +22,9 @@ import root.model.Producteur;
 import root.model.Tournee;
 import root.model.session.SingleSession;
 
+/**
+ * Vue du calendrier.
+ */
 public class CalendrierView implements Initializable {
   @FXML
   private GridPane calendrier;
@@ -29,8 +32,10 @@ public class CalendrierView implements Initializable {
   private Stage fenetre;
 
   /**
-   * @param url
-   * @param resourceBundle
+   * Initialise la vue.
+   *
+   * @param url L'url.
+   * @param resourceBundle Le bundle.
    */
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -45,7 +50,8 @@ public class CalendrierView implements Initializable {
 
     Producteur producteur = (Producteur) SingleSession.getSession().getUtilisateur();
 
-    ArrayList<Tournee> tournees = new TourneeDao(SingleConnection.getInstance()).getTourneeCourante(producteur);
+    ArrayList<Tournee> tournees = new TourneeDao(
+        SingleConnection.getInstance()).getTourneeCourante(producteur);
     ArrayList<Integer> datesTournees = new ArrayList<>();
     for (Tournee tournee : tournees) {
       Date date = tournee.getCommandes().get(0).getDateCom();
@@ -64,18 +70,18 @@ public class CalendrierView implements Initializable {
       case Calendar.THURSDAY -> firstDay = 4;
       case Calendar.FRIDAY -> firstDay = 5;
       case Calendar.SATURDAY -> firstDay = 6;
-      case Calendar.SUNDAY -> firstDay = 7;
+      default -> firstDay = 7;
     }
     int day = 1;
 
 
-    for (int i = firstDay; i <= cal.getActualMaximum(Calendar.DAY_OF_MONTH);i++) {
+    for (int i = firstDay; i <= cal.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
       Label label = new Label();
-      VBox vBox = new VBox();
       label.setText(String.valueOf(day));
       label.setMaxWidth(Double.MAX_VALUE);
       GridPane.setHalignment(label, HPos.CENTER);
-      GridPane.setHalignment(vBox, HPos.CENTER);
+      VBox vbox = new VBox();
+      GridPane.setHalignment(vbox, HPos.CENTER);
       label.alignmentProperty().set(Pos.CENTER);
       label.setAlignment(Pos.CENTER);
       if (day == dayNow) {
@@ -88,11 +94,11 @@ public class CalendrierView implements Initializable {
         label.setStyle("-fx-background-color: #eeeeee");
       }
       if (i % 7 == 0) {
-        vBox.getChildren().add(label);
-        calendrier.add(vBox, 7, (i / 7));
+        vbox.getChildren().add(label);
+        calendrier.add(vbox, 7, (i / 7));
       } else {
-        vBox.getChildren().add(label);
-        calendrier.add(vBox, (i % 7), i / 7 + 1);
+        vbox.getChildren().add(label);
+        calendrier.add(vbox, (i % 7), i / 7 + 1);
       }
       day++;
     }

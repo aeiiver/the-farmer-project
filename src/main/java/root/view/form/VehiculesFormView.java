@@ -47,6 +47,12 @@ public class VehiculesFormView implements Initializable, FormView<Vehicule> {
     ctrl.enregistrer(immatriculationSaisie, poidsMaxSaisi);
   }
 
+  /**
+   * Méthode initialisant la vue.
+   *
+   * @param url URL
+   * @param resourceBundle ResourceBundle
+   */
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -57,6 +63,11 @@ public class VehiculesFormView implements Initializable, FormView<Vehicule> {
 
   }
 
+  /**
+   * Méthode permettant de charger les données d'un véhicule dans le formulaire.
+   *
+   * @param modele Le modèle à charger dans le formulaire.
+   */
   @Override
   public void chargeChamps(Vehicule modele) {
     immatriculation.setText(modele.getImmat());

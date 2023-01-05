@@ -33,11 +33,19 @@ public class ProducteursView implements Initializable {
    */
   private ProducteursCtrl ctrl;
 
+  /**
+   * Méthode déclenchée lors de l'appui sur le bouton "Ajouter".
+   * Permettant d'ouvrir la fenêtre d'ajout d'un producteur.
+   */
   @FXML
   private void ajouter() {
     ctrl.ajouterProducteur();
   }
 
+  /**
+   * Méthode déclenchée lors de l'appui sur le bouton "supprimer".
+   * Permettant de supprimer le producteur sélectionné.
+   */
   @FXML
   private void supprimer() {
     Producteur model = tableau.getSelectionModel().getSelectedItem();
@@ -48,6 +56,10 @@ public class ProducteursView implements Initializable {
     ctrl.supprimerProducteur(model);
   }
 
+  /**
+   * Méthode déclenchée lors de l'appui sur le bouton "modifier".
+   * Permettant d'ouvrir la fenêtre de modification d'un producteur.
+   */
   @FXML
   private void editer() {
     Producteur model = tableau.getSelectionModel().getSelectedItem();
@@ -58,6 +70,12 @@ public class ProducteursView implements Initializable {
     ctrl.editerProducteur(model);
   }
 
+  /**
+   * Méthode initialisant la vue.
+   *
+   * @param url URL
+   * @param resourceBundle ResourceBundle
+   */
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     ListeProducteurs modele = new ListeProducteurs();
@@ -73,6 +91,11 @@ public class ProducteursView implements Initializable {
 
   }
 
+  /**
+   * Méthode permettant de créer les colonnes du tableau.
+   *
+   * @return Liste des colonnes
+   */
   private List<TableColumn<Producteur, String>> colonnes() {
     // On définit les colonnes qu'on veut afficher...
     final TableColumn<Producteur, String> siret = new TableColumn<>("Siret");

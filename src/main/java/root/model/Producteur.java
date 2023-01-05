@@ -173,11 +173,22 @@ public class Producteur extends Utilisateur {
     this.adresse = adresse;
   }
 
+  /**
+   * Méthode ??.
+   *
+   * @return 0.
+   */
   @Override
   public int hashCode() {
     return 0;
   }
 
+  /**
+   * Méthode permettant de comparer deux producteurs.
+   *
+   * @param other L'objet à comparer.
+   * @return true si les deux producteurs sont identiques, false sinon.
+   */
   @Override
   public boolean equals(Object other) {
     if (!(other instanceof Producteur)) {
@@ -219,6 +230,11 @@ public class Producteur extends Utilisateur {
     return this.getMdp().equals(existant.getMdp());
   }
 
+  /**
+   * Méthode permettant d'afficher les informations du producteur.
+   *
+   * @return Une chaîne de caractères contenant les informations du producteur.
+   */
   public String toString() {
     return this.siret + " " + this.nom + " " + this.prenom
         + " " + this.numTel + ":" + this.adresse;

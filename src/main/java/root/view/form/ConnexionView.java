@@ -45,6 +45,10 @@ public class ConnexionView implements Initializable {
    */
   private ConnexionCtrl ctrl;
 
+  /**
+   * Méthode permettant de valider la connexion.
+   *
+   */
   @FXML
   private void verifieIdentifiants() {
     String identifiantSaisi = identifiant.getText().trim();
@@ -54,6 +58,12 @@ public class ConnexionView implements Initializable {
     ctrl.verifieIdentifiants(identifiantSaisi, motdepasseSaisi, estAdmin);
   }
 
+  /**
+   * Méthode permettant d'intialiser la vue.
+   *
+   * @param url L'URL de la vue.
+   * @param resourceBundle La ressource de la vue.
+   */
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
 

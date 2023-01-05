@@ -28,11 +28,19 @@ public class ClientsView implements Initializable {
 
   private ClientsCtrl ctrl;
 
+  /**
+   * Méthode déclenchée lors de l'appui sur le bouton "Ajouter".
+   * Permettant d'ouvrir la fenêtre d'ajout d'un client.
+   */
   @FXML
   private void ajouter() {
     ctrl.ajouterClient();
   }
 
+  /**
+   * Méthode déclenchée lors de l'appui sur le bouton "supprimer".
+   * Permettant de supprimer le client sélectionné.
+   */
   @FXML
   private void supprimer() {
     Client modele = tableau.getSelectionModel().getSelectedItem();
@@ -45,6 +53,10 @@ public class ClientsView implements Initializable {
     ctrl.supprimerClient(modele);
   }
 
+  /**
+   * Méthode déclenchée lors de l'appui sur le bouton "modifier".
+   * Permettant d'ouvrir la fenêtre de modification d'un client.
+   */
   @FXML
   private void editer() {
     Client modele = tableau.getSelectionModel().getSelectedItem();
@@ -57,6 +69,12 @@ public class ClientsView implements Initializable {
     ctrl.editerClient(modele);
   }
 
+  /**
+   * Méthode initialisant la vue.
+   *
+   * @param url L'URL utilisée pour localiser l'objet racine ou null si l'objet
+   * @param resourceBundle La ressource utilisée pour localiser l'objet racine ou null si l'objet
+   */
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     ListeClients modele = new ListeClients();

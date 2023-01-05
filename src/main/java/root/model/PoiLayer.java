@@ -15,6 +15,9 @@ public class PoiLayer extends MapLayer {
 
   private final ObservableList<Pair<MapPoint, Node>> marqueurs;
 
+  /**
+   * Constructeur de classe.
+   */
   public PoiLayer() {
     marqueurs = FXCollections.observableArrayList();
   }

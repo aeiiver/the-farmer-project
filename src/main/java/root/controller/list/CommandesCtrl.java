@@ -15,6 +15,12 @@ public class CommandesCtrl {
   private Stage fenetre;
   private ListeCommandes modele;
 
+  /**
+   * Constructeur.
+   *
+   * @param fenetre La fenêtre principale de l'application.
+   * @param modele Le modèle de la liste des commandes.
+   */
   public CommandesCtrl(Stage fenetre, ListeCommandes modele) {
     this.fenetre = fenetre;
     this.modele = modele;

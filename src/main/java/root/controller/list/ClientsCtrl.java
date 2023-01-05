@@ -14,6 +14,12 @@ public class ClientsCtrl {
   private Stage fenetre;
   private ListeClients modele;
 
+  /**
+   * Constructeur.
+   *
+   * @param fenetre La fenêtre principale de l'application.
+   * @param modele Le modèle de la liste des clients.
+   */
   public ClientsCtrl(Stage fenetre, ListeClients modele) {
     this.fenetre = fenetre;
     this.modele = modele;

@@ -99,11 +99,22 @@ public class Vehicule {
     this.proprietaire = proprietaire;
   }
 
+  /**
+   * Méthode ??.
+   *
+   * @return 0.
+   */
   @Override
   public int hashCode() {
     return 0;
   }
 
+  /**
+   * Méthode permettant de comparer deux objets de type "Véhicule".
+   *
+   * @param other l'objet à comparer
+   * @return true si les objets sont égaux, false sinon
+   */
   @Override
   public boolean equals(Object other) {
     if (!(other instanceof Vehicule)) {
@@ -112,6 +123,11 @@ public class Vehicule {
     return immat.contentEquals(((Vehicule) other).getImmat());
   }
 
+  /**
+   * Méthode permettant de convertir un véhicule en chaîne de caractères.
+   *
+   * @return une chaîne de caractères représentant le véhicule
+   */
   public String toString() {
     return immat + " (" + poidsMax + ")";
   }

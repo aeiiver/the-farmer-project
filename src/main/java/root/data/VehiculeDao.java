@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-
 import root.model.Producteur;
 import root.model.Vehicule;
 
@@ -150,6 +149,12 @@ public class VehiculeDao extends Dao<Vehicule, String> {
     }
   }
 
+  /**
+   * Récupération de tous les véhicules d'un producteur.
+   *
+   * @param producteur Producteur dont on veut récupérer les véhicules
+   * @return Liste des véhicules
+   */
   public ArrayList<Vehicule> getAllByProducteur(Producteur producteur) {
     try {
       String query = "SELECT * FROM Vehicule WHERE SIRET = ?";

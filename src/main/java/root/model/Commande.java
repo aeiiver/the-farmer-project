@@ -314,11 +314,22 @@ public class Commande {
     this.numTournee = numTournee;
   }
 
+  /**
+   * Méthode ??.
+   *
+   * @return 0.
+   */
   @Override
   public int hashCode() {
     return 0;
   }
 
+  /**
+   * Méthode permettant de comparer deux commandes.
+   *
+   * @param other L'autre commande à comparer.
+   * @return true si les deux commandes sont identiques, false sinon.
+   */
   @Override
   public boolean equals(Object other) {
     if (!(other instanceof Commande)) {
@@ -327,6 +338,11 @@ public class Commande {
     return numCom == ((Commande) other).getNumCom();
   }
 
+  /**
+   * Méthode permettant de convertir une commande en chaîne de caractères.
+   *
+   * @return Une chaîne de caractères représentant la commande.
+   */
   @Override
   public String toString() {
     return this.libelle + "\n" + this.client

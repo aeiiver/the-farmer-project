@@ -299,17 +299,33 @@ public class Adresse {
     this.complement = complement;
   }
 
+  /**
+   * Méthode permettant d'afficher une adresse.
+   *
+   * @return Une chaîne de caractères contenant l'adresse.
+   */
   @Override
   public String toString() {
     return pays + " " + codePost + " " + ville + " " + numero + " " + voie + " " + nom + " "
         + mention + " " + complement;
   }
 
+  /**
+   * Méthode ??.
+   *
+   * @return 0.
+   */
   @Override
   public int hashCode() {
     return 0;
   }
 
+  /**
+   * Méthode permettant de comparer deux adresses.
+   *
+   * @param other L'adresse à comparer.
+   * @return true si les deux adresses sont identiques, false sinon.
+   */
   @Override
   public boolean equals(Object other) {
     if (!(other instanceof Adresse)) {

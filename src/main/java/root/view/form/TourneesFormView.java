@@ -118,7 +118,8 @@ public class TourneesFormView implements Initializable, FormView<Tournee> {
     //        .filter(commande -> commande.getNumTournee() <= 0)
     //        .toList();
 
-    List<Commande> commandesStockeesLibres = new ListeCommandes((Producteur) SingleSession.getSession().getUtilisateur()).getCommandes();
+    List<Commande> commandesStockeesLibres = new ListeCommandes(
+        (Producteur) SingleSession.getSession().getUtilisateur()).getCommandes();
     commandes.getItems().addAll(commandesStockeesLibres);
 
     commandes.prefHeight(commandes.getFixedCellSize() * 3);

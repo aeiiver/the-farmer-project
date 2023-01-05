@@ -37,28 +37,46 @@ public class TableaudebordView implements Initializable {
   @FXML
   private MapView carte;
 
-  //private final CalendrierView calendrierView = new CalendrierView();
+  private final CalendrierView calendrierView = new CalendrierView();
 
   /**
    * Le contrôleur de la vue.
    */
   private TableaudebordCtrl ctrl;
 
+  /**
+   * Méthode déclenchée lors de l'appui sur le bouton "ajouter".
+   * Permet d'ajouter une tournée.
+   */
   @FXML
   private void ajouterTournee() {
     // TODO
   }
 
+  /**
+   * Méthode déclenchée lors de l'appui sur le bouton "supprimer".
+   * Permet de supprimer une tournée.
+   */
   @FXML
   private void supprimerTournee() {
     // TODO
   }
 
+  /**
+   * Méthode déclenchée lors de l'appui sur le bouton "modifier".
+   * Permet de modifier une tournée.
+   */
   @FXML
   private void editerTournee() {
     // TODO
   }
 
+  /**
+   * Méthode permettant d'initialiser la vue.
+   *
+   * @param url L'url.
+   * @param resourceBundle Le bundle.
+   */
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
 

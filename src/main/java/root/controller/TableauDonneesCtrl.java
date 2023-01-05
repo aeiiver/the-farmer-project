@@ -55,11 +55,17 @@ public class TableauDonneesCtrl {
     tableau.getSelectionModel().setSelectionMode(javafx.scene.control.SelectionMode.MULTIPLE);
   }
 
+  /**
+   * Ouvre la fenêtre de création d'un modèle.
+   */
   @FXML
   private void ajouter() {
     StageUtil.afficheDialogue(ressourceForm, StageUtil.getFenetre(root));
   }
 
+  /**
+   * Ouvre la fenêtre de suppresion d'un modèle.
+   */
   @FXML
   private void supprimer() {
     Object modele = tableau.getSelectionModel().getSelectedItem();
@@ -73,6 +79,9 @@ public class TableauDonneesCtrl {
     dao.delete(modele);
   }
 
+  /**
+   * Ouvre la fenêtre de modification d'un modèle.
+   */
   @FXML
   private void editer() {
     Object modele = tableau.getSelectionModel().getSelectedItem();
@@ -86,6 +95,11 @@ public class TableauDonneesCtrl {
     ctrl.chargeChamps(modele);
   }
 
+  /**
+   * Retourne l'élément sélectionné dans le tableau.
+   *
+   * @return L'élément sélectionné dans le tableau.
+   */
   @FXML
   public Object getSelected() {
     return tableau.getSelectionModel().getSelectedItem();

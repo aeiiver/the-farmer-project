@@ -120,8 +120,6 @@ public class Admin extends Utilisateur {
         return false;
       }
     }
-
-    //TODO verifier hash du mot de passe...
     return this.getMdp().equals(existant.getMdp());
   }
 

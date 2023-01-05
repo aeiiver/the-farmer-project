@@ -216,6 +216,12 @@ public class CommandeDao extends Dao<Commande, Integer> {
     }
   }
 
+  /**
+   * Récupération de toutes les commandes d'un producteur.
+   *
+   * @param producteur Le producteur dont on veut récupérer les commandes.
+   * @return La liste des commandes du producteur.
+   */
   public ArrayList<Commande> getAllByProducteur(Producteur producteur) {
     try {
       String query = "SELECT * FROM Commande WHERE SIRET = ?";
@@ -245,6 +251,12 @@ public class CommandeDao extends Dao<Commande, Integer> {
     }
   }
 
+  /**
+   * Récupération de toutes les commandes futures d'un producteur.
+   *
+   * @param producteur Le producteur dont on veut récupérer les commandes futures.
+   * @return La liste des commandes futures du producteur.
+   */
   public ArrayList<Commande> getCommandeCourante(Producteur producteur) {
     try {
       String query = "SELECT * FROM Commande WHERE SIRET = ? AND dateCom = CURDATE() - 1";

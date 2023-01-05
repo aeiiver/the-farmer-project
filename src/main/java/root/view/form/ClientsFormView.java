@@ -127,6 +127,12 @@ public class ClientsFormView implements Initializable, FormView<Client> {
     ctrl.annuler();
   }
 
+  /**
+   * Initialise la vue.
+   *
+   * @param url L'URL utilisée pour localiser le fichier FXML.
+   * @param resourceBundle La ressource utilisée pour localiser le fichier FXML.
+   */
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
 

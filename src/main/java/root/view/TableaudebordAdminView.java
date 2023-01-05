@@ -32,6 +32,12 @@ public class TableaudebordAdminView implements Initializable {
 
   TableaudebordAdminCtrl ctrl;
 
+  /**
+   * Méthode permettant d'initialiser la vue.
+   *
+   * @param url L'url.
+   * @param resourceBundle Le bundle.
+   */
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     ListeProducteurs modeleProducteurs = new ListeProducteurs();
@@ -56,6 +62,11 @@ public class TableaudebordAdminView implements Initializable {
     }
   }
 
+  /**
+   * Méthode permettant de créer les colonnes de la liste des producteurs.
+   *
+   * @return La liste des colonnes.
+   */
   private List<TableColumn<Producteur, String>> colonnesProd() {
     // On définit les colonnes qu'on veut afficher...
     final TableColumn<Producteur, String> siret = new TableColumn<>("Siret");

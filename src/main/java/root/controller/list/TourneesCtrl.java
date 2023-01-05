@@ -15,6 +15,12 @@ public class TourneesCtrl {
   private Stage fenetre;
   private ListeTournees modele;
 
+  /**
+   * Constructeur.
+   *
+   * @param fenetre La fenêtre principale de l'application.
+   * @param modele Le modèle de la liste des tournées.
+   */
   public TourneesCtrl(Stage fenetre, ListeTournees modele) {
     this.fenetre = fenetre;
     this.modele = modele;

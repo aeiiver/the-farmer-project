@@ -19,26 +19,52 @@ public class MenubarAdminView implements Initializable {
 
   private MenubarAdminCtrl ctrl;
 
+  /**
+   * Méthode déclenchée lors de l'appui sur le bouton "Tableau de bord".
+   * Permet d'afficher le tableau de bord.
+   */
   public void gotoTableaudebord() {
     ctrl.gotoTableaudebord();
   }
 
+  /**
+   * Méthode déclenchée lors de l'appui sur le bouton "Producteurs".
+   * Permet d'afficher la liste des producteurs.
+   */
   public void gotoListeProducteurs() {
     ctrl.gotoListeProducteurs();
   }
 
+  /**
+   * Méthode déclenchée lors de l'appui sur le bouton "nouveau producteur".
+   * Permet d'afficher le formulaire de création d'un producteur.
+   */
   public void gotoFormProducteur() {
     ctrl.gotoFormProducteur();
   }
 
+  /**
+   * Méthode déclenchée lors de l'appui sur le bouton "mon compte".
+   * Permet d'afficher le formulaire de modification du compte administrateur.
+   */
   public void gotoCompte() {
     ctrl.gotoCompte();
   }
 
+  /**
+   * Méthode déclenchée lors de l'appui sur le bouton "déconnexion".
+   * Permet de se déconnecter.
+   */
   public void deconnexion() {
     ctrl.deconnexion();
   }
 
+  /**
+   * Méthode initialisant la vue.
+   *
+   * @param url URL
+   * @param resourceBundle ResourceBundle
+   */
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     StageUtil.onWindowLoad(root, () -> {

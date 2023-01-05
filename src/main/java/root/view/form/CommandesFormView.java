@@ -43,6 +43,10 @@ public class CommandesFormView implements Initializable, FormView<Commande> {
 
   private CommandesFormCtrl ctrl;
 
+  /**
+   * Méthode appelée lors de l'appui sur le bouton annuler.
+   * Permettant de procéder à un ajout ou une modification de commande.
+   */
   @FXML
   private void enregistrer() {
     String libelleSaisi = libelle.getText();
@@ -56,11 +60,20 @@ public class CommandesFormView implements Initializable, FormView<Commande> {
         heureFinSaisie, numCom);
   }
 
+  /**
+   * Méthode appelée lors de l'appui sur le bouton annuler.
+   */
   @FXML
   private void annuler() {
     ctrl.annuler();
   }
 
+  /**
+   * Méthode permettant d'initialiser la vue.
+   *
+   * @param url L'URL utilisée pour localiser le fichier FXML.
+   * @param resourceBundle La ressource utilisée pour localiser le fichier FXML.
+   */
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
 

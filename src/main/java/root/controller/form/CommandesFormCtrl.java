@@ -72,7 +72,8 @@ public class CommandesFormCtrl {
     // Après validation de la saisie
     SessionUtilisateur session = SingleSession.getSession();
     Producteur producteur = (Producteur) session.getUtilisateur();
-    ListeCommandes listeCommandes = new ListeCommandes(((Producteur) SingleSession.getSession().getUtilisateur()));
+    ListeCommandes listeCommandes = new ListeCommandes((
+        (Producteur) SingleSession.getSession().getUtilisateur()));
 
     Commande commande =
         new Commande(libelleSaisi, poidsValide, dateValide, heureDebValide, heureFinValide,

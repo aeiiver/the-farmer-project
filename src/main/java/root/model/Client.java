@@ -216,11 +216,22 @@ public class Client {
     this.adresse = adresse;
   }
 
+  /**
+   * Méthode ??.
+   *
+   * @return 0.
+   */
   @Override
   public int hashCode() {
     return 0;
   }
 
+  /**
+   * Méthode permettant de comparer deux objets de type "Client".
+   *
+   * @param other L'objet à comparer.
+   * @return true si les deux objets sont identiques, false sinon.
+   */
   @Override
   public boolean equals(Object other) {
     if (!(other instanceof Client)) {
@@ -229,6 +240,11 @@ public class Client {
     return idClient == ((Client) other).getIdClient();
   }
 
+  /**
+   * Méthode permettant de convertir un objet de type "Client" en chaîne de caractères.
+   *
+   * @return Une chaîne de caractères représentant l'objet.
+   */
   public String toString() {
     return this.nom + " " + this.prenom;
   }

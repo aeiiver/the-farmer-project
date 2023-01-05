@@ -56,6 +56,10 @@ public class ProducteursFormView implements Initializable, FormView<Producteur> 
 
   private ProducteursFormCtrl ctrl;
 
+  /**
+   * Méthode appelée par l'appui sur le bouton "Valider".
+   * Permet de valider le formulaire.
+   */
   @FXML
   private void enregistrer() {
     String siretSaisi = siret.getText();
@@ -78,6 +82,12 @@ public class ProducteursFormView implements Initializable, FormView<Producteur> 
             typeVoieSaisi, nomVoieSaisi, complementAdresseSaisi);
   }
 
+  /**
+   * Méthode initialisant la vue.
+   *
+   * @param url L'URL du fichier FXML.
+   * @param resourceBundle La ressource.
+   */
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     StageUtil.onWindowLoad(root, () -> {
@@ -87,9 +97,15 @@ public class ProducteursFormView implements Initializable, FormView<Producteur> 
 
   }
 
+  /**
+   * Méthode permettant de charger les données d'un producteur dans le formulaire.
+   *
+   * @param modele Le modèle à charger dans le formulaire.
+   */
   @Override
   public void chargeChamps(Producteur modele) {
     siret.setText(modele.getSiret());
+    siret.setVisible(false);
     nom.setText(modele.getNom());
     prenom.setText(modele.getPrenom());
     numTel.setText(modele.getNumTel());

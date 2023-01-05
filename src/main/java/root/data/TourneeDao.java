@@ -232,6 +232,12 @@ public class TourneeDao extends Dao<Tournee, Integer> {
     }
   }
 
+  /**
+   * Récupération de toutes les tournées d'un producteur.
+   *
+   * @param producteur Producteur dont on veut récupérer les tournées
+   * @return Liste des tournées du producteur
+   */
   public ArrayList<Tournee> getAllByProducteur(Producteur producteur) {
     try {
       String query = "SELECT * FROM Tournee INNER JOIN Commande USING(numTournee) WHERE SIRET = ?";
@@ -257,16 +263,22 @@ public class TourneeDao extends Dao<Tournee, Integer> {
         tournees.add(tournee);
       }
       return tournees;
-
     } catch (Exception e) {
       e.printStackTrace();
       return null;
     }
   }
 
+  /**
+   * Récupération de toutes les tournées futures d'un producteur.
+   *
+   * @param producteur Producteur dont on veut récupérer les tournées futures
+   * @return Liste des tournées futures du producteur
+   */
   public ArrayList<Tournee> getTourneeCourante(Producteur producteur) {
     try {
-      String query = "SELECT * FROM Tournee INNER JOIN Commande USING(numTournee) WHERE SIRET = ? AND dateCom > CURDATE() - 1";
+      String query = "SELECT * FROM Tournee INNER JOIN Commande "
+          + "USING(numTournee) WHERE SIRET = ? AND dateCom > CURDATE() - 1";
       PreparedStatement preparedStatement = connexion.prepareStatement(query);
       preparedStatement.setString(1, producteur.getSiret());
       ResultSet resultat = preparedStatement.executeQuery();

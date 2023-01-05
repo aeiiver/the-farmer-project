@@ -9,10 +9,20 @@ public class SessionUtilisateur {
 
   protected Utilisateur utilisateur;
 
+  /**
+   * Constructeur de la session Utilisateur.
+   *
+   * @param utilisateur utilisateur connecté
+   */
   protected SessionUtilisateur(Utilisateur utilisateur) {
     this.utilisateur = utilisateur;
   }
 
+  /**
+   * Getter de l'utilisateur connecté.
+   *
+   * @return utilisateur l'utilisateur connecté
+   */
   public Utilisateur getUtilisateur() {
     return utilisateur;
   }

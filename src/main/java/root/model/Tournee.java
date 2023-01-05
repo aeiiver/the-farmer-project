@@ -242,11 +242,22 @@ public class Tournee {
     this.commandes = commandes;
   }
 
+  /**
+   * Méthode ??.
+   *
+   * @return 0.
+   */
   @Override
   public int hashCode() {
     return 0;
   }
 
+  /**
+   * Méthode permettant de comparer deux tournées.
+   *
+   * @param other L'objet à comparer.
+   * @return true si les deux tournées sont identiques, false sinon.
+   */
   @Override
   public boolean equals(Object other) {
     if (!(other instanceof Tournee)) {
@@ -312,6 +323,11 @@ public class Tournee {
     commandes.remove(commande);
   }
 
+  /**
+   * Méthode pour afficher les informations de la tournée.
+   *
+   * @return les informations de la tournée
+   */
   public String toString() {
     return libelle + "\n" + heureMin + "/" + heureMax + "\n" + vehicule;
   }

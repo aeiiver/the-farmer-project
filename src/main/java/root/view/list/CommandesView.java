@@ -34,11 +34,19 @@ public class CommandesView implements Initializable {
    */
   private CommandesCtrl ctrl;
 
+  /**
+   * Méthode déclenchée lors de l'appui sur le bouton "Ajouter".
+   * Permettant d'ouvrir la fenêtre d'ajout d'une commande.
+   */
   @FXML
   private void ajouter() {
     ctrl.ajouterCommande();
   }
 
+  /**
+   * Méthode déclenchée lors de l'appui sur le bouton "supprimer".
+   * Permettant de supprimer la commande sélectionnée.
+   */
   @FXML
   private void supprimer() {
     Commande modele = tableau.getSelectionModel().getSelectedItem();
@@ -51,6 +59,10 @@ public class CommandesView implements Initializable {
     ctrl.supprimerCommande(modele);
   }
 
+  /**
+   * Méthode déclenchée lors de l'appui sur le bouton "modifier".
+   * Permettant d'ouvrir la fenêtre de modification d'une commande.
+   */
   @FXML
   private void editer() {
     Commande modele = tableau.getSelectionModel().getSelectedItem();
@@ -63,9 +75,16 @@ public class CommandesView implements Initializable {
     ctrl.editerCommande(modele);
   }
 
+  /**
+   * Méthode initialisant la vue.
+   *
+   * @param url L'URL de la vue.
+   * @param resourceBundle La ressource de la vue.
+   */
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    ListeCommandes listeCommandes = new ListeCommandes((Producteur) SingleSession.getSession().getUtilisateur());
+    ListeCommandes listeCommandes = new ListeCommandes(
+        (Producteur) SingleSession.getSession().getUtilisateur());
 
     StageUtil.onWindowLoad(root, () -> {
       Stage fenetreCourante = StageUtil.getFenetre(root);
@@ -77,6 +96,11 @@ public class CommandesView implements Initializable {
     tableau.setItems(commandes);
   }
 
+  /**
+   * Méthode permettant de créer les colonnes du tableau.
+   *
+   * @return La liste des colonnes du tableau.
+   */
   private List<TableColumn<Commande, String>> colonnes() {
     final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
 

@@ -1,6 +1,7 @@
 package datageneration;
 
 import com.github.javafaker.Faker;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import org.mindrot.jbcrypt.BCrypt;
@@ -8,7 +9,6 @@ import root.data.ProducteurDao;
 import root.data.SingleConnection;
 import root.model.Adresse;
 import root.model.Producteur;
-import java.io.FileWriter;
 
 /**
  * Génération de producteurs aléatoires.
