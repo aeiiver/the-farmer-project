@@ -8,30 +8,47 @@ import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.util.Pair;
 
+/**
+ * Classe représentant une couche de marqueurs.
+ *
+ * <p>Voir documentation de <a href="https://github.com/gluonhq/maps/blob/master/maps/src/main/java/com/gluonhq/maps/MapLayer.java">MapLayer</a></p>
+ */
 public class PoiLayer extends MapLayer {
 
-  private ObservableList<Pair<MapPoint, Node>> points;
+  private final ObservableList<Pair<MapPoint, Node>> marqueurs;
 
   public PoiLayer() {
-    points = FXCollections.observableArrayList();
+    marqueurs = FXCollections.observableArrayList();
   }
 
+  /**
+   * Positionne les marqueurs sur la vue en fonction de l'état de la carte et des coordonnées des
+   * points.
+   *
+   * <p>Cette méthode est appelée à chaque fois que l'utilisateur déplace le centre de la carte ou
+   * change le niveau de zoom.</p>
+   */
   @Override
   protected void layoutLayer() {
-    for (Pair<MapPoint, Node> candidate : points) {
-      MapPoint point = candidate.getKey();
-      Node icon = candidate.getValue(); // new Circle(5, Color.BLUE)
+    for (Pair<MapPoint, Node> pair : marqueurs) {
+      MapPoint mapPoint = pair.getKey();
+      Node marqueur = pair.getValue();
 
-      Point2D mapPoint = baseMap.getMapPoint(point.getLatitude(), point.getLongitude());
-      icon.setTranslateX(mapPoint.getX());
-      icon.setTranslateY(mapPoint.getY());
-
-      getChildren().add(icon);
+      Point2D point = baseMap.getMapPoint(mapPoint.getLatitude(), mapPoint.getLongitude());
+      marqueur.setTranslateX(point.getX());
+      marqueur.setTranslateY(point.getY());
     }
   }
 
-  public void addPoint(MapPoint point, Node node) {
-    points.add(new Pair<>(point, node));
+  /**
+   * Fixe un élément JavaFX sur la couche aux coordonnées spécifiées.
+   *
+   * @param point   Le point contenant les coordonnées.
+   * @param element L'élément JavaFX à ajouter.
+   */
+  public void addMarqueur(MapPoint point, Node element) {
+    marqueurs.add(new Pair<>(point, element));
+    getChildren().add(element);
   }
 
 }

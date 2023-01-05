@@ -89,15 +89,15 @@ public class TableaudebordView implements Initializable {
 
     /* Carte */
     // Prépare la carte
-    carte.setCenter(46.8332, 2.76008);
+    carte.setCenter(46.8332, 2.76008); // Centre la carte au niveau de la France
     carte.setZoom(6);
 
     // Prépare une couche de marqueurs
     PoiLayer poiLayer = new PoiLayer();
-    poiLayer.addPoint(new MapPoint(46.8332, 2.76008), new Circle(5, Color.BLUE)); // centre initial
-    poiLayer.addPoint(new MapPoint(46.5332, 2.66008), new Circle(5, Color.RED));
-    poiLayer.addPoint(new MapPoint(46.7332, 2.86008), new Circle(5, Color.DARKBLUE));
-    poiLayer.addPoint(new MapPoint(46.8312, 2.56008), new Circle(5, Color.DARKRED));
+    poiLayer.addMarqueur(new MapPoint(46.8332, 2.76008), new Circle(5, Color.BLUE));
+    poiLayer.addMarqueur(new MapPoint(46.5332, 2.66008), new Circle(5, Color.RED));
+    poiLayer.addMarqueur(new MapPoint(46.7332, 2.86008), new Circle(5, Color.DARKBLUE));
+    poiLayer.addMarqueur(new MapPoint(46.8312, 2.56008), new Circle(5, Color.DARKRED));
 
     // Ajoute la couche à la carte
     carte.addLayer(poiLayer);
