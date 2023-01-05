@@ -30,7 +30,7 @@ public class TableaudebordView implements Initializable {
   @FXML
   private VBox root;
   @FXML
-  private ListView<Commande> listeCommandesTourneeSelectionee;
+  private ListView<Commande> listeCommandesTourneeSelectionnee;
   @FXML
   private ListView<Tournee> listeTourneesCourantes;
   @FXML
@@ -81,7 +81,7 @@ public class TableaudebordView implements Initializable {
     ObservableList<Tournee> tournees = (ObservableList<Tournee>) modeleListeTournees.getTournees();
 
     if (!(commandes == null)) {
-      listeCommandesTourneeSelectionee.setItems(commandes);
+      listeCommandesTourneeSelectionnee.setItems(commandes);
     }
     if (!(tournees == null)) {
       listeTourneesCourantes.setItems(tournees);
