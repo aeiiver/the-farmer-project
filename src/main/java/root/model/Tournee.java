@@ -312,4 +312,8 @@ public class Tournee {
     commandes.remove(commande);
   }
 
+  public String toString() {
+    return libelle + "\n" + heureMin + "/" + heureMax + "\n" + vehicule;
+  }
+
 }

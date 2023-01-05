@@ -112,4 +112,8 @@ public class Vehicule {
     return immat.contentEquals(((Vehicule) other).getImmat());
   }
 
+  public String toString() {
+    return immat + " (" + poidsMax + ")";
+  }
+
 }
