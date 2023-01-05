@@ -65,13 +65,22 @@ public class Validateur {
     return texte.matches("^France$");
   }
 
-  public static boolean validerAdresse(String texte) {
-    //TODO
-    return false;
+  public static  boolean validerMention(String texte) {
+    return texte.matches("^[a-z]{3,17}$");
+  }
+
+  public static boolean validerTypeVoie(String texte) {
+    return texte.matches("^[A-Z]([ -]?[a-zé]){3,10}$");
+  }
+
+  public static boolean validerComplement(String texte) {
+    return texte.matches("^{0,100}$");
   }
 
   public static boolean validerVille(String texte) {
     //TODO
+    // ^[A-Z]([' -a-zA-Z]{2,100})$
+    // Proposition de Lou pour le regex de la ville
     return texte.matches("^[A-Za-z -]+$");
   }
 
