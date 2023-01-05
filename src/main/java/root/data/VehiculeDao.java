@@ -35,6 +35,14 @@ public class VehiculeDao extends Dao<Vehicule, String> {
       preparedStatement.setInt(2, vehicule.getPoidsMax());
       preparedStatement.setString(3, vehicule.getProprietaire().getSiret());
       preparedStatement.executeUpdate();
+
+      ResultSet key = preparedStatement.getGeneratedKeys();
+      if (!key.next()) {
+        return false;
+      }
+      String immatInsere = key.getString(1);
+      vehicule.setImmat(immatInsere);
+
       return true;
     } catch (Exception e) {
       e.printStackTrace();

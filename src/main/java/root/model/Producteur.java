@@ -221,7 +221,7 @@ public class Producteur extends Utilisateur {
 
   public String toString() {
     return this.siret + " " + this.nom + " " + this.prenom
-        + " " + this.numTel + " " + this.adresse;
+        + " " + this.numTel + ":" + this.adresse;
   }
 
 }

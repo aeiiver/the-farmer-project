@@ -44,7 +44,8 @@ public class GenProducteur {
       String sel = BCrypt.gensalt();
       String mdpChiffre = BCrypt.hashpw(mdp, sel);
       String num = "0" + faker.phoneNumber().cellPhone().replace(".", "")
-          .replace("-", "").substring(1, 10);
+          .replace("-", "").substring(1, 10).replace(" ", "6")
+          .replace(")", "7");
 
       Producteur producteur = new Producteur(siret,
           faker.internet().emailAddress(), faker.name().firstName(),

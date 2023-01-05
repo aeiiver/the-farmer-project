@@ -3,6 +3,7 @@ package root.data;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import root.model.Client;
 
@@ -29,27 +30,24 @@ public class ClientDao extends Dao<Client, Integer> {
   @Override
   public boolean insert(Client client) {
     try {
-      /*String query = "INSERT INTO Client "
-          + "(idClient, nomClient, prenomClient, numTel, gps, idAdresse) "
-          + "VALUES (?, ?, ?, ?, ?, ?)";*/
       String query = "INSERT INTO Client "
               + "(nomClient, prenomClient, numTel, gps, idAdresse) "
               + "VALUES (?, ?, ?, ?, ?)";
-      PreparedStatement preparedStatement = connexion.prepareStatement(query);
-      /*
-      preparedStatement.setInt(1, client.getIdClient());
-      preparedStatement.setString(2, client.getNom());
-      preparedStatement.setString(3, client.getPrenom());
-      preparedStatement.setString(4, client.getNumTel());
-      preparedStatement.setString(5, client.getGps());
-      preparedStatement.setInt(6, client.getAdresse().getIdAdresse());
-      */
+      PreparedStatement preparedStatement = connexion.prepareStatement(query,
+          Statement.RETURN_GENERATED_KEYS);
       preparedStatement.setString(1, client.getNom());
       preparedStatement.setString(2, client.getPrenom());
       preparedStatement.setString(3, client.getNumTel());
       preparedStatement.setString(4, client.getGps());
       preparedStatement.setInt(5, client.getAdresse().getIdAdresse());
       preparedStatement.executeUpdate();
+
+      ResultSet key = preparedStatement.getGeneratedKeys();
+      if (!key.next()) {
+        return false;
+      }
+      int idInsere = key.getInt(1);
+      client.setIdClient(idInsere);
       return true;
     } catch (Exception e) {
       e.printStackTrace();

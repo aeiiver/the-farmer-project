@@ -47,6 +47,13 @@ public class ProducteurDao extends Dao<Producteur, String> {
       preparedStatement.setInt(7, producteur.getAdresse().getIdAdresse());
 
       preparedStatement.executeUpdate();
+
+      ResultSet key = preparedStatement.getGeneratedKeys();
+      if (!key.next()) {
+        return false;
+      }
+      int idInsere = key.getInt(1);
+      producteur.setSiret(String.valueOf(idInsere));
       return true;
     } catch (Exception e) {
       e.printStackTrace();

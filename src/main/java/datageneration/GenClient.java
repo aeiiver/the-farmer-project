@@ -38,20 +38,11 @@ public class GenClient {
       Adresse adresse = genAdresse.genAdresse();
       Connection singleConnection = SingleConnection.getInstance();
       String num = "0" + faker.phoneNumber().cellPhone().replace(".", "")
-          .replace("-", "").substring(1, 10);
-      int idMax = 1;
-      ArrayList<Client> allClient = new ClientDao(singleConnection).getAll();
-
-      if (allClient != null) {
-        idMax = allClient.stream()
-            .max(Comparator.comparing(Client::getIdClient))
-            .orElse(new Client(2, "", "", "", "",
-                new Adresse(136, "", "", "", "", "", 0, "", ""))).getIdClient();
-      }
-      idMax++;
+          .replace("-", "").substring(1, 10).replace(" ", "6")
+          .replace(")", "7");
 
 
-      Client client = new Client(idMax, faker.name().firstName(),
+      Client client = new Client(faker.name().firstName(),
           faker.name().lastName(), num,
           genAdresse.getGps(), adresse);
       new ClientDao(singleConnection).insert(client);

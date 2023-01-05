@@ -58,22 +58,19 @@ public class GenAdresse {
     String city = typeRue.substring(typeRue.indexOf(codePostal)).replace(codePostal, "").trim();
     String rue;
     if (numero == 0) {
-      rue = typeRue.substring(0, typeRue.indexOf(codePostal) - 1).trim();
+      try {
+        rue = typeRue.substring(0, typeRue.indexOf(codePostal) - 1).trim();
+      } catch (Exception e) {
+        newCoords();
+        return genAdresse();
+      }
+
     } else {
       rue = typeRue.substring((String.valueOf(numero).equals(typeRueSplit[0])) ? typeRueSplit[0].length() + 1 : 0, typeRue.indexOf(codePostal)
       ).replace(Integer.toString(numero), "").trim();
     }
-
-
-    int idMax = 1;
-    if (new AdresseDao(SingleConnection.getInstance()).getAll() != null) {
-      idMax = new AdresseDao(SingleConnection.getInstance()).getAll().stream()
-          .max(Comparator.comparing(Adresse::getIdAdresse))
-          .orElse(new Adresse(3, "", "", "", "", "", 0, "", "")).getIdAdresse();
-    }
-    idMax++;
     Adresse adresse;
-    adresse = new Adresse(idMax, "France",
+    adresse = new Adresse( "France",
         codePostal,
         city,
         "",

@@ -42,6 +42,14 @@ public class AdresseDao extends Dao<Adresse, Integer> {
       preparedStatement.setString(7, adresse.getMention());
       preparedStatement.setString(8, adresse.getComplement());
       preparedStatement.executeUpdate();
+
+      ResultSet key = preparedStatement.getGeneratedKeys();
+      if (!key.next()) {
+        return false;
+      }
+      int idInsere = key.getInt(1);
+      adresse.setIdAdresse(idInsere);
+
       return true;
     } catch (Exception e) {
       e.printStackTrace();
