@@ -32,7 +32,7 @@ public class Validateur {
 
   public static boolean validerMail(String texte) {
     return texte.matches(
-        "^[A-Za-z0-9]+([-_.][A-Za-z0-9]+)*@[A-Za-z0-9]+([-_.][A-Za-z0-9]+)*\\.[a-z]{2,}$");
+        "^[A-Za-z0-9]+([.-_][A-Za-z0-9]+)*@[A-Za-z0-9]+([-_.][A-Za-z0-9]+)*\\.[a-z]{2,}$");
   }
 
   public static boolean validerSiret(String texte) {
