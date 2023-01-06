@@ -54,7 +54,7 @@ public class Validateur {
    * @return true si le texte est un numéro SIRET, false sinon
    */
   public static boolean validerSiret(String texte) {
-    return texte.matches("^(\\d ?){14}$");
+    return texte.matches("^[0-9]{14}$");
   }
 
   /**
@@ -74,7 +74,7 @@ public class Validateur {
    * @return true si le texte respecte les critères pour un Nom Propre, false sinon
    */
   public static boolean validerNomPropre(String texte) {
-    return texte.matches("^[A-Z](a-z)+([ -A-Z](a-z)+)*$");
+    return texte.matches("^[A-Z][a-zèé]+( ?-?[A-Z][a-zèé]+)*$");
   }
 
   /**

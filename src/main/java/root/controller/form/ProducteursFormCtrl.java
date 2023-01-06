@@ -33,6 +33,7 @@ public class ProducteursFormCtrl {
                           String paysSaisi, String mdpSaisi, String mailSaisi,
                           String villeSaisi, String numeroAdresse, String mention,
                           String typeVoie, String nomVoie, String complement) {
+    System.out.println("le mail de merde la : |" + mailSaisi.equals("") + "|");
 
     if (siretSaisi.isEmpty() || nomSaisi.isEmpty() || prenomSaisi.isEmpty()
             || numTelSaisi.isEmpty() || codePostSaisi.isEmpty()
@@ -42,6 +43,7 @@ public class ProducteursFormCtrl {
               fenetre);
       return;
     }
+
     //Todo faire les regex pour l'adresse
     String messageErreur = "";
     if (!Validateur.validerMention(mention)) {
@@ -56,19 +58,19 @@ public class ProducteursFormCtrl {
       messageErreur += "Le complément doit faire maximum 100 characters.\n";
     }
     if (!Validateur.validerNomPropre(nomVoie)) {
-      messageErreur += "Doit commencer par une majuscule et ne doit"
+      messageErreur += "Le Nom de la voie doit commencer par une majuscule et ne doit"
               + " pas contenir plusieurs tiret ou espace d'affiler\n";
     }
-    if (!Validateur.validerNombre(numeroAdresse)) {
+    if (!Validateur.validerNombre(numeroAdresse) && !(numeroAdresse.equals("")) ) {
       messageErreur += "Le Siret doit être composer de 14 chiffres.\n";
     }
     if (!Validateur.validerSiret(siretSaisi)) {
       messageErreur += "Le Siret doit être composer de 14 chiffres.\n";
     }
-    if (!villeSaisi.matches("^[A-Z]([' -a-zA-Z]{2,100})$")) {
+    if (!Validateur.validerNomPropre(villeSaisi)) {
       //Todo revoir le regex de la ville et adapter le message d'erreur
       messageErreur += "La ville doit faire entre 2 et 100 characters,"
-              + " commencer par une majuscule, les accent sont exclus.\n";
+              + " commencer par une majuscule\n";
     }
     if (!Validateur.validerNomPropre(nomSaisi)) {
       //Todo revoir le regex du nom et adapter le message d'erreur
@@ -97,7 +99,7 @@ public class ProducteursFormCtrl {
               \n- Au moins un chiffre \n- Au moins un character spéciale
               \n- doit faire plus de 8 characters. \n""";
     }
-    if (!Validateur.validerMail(mailSaisi)) {
+    if (!Validateur.validerMail(mailSaisi) && !(mailSaisi.equals(""))) {
       messageErreur += "Le mail ne doit contenir plusieurs points, tiret ou tiret du bas d'affiler."
               + "\nLe mail doit contenir un @ suivi d'un nom de domaine.";
     }
@@ -112,7 +114,7 @@ public class ProducteursFormCtrl {
 
     Connection singleConnection = SingleConnection.getInstance();
     Producteur edit = new ProducteurDao(singleConnection).get(siretSaisi);
-
+    numTelSaisi.replace(" ", "");
     if (edit == null) {
       listeProducteurs.ajouter(new Producteur(siretSaisi,  mailSaisi, nomSaisi, prenomSaisi,
               numTelSaisi, mdpSaisi, adresse));

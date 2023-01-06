@@ -70,6 +70,7 @@ public class ProducteursFormView implements Initializable, FormView<Producteur> 
     String paysSaisi = pays.getText();
     String mdpSaisi = mdp.getText();
     String mailSaisi = mail.getText();
+    //String mailSaisi = null;
     String villeSaisi = ville.getText();
     String numAdresseSaisi = numeroAdresse.getText();
     String mentionSaisi = mention.getText();
