@@ -44,6 +44,21 @@ public class MenubarAdminCtrl {
   }
 
   /**
+   * Méthode appelée lors du clic sur le bouton "Mes clients".
+   * Affiche la liste des clients du producteur connecté.
+   */
+  public void gotoListeClients() {
+    SceneChanger.voirListeClients(fenetre);
+  }
+  /**
+   * Méthode appelée lors du clic sur le bouton "Ajouter un client".
+   * Affiche le formulaire de création d'un nouveau client.
+   */
+  public void gotoFormClient() {
+    SceneChanger.voirFormClient(fenetre);
+  }
+
+  /**
    * Méthode appelée lors du clic sur le bouton "Mon Compte".
    * Affiche le formulaire de modification du compte de l'utilisateur connecté.
    */

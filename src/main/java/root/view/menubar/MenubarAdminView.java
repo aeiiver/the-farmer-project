@@ -44,6 +44,22 @@ public class MenubarAdminView implements Initializable {
   }
 
   /**
+   * Méthode déclenchée lors de l'appui sur le bouton "Mes clients".
+   * Permet d'afficher la liste des clients du producteur.
+   */
+  public void gotoListeClients() {
+    ctrl.gotoListeClients();
+  }
+
+  /**
+   * Méthode déclenchée lors de l'appui sur le bouton "Nouveau client".
+   * Permet d'afficher le formulaire de création d'un client.
+   */
+  public void gotoFormClient() {
+    ctrl.gotoFormClient();
+  }
+
+  /**
    * Méthode déclenchée lors de l'appui sur le bouton "mon compte".
    * Permet d'afficher le formulaire de modification du compte administrateur.
    */

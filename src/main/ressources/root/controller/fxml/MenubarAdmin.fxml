@@ -4,17 +4,22 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 
-<MenuBar fx:id="root" layoutY="2.0" prefHeight="25.0" prefWidth="1013.0" xmlns="http://javafx.com/javafx/19"
-         xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.view.menubar.MenubarAdminView">
+<MenuBar fx:id="root" layoutY="2.0" prefHeight="25.0" prefWidth="1013.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.view.menubar.MenubarAdminView">
     <Menu mnemonicParsing="false" text="Tableau de bord">
-        <MenuItem mnemonicParsing="false" onAction="#gotoTableaudebord" text="Tableau de bord"/>
+        <MenuItem mnemonicParsing="false" onAction="#gotoTableaudebord" text="Tableau de bord" />
     </Menu>
     <Menu mnemonicParsing="false" text="Producteurs">
-        <MenuItem mnemonicParsing="false" onAction="#gotoListeProducteurs" text="Producteurs"/>
-        <MenuItem mnemonicParsing="false" onAction="#gotoFormProducteur" text="Nouveau producteur"/>
+        <MenuItem mnemonicParsing="false" onAction="#gotoListeProducteurs" text="Producteurs" />
+        <MenuItem mnemonicParsing="false" onAction="#gotoFormProducteur" text="Nouveau producteur" />
+    </Menu>
+    <Menu mnemonicParsing="false" text="Clients">
+        <items>
+            <MenuItem mnemonicParsing="false" onAction="#gotoListeClient" text="Clients" />
+            <MenuItem mnemonicParsing="false" onAction="#gotoFormClient" text="Nouveau client" />
+        </items>
     </Menu>
     <Menu mnemonicParsing="false" text="Compte">
-        <MenuItem mnemonicParsing="false" onAction="#gotoCompte" text="Mon compte"/>
-        <MenuItem mnemonicParsing="false" onAction="#deconnexion" text="Déconnexion"/>
+        <MenuItem mnemonicParsing="false" onAction="#gotoCompte" text="Mon compte" />
+        <MenuItem mnemonicParsing="false" onAction="#deconnexion" text="Déconnexion" />
     </Menu>
 </MenuBar>
