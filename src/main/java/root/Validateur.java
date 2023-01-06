@@ -64,7 +64,7 @@ public class Validateur {
    * @return true si le texte respecte les critères pour un pseudonyme, false sinon
    */
   public static boolean validerPseudo(String texte) {
-    return texte.matches("^[A-Za-z0-9]+$");
+    return texte.matches("^[A-Za-z0-9_]+$");
   }
 
   /**
@@ -84,7 +84,8 @@ public class Validateur {
    * @return true si le texte respecte les critères pour un numéro de téléphone, false sinon
    */
   public static boolean validerNumTel(String texte) {
-    return !texte.matches("^0[1-9]( ?[0-9]{2}){4}$");
+    return !texte.matches("^0[1-9]( ?[0-9]{2}){4}$") ||
+        texte.matches("^0[1-9]( ?[0-9]{8})$");
   }
 
   /**
@@ -136,7 +137,7 @@ public class Validateur {
    * @return true si le texte est un type de voie, false sinon
    */
   public static boolean validerTypeVoie(String texte) {
-    return texte != null && !texte.matches("^[A-Z]([ -]?[a-zé]){3,10}$|^$");
+    return texte != null && !texte.matches("^[A-Za-z]([ -]?[A-Za-zé0-9]){3,10}$|^$");
   }
 
   /**
@@ -159,7 +160,7 @@ public class Validateur {
     //TODO
     // ^[A-Z]([' -a-zA-Z]{2,100})
     // Proposition de Lou pour le regex de la ville
-    return texte.matches("^[A-Za-z '-]+$");
+    return texte.matches("^[A-Za-z '-éè]+$");
   }
 
 }
