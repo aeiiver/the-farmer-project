@@ -51,7 +51,7 @@
                     <Font size="20.0" />
                 </font>
             </Label>
-            <TextField fx:id="poids" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="poids" promptText="00 (en kg)" GridPane.columnIndex="1" GridPane.rowIndex="1">
                 <font>
                     <Font size="16.0" />
                 </font>
@@ -73,7 +73,7 @@
                     <Font size="20.0" />
                 </font>
             </Label>
-            <TextField fx:id="heureDeb" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <TextField fx:id="heureDeb" promptText="00:00" GridPane.columnIndex="1" GridPane.rowIndex="4">
                 <font>
                     <Font size="16.0" />
                 </font>
@@ -83,7 +83,7 @@
                     <Font size="20.0" />
                 </font>
             </Label>
-            <TextField fx:id="heureFin" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <TextField fx:id="heureFin" promptText="00:00" GridPane.columnIndex="1" GridPane.rowIndex="5">
                 <font>
                     <Font size="16.0" />
                 </font>

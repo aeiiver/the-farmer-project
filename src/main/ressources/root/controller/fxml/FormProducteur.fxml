@@ -67,10 +67,10 @@
    <TextField fx:id="mail" layoutX="176.0" layoutY="146.0" prefHeight="33.0" prefWidth="201.0" />
    <TextField fx:id="nom" layoutX="176.0" layoutY="196.0" prefHeight="33.0" prefWidth="201.0" />
    <TextField fx:id="prenom" layoutX="176.0" layoutY="241.0" prefHeight="33.0" prefWidth="201.0" />
-   <TextField fx:id="numTel" layoutX="176.0" layoutY="285.0" prefHeight="33.0" prefWidth="201.0" />
+   <TextField fx:id="numTel" layoutX="176.0" layoutY="285.0" prefHeight="33.0" prefWidth="201.0" promptText="0000000000" />
    <PasswordField fx:id="mdp" layoutX="176.0" layoutY="330.0" prefHeight="33.0" prefWidth="201.0" />
    <TextField fx:id="pays" layoutX="176.0" layoutY="372.0" prefHeight="33.0" prefWidth="201.0" text="France" />
-   <TextField fx:id="codePost" layoutX="176.0" layoutY="415.0" prefHeight="33.0" prefWidth="201.0" />
+   <TextField fx:id="codePost" layoutX="176.0" layoutY="415.0" prefHeight="33.0" prefWidth="201.0" promptText="00000" />
    <TextField fx:id="ville" layoutX="176.0" layoutY="457.0" prefHeight="33.0" prefWidth="201.0" />
    <TextField fx:id="numeroAdresse" layoutX="176.0" layoutY="499.0" prefHeight="33.0" prefWidth="56.0" promptText="Numéro" />
    <TextField fx:id="mention" layoutX="232.0" layoutY="499.0" prefHeight="33.0" prefWidth="63.0" promptText="Mention" />
