@@ -48,7 +48,7 @@ public class MenubarAdminCtrl {
    * Affiche la liste des clients du producteur connecté.
    */
   public void gotoListeClients() {
-    SceneChanger.voirListeClients(fenetre);
+    SceneChanger.voirListeClientsAdmin(fenetre);
   }
   /**
    * Méthode appelée lors du clic sur le bouton "Ajouter un client".

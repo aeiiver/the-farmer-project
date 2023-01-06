@@ -27,6 +27,7 @@ public class SceneChanger {
   private static final String LISTE_CLIENTS = "/root/controller/fxml/ListeClients.fxml";
   private static final String LISTE_PRODUCTEURS = "/root/controller/fxml/ListeProducteurs.fxml";
 
+  private static final String LISTE_CLIENTS_ADMIN = "/root/controller/fxml/ListeClientsAdmin.fxml";
   private static final String FORM_COMMANDE = "/root/controller/fxml/FormCommande.fxml";
   private static final String FORM_TOURNEE = "/root/controller/fxml/FormTournee.fxml";
   private static final String FORM_VEHICULE = "/root/controller/fxml/FormVehicule.fxml";
@@ -60,6 +61,10 @@ public class SceneChanger {
   public static void voirCompteAdmin(Stage fenetre) {
     // TODO Change la scène vers le compte producteur
     throw new RuntimeException("Not implemented");
+  }
+
+  public static void voirListeClientsAdmin(Stage fenetre) {
+    changeScene(LISTE_CLIENTS_ADMIN, fenetre);
   }
 
   /**
