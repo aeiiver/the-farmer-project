@@ -435,4 +435,18 @@ public class CommandeDaoTest {
     return commandes;
   }
 
+  @Test
+  void getAllByNumTournee() {
+    //TODO
+  }
+
+  @Test
+  void getAllByProducteur() {
+    //TODO
+  }
+
+  @Test
+  void getCommandeCourante() {
+    //TODO
+  }
 }

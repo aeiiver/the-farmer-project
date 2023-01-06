@@ -1,3 +1,6 @@
+## Test
+- Nombre de méthodes testées sur nombre de méthodes totales : 55/122
+
 ### S'authentifier en tant que producteur/administrateur
 - [x] Interface de connexion
 - [x] Récupération des données entrées par l'utilisateur

@@ -60,4 +60,8 @@ class AdminTest {
     assertNotEquals(admin.getMdp(), sortieDao.getMdp());
   }
 
+  @Test
+  void testEquals() {
+    //TODO
+  }
 }

@@ -1,27 +1,29 @@
-package root.controller;
+package root.controller.form;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.*;
 
-class CommandesFormCtrlTest {
+class ProducteursFormCtrlTest {
 
   /**
-   * Ce test doit vérifier que l'enregistrement est effectif dans la liste des commandes.
+   * Ce test doit vérifier que l'enregistrement est effectif dans la liste des producteurs.
    */
   @Test
   void enregistrer() {
+    //TODO
   }
 
   /**
-   * Ce test doit vérifier que l'enregistrement n'est pas effectif dans la liste des commandes.
+   * Ce test doit vérifier que l'enregistrement n'est pas effectif dans la liste des producteurs.
    */
   @Test
   void cancel() {
+    //TODO
   }
 
   /**
-   * Ce test doit vérifier que l'enregistrement d'une commande ne se fasse
+   * Ce test doit vérifier que l'enregistrement d'un producteur ne se fasse
    * pas avec des valeurs de champs illégales.
    *
    * <p>Un champ a une valeur illégale quand celle-ci ne respecte pas le format attendu par
@@ -32,6 +34,7 @@ class CommandesFormCtrlTest {
   @Test
   void valeursIllegales() {
     // assertThrows() things
+    //TODO
   }
 
 }

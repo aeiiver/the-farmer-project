@@ -12,6 +12,15 @@ class ConnexionCtrlTest {
    */
   @Test
   void valideIdentifiants() {
+    //TODO
   }
 
+  /**
+   * Ce test doit vérifier si toutes les valeurs sont bien entrées et vérifier
+   * si l'identifiant correspond bien à un utilisateur.
+   */
+  @Test
+  void verifieIdentifiants() {
+    //TODO
+  }
 }

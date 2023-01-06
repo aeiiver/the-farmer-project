@@ -304,4 +304,8 @@ public class VehiculeDaoTest {
     return vehicules;
   }
 
+  @Test
+  void getAllByProducteur() {
+    //TODO
+  }
 }

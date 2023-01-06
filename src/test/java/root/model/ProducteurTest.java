@@ -65,4 +65,13 @@ class ProducteurTest {
     assertNotEquals(producteur.getMdp(), sortieDao.getMdp());
   }
 
+  @Test
+  void testEquals() {
+    //TODO
+  }
+
+  @Test
+  void testToString() {
+    //TODO
+  }
 }

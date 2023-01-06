@@ -1,4 +1,4 @@
-package root.controller;
+package root.controller.list;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,6 +14,7 @@ class ClientsCtrlTest {
    */
   @Test
   void ajouterClient() {
+    //TODO
   }
 
   /**
@@ -24,6 +25,7 @@ class ClientsCtrlTest {
    */
   @Test
   void supprimerClient() {
+    //TODO
   }
 
   /**
@@ -34,6 +36,7 @@ class ClientsCtrlTest {
    */
   @Test
   void editerClient() {
+    //TODO
   }
 
 }

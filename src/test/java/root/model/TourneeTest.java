@@ -95,4 +95,13 @@ class TourneeTest {
     }
   }
 
+  @Test
+  void testEquals() {
+    //TODO
+  }
+
+  @Test
+  void testToString() {
+    //TODO
+  }
 }

@@ -1,9 +1,12 @@
-package root.model;
+package root.model.list;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import org.junit.jupiter.api.Test;
+import root.model.Adresse;
+import root.model.Producteur;
+import root.model.Vehicule;
 import root.model.list.ListeVehicules;
 
 class ListeVehiculesTest {

@@ -1,4 +1,4 @@
-package root.model;
+package root.model.list;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -6,6 +6,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.util.List;
 import org.junit.jupiter.api.Test;
+import root.model.*;
 import root.model.list.ListeTournees;
 
 import java.util.ArrayList;

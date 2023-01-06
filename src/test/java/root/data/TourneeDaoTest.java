@@ -345,4 +345,13 @@ public class TourneeDaoTest {
     return tournees;
   }
 
+  @Test
+  void getAllByProducteur() {
+    //TODO
+  }
+
+  @Test
+  void getTourneeCourante() {
+    //TODO
+  }
 }

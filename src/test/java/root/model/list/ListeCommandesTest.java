@@ -1,4 +1,4 @@
-package root.model;
+package root.model.list;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -6,6 +6,10 @@ import java.sql.Date;
 import java.sql.Time;
 import java.util.List;
 import org.junit.jupiter.api.Test;
+import root.model.Adresse;
+import root.model.Client;
+import root.model.Commande;
+import root.model.Producteur;
 import root.model.list.ListeCommandes;
 
 class ListeCommandesTest {

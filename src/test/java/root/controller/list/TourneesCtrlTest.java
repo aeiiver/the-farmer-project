@@ -1,4 +1,4 @@
-package root.controller;
+package root.controller.list;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,6 +14,7 @@ class TourneesCtrlTest {
    */
   @Test
   void ajouterTournee() {
+    //TODO
   }
 
   /**
@@ -25,6 +26,7 @@ class TourneesCtrlTest {
    */
   @Test
   void supprimerTournee() {
+    //TODO
   }
 
   /**
@@ -36,6 +38,7 @@ class TourneesCtrlTest {
    */
   @Test
   void editerTournee() {
+    //TODO
   }
 
 }
