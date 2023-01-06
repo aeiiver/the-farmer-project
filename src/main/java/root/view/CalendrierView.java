@@ -34,7 +34,7 @@ public class CalendrierView implements Initializable {
   /**
    * Initialise la vue.
    *
-   * @param url L'url.
+   * @param url            L'url.
    * @param resourceBundle Le bundle.
    */
   @Override

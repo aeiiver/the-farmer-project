@@ -115,7 +115,10 @@ public class ProducteursFormCtrl {
             Integer.parseInt(numeroAdresse), mention, complement);
 
     Connection singleConnection = SingleConnection.getInstance();
-    Producteur edit = new ProducteurDao(singleConnection).get(producteur.getSiret());
+    Producteur edit = null;
+    if (producteur != null) {
+      edit = producteur;
+    }
     numTelSaisi.replace(" ", "");
     if (edit == null) {
       new AdresseDao(SingleConnection.getInstance()).insert(adresse);
