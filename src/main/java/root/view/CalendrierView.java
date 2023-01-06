@@ -74,10 +74,10 @@ public class CalendrierView implements Initializable {
     }
     int day = 1;
 
-
-    for (int i = firstDay; i <= cal.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
+    for (int i = firstDay; i <= cal.getActualMaximum(Calendar.DAY_OF_MONTH) + dayNow; i++) {
       Label label = new Label();
       label.setText(String.valueOf(day));
+      System.out.println(label.getText());
       label.setMaxWidth(Double.MAX_VALUE);
       GridPane.setHalignment(label, HPos.CENTER);
       VBox vbox = new VBox();
@@ -85,13 +85,13 @@ public class CalendrierView implements Initializable {
       label.alignmentProperty().set(Pos.CENTER);
       label.setAlignment(Pos.CENTER);
       if (day == dayNow) {
-        label.setStyle("-fx-background-color: #00ff00");
+        label.setStyle("-fx-background-color: #1AF237");
       } else if (day < dayNow) {
-        label.setStyle("-fx-background-color: #aaaaaa");
-      /*} else if (datesTournees.contains(day)) {
-        label.setStyle("-fx-background-color: #ff0000");*/
+        label.setStyle("-fx-background-color: #AAAAAA");
+      } else if (datesTournees.contains(day)) {
+        label.setStyle("-fx-background-color: #F21A1A");
       } else {
-        label.setStyle("-fx-background-color: #eeeeee");
+        label.setStyle("-fx-background-color: #EEEEEEE");
       }
       if (i % 7 == 0) {
         vbox.getChildren().add(label);
