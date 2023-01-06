@@ -68,6 +68,12 @@ public class ConnexionCtrl {
         new ProducteurDao(SingleConnection.getInstance());
     Utilisateur utilisateur = (Utilisateur) dao.get(identifiant);
 
+    if (utilisateur == null) {
+      StageUtil.afficheAlerte("L'identifiant n'existe pas",
+              fenetre);
+      return;
+    }
+
     String hashRecupere = utilisateur.getMdp();
     boolean motdepasseOk = BCrypt.checkpw(motdepasse, hashRecupere);
 
