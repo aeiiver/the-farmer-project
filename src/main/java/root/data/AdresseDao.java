@@ -156,7 +156,8 @@ public class AdresseDao extends Dao<Adresse, Integer> {
       String query = "UPDATE Adresse SET "
           + "pays = ?, codePost = ?, voie = ?, nom = ?, numero = ?, "
           + "mention = ?, complement = ? WHERE idAdresse = ?";
-      PreparedStatement preparedStatement = connexion.prepareStatement(query);
+      PreparedStatement preparedStatement = connexion.prepareStatement(query,
+          Statement.RETURN_GENERATED_KEYS);
       preparedStatement.setString(1, adresse.getPays());
       preparedStatement.setString(2, adresse.getCodePost());
       preparedStatement.setString(3, adresse.getVoie());
@@ -166,6 +167,15 @@ public class AdresseDao extends Dao<Adresse, Integer> {
       preparedStatement.setString(7, adresse.getComplement());
       preparedStatement.setInt(8, adresse.getIdAdresse());
       preparedStatement.executeUpdate();
+
+      ResultSet key = preparedStatement.getGeneratedKeys();
+      if (!key.next()) {
+        return false;
+      }
+      int idInsere = key.getInt(1);
+      System.out.println(idInsere);
+      adresse.setIdAdresse(idInsere);
+
       return true;
     } catch (Exception e) {
       e.printStackTrace();

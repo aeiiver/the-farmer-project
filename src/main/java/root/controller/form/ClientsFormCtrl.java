@@ -31,7 +31,7 @@ public class ClientsFormCtrl {
   public void enregistrer(String nom, String prenom, String numTel, String gps,
                           String pays, String ville, String codePostal, int numeroAdresse,
                           String mention, String typeVoie, String nomVoie, String complementAdresse,
-                          int idClient) {
+                          Client client) {
 
     /* Validation de la saisie */
     // Vérifie si champs invalides
@@ -83,34 +83,21 @@ public class ClientsFormCtrl {
         nomVoie, numeroAdresse, mention, complementAdresse);
 
 
-    Client client = new Client(nom, prenom, numTel, gps, adresse);
-
-    Client edit = new ClientDao(SingleConnection.getInstance()).get(idClient);
+    Client edit = new ClientDao(SingleConnection.getInstance()).get(client.getIdClient());
     if (edit == null) {
-      // Ajout
-      ArrayList<Adresse> allAdresse = new AdresseDao(SingleConnection.getInstance()).getAll();
-      int idMax = 1;
-      if (allAdresse != null) {
-        idMax = new AdresseDao(SingleConnection.getInstance()).getAll().stream()
-            .max(Comparator.comparing(Adresse::getIdAdresse))
-            .orElse(new Adresse(3, "", "", "", "", "", 0, "", "")).getIdAdresse();
-      }
-      adresse.setIdAdresse(idMax + 1);
       new AdresseDao(SingleConnection.getInstance()).insert(adresse);
-      new ClientDao(SingleConnection.getInstance()).insert(client);
-      //listeClients.ajouter(client);
+      Client nouveauClient = new Client(nom, prenom, numTel, gps, adresse);
+      listeClients.ajouter(nouveauClient);
     } else {
       // Modification
-      client.setIdClient(idClient);
-      int idAdresse = client.getAdresse().getIdAdresse();
-      adresse.setIdAdresse(idAdresse);
-      new AdresseDao(SingleConnection.getInstance()).update(adresse);
-      new ClientDao(SingleConnection.getInstance()).update(client);
-      listeClients.editer(client);
+      Client updateClient = new Client(nom, prenom, numTel, gps, adresse);
+      updateClient.setIdClient(edit.getIdClient());
+      adresse.setIdAdresse(edit.getAdresse().getIdAdresse());
+      updateClient.setAdresse(adresse);
+      listeClients.editer(updateClient);
     }
 
     fenetre.close();
-    SceneChanger.voirListeClients(fenetre);
   }
 
   /**

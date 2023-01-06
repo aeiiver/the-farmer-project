@@ -3,6 +3,7 @@ package root.model.list;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import root.data.AdresseDao;
 import root.data.ProducteurDao;
 import root.data.SingleConnection;
 import root.model.Producteur;
@@ -28,11 +29,14 @@ public class ListeProducteurs {
    */
   private ProducteurDao producteurDao;
 
+  private AdresseDao adresseDao;
+
   /**
    * Constructeur.
    */
   public ListeProducteurs() {
     producteurDao = new ProducteurDao(SingleConnection.getInstance());
+    adresseDao = new AdresseDao(SingleConnection.getInstance());
 
     if (producteurs == null) {
       producteurs = FXCollections.observableArrayList(producteurDao.getAll());
@@ -76,6 +80,8 @@ public class ListeProducteurs {
    * @param producteur producteur à modifier
    */
   public void editer(Producteur producteur) {
+    adresseDao.update(producteur.getAdresse());
+
     int index = producteurs.indexOf(producteur);
     producteurs.set(index, producteur);
 

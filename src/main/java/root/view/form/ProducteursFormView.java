@@ -53,6 +53,8 @@ public class ProducteursFormView implements Initializable, FormView<Producteur> 
   @FXML
   private TextField complementAdresse;
 
+  private Producteur producteur;
+
 
   private ProducteursFormCtrl ctrl;
 
@@ -80,7 +82,7 @@ public class ProducteursFormView implements Initializable, FormView<Producteur> 
 
     ctrl.enregistrer(siretSaisi, nomSaisi, prenomSaisi, numTelSaisi, codePostSaisi,
         paysSaisi, mdpSaisi, mailSaisi, villeSaisi, numAdresseSaisi, mentionSaisi,
-            typeVoieSaisi, nomVoieSaisi, complementAdresseSaisi);
+            typeVoieSaisi, nomVoieSaisi, complementAdresseSaisi, producteur);
   }
 
   /**
@@ -107,6 +109,7 @@ public class ProducteursFormView implements Initializable, FormView<Producteur> 
   public void chargeChamps(Producteur modele) {
     siret.setText(modele.getSiret());
     siret.setVisible(false);
+    producteur = modele;
     nom.setText(modele.getNom());
     prenom.setText(modele.getPrenom());
     numTel.setText(modele.getNumTel());

@@ -88,7 +88,6 @@ public class CommandesFormCtrl {
     }
 
     fenetre.close();
-    SceneChanger.voirListeCommandes(fenetre);
   }
 
   /**

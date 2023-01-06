@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import root.model.list.ListeCommandes;
 
 /**
  * Classe statique qui groupe les méthodes permettant de changer la scène affichée dans une fenêtre.
@@ -54,14 +55,6 @@ public class SceneChanger {
   }
 
   /**
-   * Redirige le producteur vers la vue sur son compte.
-   */
-  public static void voirCompteProducteur(Stage fenetre) {
-    // TODO Change la scène vers le compte producteur
-    throw new RuntimeException("Not implemented");
-  }
-
-  /**
    * Redirige l'administrateur vers la vue sur son compte.
    */
   public static void voirCompteAdmin(Stage fenetre) {
@@ -105,14 +98,14 @@ public class SceneChanger {
   }
 
   /**
-   * Redirige l'utilisateur vers le formulaire commande.
+   * Redirige l'utilisateur vers le formulaire de la commande.
    */
   public static Object voirFormCommande(Stage fenetre) {
     return StageUtil.afficheDialogue(FORM_COMMANDE, fenetre);
   }
 
   /**
-   * Redirige l'utilisateur vers le formulaire tournée.
+   * Redirige l'utilisateur vers le formulaire de la tournée.
    */
   public static Object voirFormTournee(Stage fenetre) {
     return StageUtil.afficheDialogue(FORM_TOURNEE, fenetre);

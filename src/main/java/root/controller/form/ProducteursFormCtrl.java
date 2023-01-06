@@ -5,6 +5,7 @@ import javafx.stage.Stage;
 import root.SceneChanger;
 import root.StageUtil;
 import root.Validateur;
+import root.data.AdresseDao;
 import root.data.ProducteurDao;
 import root.data.SingleConnection;
 //import root.model.Admin;
@@ -32,7 +33,8 @@ public class ProducteursFormCtrl {
                           String numTelSaisi, String codePostSaisi,
                           String paysSaisi, String mdpSaisi, String mailSaisi,
                           String villeSaisi, String numeroAdresse, String mention,
-                          String typeVoie, String nomVoie, String complement) {
+                          String typeVoie, String nomVoie, String complement,
+                          Producteur producteur) {
     System.out.println("le mail de merde la : |" + mailSaisi.equals("") + "|");
 
     if (siretSaisi.isEmpty() || nomSaisi.isEmpty() || prenomSaisi.isEmpty()
@@ -113,14 +115,19 @@ public class ProducteursFormCtrl {
             Integer.parseInt(numeroAdresse), mention, complement);
 
     Connection singleConnection = SingleConnection.getInstance();
-    Producteur edit = new ProducteurDao(singleConnection).get(siretSaisi);
+    Producteur edit = new ProducteurDao(singleConnection).get(producteur.getSiret());
     numTelSaisi.replace(" ", "");
     if (edit == null) {
+      new AdresseDao(SingleConnection.getInstance()).insert(adresse);
       listeProducteurs.ajouter(new Producteur(siretSaisi,  mailSaisi, nomSaisi, prenomSaisi,
               numTelSaisi, mdpSaisi, adresse));
     } else {
-      listeProducteurs.editer(new Producteur(siretSaisi,  mailSaisi, nomSaisi, prenomSaisi,
-              numTelSaisi, mdpSaisi, adresse));
+      Producteur updateProducteur = new Producteur(siretSaisi,  mailSaisi, nomSaisi, prenomSaisi,
+          numTelSaisi, mdpSaisi, adresse);
+      updateProducteur.setSiret(edit.getSiret());
+      adresse.setIdAdresse(edit.getAdresse().getIdAdresse());
+      updateProducteur.setAdresse(adresse);
+      listeProducteurs.editer(updateProducteur);
     }
     fenetre.close();
     SceneChanger.voirListeProducteurs(fenetre);

@@ -3,8 +3,10 @@ package root.model.list;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import root.data.AdresseDao;
 import root.data.ClientDao;
 import root.data.SingleConnection;
+import root.model.Adresse;
 import root.model.Client;
 
 /**
@@ -27,11 +29,14 @@ public class ListeClients {
    */
   private ClientDao clientDao;
 
+  private AdresseDao adresseDao;
+
   /**
    * Constructeur.
    */
   public ListeClients() {
     clientDao = new ClientDao(SingleConnection.getInstance());
+    adresseDao = new AdresseDao(SingleConnection.getInstance());
 
     if (clients == null) {
       clients = FXCollections.observableArrayList(clientDao.getAll());
@@ -75,6 +80,8 @@ public class ListeClients {
    * @param client client à modifier
    */
   public void editer(Client client) {
+    adresseDao.update(client.getAdresse());
+
     int index = clients.indexOf(client);
     clients.set(index, client);
 

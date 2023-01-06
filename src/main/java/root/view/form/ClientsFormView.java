@@ -9,6 +9,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import root.StageUtil;
 import root.controller.form.ClientsFormCtrl;
+import root.model.Adresse;
 import root.model.Client;
 
 /**
@@ -82,7 +83,7 @@ public class ClientsFormView implements Initializable, FormView<Client> {
   @FXML
   private TextField complementAdresse;
 
-  private int idClient = -1;
+  private Client client = null;
 
   /**
    * Contrôleur de la vue.
@@ -116,7 +117,7 @@ public class ClientsFormView implements Initializable, FormView<Client> {
     ctrl.enregistrer(nomSaisi, prenomSaisi, numTelSaisi, gpsSaisi,
             paysSaisi, villeSaisi, codePostalSaisi, numeroAdresseSaisi,
             mentionSaisi, typeVoieSaisi, nomVoieSaisi, complementAdresseSaisi,
-            idClient);
+            client);
   }
 
   /**
@@ -149,42 +150,18 @@ public class ClientsFormView implements Initializable, FormView<Client> {
    * @param client Le client à charger.
    */
   public void chargeChamps(Client client) {
-    idClient = client.getIdClient();
-
-    // Nom
+    this.client = client;
     nom.setText(client.getNom());
-
-    // Prénom
     prenom.setText(client.getPrenom());
-
-    // Numéro de téléphone
     numTel.setText(client.getNumTel());
-
-    // Coordonnées GPS
     gps.setText(client.getGps());
-
-    // Pays
     pays.setText(client.getAdresse().getPays());
-
-    // Ville
     ville.setText(client.getAdresse().getVille());
-
-    // Code Postal
     codePostal.setText(client.getAdresse().getCodePost());
-
-    // Numéro de l'Adresse
     numeroAdresse.setText(String.valueOf(client.getAdresse().getNumero()));
-
-    // Mention de l'Adresse
     mention.setText(client.getAdresse().getMention());
-
-    // Type de voie de l'Adresse
     typeVoie.setText(client.getAdresse().getVoie());
-
-    // Nom de la voie de l'Adresse
     nomVoie.setText(client.getAdresse().getNom());
-
-    // Complément de l'Adresse
     complementAdresse.setText(client.getAdresse().getComplement());
   }
 

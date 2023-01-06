@@ -77,7 +77,6 @@ public class CalendrierView implements Initializable {
     for (int i = firstDay; i <= cal.getActualMaximum(Calendar.DAY_OF_MONTH) + dayNow; i++) {
       Label label = new Label();
       label.setText(String.valueOf(day));
-      System.out.println(label.getText());
       label.setMaxWidth(Double.MAX_VALUE);
       GridPane.setHalignment(label, HPos.CENTER);
       VBox vbox = new VBox();
