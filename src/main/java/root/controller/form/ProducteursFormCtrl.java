@@ -63,7 +63,7 @@ public class ProducteursFormCtrl {
       messageErreur += "Le Nom de la voie doit commencer par une majuscule et ne doit"
               + " pas contenir plusieurs tiret ou espace d'affiler\n";
     }
-    if (!Validateur.validerNombre(numeroAdresse) && !(numeroAdresse.equals("")) ) {
+    if (!Validateur.validerNombre(numeroAdresse) && !(numeroAdresse.equals(""))) {
       messageErreur += "Le Siret doit être composer de 14 chiffres.\n";
     }
     if (!Validateur.validerSiret(siretSaisi)) {

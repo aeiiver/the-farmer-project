@@ -240,7 +240,8 @@ public class TourneeDao extends Dao<Tournee, Integer> {
    */
   public ArrayList<Tournee> getAllByProducteur(Producteur producteur) {
     try {
-      String query = "SELECT * FROM Tournee WHERE numTournee IN (SELECT numTournee FROM Commande WHERE SIRET = ?)";
+      String query = "SELECT * FROM Tournee WHERE numTournee IN "
+              + "(SELECT numTournee FROM Commande WHERE SIRET = ?)";
       PreparedStatement preparedStatement = connexion.prepareStatement(query);
       preparedStatement.setString(1, producteur.getSiret());
       ResultSet resultat = preparedStatement.executeQuery();
@@ -277,8 +278,8 @@ public class TourneeDao extends Dao<Tournee, Integer> {
    */
   public ArrayList<Tournee> getTourneeCourante(Producteur producteur) {
     try {
-      String query = "SELECT * FROM Tournee WHERE numTournee IN " +
-          "(SELECT numTournee FROM Commande  WHERE SIRET = ? AND dateCom > CURDATE() - 1)";
+      String query = "SELECT * FROM Tournee WHERE numTournee IN "
+              + "(SELECT numTournee FROM Commande  WHERE SIRET = ? AND dateCom > CURDATE() - 1)";
       PreparedStatement preparedStatement = connexion.prepareStatement(query);
       preparedStatement.setString(1, producteur.getSiret());
       ResultSet resultat = preparedStatement.executeQuery();

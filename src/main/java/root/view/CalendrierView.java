@@ -42,7 +42,6 @@ public class CalendrierView implements Initializable {
     Calendar now = Calendar.getInstance();
     int month = now.get(Calendar.MONTH);
     int year = now.get(Calendar.YEAR);
-    int dayNow = now.get(Calendar.DAY_OF_MONTH);
 
     Calendar cal = Calendar.getInstance();
     cal.set(year, month, 1);
@@ -74,6 +73,7 @@ public class CalendrierView implements Initializable {
     }
     int day = 1;
 
+    int dayNow = now.get(Calendar.DAY_OF_MONTH);
     for (int i = firstDay; i <= cal.getActualMaximum(Calendar.DAY_OF_MONTH) + dayNow; i++) {
       Label label = new Label();
       label.setText(String.valueOf(day));

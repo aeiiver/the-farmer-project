@@ -50,7 +50,8 @@ public class VehiculesFormCtrl {
 
     String immatriculation = immat;
     if (!immat.contains("-") && !immat.contains(" ")) {
-      immatriculation = immat.substring(0, 2) + "-" + immat.substring(2, 5) + "-" + immat.substring(5, 7);
+      immatriculation = immat.substring(0, 2) + "-" + immat.substring(2, 5) + "-"
+              + immat.substring(5, 7);
     }
     immatriculation.replace(" ", "-");
 

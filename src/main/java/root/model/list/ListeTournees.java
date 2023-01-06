@@ -48,7 +48,7 @@ public class ListeTournees {
     tourneeDao = new TourneeDao(SingleConnection.getInstance());
 
     if (tournees == null) {
-    tournees = FXCollections.observableArrayList(tourneeDao.getAllByProducteur(producteur));
+      tournees = FXCollections.observableArrayList(tourneeDao.getAllByProducteur(producteur));
     }
   }
 
