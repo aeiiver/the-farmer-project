@@ -1,9 +1,6 @@
 package root.controller.form;
 
-import java.util.ArrayList;
-import java.util.Comparator;
 import javafx.stage.Stage;
-import root.SceneChanger;
 import root.StageUtil;
 import root.Validateur;
 import root.data.AdresseDao;
@@ -50,23 +47,23 @@ public class ClientsFormCtrl {
     if (!Validateur.validerPseudo(prenom)) {
       messageErreur += "Le prénom indiqué n'est pas valide.\n";
     }
-    if (!Validateur.validerNumTel(numTel)) {
+    if (Validateur.validerNumTel(numTel)) {
       messageErreur += "Le numéro de téléphone indiqué n'est pas valide.\n";
     }
     // TODO gps
-    if (!Validateur.validerPays(pays)) {
+    if (Validateur.validerPays(pays)) {
       messageErreur += "Le pays indiqué n'est pas valide.\n";
     }
     if (!Validateur.validerVille(ville)) {
       messageErreur += "La ville indiqué n'est pas valide.\n";
     }
-    if (!Validateur.validerCodePostal(codePostal)) {
+    if (Validateur.validerCodePostal(codePostal)) {
       messageErreur += "Le code postal indiqué n'est pas valide.\n";
     }
     if (!mention.isEmpty() && !Validateur.validerMention(mention)) {
       messageErreur += "La mention de l'adresse indiqué n'est pas valide.\n";
     }
-    if (!typeVoie.isEmpty() && !Validateur.validerTypeVoie(typeVoie)) {
+    if (!typeVoie.isEmpty() && Validateur.validerTypeVoie(typeVoie)) {
       messageErreur += "Le type de voie de l'adresse indiqué n'est pas valide.\n";
     }
     if (!messageErreur.isEmpty()) {

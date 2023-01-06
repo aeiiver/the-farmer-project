@@ -6,7 +6,6 @@ import root.SceneChanger;
 import root.StageUtil;
 import root.Validateur;
 import root.data.AdresseDao;
-import root.data.ProducteurDao;
 import root.data.SingleConnection;
 //import root.model.Admin;
 import root.model.Adresse;
@@ -35,7 +34,6 @@ public class ProducteursFormCtrl {
                           String villeSaisi, String numeroAdresse, String mention,
                           String typeVoie, String nomVoie, String complement,
                           Producteur producteur) {
-    System.out.println("le mail de merde la : |" + mailSaisi.equals("") + "|");
 
     if (siretSaisi.isEmpty() || nomSaisi.isEmpty() || prenomSaisi.isEmpty()
             || numTelSaisi.isEmpty() || codePostSaisi.isEmpty()
@@ -48,58 +46,59 @@ public class ProducteursFormCtrl {
 
     //Todo faire les regex pour l'adresse
     String messageErreur = "";
-    if (!Validateur.validerMention(mention)) {
+    if (!(Validateur.validerMention(mention))) {
       messageErreur += "La mention doit faire entre 3 et 17 characters "
-              + "et ne comporte pas de majuscule.\n";
+          + "et ne comporte pas de majuscule.\n";
     }
-    if (!Validateur.validerTypeVoie(typeVoie)) {
-      messageErreur += "La mention doit faire entre 4 et 11 characters "
-              + "et commence par une majuscule.\n";
+    if (Validateur.validerTypeVoie(typeVoie)) {
+      messageErreur += "Le type de voie doit faire entre 4 et 11 characters "
+          + "et commence par une majuscule.\n";
     }
-    if (!Validateur.validerComplement(complement)) {
-      messageErreur += "Le complément doit faire maximum 100 characters.\n";
+    if (complement != null) {
+      if (!Validateur.validerComplement(complement)) {
+        messageErreur += "Le complément doit faire maximum 100 characters.\n";
+      }
     }
-    if (!Validateur.validerNomPropre(nomVoie)) {
+    if (Validateur.validerNomPropre(nomVoie)) {
       messageErreur += "Le Nom de la voie doit commencer par une majuscule et ne doit"
               + " pas contenir plusieurs tiret ou espace d'affiler\n";
     }
-    if (!Validateur.validerNombre(numeroAdresse) && !(numeroAdresse.equals(""))) {
+    if (!Validateur.validerNombre(numeroAdresse)) {
       messageErreur += "Le Siret doit être composer de 14 chiffres.\n";
     }
     if (!Validateur.validerSiret(siretSaisi)) {
       messageErreur += "Le Siret doit être composer de 14 chiffres.\n";
     }
-    if (!Validateur.validerNomPropre(villeSaisi)) {
+    if (Validateur.validerNomPropre(villeSaisi) && !villeSaisi.isEmpty()) {
       //Todo revoir le regex de la ville et adapter le message d'erreur
       messageErreur += "La ville doit faire entre 2 et 100 characters,"
               + " commencer par une majuscule\n";
     }
-    if (!Validateur.validerNomPropre(nomSaisi)) {
+    if (Validateur.validerNomPropre(nomSaisi)) {
       //Todo revoir le regex du nom et adapter le message d'erreur
       messageErreur += "Le nom doit commencer par une majuscule et ne doit "
               + "pas contenir plusieurs tiret ou espace d'affiler\n";
     }
-    if (!Validateur.validerNomPropre(prenomSaisi)) {
+    if (Validateur.validerNomPropre(prenomSaisi)) {
       //Todo revoir le regex du prénom et adapter le message d'erreur
       messageErreur += "Le prénom doit commencer par une majuscule et ne doit "
-              + "pas contenir plusieurs tiret ou espace d'affiler\n";
+              + "pas contenir plusieurs tiret ou espace d'affilé\n";
     }
-    if (!Validateur.validerNumTel(numTelSaisi)) {
+    if (Validateur.validerNumTel(numTelSaisi)) {
       messageErreur += "Le numéro de téléphone doit faire 10 chiffres"
               + " dont les 2 premier vont de 01 à 09 \n";
     }
-    if (!Validateur.validerCodePostal(codePostSaisi)) {
+    if (Validateur.validerCodePostal(codePostSaisi)) {
       messageErreur += "Seul les département de la France métropolitaine"
               + " + corse sont autoriser.\n";
     }
-    if (!Validateur.validerPays(paysSaisi)) {
+    if (Validateur.validerPays(paysSaisi)) {
       messageErreur += "La France est le seul pays autoriser pour le moment.\n";
     }
     if (!Validateur.validerMdp(mdpSaisi)) {
-      messageErreur += """
-              Le mot de passe doit contenir : \n- Au moins une minuscule une majuscule
-              \n- Au moins un chiffre \n- Au moins un character spéciale
-              \n- doit faire plus de 8 characters. \n""";
+      messageErreur += "Le mot de passe doit contenir : \n- Au moins une minuscule une majuscule"
+          + "\n- Au moins un chiffre \n- Au moins un character spéciale"
+          + "\n- doit faire plus de 8 characters. \n";
     }
     if (!Validateur.validerMail(mailSaisi) && !(mailSaisi.equals(""))) {
       messageErreur += "Le mail ne doit contenir plusieurs points, tiret ou tiret du bas d'affiler."
