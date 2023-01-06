@@ -21,7 +21,7 @@ public class GenProducteur {
   * @throws IOException Si le producteur n'a pas pu être généré.
   */
   public static void main(String[] args) throws IOException {
-    generate(5);
+    generate(20);
   }
 
   /**
@@ -43,8 +43,6 @@ public class GenProducteur {
 
       String siret = faker.number().digits(14);
       String mdp = faker.internet().password(4, 6);
-      String sel = BCrypt.gensalt();
-      String mdpChiffre = BCrypt.hashpw(mdp, sel);
       String num = "0" + faker.phoneNumber().cellPhone().replace(".", "")
           .replace("-", "").substring(1, 10).replace(" ", "6")
           .replace(")", "7");
@@ -57,7 +55,7 @@ public class GenProducteur {
       Producteur producteur = new Producteur(siret,
           mail, nom,
           prenom, num,
-          mdpChiffre, adresse);
+          mdp, adresse);
       listSiret.add(producteur);
       new ProducteurDao(SingleConnection.getInstance()).insert(producteur);
 
