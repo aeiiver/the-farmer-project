@@ -135,7 +135,7 @@ public class TourneesFormView implements Initializable, FormView<Tournee> {
           setGraphic(null);
           return;
         }
-        setGraphic(new Text(String.format("%s (%d kg)", item.getLibelle(), item.getPoids())));
+        setGraphic(new Text(String.format("%s : %s (%d kg) - %s/%s", item.getDateCom(), item.getLibelle(), item.getPoids(), item.getHeureDeb(), item.getHeureFin())));
       }
 
     });
