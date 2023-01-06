@@ -21,7 +21,7 @@ public class ListeClients {
    * @see ListeClients#supprimer(Client)
    * @see Client
    */
-  private ObservableList<Client> clients;
+  private static ObservableList<Client> clients;
   /**
    * Le DAO qui permet au modèle d'interagir avec la base de données.
    */
@@ -32,7 +32,10 @@ public class ListeClients {
    */
   public ListeClients() {
     clientDao = new ClientDao(SingleConnection.getInstance());
-    clients = FXCollections.observableArrayList(clientDao.getAll());
+
+    if (clients == null) {
+      clients = FXCollections.observableArrayList(clientDao.getAll());
+    }
   }
 
   /**

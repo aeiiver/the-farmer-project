@@ -26,7 +26,7 @@ public class ListeTournees {
    * @see ListeTournees#supprimer(Tournee)
    * @see Tournee
    */
-  private ObservableList<Tournee> tournees;
+  private static ObservableList<Tournee> tournees;
 
   /**
    * Le DAO qui permet au modèle d'interagir avec la base de données.
@@ -46,7 +46,10 @@ public class ListeTournees {
    */
   public ListeTournees(Producteur producteur) {
     tourneeDao = new TourneeDao(SingleConnection.getInstance());
+
+    if (tournees == null) {
     tournees = FXCollections.observableArrayList(tourneeDao.getAllByProducteur(producteur));
+    }
   }
 
   /**

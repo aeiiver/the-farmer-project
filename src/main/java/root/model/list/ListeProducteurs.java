@@ -21,7 +21,7 @@ public class ListeProducteurs {
    * @see ListeProducteurs#supprimer(Producteur)
    * @see Producteur
    */
-  private ObservableList<Producteur> producteurs;
+  private static ObservableList<Producteur> producteurs;
 
   /**
    * Le DAO qui permet au modèle d'interagir avec la base de données.
@@ -33,7 +33,10 @@ public class ListeProducteurs {
    */
   public ListeProducteurs() {
     producteurDao = new ProducteurDao(SingleConnection.getInstance());
-    producteurs = FXCollections.observableArrayList(producteurDao.getAll());
+
+    if (producteurs == null) {
+      producteurs = FXCollections.observableArrayList(producteurDao.getAll());
+    }
   }
 
   /**

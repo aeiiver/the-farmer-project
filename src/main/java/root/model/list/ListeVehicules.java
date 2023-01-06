@@ -23,7 +23,7 @@ public class ListeVehicules {
    * @see ListeVehicules#supprimer(Vehicule)
    * @see Vehicule
    */
-  private ObservableList<Vehicule> vehicules;
+  private static ObservableList<Vehicule> vehicules;
   /**
    * Le DAO qui permet au modèle d'interagir avec la base de données.
    */
@@ -34,8 +34,12 @@ public class ListeVehicules {
    */
   public ListeVehicules() {
     vehiculeDao = new VehiculeDao(SingleConnection.getInstance());
-    vehicules = FXCollections.observableArrayList(vehiculeDao.getAllByProducteur(
-        (Producteur) SingleSession.getSession().getUtilisateur()));
+
+    Producteur producteurCourant = (Producteur) SingleSession.getSession().getUtilisateur();
+    if (vehicules == null) {
+      vehicules = FXCollections.observableArrayList(
+          vehiculeDao.getAllByProducteur(producteurCourant));
+    }
   }
 
   /**

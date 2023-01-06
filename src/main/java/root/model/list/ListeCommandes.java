@@ -22,7 +22,7 @@ public class ListeCommandes {
    * @see ListeCommandes#supprimer(Commande)
    * @see Commande
    */
-  private ObservableList<Commande> commandes;
+  private static ObservableList<Commande> commandes;
   /**
    * Le DAO qui permet au modèle d'interagir avec la base de données.
    */
@@ -41,7 +41,10 @@ public class ListeCommandes {
    */
   public ListeCommandes(Producteur producteur) {
     commandeDao = new CommandeDao(SingleConnection.getInstance());
-    commandes = FXCollections.observableArrayList(commandeDao.getAllByProducteur(producteur));
+
+    if (commandes == null) {
+      commandes = FXCollections.observableArrayList(commandeDao.getAllByProducteur(producteur));
+    }
   }
 
   /**
