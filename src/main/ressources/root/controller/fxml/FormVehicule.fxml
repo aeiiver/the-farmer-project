@@ -6,38 +6,37 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-      minWidth="-Infinity" prefHeight="314.0" prefWidth="391.0"
-      xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="root.view.form.VehiculesFormView"
-      fx:id="root">
-   <Label alignment="CENTER" layoutY="14.0" prefHeight="35.0" prefWidth="391.0"
-          text="Ajout de Véhicules">
+<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="335.0" prefWidth="391.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.view.form.VehiculesFormView">
+   <Label alignment="CENTER" layoutY="14.0" prefHeight="35.0" prefWidth="391.0" text="Ajout de Véhicules">
       <font>
-         <Font size="32.0"/>
+         <Font size="32.0" />
       </font>
    </Label>
-   <TextField layoutX="161.0" layoutY="106.0" prefHeight="38.0"
-              prefWidth="208.0" fx:id="immatriculation"/>
-   <Label layoutX="9.0" layoutY="107.0" prefHeight="38.0" prefWidth="151.0"
-          text="Immatriculation" fx:id="labelImmatriculation">
+   <TextField fx:id="immatriculation" layoutX="161.0" layoutY="106.0" prefHeight="38.0" prefWidth="208.0" />
+   <Label fx:id="labelImmatriculation" layoutX="9.0" layoutY="107.0" prefHeight="38.0" prefWidth="151.0" text="Immatriculation">
       <font>
-         <Font size="20.0"/>
+         <Font size="20.0" />
       </font>
    </Label>
-   <Label alignment="TOP_LEFT" layoutX="9.0" layoutY="163.0" prefHeight="28.0"
-          prefWidth="254.0" text="Charge maximale supportée">
+   <Label alignment="TOP_LEFT" layoutX="9.0" layoutY="163.0" prefHeight="28.0" prefWidth="254.0" text="Charge maximale supportée">
       <font>
-         <Font size="20.0"/>
+         <Font size="20.0" />
       </font>
    </Label>
-   <TextField layoutX="263.0" layoutY="159.0" prefHeight="38.0" prefWidth="108.0"
-            fx:id="poidsMax"/>
-   <Button layoutX="136.0" layoutY="239.0" mnemonicParsing="false"
-           text="Ajouter" onAction="#valider">
+   <TextField fx:id="poidsMax" layoutX="263.0" layoutY="159.0" prefHeight="38.0" prefWidth="108.0" />
+   <Button layoutX="88.0" layoutY="270.0" mnemonicParsing="false" onAction="#annuler" prefHeight="44.0" prefWidth="91.0" text="Annuler">
       <font>
-         <Font size="20.0"/>
+         <Font size="18.0" />
       </font>
    </Button>
+   <Button layoutX="186.0" layoutY="270.0" mnemonicParsing="false" onAction="#valider" text="Enregistrer">
+      <font>
+         <Font size="20.0" />
+      </font>
+   </Button>
+   <Label layoutX="17.0" layoutY="220.0" prefHeight="33.0" prefWidth="357.0" text="Tous les champs doivent être remplis." textFill="#000000f0">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </Label>
 </Pane>

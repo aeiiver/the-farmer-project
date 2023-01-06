@@ -7,13 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="712.0" prefWidth="408.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.view.form.ProducteursFormView">
-   <Button layoutX="155.0" layoutY="655.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="98.0" onAction="#enregistrer" text="Valider">
-      <font>
-         <Font size="18.0" />
-      </font>
-   </Button>
-   <TextField fx:id="prenom" layoutX="176.0" layoutY="241.0" prefHeight="33.0" prefWidth="201.0" />
+<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="726.0" prefWidth="408.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.view.form.ProducteursFormView">
    <Label layoutX="16.0" layoutY="94.0" prefHeight="33.0" prefWidth="160.0" text="SIRET*">
       <font>
          <Font size="20.0" />
@@ -44,42 +38,53 @@
          <Font size="20.0" />
       </font>
    </Label>
-   <TextField fx:id="pays" layoutX="176.0" layoutY="372.0" prefHeight="33.0" prefWidth="201.0" text="France" />
    <Label layoutX="16.0" layoutY="457.0" prefHeight="33.0" prefWidth="160.0" text="Ville*">
       <font>
          <Font size="20.0" />
       </font>
    </Label>
-   <TextField fx:id="ville" layoutX="176.0" layoutY="457.0" prefHeight="33.0" prefWidth="201.0" />
    <Label layoutX="16.0" layoutY="499.0" prefHeight="33.0" prefWidth="160.0" text="Adresse*">
       <font>
          <Font size="20.0" />
       </font>
    </Label>
-   <TextField fx:id="nom" layoutX="176.0" layoutY="196.0" prefHeight="33.0" prefWidth="201.0" />
-   <TextField fx:id="mail" layoutX="176.0" layoutY="146.0" prefHeight="33.0" prefWidth="201.0" />
-   <TextField fx:id="siret" layoutX="176.0" layoutY="94.0" prefHeight="33.0" prefWidth="201.0" />
-   <TextField fx:id="numTel" layoutX="176.0" layoutY="285.0" prefHeight="33.0" prefWidth="201.0" />
    <Label layoutX="16.0" layoutY="285.0" prefHeight="33.0" prefWidth="160.0" text="Numéro de téléphone*">
       <font>
          <Font size="15.0" />
       </font>
    </Label>
-   <TextField fx:id="codePost" layoutX="176.0" layoutY="415.0" prefHeight="33.0" prefWidth="201.0" />
    <Label layoutX="16.0" layoutY="330.0" prefHeight="33.0" prefWidth="160.0" text="Mot de passe*">
       <font>
          <Font size="20.0" />
       </font>
    </Label>
-   <PasswordField fx:id="mdp" layoutX="176.0" layoutY="330.0" prefHeight="33.0" prefWidth="201.0" />
-   <TextField fx:id="numeroAdresse" layoutX="176.0" layoutY="499.0" prefHeight="33.0" prefWidth="56.0" promptText="numéro" />
-   <TextField fx:id="mention" layoutX="232.0" layoutY="499.0" prefHeight="33.0" prefWidth="63.0" promptText="mention" />
-   <TextField fx:id="typeVoie" layoutX="294.0" layoutY="499.0" prefHeight="33.0" prefWidth="83.0" promptText="type de voie" />
-   <TextField fx:id="nomVoie" layoutX="176.0" layoutY="542.0" prefHeight="33.0" prefWidth="201.0" promptText="nom de voie*" />
-   <TextField fx:id="complementAdresse" layoutX="176.0" layoutY="589.0" prefHeight="33.0" prefWidth="201.0" promptText="complément d'adresse" />
-   <Label layoutX="7.0" layoutY="622.0" prefHeight="33.0" prefWidth="391.0" text="Les champs obligatoire sont représenter par une *" textFill="#000000f0">
+   <Label layoutX="9.0" layoutY="640.0" prefHeight="33.0" prefWidth="391.0" text="Les champs obligatoires sont représenter par une '*'." textFill="#000000f0">
       <font>
          <Font size="14.0" />
       </font>
    </Label>
+   <TextField fx:id="siret" layoutX="176.0" layoutY="94.0" prefHeight="33.0" prefWidth="201.0" />
+   <TextField fx:id="mail" layoutX="176.0" layoutY="146.0" prefHeight="33.0" prefWidth="201.0" />
+   <TextField fx:id="nom" layoutX="176.0" layoutY="196.0" prefHeight="33.0" prefWidth="201.0" />
+   <TextField fx:id="prenom" layoutX="176.0" layoutY="241.0" prefHeight="33.0" prefWidth="201.0" />
+   <TextField fx:id="numTel" layoutX="176.0" layoutY="285.0" prefHeight="33.0" prefWidth="201.0" />
+   <PasswordField fx:id="mdp" layoutX="176.0" layoutY="330.0" prefHeight="33.0" prefWidth="201.0" />
+   <TextField fx:id="pays" layoutX="176.0" layoutY="372.0" prefHeight="33.0" prefWidth="201.0" text="France" />
+   <TextField fx:id="codePost" layoutX="176.0" layoutY="415.0" prefHeight="33.0" prefWidth="201.0" />
+   <TextField fx:id="ville" layoutX="176.0" layoutY="457.0" prefHeight="33.0" prefWidth="201.0" />
+   <TextField fx:id="numeroAdresse" layoutX="176.0" layoutY="499.0" prefHeight="33.0" prefWidth="56.0" promptText="Numéro" />
+   <TextField fx:id="mention" layoutX="232.0" layoutY="499.0" prefHeight="33.0" prefWidth="63.0" promptText="Mention" />
+   <TextField fx:id="typeVoie" layoutX="294.0" layoutY="499.0" prefHeight="33.0" prefWidth="83.0" promptText="Type de voie" />
+   <TextField fx:id="nomVoie" layoutX="176.0" layoutY="542.0" prefHeight="33.0" prefWidth="201.0" promptText="Nom de voie*" />
+   <TextField fx:id="complementAdresse" layoutX="176.0" layoutY="589.0" prefHeight="33.0" prefWidth="201.0" promptText="Complément d'adresse" />
+   <Button layoutX="96.0" layoutY="673.0" mnemonicParsing="false" onAction="#annuler" prefHeight="39.0" prefWidth="92.0" text="Annuler">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Button>
+   <Button layoutX="197.0" layoutY="673.0" mnemonicParsing="false" onAction="#enregistrer" prefHeight="39.0" prefWidth="120.0" text="Enregistrer">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Button>
 </Pane>

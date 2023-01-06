@@ -48,6 +48,14 @@ public class VehiculesFormView implements Initializable, FormView<Vehicule> {
   }
 
   /**
+   * Redirige l'utilisateur vers la vue sur la liste des véhicules.
+   */
+  @FXML
+  private void annuler() {
+    ctrl.annuler();
+  }
+
+  /**
    * Méthode initialisant la vue.
    *
    * @param url URL

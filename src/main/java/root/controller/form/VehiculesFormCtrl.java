@@ -74,7 +74,7 @@ public class VehiculesFormCtrl {
   /**
    * Redirige l'utilisateur vers la vue sur la liste des véhicules.
    */
-  public void cancel() {
+  public void annuler() {
     fenetre.close();
   }
 

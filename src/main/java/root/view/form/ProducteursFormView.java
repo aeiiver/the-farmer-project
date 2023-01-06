@@ -86,6 +86,14 @@ public class ProducteursFormView implements Initializable, FormView<Producteur> 
   }
 
   /**
+   * Redirige l'utilisateur vers la vue sur la liste des producteurs.
+   */
+  @FXML
+  private void annuler() {
+    ctrl.annuler();
+  }
+
+  /**
    * Méthode initialisant la vue.
    *
    * @param url L'URL du fichier FXML.

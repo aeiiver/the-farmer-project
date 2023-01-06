@@ -13,8 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="root" alignment="TOP_CENTER" spacing="32.0" xmlns="http://javafx.com/javafx/19"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.view.form.TourneesFormView">
+<VBox fx:id="root" alignment="TOP_CENTER" prefHeight="593.0" prefWidth="411.0" spacing="32.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.view.form.TourneesFormView">
    <padding>
       <Insets bottom="28.0" left="28.0" right="28.0" top="28.0" />
    </padding>
@@ -81,6 +80,11 @@
          <ListView fx:id="commandes" prefHeight="150.0" VBox.vgrow="SOMETIMES" />
       </VBox>
    </VBox>
+   <Label prefHeight="33.0" prefWidth="391.0" text="Tous les champs doivent être remplis." textFill="#000000f0">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </Label>
    <HBox alignment="TOP_CENTER" spacing="16.0">
       <Button mnemonicParsing="false" onAction="#annuler" text="Annuler">
          <font>
