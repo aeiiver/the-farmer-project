@@ -90,7 +90,7 @@ public class CalendrierView implements Initializable {
       } else if (datesTournees.contains(day)) {
         label.setStyle("-fx-background-color: #F21A1A");
       } else {
-        label.setStyle("-fx-background-color: #EEEEEEE");
+        label.setStyle("-fx-background-color: #EEEEEE");
       }
       if (i % 7 == 0) {
         vbox.getChildren().add(label);
