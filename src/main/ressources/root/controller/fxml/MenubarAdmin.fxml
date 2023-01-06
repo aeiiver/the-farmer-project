@@ -14,7 +14,7 @@
     </Menu>
     <Menu mnemonicParsing="false" text="Clients">
         <items>
-            <MenuItem mnemonicParsing="false" onAction="#gotoListeClient" text="Clients" />
+            <MenuItem mnemonicParsing="false" onAction="#gotoListeClients" text="Clients" />
             <MenuItem mnemonicParsing="false" onAction="#gotoFormClient" text="Nouveau client" />
         </items>
     </Menu>
