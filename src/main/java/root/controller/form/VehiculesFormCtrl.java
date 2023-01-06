@@ -2,6 +2,7 @@ package root.controller.form;
 
 import java.sql.Connection;
 import javafx.stage.Stage;
+import root.SceneChanger;
 import root.StageUtil;
 import root.Validateur;
 import root.data.SingleConnection;
@@ -47,19 +48,27 @@ public class VehiculesFormCtrl {
     }
     int poidsValide = Integer.parseInt(poidsMax);
 
+    String immatriculation = immat;
+    if (!immat.contains("-") && !immat.contains(" ")) {
+      immatriculation = immat.substring(0, 2) + "-" + immat.substring(2, 5) + "-" + immat.substring(5, 7);
+    }
+    immatriculation.replace(" ", "-");
+
     SessionUtilisateur session = SingleSession.getSession();
     Producteur producteur = (Producteur) session.getUtilisateur();
     ListeVehicules listeVehicules = new ListeVehicules();
 
     Connection singleConnection = SingleConnection.getInstance();
-    Vehicule edit = new VehiculeDao(singleConnection).get(immat);
+    Vehicule edit = new VehiculeDao(singleConnection).get(immatriculation);
     if (edit == null) {
-      listeVehicules.ajouter(new Vehicule(immat, poidsValide, producteur));
+      listeVehicules.ajouter(new Vehicule(immatriculation, poidsValide, producteur));
     } else {
-      listeVehicules.editer(new Vehicule(immat, poidsValide, producteur));
+      listeVehicules.editer(new Vehicule(immatriculation, poidsValide, producteur));
     }
 
     fenetre.close();
+    SceneChanger.voirTableaudebord(fenetre);
+    SceneChanger.voirListeVehicules(fenetre);
   }
 
   /**

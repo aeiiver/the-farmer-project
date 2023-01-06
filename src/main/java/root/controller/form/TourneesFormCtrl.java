@@ -3,6 +3,7 @@ package root.controller.form;
 import java.sql.Time;
 import java.util.List;
 import javafx.stage.Stage;
+import root.SceneChanger;
 import root.StageUtil;
 import root.Validateur;
 import root.model.Commande;
@@ -85,6 +86,7 @@ public class TourneesFormCtrl {
     }
 
     fenetre.close();
+    SceneChanger.voirListeTournees(fenetre);
   }
 
   /**

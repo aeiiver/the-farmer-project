@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
 import javafx.stage.Stage;
+import root.SceneChanger;
 import root.StageUtil;
 import root.Validateur;
 import root.model.Client;
@@ -87,6 +88,7 @@ public class CommandesFormCtrl {
     }
 
     fenetre.close();
+    SceneChanger.voirListeCommandes(fenetre);
   }
 
   /**

@@ -3,6 +3,7 @@ package root.controller.form;
 import java.util.ArrayList;
 import java.util.Comparator;
 import javafx.stage.Stage;
+import root.SceneChanger;
 import root.StageUtil;
 import root.Validateur;
 import root.data.AdresseDao;
@@ -109,6 +110,7 @@ public class ClientsFormCtrl {
     }
 
     fenetre.close();
+    SceneChanger.voirListeClients(fenetre);
   }
 
   /**

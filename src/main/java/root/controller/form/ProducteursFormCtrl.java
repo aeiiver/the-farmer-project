@@ -2,6 +2,7 @@ package root.controller.form;
 
 import java.sql.Connection;
 import javafx.stage.Stage;
+import root.SceneChanger;
 import root.StageUtil;
 import root.Validateur;
 import root.data.ProducteurDao;
@@ -119,6 +120,8 @@ public class ProducteursFormCtrl {
       listeProducteurs.editer(new Producteur(siretSaisi,  mailSaisi, nomSaisi, prenomSaisi,
               numTelSaisi, mdpSaisi, adresse));
     }
+    fenetre.close();
+    SceneChanger.voirListeProducteurs(fenetre);
   }
 
   /**
