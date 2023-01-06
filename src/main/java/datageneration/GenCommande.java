@@ -26,10 +26,12 @@ public class GenCommande {
    * @param nb Nombre de commandes à générer.
    */
   public static void generate(int nb, Producteur producteur) {
+    Faker faker = new Faker();
     ArrayList<Client> clients = new ClientDao(SingleConnection.getInstance()).getAll();
     ArrayList<Commande> commandes = new ArrayList<>();
+    Date date = Date.valueOf(faker.number().numberBetween(2020, 2023) + "-"
+        + faker.number().numberBetween(1, 12) + "-" + faker.number().numberBetween(1, 28));
     for (int i = 0; i < nb; i++) {
-      Faker faker = new Faker();
       Time min = Time.valueOf(faker.date().future(1, TimeUnit.DAYS).toString().split(" ")[3]);
       Time max = Time.valueOf(faker.date().future(1, TimeUnit.DAYS).toString().split(" ")[3]);
       while (min.after(Time.valueOf("21:00:00")) && min.before(Time.valueOf("06:00:00"))) {
@@ -46,8 +48,6 @@ public class GenCommande {
         max = temp;
       }
       Connection singleConnection = SingleConnection.getInstance();
-      Date date = Date.valueOf(faker.number().numberBetween(2020, 2023) + "-"
-          + faker.number().numberBetween(1, 12) + "-" + faker.number().numberBetween(1, 28));
 
       if (producteur == null) {
         System.out.println();

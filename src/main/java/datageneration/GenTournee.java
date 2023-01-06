@@ -5,6 +5,7 @@ import static java.lang.Math.min;
 
 import com.github.javafaker.Faker;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
 import root.data.CommandeDao;
