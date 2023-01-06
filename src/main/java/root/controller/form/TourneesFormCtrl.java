@@ -1,11 +1,11 @@
 package root.controller.form;
 
 import java.sql.Time;
+import java.util.Comparator;
 import java.util.List;
 import javafx.stage.Stage;
 import root.SceneChanger;
 import root.StageUtil;
-import root.Validateur;
 import root.model.Commande;
 import root.model.Producteur;
 import root.model.Tournee;
@@ -29,13 +29,12 @@ public class TourneesFormCtrl {
    * Reflète l'ajout ou modification dans le modèle et redirige
    * l'utilisateur vers la vue sur la liste des tournées.
    */
-  public void enregistrer(String libelle, String heureMin, String heureMax, Vehicule vehicule,
+  public void enregistrer(String libelle, Vehicule vehicule,
                           List<Commande> commandes, int numTournee) {
 
     /* Validation de la saisie */
     // Vérifie si champs invalides
-    if (libelle.isEmpty() || heureMin.isEmpty() || heureMax.isEmpty() || vehicule == null
-        || commandes.isEmpty()) {
+    if (libelle.isEmpty() || vehicule == null || commandes.isEmpty()) {
       StageUtil.afficheAlerte("Tous les champs doivent être renseignés.", fenetre);
       return;
     }
@@ -43,33 +42,26 @@ public class TourneesFormCtrl {
     // Vérifie si types de valeur invalides
     String messageErreur = "";
 
-    if (!Validateur.validerHeure(heureMin)) {
-      messageErreur += "L'heure minimale saisie n'est pas une heure valide.\n";
-    }
-    if (!Validateur.validerHeure(heureMax)) {
-      messageErreur += "L'heure maximale saisie n'est pas une heure valide.\n";
-    }
-    if (!messageErreur.isEmpty()) {
-      StageUtil.afficheAlerte(messageErreur, fenetre);
-      return;
-    }
-
-    // Convertit les types valides
-    Time heureMinValide = Time.valueOf(heureMin + ":00:00");
-    Time heureMaxValide = Time.valueOf(heureMax + ":00:00");
-
-    if (heureMinValide.equals(heureMaxValide) || heureMinValide.after(heureMaxValide)) {
-      StageUtil.afficheAlerte("L'heure minimale est égale ou supérieure à l'heure maximale.",
-          fenetre);
-      return;
-    }
-
     /* Après validation de la saisie */
     SessionUtilisateur session = SingleSession.getSession();
     Producteur producteur = (Producteur) session.getUtilisateur();
     ListeTournees listeTournees = new ListeTournees(producteur);
 
-    Tournee tournee = new Tournee(libelle, heureMinValide, heureMaxValide, producteur, vehicule);
+    // On peut assurément get() puisque la sélection n'est pas vide
+    Time heureMin =
+        Time.valueOf(commandes.stream()
+            .min(Comparator.comparing(Commande::getHeureDeb))
+            .get()
+            .getHeureDeb()
+            .toLocalTime());
+    Time heureMax =
+        Time.valueOf(commandes.stream()
+            .max(Comparator.comparing(Commande::getHeureFin))
+            .get()
+            .getHeureFin()
+            .toLocalTime());
+
+    Tournee tournee = new Tournee(libelle, heureMin, heureMax, producteur, vehicule);
     tournee.getCommandes().addAll(commandes);
 
     if (!tournee.estValide()) {

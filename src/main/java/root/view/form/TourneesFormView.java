@@ -2,13 +2,17 @@ package root.view.form;
 
 import java.net.URL;
 import java.util.Calendar;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.IntStream;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
@@ -37,11 +41,9 @@ public class TourneesFormView implements Initializable, FormView<Tournee> {
   @FXML
   private TextField libelle;
   @FXML
-  private TextField heureMin;
+  private ComboBox<Vehicule> vehicules;
   @FXML
-  private TextField heureMax;
-  @FXML
-  private ChoiceBox<Vehicule> vehicules;
+  private Label info;
   @FXML
   private ListView<Commande> commandes;
 
@@ -56,13 +58,10 @@ public class TourneesFormView implements Initializable, FormView<Tournee> {
   @FXML
   private void enregistrer() {
     String libelleSaisi = libelle.getText().trim();
-    String heureMinSaisie = heureMin.getText().trim();
-    String heureMaxSaisie = heureMax.getText().trim();
     Vehicule vehiculeChoisi = vehicules.getSelectionModel().getSelectedItem();
     List<Commande> commandesSelectionnees = commandes.getSelectionModel().getSelectedItems();
 
-    ctrl.enregistrer(libelleSaisi, heureMinSaisie, heureMaxSaisie, vehiculeChoisi,
-        commandesSelectionnees, numTournee);
+    ctrl.enregistrer(libelleSaisi, vehiculeChoisi, commandesSelectionnees, numTournee);
   }
 
   /**
@@ -103,23 +102,12 @@ public class TourneesFormView implements Initializable, FormView<Tournee> {
 
     /* Lister toutes les commandes dans la ListView */
 
-    /*
-    TODO 2x
-    Comportement attendu: Retirer une commande d'une tournée devrait la faire apparaître parmi dans
-    la ListView quand on ajoute ou édite une autre tournée.
+    Producteur producteur = (Producteur) SingleSession.getSession().getUtilisateur();
+    Date aujourdhui = Calendar.getInstance().getTime();
 
-    Bug: Quand on supprime ou modifie une tournée, l'état de l'application n'est pas au
-    courant des changements faits aux commandes (leur champ "numTournee" est muté).
-    Résultat après le filtre: les commandes qu'on retire d'une tournée ne s'affichent pas
-    dans la ListView alors qu'elles devraient.
-    */
-    // List<Commande> commandesStockeesLibres = session.getListeCommandes().getCommandes()
-    //        .stream()
-    //        .filter(commande -> commande.getNumTournee() <= 0)
-    //        .toList();
-
-    List<Commande> commandesStockeesLibres = new ListeCommandes(
-        (Producteur) SingleSession.getSession().getUtilisateur()).getCommandes();
+    List<Commande> commandesStockeesLibres = new ListeCommandes(producteur).getCommandes().stream()
+        .filter(commande -> commande.getNumTournee() <= 0 &&
+            commande.getDateCom().compareTo(aujourdhui) >= 0).toList();
     commandes.getItems().addAll(commandesStockeesLibres);
 
     commandes.prefHeight(commandes.getFixedCellSize() * 3);
@@ -138,8 +126,34 @@ public class TourneesFormView implements Initializable, FormView<Tournee> {
         setGraphic(new Text(String.format("%s : %s (%d kg) - %s/%s", item.getDateCom(),
                 item.getLibelle(), item.getPoids(), item.getHeureDeb(), item.getHeureFin())));
       }
-
     });
+
+    /* Afficher dynamiquement le poids total des commandes et l'heure minimale/maximale */
+    commandes.getSelectionModel().getSelectedItems()
+        .addListener((ListChangeListener<? super Commande>) selection -> {
+          ObservableList<? extends Commande> commandesSelectionnees = selection.getList();
+
+          // Ne rien faire si on n'a pas de sélection
+          if (commandesSelectionnees.isEmpty()) {
+            return;
+          }
+
+          // On peut assurément get() puisque la sélection n'est pas vide
+          Date heureMin =
+              commandesSelectionnees.stream()
+                  .min(Comparator.comparing(Commande::getHeureDeb))
+                  .get()
+                  .getHeureDeb();
+          Date heureMax =
+              commandesSelectionnees.stream()
+                  .max(Comparator.comparing(Commande::getHeureFin))
+                  .get()
+                  .getHeureFin();
+
+          int poidsTotal = commandesSelectionnees.stream().mapToInt(Commande::getPoids).sum();
+
+          info.setText(String.format("%s → %s | %d kg", heureMin, heureMax, poidsTotal));
+        });
   }
 
   /**
@@ -152,15 +166,6 @@ public class TourneesFormView implements Initializable, FormView<Tournee> {
 
     // Libellé
     libelle.setText(tournee.getLibelle());
-
-    // Heure minimale
-    Calendar calendrier = Calendar.getInstance();
-    calendrier.setTime(tournee.getHeureMin());
-    heureMin.setText(String.valueOf(calendrier.get(Calendar.HOUR_OF_DAY)));
-
-    // Heure maximale
-    calendrier.setTime(tournee.getHeureMax());
-    heureMax.setText(String.valueOf(calendrier.get(Calendar.HOUR_OF_DAY)));
 
     // Véhicule
     int index = vehicules.getItems().indexOf(tournee.getVehicule());
