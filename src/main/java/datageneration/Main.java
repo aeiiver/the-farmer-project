@@ -3,6 +3,8 @@ package datageneration;
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.ArrayList;
+
+import root.data.ProducteurDao;
 import root.data.SingleConnection;
 import root.data.VehiculeDao;
 import root.model.Producteur;
@@ -26,6 +28,7 @@ public class Main {
     System.out.println("Génération des clients terminée");
 
     ArrayList<Producteur> producteurs = GenProducteur.generate(nbProducteurs);
+    producteurs.add(new ProducteurDao(SingleConnection.getInstance()).get("12345678901234"));
     System.out.println("Génération des producteurs terminée");
 
     for (Producteur producteur : producteurs) {
