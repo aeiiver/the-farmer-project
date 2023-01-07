@@ -40,6 +40,12 @@ public class Admin extends Utilisateur {
     this.pseudo = pseudo;
   }
 
+  /*
+  public Admin(String mail, String pseudo, String mdp) {
+    super(mail, mdp);
+    this.pseudo = pseudo;
+  }*/
+
   /**
    * Getter de l'identifiant de l'administrateur.
    *
@@ -60,6 +66,16 @@ public class Admin extends Utilisateur {
   }
 
   /**
+   * Getter du pseudo de l'administrateur.
+   *
+   * @return pseudo Pseudo de l'administrateur
+   */
+
+  public String getMail() {
+    return super.getMail();
+  }
+
+  /**
    * Setter de l'identifiant de l'administrateur.
    *
    * @param idAdmin Identifiant de l'administrateur
@@ -76,6 +92,8 @@ public class Admin extends Utilisateur {
   public void setPseudo(String pseudo) {
     this.pseudo = pseudo;
   }
+
+  public void setMail(String mail) {super.setMail(mail);}
 
   @Override
   public int hashCode() {

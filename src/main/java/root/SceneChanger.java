@@ -19,7 +19,7 @@ public class SceneChanger {
       "/root/controller/fxml/TableaudebordAdmin.fxml";
 
   private static final String COMPTE_PRODUCTEUR = "/root/controller/fxml/CompteProducteur.fxml";
-  private static final String COMPTE_ADMIN = "/root/controller/fxml/CompteAdmin.fxml";
+  private static final String COMPTE_ADMIN = "/root/controller/fxml/FormAdmin.fxml";
 
   private static final String LISTE_COMMANDES = "/root/controller/fxml/ListeCommandes.fxml";
   private static final String LISTE_TOURNEES = "/root/controller/fxml/ListeTournees.fxml";
@@ -58,9 +58,8 @@ public class SceneChanger {
   /**
    * Redirige l'administrateur vers la vue sur son compte.
    */
-  public static void voirCompteAdmin(Stage fenetre) {
-    // TODO Change la scène vers le compte producteur
-    throw new RuntimeException("Not implemented");
+  public static Object voirCompteAdmin(Stage fenetre) {
+    return StageUtil.afficheDialogue(COMPTE_ADMIN, fenetre);
   }
 
   public static void voirListeClientsAdmin(Stage fenetre) {

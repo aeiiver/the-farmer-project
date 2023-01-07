@@ -110,12 +110,14 @@ public class AdminDao extends Dao<Admin, String> {
    */
   @Override
   public boolean update(Admin admin) {
+    String sel = BCrypt.gensalt();
+    String mdpChiffre = BCrypt.hashpw(admin.getMdp(), sel);
     try {
       String query = "UPDATE Admin SET mail = ?, pseudo = ?, mdp = ? WHERE idAdmin = ?";
       PreparedStatement preparedStatement = connexion.prepareStatement(query);
       preparedStatement.setString(1, admin.getMail());
       preparedStatement.setString(2, admin.getPseudo());
-      preparedStatement.setString(3, admin.getMdp());
+      preparedStatement.setString(3, mdpChiffre);
       preparedStatement.setInt(4, admin.getIdAdmin());
       preparedStatement.executeUpdate();
       return true;
