@@ -9,15 +9,15 @@
 <?import javafx.scene.text.Font?>
 
 <VBox fx:id="root" prefHeight="625.0" prefWidth="1013.0" xmlns="http://javafx.com/javafx/19"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.view.list.ClientsView">
-    <fx:include source="MenubarAdmin.fxml"/>
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.view.list.VehiculesView">
+    <fx:include source="../MenubarProducteur.fxml"/>
     <VBox prefHeight="200.0" prefWidth="100.0" spacing="8.0" VBox.vgrow="ALWAYS">
         <VBox.margin>
             <Insets bottom="8.0" left="8.0" right="8.0" top="8.0"/>
         </VBox.margin>
         <HBox>
             <HBox HBox.hgrow="ALWAYS">
-                <Label text="Clients">
+                <Label text="Véhicules">
                     <font>
                         <Font size="24.0"/>
                     </font>

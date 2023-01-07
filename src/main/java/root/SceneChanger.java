@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import root.model.list.ListeCommandes;
 
 /**
  * Classe statique qui groupe les méthodes permettant de changer la scène affichée dans une fenêtre.
@@ -19,20 +18,22 @@ public class SceneChanger {
       "/root/controller/fxml/TableaudebordAdmin.fxml";
 
   private static final String COMPTE_PRODUCTEUR = "/root/controller/fxml/CompteProducteur.fxml";
-  private static final String COMPTE_ADMIN = "/root/controller/fxml/FormAdmin.fxml";
+  private static final String COMPTE_ADMIN = "/root/controller/fxml/Form/FormAdmin.fxml";
 
-  private static final String LISTE_COMMANDES = "/root/controller/fxml/ListeCommandes.fxml";
-  private static final String LISTE_TOURNEES = "/root/controller/fxml/ListeTournees.fxml";
-  private static final String LISTE_VEHICULES = "/root/controller/fxml/ListeVehicules.fxml";
+  private static final String LISTE_COMMANDES = "/root/controller/fxml/Liste/ListeCommandes.fxml";
+  private static final String LISTE_TOURNEES = "/root/controller/fxml/Liste/ListeTournees.fxml";
+  private static final String LISTE_VEHICULES = "/root/controller/fxml/Liste/ListeVehicules.fxml";
   private static final String LISTE_CLIENTS = "/root/controller/fxml/ListeClients.fxml";
-  private static final String LISTE_PRODUCTEURS = "/root/controller/fxml/ListeProducteurs.fxml";
+  private static final String LISTE_PRODUCTEURS =
+      "/root/controller/fxml/Liste/ListeProducteurs.fxml";
 
-  private static final String LISTE_CLIENTS_ADMIN = "/root/controller/fxml/ListeClientsAdmin.fxml";
-  private static final String FORM_COMMANDE = "/root/controller/fxml/FormCommande.fxml";
-  private static final String FORM_TOURNEE = "/root/controller/fxml/FormTournee.fxml";
-  private static final String FORM_VEHICULE = "/root/controller/fxml/FormVehicule.fxml";
-  private static final String FORM_CLIENT = "/root/controller/fxml/FormClient.fxml";
-  private static final String FORM_PRODUCTEUR = "/root/controller/fxml/FormProducteur.fxml";
+  private static final String LISTE_CLIENTS_ADMIN =
+      "/root/controller/fxml/Liste/ListeClientsAdmin.fxml";
+  private static final String FORM_COMMANDE = "/root/controller/fxml/Form/FormCommande.fxml";
+  private static final String FORM_TOURNEE = "/root/controller/fxml/Form/FormTournee.fxml";
+  private static final String FORM_VEHICULE = "/root/controller/fxml/Form/FormVehicule.fxml";
+  private static final String FORM_CLIENT = "/root/controller/fxml/Form/FormClient.fxml";
+  private static final String FORM_PRODUCTEUR = "/root/controller/fxml/Form/FormProducteur.fxml";
 
   /**
    * Affichage de la page de connexion.
