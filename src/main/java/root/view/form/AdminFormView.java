@@ -1,5 +1,7 @@
 package root.view.form;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.PasswordField;
@@ -10,8 +12,6 @@ import root.StageUtil;
 import root.controller.form.AdminFormCtrl;
 import root.model.Admin;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 
 /**
  * Classe de vue pour l'ajout de producteurs.
@@ -46,7 +46,7 @@ public class AdminFormView implements Initializable, FormView<Admin> {
     String pseudoSaisi = pseudo.getText();
 
 
-    ctrl.enregistrer( mdpSaisi, mailSaisi, pseudoSaisi);
+    ctrl.enregistrer(mdpSaisi, mailSaisi, pseudoSaisi);
   }
 
   /**

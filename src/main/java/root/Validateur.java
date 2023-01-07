@@ -84,8 +84,8 @@ public class Validateur {
    * @return true si le texte respecte les critères pour un numéro de téléphone, false sinon
    */
   public static boolean validerNumTel(String texte) {
-    return !texte.matches("^0[1-9]( ?[0-9]{2}){4}$") ||
-        texte.matches("^0[1-9]( ?[0-9]{8})$");
+    return !texte.matches("^0[1-9]( ?[0-9]{2}){4}$")
+        || texte.matches("^0[1-9]( ?[0-9]{8})$");
   }
 
   /**

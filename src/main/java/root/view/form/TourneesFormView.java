@@ -106,8 +106,8 @@ public class TourneesFormView implements Initializable, FormView<Tournee> {
     Date aujourdhui = Calendar.getInstance().getTime();
 
     List<Commande> commandesStockeesLibres = new ListeCommandes(producteur).getCommandes().stream()
-        .filter(commande -> commande.getNumTournee() <= 0 &&
-            commande.getDateCom().compareTo(aujourdhui) >= 0).toList();
+        .filter(commande -> commande.getNumTournee() <= 0
+            && commande.getDateCom().compareTo(aujourdhui) >= 0).toList();
     commandes.getItems().addAll(commandesStockeesLibres);
 
     commandes.prefHeight(commandes.getFixedCellSize() * 3);

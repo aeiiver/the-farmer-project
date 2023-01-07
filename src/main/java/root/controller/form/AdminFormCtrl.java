@@ -1,20 +1,16 @@
 package root.controller.form;
 
+import java.sql.Connection;
 import javafx.stage.Stage;
 import root.SceneChanger;
 import root.StageUtil;
 import root.Validateur;
 import root.data.AdminDao;
-import root.data.AdresseDao;
 import root.data.SingleConnection;
-import root.model.Adresse;
 import root.model.Admin;
-import root.model.Producteur;
 import root.model.session.SessionUtilisateur;
 import root.model.session.SingleSession;
 
-
-import java.sql.Connection;
 //TODO c'est quoi ce travaille de cochon là...
 
 /**
@@ -70,7 +66,7 @@ public class AdminFormCtrl {
       edit = admin;
     }
     if (edit != null) {
-      Admin updateAdmin = new Admin(admin.getIdAdmin(), mailSaisi,pseudoSaisi, mdpSaisi);
+      Admin updateAdmin = new Admin(admin.getIdAdmin(), mailSaisi, pseudoSaisi, mdpSaisi);
       updateAdmin.setIdAdmin(edit.getIdAdmin());
       AdminDao dao = new AdminDao(SingleConnection.getInstance());
       dao.update(updateAdmin);

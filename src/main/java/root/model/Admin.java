@@ -93,7 +93,9 @@ public class Admin extends Utilisateur {
     this.pseudo = pseudo;
   }
 
-  public void setMail(String mail) {super.setMail(mail);}
+  public void setMail(String mail) {
+    super.setMail(mail);
+  }
 
   @Override
   public int hashCode() {

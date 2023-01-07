@@ -98,8 +98,9 @@ public class Commande {
 
 
   /**
-   * Constructeur de la classe Commande utilisée lorsque l'on choisit la position de la commande dans
-   * la tournée.
+   * Constructeur de la classe Commande utilisée lorsque
+   * l'on choisit la position de la commande dans la tournée.
+   *
    * @param numCom     Le numéro de la commande.
    * @param libelle    Le libellé.
    * @param poids      Le poids, en kg.
@@ -115,7 +116,7 @@ public class Commande {
                   Producteur producteur, Client client, int numTournee, int ordreTournee) {
     this(numCom, libelle, poids, dateCom, heureDeb, heureFin, producteur, client, numTournee);
     this.ordreTournee = ordreTournee;
-}
+  }
 
   /**
    * Constructeur de classe d'une commande insérée dans la base et incluse dans une tournée.

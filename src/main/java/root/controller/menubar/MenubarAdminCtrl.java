@@ -2,9 +2,9 @@ package root.controller.menubar;
 
 import javafx.stage.Stage;
 import root.SceneChanger;
+import root.model.Admin;
 import root.model.session.SingleSession;
 import root.view.form.AdminFormView;
-import root.model.Admin;
 
 /**
  * Contrôleur associé à la barre de menus administrateur.
@@ -41,7 +41,8 @@ public class MenubarAdminCtrl {
    * Méthode appelée lors du clic sur le bouton "Nouveau producteur".
    * Affiche le formulaire de création d'un nouveau producteur.
    */
-  public void gotoFormProducteur() {SceneChanger.voirFormProducteur(fenetre);
+  public void gotoFormProducteur() {
+    SceneChanger.voirFormProducteur(fenetre);
   }
 
   /**
@@ -51,6 +52,7 @@ public class MenubarAdminCtrl {
   public void gotoListeClients() {
     SceneChanger.voirListeClientsAdmin(fenetre);
   }
+
   /**
    * Méthode appelée lors du clic sur le bouton "Ajouter un client".
    * Affiche le formulaire de création d'un nouveau client.

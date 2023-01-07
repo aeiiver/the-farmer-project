@@ -140,17 +140,17 @@ public class TableaudebordView implements Initializable {
       cell.setGraphic(stackPane);
       cell.itemProperty().addListener((observable, oldValue, newValue)
           -> {
-                if (newValue != null && newValue.estValide()) {
-                  stackPane.setStyle("-fx-border-color: green; "
-                      + "-fx-border-width: 2px; "
-                      + "-fx-border-radius: 5px");
+            if (newValue != null && newValue.estValide()) {
+              stackPane.setStyle("-fx-border-color: green; "
+                  + "-fx-border-width: 2px; "
+                  + "-fx-border-radius: 5px");
             } else {
-                  stackPane.setStyle("-fx-border-color: red; "
-                      + "-fx-border-width: 2px; "
-                      + "-fx-border-radius: 5px;");
-                }
+              stackPane.setStyle("-fx-border-color: red; "
+                    + "-fx-border-width: 2px; "
+                    + "-fx-border-radius: 5px;");
+            }
           });
-          return cell;
+      return cell;
     });
 
     // Détecte quand une tournée est sélectionnée
@@ -193,7 +193,8 @@ public class TableaudebordView implements Initializable {
             Dragboard db = event.getDragboard();
             if (db.hasString()) {
               int draggedIndex = listeCommandes.getItems().indexOf(
-                  new CommandeDao(SingleConnection.getInstance()).get(Integer.parseInt(db.getString()))
+                  new CommandeDao(SingleConnection.getInstance())
+                      .get(Integer.parseInt(db.getString()))
               );
               System.out.println(draggedIndex);
               int dropIndex;
@@ -207,7 +208,8 @@ public class TableaudebordView implements Initializable {
               }
               listeCommandes.getItems().remove(draggedIndex);
               listeCommandes.getItems().add(dropIndex,
-                  new CommandeDao(SingleConnection.getInstance()).get(Integer.parseInt(db.getString())));
+                  new CommandeDao(SingleConnection.getInstance())
+                      .get(Integer.parseInt(db.getString())));
               event.setDropCompleted(true);
             }
             event.consume();
@@ -237,7 +239,7 @@ public class TableaudebordView implements Initializable {
   private static class CommandeCell extends ListCell<Commande> {
     protected void updateItems(Commande item, boolean empty) {
       super.updateItem(item, empty);
-      if (empty ||item == null) {
+      if (empty || item == null) {
         setText(null);
       } else {
         setText(item.toString());

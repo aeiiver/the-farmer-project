@@ -174,7 +174,8 @@ public class CommandeDao extends Dao<Commande, Integer> {
   public boolean update(Commande commande) {
     try {
       String query = "UPDATE Commande SET libelle = ?, poids = ?, dateCom = ?, "
-          + "heureDeb = ?, heureFin = ?, SIRET = ?, idClient = ?, numTournee = ?, ordreTournee = ? WHERE numCom = ?";
+          + "heureDeb = ?, heureFin = ?, SIRET = ?, idClient = ?, numTournee = ?, "
+          + "ordreTournee = ? WHERE numCom = ?";
       PreparedStatement preparedStatement = connexion.prepareStatement(query);
       preparedStatement.setString(1, commande.getLibelle());
       preparedStatement.setDouble(2, commande.getPoids());
