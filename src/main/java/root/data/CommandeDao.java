@@ -153,7 +153,8 @@ public class CommandeDao extends Dao<Commande, Integer> {
             resultat.getTime("heureFin"),
             new ProducteurDao(connexion).get((resultat.getString("SIRET"))),
             new ClientDao(connexion).get(resultat.getInt("idClient")),
-            numTournee));
+            numTournee,
+            resultat.getInt("ordreTournee")));
       }
       return commandes;
 
@@ -173,7 +174,7 @@ public class CommandeDao extends Dao<Commande, Integer> {
   public boolean update(Commande commande) {
     try {
       String query = "UPDATE Commande SET libelle = ?, poids = ?, dateCom = ?, "
-          + "heureDeb = ?, heureFin = ?, SIRET = ?, idClient = ?, numTournee = ? WHERE numCom = ?";
+          + "heureDeb = ?, heureFin = ?, SIRET = ?, idClient = ?, numTournee = ?, ordreTournee = ? WHERE numCom = ?";
       PreparedStatement preparedStatement = connexion.prepareStatement(query);
       preparedStatement.setString(1, commande.getLibelle());
       preparedStatement.setDouble(2, commande.getPoids());
@@ -184,10 +185,16 @@ public class CommandeDao extends Dao<Commande, Integer> {
       preparedStatement.setInt(7, commande.getClient().getIdClient());
       if (commande.getNumTournee() > 0) {
         preparedStatement.setInt(8, commande.getNumTournee());
+        if (commande.getOrdreTournee() > 0) {
+          preparedStatement.setInt(9, commande.getOrdreTournee());
+        } else {
+          preparedStatement.setNull(9, Types.INTEGER);
+        }
       } else {
         preparedStatement.setNull(8, Types.INTEGER);
+        preparedStatement.setNull(9, Types.INTEGER);
       }
-      preparedStatement.setInt(9, commande.getNumCom());
+      preparedStatement.setInt(10, commande.getNumCom());
       preparedStatement.executeUpdate();
       return true;
     } catch (Exception e) {
@@ -277,7 +284,8 @@ public class CommandeDao extends Dao<Commande, Integer> {
             resultat.getTime("heureFin"),
             new ProducteurDao(connexion).get((resultat.getString("SIRET"))),
             new ClientDao(connexion).get(resultat.getInt("idClient")),
-            resultat.getInt("numTournee")));
+            resultat.getInt("numTournee"),
+            resultat.getInt("ordreTournee")));
       }
       return commandes;
 

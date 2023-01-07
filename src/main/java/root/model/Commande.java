@@ -83,13 +83,39 @@ public class Commande {
   private Client client;
 
   /**
-   * Numéro de la tournée auquel la commande associée.
+   * Numéro de la tournée dans laquelle la commande est associée.
    *
    * @see Commande#Commande(int, String, int, Date, Time, Time, Producteur, Client, int)  Commande
    * @see Commande#getNumTournee()
    * @see Commande#setNumTournee(int)
    */
   private int numTournee;
+
+  /**
+   * Ordre dans la tournée dans laquelle la commande est associée.
+   */
+  private int ordreTournee;
+
+
+  /**
+   * Constructeur de la classe Commande utilisée lorsque l'on choisit la position de la commande dans
+   * la tournée.
+   * @param numCom     Le numéro de la commande.
+   * @param libelle    Le libellé.
+   * @param poids      Le poids, en kg.
+   * @param dateCom    La date à laquelle la commande devra être livrée.
+   * @param heureDeb   L'heure de départ de livraison
+   * @param heureFin   L'heure de fin de livraison
+   * @param producteur Le producteur qui a envoyé la commande.
+   * @param client     Le client auquel la commande est destiné.
+   * @param numTournee Le numéro de la tournée dans laquelle la commande est insérée.
+   * @param ordreTournee L'ordre dans la tournée dans laquelle la commande est insérée.
+   */
+  public Commande(int numCom, String libelle, int poids, Date dateCom, Time heureDeb, Time heureFin,
+                  Producteur producteur, Client client, int numTournee, int ordreTournee) {
+    this(numCom, libelle, poids, dateCom, heureDeb, heureFin, producteur, client, numTournee);
+    this.ordreTournee = ordreTournee;
+}
 
   /**
    * Constructeur de classe d'une commande insérée dans la base et incluse dans une tournée.
@@ -102,6 +128,7 @@ public class Commande {
    * @param heureFin   L'heure de fin de livraison
    * @param producteur Le producteur qui a envoyé la commande.
    * @param client     Le client auquel la commande est destiné.
+   * @param numTournee Le numéro de la tournée dans laquelle la commande est insérée.
    */
   public Commande(int numCom, String libelle, int poids, Date dateCom, Time heureDeb, Time heureFin,
                   Producteur producteur, Client client, int numTournee) {
@@ -234,6 +261,15 @@ public class Commande {
   }
 
   /**
+   * Getter de l'ordre dans la tournée auquel la commande est associé.
+   *
+   * @return ordreTournee l'ordre dans la tournée.
+   */
+  public int getOrdreTournee() {
+    return ordreTournee;
+  }
+
+  /**
    * Setter du numéro de la commande.
    *
    * @param numCom le numéro de la commande
@@ -312,6 +348,15 @@ public class Commande {
    */
   public void setNumTournee(int numTournee) {
     this.numTournee = numTournee;
+  }
+
+  /**
+   * Setter de l'ordre dans la tournée auquel la commande est associé.
+   *
+   * @param ordreTournee L'ordre dans la tournée.
+   */
+  public void setOrdreTournee(int ordreTournee) {
+    this.ordreTournee = ordreTournee;
   }
 
   /**
