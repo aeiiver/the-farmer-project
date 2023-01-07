@@ -64,7 +64,7 @@ public class TourneesFormCtrl {
     Tournee tournee = new Tournee(libelle, heureMin, heureMax, producteur, vehicule);
     tournee.getCommandes().addAll(commandes);
 
-    if (!tournee.estValide()) {
+    if (!tournee.validePoids()) {
       StageUtil.afficheAlerte("La tournée n'est pas valide.", fenetre);
       return;
     }

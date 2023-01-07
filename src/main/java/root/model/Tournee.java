@@ -276,33 +276,29 @@ public class Tournee {
    * @return true si la tournée est valide, false sinon
    */
   public boolean estValide() {
+    return valideHeure() && validePoids();
+  }
+
+  public boolean validePoids() {
     int poidsTotal = 0;
-
-    //pour chaque commande de la tournée
-    for (Commande com : commandes) {
-
-      //vérification de l'heure de début
-      if (com.getHeureDeb().before(this.getHeureMin())) {
-        return false;
-      }
-      //vérification de l'heure de fin
-      if (com.getHeureFin().after(this.heureMax)) {
-        return false;
-      }
-
-      //si l'heure de début et l'heure de fin sont correspondantes alors
-      //la date correspond aussi puisqu'on utilise java.sql.Date .
-
-      //additionne le poids de toutes les commandes
+    for (Commande com: commandes) {
       poidsTotal += com.getPoids();
     }
+    return poidsTotal < this.vehicule.getPoidsMax();
+  }
 
-    //vérifie si la somme du poid de toutes les commandes est valide
-    if (poidsTotal > this.vehicule.getPoidsMax()) {
-      return false;
+  public boolean valideHeure() {
+    //TODO avec itinéraire.
+    boolean heure = false;
+    for (Commande com: commandes) {
+      if (com.getHeureDeb().before(this.getHeureMin()) ||
+          com.getHeureFin().after(this.heureMax)) {
+        heure = false;
+      } else {
+        heure = true;
+      }
     }
-
-    return true;
+    return heure;
   }
 
   /**
