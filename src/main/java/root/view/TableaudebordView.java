@@ -5,17 +5,26 @@ import com.gluonhq.maps.MapView;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import root.StageUtil;
 import root.controller.TableaudebordCtrl;
+import root.data.CommandeDao;
+import root.data.SingleConnection;
 import root.model.Commande;
 import root.model.PoiLayer;
 import root.model.Producteur;
@@ -36,6 +45,8 @@ public class TableaudebordView implements Initializable {
   private ListView<Tournee> listeTourneesCourantes;
   @FXML
   private MapView carte;
+
+  private static Object temp = null;
 
   private final CalendrierView calendrierView = new CalendrierView();
 
@@ -122,10 +133,66 @@ public class TableaudebordView implements Initializable {
           // Change la liste des commandes courantes
           ObservableList<Commande> commandesTournee =
               FXCollections.observableArrayList(tourneeSelectionnee.getCommandes());
+
+          listeCommandes.setFixedCellSize(120);
+
+          listeCommandes.setCellFactory(lv -> {
+            ListCell<Commande> cell = new CommandeCell();
+            cell.textProperty().bind(cell.itemProperty().asString());
+
+            cell.setOnDragDetected(event -> {
+              if (cell.getItem() == null) {
+                return;
+              }
+              Dragboard db =
+                  cell.startDragAndDrop(javafx.scene.input.TransferMode.MOVE);
+              ClipboardContent content = new ClipboardContent();
+              content.putString(String.valueOf(cell.getItem().getNumCom()));
+              db.setContent(content);
+              event.consume();
+            });
+            return cell;
+          });
+
+          listeCommandes.setOnDragOver(event -> {
+            if (event.getGestureSource() != listeCommandes
+                && event.getDragboard().hasString()) {
+              event.acceptTransferModes(javafx.scene.input.TransferMode.MOVE);
+            }
+            event.consume();
+          });
+
+          listeCommandes.setOnDragDropped(event -> {
+            Dragboard db = event.getDragboard();
+            if (db.hasString()) {
+              int draggedIndex = listeCommandes.getItems().indexOf(
+                  new CommandeDao(SingleConnection.getInstance()).get(Integer.parseInt(db.getString()))
+              );
+              System.out.println(draggedIndex);
+              int dropIndex;
+              if (listeCommandes.getSelectionModel().isSelected(draggedIndex)) {
+                listeCommandes.getSelectionModel().clearSelection();
+              }
+              System.out.println(event.getX());
+              if (event.getX() > listeCommandes.getWidth() - listeCommandes.getFixedCellSize()) {
+                dropIndex = listeCommandes.getItems().size() - 1;
+              } else {
+                System.out.println(event.getX() + " " + listeCommandes.getFixedCellSize());
+                dropIndex = (int) (event.getX() / listeCommandes.getFixedCellSize());
+              }
+              listeCommandes.getItems().remove(draggedIndex);
+              listeCommandes.getItems().add(dropIndex,
+                  new CommandeDao(SingleConnection.getInstance()).get(Integer.parseInt(db.getString())));
+              event.setDropCompleted(true);
+            }
+            event.consume();
+          });
           listeCommandes.setItems(commandesTournee);
 
           // Met à jour les marqueurs sur la carte
           coucheMarqueur.effacerMarqueurs();
+
+
 
           commandesTournee.forEach(commande -> {
             double[] gpsClient = Arrays.stream(commande.getClient().getGps().split(","))
@@ -140,6 +207,17 @@ public class TableaudebordView implements Initializable {
           });
         });
 
+  }
+
+  private static class CommandeCell extends ListCell<Commande> {
+    protected void updateItems(Commande item, boolean empty) {
+      super.updateItem(item, empty);
+      if (empty ||item == null) {
+        setText(null);
+      } else {
+        setText(item.toString());
+      }
+    }
   }
 
 }

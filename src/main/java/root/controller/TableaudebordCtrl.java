@@ -1,5 +1,6 @@
 package root.controller;
 
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import root.SceneChanger;
 import root.StageUtil;
@@ -52,5 +53,4 @@ public class TableaudebordCtrl {
     TourneesFormView vue = (TourneesFormView) SceneChanger.voirFormTournee(fenetre);
     vue.chargeChamps(tournee);
   }
-
 }
