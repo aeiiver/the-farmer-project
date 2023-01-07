@@ -11,12 +11,15 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -126,6 +129,30 @@ public class TableaudebordView implements Initializable {
     listeTourneesCourantes.setItems(tournees);
     listeCommandes.setItems(FXCollections.observableArrayList());
 
+    listeTourneesCourantes.setCellFactory(lv -> {
+      ListCell<Tournee> cell = new ListCell<>();
+      cell.textProperty().bind(cell.itemProperty().asString());
+      cell.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+      StackPane stackPane = new StackPane();
+      Label label = new Label();
+      label.textProperty().bind(cell.itemProperty().asString());
+      stackPane.getChildren().add(label);
+      cell.setGraphic(stackPane);
+      cell.itemProperty().addListener((observable, oldValue, newValue)
+          -> {
+                if (newValue != null && newValue.estValide()) {
+                  stackPane.setStyle("-fx-border-color: green; "
+                      + "-fx-border-width: 2px; "
+                      + "-fx-border-radius: 5px");
+            } else {
+                  stackPane.setStyle("-fx-border-color: red; "
+                      + "-fx-border-width: 2px; "
+                      + "-fx-border-radius: 5px;");
+                }
+          });
+          return cell;
+    });
+
     // Détecte quand une tournée est sélectionnée
     listeTourneesCourantes.getSelectionModel().selectedItemProperty()
         .addListener((observable, oldSelection, tourneeSelectionnee) -> {
@@ -173,11 +200,9 @@ public class TableaudebordView implements Initializable {
               if (listeCommandes.getSelectionModel().isSelected(draggedIndex)) {
                 listeCommandes.getSelectionModel().clearSelection();
               }
-              System.out.println(event.getX());
               if (event.getX() > listeCommandes.getWidth() - listeCommandes.getFixedCellSize()) {
                 dropIndex = listeCommandes.getItems().size() - 1;
               } else {
-                System.out.println(event.getX() + " " + listeCommandes.getFixedCellSize());
                 dropIndex = (int) (event.getX() / listeCommandes.getFixedCellSize());
               }
               listeCommandes.getItems().remove(draggedIndex);
