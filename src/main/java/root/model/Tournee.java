@@ -1,8 +1,18 @@
 package root.model;
 
+import static root.Utils.readInputStream;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Objects;
 import root.model.list.ListeCommandes;
 
 /**
@@ -75,6 +85,8 @@ public class Tournee {
    * @see ListeCommandes
    */
   private ArrayList<Commande> commandes;
+
+  private Time tempsTotal;
 
   /**
    * Constructeur de classe d'une tournée insérée dans la base.
@@ -294,10 +306,14 @@ public class Tournee {
     commandes.sort(Comparator.comparing(Commande::getOrdreTournee));
 
     Time tempsTournee = new Time(0);
-    for (int i = 0; i < commandes.size(); i++) {
+    for (int i = 0; i < commandes.size() - 1; i++) {
       Commande com = commandes.get(i);
+      Commande comNP = commandes.get(i + 1);
       String gpsClient = com.getClient().getGps();
+      String gpsClientNP = comNP.getClient().getGps();
+      tempsTournee = new Time(tempsTournee.getTime() + getTempsTrajet(gpsClient, gpsClientNP).getTime());
     }
+    tempsTotal = tempsTournee;
 
     return false;
   }
@@ -326,7 +342,58 @@ public class Tournee {
    * @return les informations de la tournée
    */
   public String toString() {
-    return libelle + "\n" + heureMin + "/" + heureMax + "\n" + vehicule;
+    String tempsTournee = Objects.equals(tempsTotal, new Time(0)) ? tempsTotal.toString() : "";
+    return libelle + "\n" + heureMin + "/" + heureMax + "\n" + vehicule + "\n" + tempsTournee;
+  }
+
+  private Time getTempsTrajet(String depart, String arrivee) {
+    try {
+      Time temps = new Time(0);
+      String retour = "";
+      depart.replace(" ", "");
+      String temp = depart.substring(0, depart.indexOf(","));
+      String temp2 = depart.substring(depart.indexOf(",") + 1);
+      depart = temp2 + "," + temp;
+      arrivee.replace(" ", "");
+      temp = arrivee.substring(0, arrivee.indexOf(","));
+      temp2 = arrivee.substring(arrivee.indexOf(",") + 1);
+      arrivee = temp2 + "," + temp;
+      URL url = new URL(
+          "https://wxs.ign.fr/calcul/geoportail/itineraire/rest/1.0.0/route?resource=bdtopo-osrm&start=" +
+              depart + "&end=" + arrivee);
+      HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+      connection.setRequestMethod("GET");
+      connection.setRequestProperty("Content-Type", "application/json");
+      connection.connect();
+      int responseCode = connection.getResponseCode();
+      if (responseCode >= 200 && responseCode < 300) {
+        InputStream inputStream = connection.getInputStream();
+        String responseBody = readInputStream(inputStream);
+        if (responseBody.contains("duration")) {
+          retour = responseBody.substring(responseBody.indexOf("distance"));
+        }
+      }
+      if (retour.equals("")) {
+        return temps;
+      } else {
+        retour = retour.substring(retour.indexOf("\"duration\":") + 11, retour.indexOf(",", retour.indexOf("\"duration\":")));
+        retour = retour.substring(0, retour.indexOf("."));
+        String heure = Integer.toString(Integer.parseInt(retour)/60);
+        String minute = Integer.toString(Integer.parseInt(retour)%60);
+        heure = heure.length() == 1 ? "0" + heure : heure;
+        minute = minute.length() == 1 ? "0" + minute : minute;
+        try {
+          temps = new Time(new SimpleDateFormat("HH:mm").parse(heure + ":" + minute).getTime());
+        } catch (Exception e) {
+          e.printStackTrace();
+          temps = new Time(0);
+        }
+        return temps;
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+      return new Time(0);
+    }
   }
 
 }
