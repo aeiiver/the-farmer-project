@@ -4,6 +4,7 @@ import com.gluonhq.maps.MapPoint;
 import com.gluonhq.maps.MapView;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -214,7 +215,7 @@ public class TableaudebordView implements Initializable {
             }
             event.consume();
           });
-          listeCommandes.setItems(commandesTournee);
+          listeCommandes.setItems(commandesTournee.sorted(Comparator.comparing(Commande::getOrdreTournee)));
 
           // Met à jour les marqueurs sur la carte
           coucheMarqueur.effacerMarqueurs();

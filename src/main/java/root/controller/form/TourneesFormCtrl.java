@@ -62,6 +62,11 @@ public class TourneesFormCtrl {
             .toLocalTime());
 
     Tournee tournee = new Tournee(libelle, heureMin, heureMax, producteur, vehicule);
+
+    for (int i = 0; i < commandes.size(); i++) {
+      commandes.get(i).setOrdreTournee(i);
+    }
+
     tournee.getCommandes().addAll(commandes);
 
     if (!tournee.validePoids()) {

@@ -2,6 +2,7 @@ package root.model;
 
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Comparator;
 import root.model.list.ListeCommandes;
 
 /**
@@ -289,16 +290,16 @@ public class Tournee {
 
   public boolean valideHeure() {
     //TODO avec itinéraire.
-    boolean heure = false;
-    for (Commande com: commandes) {
-      if (com.getHeureDeb().before(this.getHeureMin()) ||
-          com.getHeureFin().after(this.heureMax)) {
-        heure = false;
-      } else {
-        heure = true;
-      }
+    String adresseProducteur = producteur.getAdresse().toString();
+    commandes.sort(Comparator.comparing(Commande::getOrdreTournee));
+
+    Time tempsTournee = new Time(0);
+    for (int i = 0; i < commandes.size(); i++) {
+      Commande com = commandes.get(i);
+      String gpsClient = com.getClient().getGps();
     }
-    return heure;
+
+    return false;
   }
 
   /**
