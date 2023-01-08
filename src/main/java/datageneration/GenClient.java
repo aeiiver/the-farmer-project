@@ -34,12 +34,12 @@ public class GenClient {
 
       Random random = new Random();
 
-      double minLon = parseGpsLon(GpsProducteur) -0.4;
-      double minLat = parseGpsLat(GpsProducteur) -0.4;
+      double minLon = parseGpsLon(GpsProducteur) -0.00002;
+      double minLat = parseGpsLat(GpsProducteur) -0.00002;
 
 
-      double randomLon = minLon + 0.8 * random.nextDouble();
-      double randomLat = minLat + 0.8 * random.nextDouble();
+      double randomLon = minLon + 0.0004 * random.nextDouble();
+      double randomLat = minLat + 0.0004 * random.nextDouble();
 
       GenAdresse genAdresse = new GenAdresse(randomLon, randomLat);
       Adresse adresse = genAdresse.genAdresse();

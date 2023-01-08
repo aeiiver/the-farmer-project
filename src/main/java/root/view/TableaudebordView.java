@@ -227,8 +227,8 @@ public class TableaudebordView implements Initializable {
                 .mapToDouble(Double::valueOf)
                 .toArray();
 
-            double latitude = gpsClient[0];
-            double longitude = gpsClient[1];
+            double longitude = gpsClient[0];
+            double latitude = gpsClient[1];
 
             coucheMarqueur.addMarqueur(new MapPoint(latitude, longitude),
                 new Circle(7.5, Color.RED));

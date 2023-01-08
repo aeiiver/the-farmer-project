@@ -49,6 +49,7 @@ public class GenTournee {
 
       for (Commande commande : commandes) {
         commande.setNumTournee(tournee.getNumTournee());
+        commande.setOrdreTournee(commandes.indexOf(commande));
         new CommandeDao(singleConnection).update(commande);
       }
     }
