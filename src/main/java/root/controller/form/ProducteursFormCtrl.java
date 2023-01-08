@@ -118,7 +118,7 @@ public class ProducteursFormCtrl {
     if (producteur != null) {
       edit = producteur;
     }
-    numTelSaisi.replace(" ", "");
+    numTelSaisi = numTelSaisi.replace(" ", "");
     if (edit == null) {
       new AdresseDao(SingleConnection.getInstance()).insert(adresse);
       listeProducteurs.ajouter(new Producteur(siretSaisi,  mailSaisi, nomSaisi, prenomSaisi,

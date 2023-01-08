@@ -90,8 +90,6 @@ public class ListeClients {
 
   public void clear() {
     clients = null;
-    clientDao = null;
-    adresseDao = null;
   }
 
 }

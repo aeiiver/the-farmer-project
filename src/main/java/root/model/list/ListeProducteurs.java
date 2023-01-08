@@ -90,8 +90,6 @@ public class ListeProducteurs {
 
   public void clear() {
     producteurs = null;
-    producteurDao = null;
-    adresseDao = null;
   }
 
 }

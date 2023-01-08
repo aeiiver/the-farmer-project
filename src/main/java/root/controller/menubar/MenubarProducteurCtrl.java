@@ -123,7 +123,6 @@ public class MenubarProducteurCtrl {
     new ListeClients().clear();
     new ListeTournees().clear();
     new ListeVehicules().clear();
-    SingleSession.getSession().setUtilisateur(null);
     SingleSession.fermeSession();
 
 

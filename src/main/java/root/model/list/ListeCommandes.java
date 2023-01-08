@@ -91,7 +91,6 @@ public class ListeCommandes {
   }
 
   public void clear() {
-    commandeDao = null;
     commandes = null;
   }
 
