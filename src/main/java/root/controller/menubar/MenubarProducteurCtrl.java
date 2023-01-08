@@ -2,7 +2,6 @@ package root.controller.menubar;
 
 import javafx.stage.Stage;
 import root.SceneChanger;
-import root.data.Dao;
 import root.data.ProducteurDao;
 import root.data.SingleConnection;
 import root.model.Producteur;
@@ -117,7 +116,7 @@ public class MenubarProducteurCtrl {
    */
   public void deconnexion() {
 
-    new ProducteurDao(SingleConnection.getInstance()).disconect();
+    new ProducteurDao(SingleConnection.getInstance()).discnonect();
     new ListeCommandes().clear();
     new ListeProducteurs().clear();
     new ListeClients().clear();

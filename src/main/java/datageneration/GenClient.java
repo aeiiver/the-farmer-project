@@ -1,11 +1,12 @@
 package datageneration;
 
+import static datageneration.UtilGen.parseGpsLat;
+import static datageneration.UtilGen.parseGpsLon;
+
 import com.github.javafaker.Faker;
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Random;
 import root.data.AdresseDao;
 import root.data.ClientDao;
 import root.data.SingleConnection;
@@ -28,46 +29,28 @@ public class GenClient {
    */
   public static ArrayList<Client> generate(int nbClient, Producteur producteur) throws IOException {
     ArrayList<Client> listClient = new ArrayList<>();
-    String GpsProducteur = producteur.getGPS();
+    String gpsProducteur = producteur.getGps();
     for (int i = 0; i < nbClient; i++) {
       Faker faker = new Faker();
 
-      Random random = new Random();
-
-      double minLon = parseGpsLon(GpsProducteur) -0.00002;
-      double minLat = parseGpsLat(GpsProducteur) -0.00002;
-
-
-      double randomLon = minLon + 0.0004 * random.nextDouble();
-      double randomLat = minLat + 0.0004 * random.nextDouble();
-
-      GenAdresse genAdresse = new GenAdresse(randomLon, randomLat);
+      GenAdresseClient genAdresse =
+          new GenAdresseClient(parseGpsLon(gpsProducteur), parseGpsLat(gpsProducteur));
       Adresse adresse = genAdresse.genAdresse();
       String gps = genAdresse.getGps();
 
-    Connection singleConnection = SingleConnection.getInstance();
-    String num = "0" + faker.phoneNumber().cellPhone().replace(".", "")
-        .replace("-", "").substring(1, 10).replace(" ", "6")
-        .replace(")", "7");
+      Connection singleConnection = SingleConnection.getInstance();
+      String num = "0" + faker.phoneNumber().cellPhone().replace(".", "")
+          .replace("-", "").substring(1, 10).replace(" ", "6")
+          .replace(")", "7");
 
 
-    Client client = new Client(faker.name().lastName(),
-        faker.name().firstName(), num,
-        gps, adresse);
-    listClient.add(client);
-    new AdresseDao(SingleConnection.getInstance()).insert(adresse);
-    new ClientDao(singleConnection).insert(client);
+      Client client = new Client(faker.name().lastName(),
+          faker.name().firstName(), num,
+          gps, adresse);
+      listClient.add(client);
+      new AdresseDao(SingleConnection.getInstance()).insert(adresse);
+      new ClientDao(singleConnection).insert(client);
     }
     return listClient;
-  }
-
-  private static double parseGpsLon(String gps) {
-    String[] gpsSplit = gps.split(",");
-    return Double.parseDouble(gpsSplit[0]);
-  }
-
-  private static double parseGpsLat(String gps) {
-    String[] gpsSplit = gps.split(",");
-    return Double.parseDouble(gpsSplit[1]);
   }
 }

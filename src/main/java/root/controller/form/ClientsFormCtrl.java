@@ -50,7 +50,7 @@ public class ClientsFormCtrl {
     if (!Validateur.validerNumTel(numTel)) {
       messageErreur += "Le numéro de téléphone indiqué n'est pas valide.\n";
     }
-    if (!Validateur.validerGPS(gps)) {
+    if (!Validateur.validerGps(gps)) {
       messageErreur += "Les coordonnées GPS indiquées ne sont pas valides.\n";
     }
     if (!Validateur.validerPays(pays)) {

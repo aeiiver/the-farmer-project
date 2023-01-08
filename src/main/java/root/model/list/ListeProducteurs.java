@@ -88,6 +88,9 @@ public class ListeProducteurs {
     producteurDao.update(producteur);
   }
 
+  /**
+   * Méthode pour nettoyer la liste des producteurs.
+   */
   public void clear() {
     producteurs = null;
   }

@@ -225,7 +225,7 @@ public class CommandeDao extends Dao<Commande, Integer> {
   }
 
   @Override
-  public void disconect() {
+  public void discnonect() {
     super.connexion = null;
   }
 

@@ -292,28 +292,42 @@ public class Tournee {
     return valideHeure() && validePoids();
   }
 
+  /**
+   * Méthode pour vérifier si la tournée est valide en termes de poids.
+   *
+   * @return true si la tournée est valide, false sinon
+   */
   public boolean validePoids() {
     int poidsTotal = 0;
-    for (Commande com: commandes) {
+    for (Commande com : commandes) {
       poidsTotal += com.getPoids();
     }
     return poidsTotal < this.vehicule.getPoidsMax();
   }
 
+  /**
+   * Méthode pour vérifier si la tournée est valide en termes d'heure.
+   *
+   * @return true si la tournée est valide, false sinon
+   */
   public boolean valideHeure() {
     commandes.sort(Comparator.comparing(Commande::getOrdreTournee));
+
+    boolean valide = false;
 
     Time tempsTournee = new Time(0);
     for (int i = 0; i < commandes.size() - 1; i++) {
       Commande com = commandes.get(i);
-      Commande comNP = commandes.get(i + 1);
+      Commande comNp = commandes.get(i + 1);
       String gpsClient = com.getClient().getGps();
-      String gpsClientNP = comNP.getClient().getGps();
-      tempsTournee = new Time(tempsTournee.getTime() + getTempsTrajet(gpsClient, gpsClientNP).getTime());
+      String gpsClientNp = comNp.getClient().getGps();
+      tempsTournee = new Time(tempsTournee.getTime()
+          + getTempsTrajet(gpsClient, gpsClientNp).getTime());
+      valide = tempsTournee.after(heureMin) && tempsTournee.before(heureMax);
     }
     tempsTotal = tempsTournee;
 
-    return false;
+    return valide;
   }
 
   /**
@@ -351,8 +365,8 @@ public class Tournee {
       depart.replace(" ", "");
       arrivee.replace(" ", "");
       URL url = new URL(
-          "https://wxs.ign.fr/calcul/geoportail/itineraire/rest/1.0.0/route?resource=bdtopo-osrm&start=" +
-              depart + "&end=" + arrivee);
+          "https://wxs.ign.fr/calcul/geoportail/itineraire/rest/1.0.0/route?resource=bdtopo-osrm&start="
+              + depart + "&end=" + arrivee);
       HttpURLConnection connection = (HttpURLConnection) url.openConnection();
       connection.setRequestMethod("GET");
       connection.setRequestProperty("Content-Type", "application/json");
@@ -368,10 +382,11 @@ public class Tournee {
       if (retour.equals("")) {
         return temps;
       } else {
-        retour = retour.substring(retour.indexOf("\"duration\":") + 11, retour.indexOf(",", retour.indexOf("\"duration\":")));
+        retour = retour.substring(retour.indexOf("\"duration\":") + 11,
+            retour.indexOf(",", retour.indexOf("\"duration\":")));
         retour = retour.substring(0, retour.indexOf("."));
-        String heure = Integer.toString(Integer.parseInt(retour)/60);
-        String minute = Integer.toString(Integer.parseInt(retour)%60);
+        String heure = Integer.toString(Integer.parseInt(retour) / 60);
+        String minute = Integer.toString(Integer.parseInt(retour) % 60);
         heure = heure.length() == 1 ? "0" + heure : heure;
         minute = minute.length() == 1 ? "0" + minute : minute;
         try {

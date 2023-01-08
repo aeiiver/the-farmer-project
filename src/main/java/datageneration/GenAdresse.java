@@ -3,18 +3,10 @@ package datageneration;
 import static root.Utils.readInputStream;
 
 import com.github.javafaker.Faker;
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import root.data.AdresseDao;
-import root.data.SingleConnection;
 import root.model.Adresse;
 
 /**
@@ -31,7 +23,7 @@ public class GenAdresse {
    */
   private double longitude;
 
-/**
+  /**
    * Constructeur de la classe.
    *
    * @param longitude Longitude de l'adresse.

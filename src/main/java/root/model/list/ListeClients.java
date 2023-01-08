@@ -88,6 +88,9 @@ public class ListeClients {
     clientDao.update(client);
   }
 
+  /**
+   * Méthode permettant de nettoyer la liste des clients.
+   */
   public void clear() {
     clients = null;
   }
