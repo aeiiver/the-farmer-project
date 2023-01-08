@@ -14,10 +14,7 @@ import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import root.model.Adresse;
-import root.model.Client;
-import root.model.Commande;
-import root.model.Producteur;
+import root.model.*;
 
 public class CommandeDaoTest {
 
@@ -442,7 +439,28 @@ public class CommandeDaoTest {
 
   @Test
   void getAllByProducteur() {
-    //TODO
+    List<Commande> attendus = prepareSomeCommandes();
+
+    ArrayList<Commande> recus = systemUnderTest.getAll();
+    ArrayList<Producteur> listeProducteurs = null;
+    assertNotNull(recus);
+    assertEquals(attendus.size(), recus.size());
+
+    for (int index = 0; index < attendus.size(); ++index) {
+      if (!listeProducteurs.contains(recus.get(index).getProducteur())) {
+        listeProducteurs.add(recus.get(index).getProducteur());
+      }
+    }
+
+    for (int indexProd = 0; indexProd < listeProducteurs.size(); ++indexProd) {
+      for (int index = 0; index < attendus.size(); ++index) {
+        if (attendus.get(index).getProducteur() == listeProducteurs.get(indexProd)) {
+          Commande attendu = attendus.get(index);
+          Commande recu = recus.get(index);
+          assertCommandeEquals(attendu, recu);
+        }
+      }
+    }
   }
 
   @Test

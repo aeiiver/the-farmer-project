@@ -346,8 +346,29 @@ public class TourneeDaoTest {
   }
 
   @Test
-  void getAllByProducteur() {
-    //TODO
+  void getAllByProducteur() throws SQLException {
+    List<Tournee> attendus = prepareSomeTournees();
+
+    ArrayList<Tournee> recus = systemUnderTest.getAll();
+    ArrayList<Producteur> listeProducteurs = null;
+    assertNotNull(recus);
+    assertEquals(attendus.size(), recus.size());
+
+    for (int index = 0; index < attendus.size(); ++index) {
+      if (!listeProducteurs.contains(recus.get(index).getProducteur())) {
+        listeProducteurs.add(recus.get(index).getProducteur());
+      }
+    }
+
+    for (int indexProd = 0; indexProd < listeProducteurs.size(); ++indexProd) {
+      for (int index = 0; index < attendus.size(); ++index) {
+        if (attendus.get(index).getProducteur() == listeProducteurs.get(indexProd)) {
+          Tournee attendu = attendus.get(index);
+          Tournee recu = recus.get(index);
+          assertTourneeEquals(attendu, recu);
+        }
+      }
+    }
   }
 
   @Test

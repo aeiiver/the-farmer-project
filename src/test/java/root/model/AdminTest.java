@@ -62,6 +62,13 @@ class AdminTest {
 
   @Test
   void testEquals() {
-    //TODO
+    Admin admin1 = new Admin(1, "mail@gmail.com", "NomPrenom", "motdepasse123");
+    Admin admin2 = new Admin(2, "mail@jaimail.com", "MachinTruc", "motdepasse1234");
+    Admin admin3 = new Admin(3, "email@gmail.com", "Wow", "password123");
+    Admin admin4 = new Admin(1, "mail@gmail.com", "NomPrenom", "motdepasse123");
+
+    assertNotEquals(admin1, admin2);
+    assertNotEquals(admin1, admin3);
+    assertEquals(admin1, admin4);
   }
 }

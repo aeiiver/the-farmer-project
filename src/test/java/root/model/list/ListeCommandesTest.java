@@ -10,7 +10,6 @@ import root.model.Adresse;
 import root.model.Client;
 import root.model.Commande;
 import root.model.Producteur;
-import root.model.list.ListeCommandes;
 
 class ListeCommandesTest {
 

@@ -6,7 +6,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import root.model.Adresse;
 import root.model.Client;
-import root.model.list.ListeClients;
 
 class ListeClientsTest {
 

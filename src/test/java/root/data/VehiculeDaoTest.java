@@ -14,6 +14,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import root.model.Adresse;
 import root.model.Producteur;
+import root.model.Tournee;
 import root.model.Vehicule;
 
 public class VehiculeDaoTest {
@@ -306,6 +307,27 @@ public class VehiculeDaoTest {
 
   @Test
   void getAllByProducteur() {
-    //TODO
+    List<Vehicule> attendus = prepareSomeVehicules();
+
+    ArrayList<Vehicule> recus = systemUnderTest.getAll();
+    ArrayList<Producteur> listeProducteurs = null;
+    assertNotNull(recus);
+    assertEquals(attendus.size(), recus.size());
+
+    for (int index = 0; index < attendus.size(); ++index) {
+      if (!listeProducteurs.contains(recus.get(index).getProprietaire())) {
+        listeProducteurs.add(recus.get(index).getProprietaire());
+      }
+    }
+
+    for (int indexProd = 0; indexProd < listeProducteurs.size(); ++indexProd) {
+      for (int index = 0; index < attendus.size(); ++index) {
+        if (attendus.get(index).getProprietaire() == listeProducteurs.get(indexProd)) {
+          Vehicule attendu = attendus.get(index);
+          Vehicule recu = recus.get(index);
+          assertVehiculeEquals(attendu, recu);
+        }
+      }
+    }
   }
 }

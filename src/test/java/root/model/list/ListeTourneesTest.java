@@ -7,7 +7,6 @@ import java.sql.Time;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import root.model.*;
-import root.model.list.ListeTournees;
 
 import java.util.ArrayList;
 
@@ -37,6 +36,7 @@ class ListeTourneesTest {
     ArrayList<Commande> commandesTournee1 = tournee1.getCommandes();
     ArrayList<Commande> commandesTournee2 = tournee2.getCommandes();
 
+    // TODO
     // Il faut vérifier en fonction des commandes dans la tournée ?
     // Faut-il utiliser la méthode "estValide()" ?
   }
