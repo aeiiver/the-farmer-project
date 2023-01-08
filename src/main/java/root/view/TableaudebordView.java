@@ -218,6 +218,7 @@ public class TableaudebordView implements Initializable {
                   }
                 }
                 commande.setOrdreTournee(ordreTournee);
+                new CommandeDao(SingleConnection.getInstance()).update(commande);
               }
               listeCommandes.setItems(commandesTournee.sorted(Comparator.comparing(Commande::getOrdreTournee)));
               event.setDropCompleted(true);
