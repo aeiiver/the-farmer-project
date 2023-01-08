@@ -2,6 +2,9 @@ package root.controller.menubar;
 
 import javafx.stage.Stage;
 import root.SceneChanger;
+import root.data.Dao;
+import root.data.ProducteurDao;
+import root.data.SingleConnection;
 import root.model.Producteur;
 import root.model.list.ListeClients;
 import root.model.list.ListeCommandes;
@@ -113,7 +116,18 @@ public class MenubarProducteurCtrl {
    * Déconnecte le producteur connecté et affiche la page de connexion.
    */
   public void deconnexion() {
+
+    new ProducteurDao(SingleConnection.getInstance()).disconect();
+    new ListeCommandes().clear();
+    new ListeProducteurs().clear();
+    new ListeClients().clear();
+    new ListeTournees().clear();
+    new ListeVehicules().clear();
+    SingleSession.getSession().setUtilisateur(null);
     SingleSession.fermeSession();
+
+
+
     SceneChanger.voirConnexion(fenetre);
   }
 

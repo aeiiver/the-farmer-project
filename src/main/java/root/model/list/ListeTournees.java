@@ -111,7 +111,7 @@ public class ListeTournees {
   }
 
   public void clear() {
-    tournees.clear();
+    tournees = null;
   }
 
 }

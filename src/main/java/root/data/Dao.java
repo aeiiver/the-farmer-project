@@ -65,5 +65,10 @@ public abstract class Dao<T, U> {
    * @return true si la mise à jour a réussi, false sinon
    */
   public abstract boolean delete(T t);
+
+  public void disconect(){
+    connexion = null;
+  };
+
   
 }

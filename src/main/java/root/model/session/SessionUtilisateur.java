@@ -27,4 +27,13 @@ public class SessionUtilisateur {
     return utilisateur;
   }
 
+  /**
+   * Getter de l'utilisateur connecté.
+   *
+   * @return utilisateur l'utilisateur connecté
+   */
+  public void setUtilisateur(Utilisateur u) {
+    utilisateur=u;
+  }
+
 }

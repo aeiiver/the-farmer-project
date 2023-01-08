@@ -160,4 +160,9 @@ public class ClientDao extends Dao<Client, Integer> {
     }
   }
 
+  @Override
+  public void disconect() {
+    super.connexion = null;
+  }
+
 }

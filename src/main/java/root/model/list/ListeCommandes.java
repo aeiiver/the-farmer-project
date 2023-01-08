@@ -91,7 +91,8 @@ public class ListeCommandes {
   }
 
   public void clear() {
-    commandes.clear();
+    commandeDao = null;
+    commandes = null;
   }
 
 }

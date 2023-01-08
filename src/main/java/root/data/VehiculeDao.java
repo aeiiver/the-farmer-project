@@ -149,6 +149,11 @@ public class VehiculeDao extends Dao<Vehicule, String> {
     }
   }
 
+  @Override
+  public void disconect() {
+    super.connexion = null;
+  }
+
   /**
    * Récupération de tous les véhicules d'un producteur.
    *

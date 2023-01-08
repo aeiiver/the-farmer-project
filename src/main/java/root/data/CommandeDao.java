@@ -224,6 +224,11 @@ public class CommandeDao extends Dao<Commande, Integer> {
     }
   }
 
+  @Override
+  public void disconect() {
+    super.connexion = null;
+  }
+
   /**
    * Récupération de toutes les commandes d'un producteur.
    *

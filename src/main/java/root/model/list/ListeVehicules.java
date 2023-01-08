@@ -83,7 +83,7 @@ public class ListeVehicules {
   }
 
   public void clear() {
-    vehicules.clear();
+    vehicules = null;
   }
 
 }

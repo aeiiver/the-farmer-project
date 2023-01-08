@@ -89,7 +89,9 @@ public class ListeProducteurs {
   }
 
   public void clear() {
-    producteurs.clear();
+    producteurs = null;
+    producteurDao = null;
+    adresseDao = null;
   }
 
 }

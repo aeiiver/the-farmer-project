@@ -232,6 +232,11 @@ public class TourneeDao extends Dao<Tournee, Integer> {
     }
   }
 
+  @Override
+  public void disconect() {
+    super.connexion = null;
+  }
+
   /**
    * Récupération de toutes les tournées d'un producteur.
    *

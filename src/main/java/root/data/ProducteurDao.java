@@ -163,4 +163,9 @@ public class ProducteurDao extends Dao<Producteur, String> {
     return false;
   }
 
+  @Override
+  public void disconect() {
+    super.connexion = null;
+  }
+
 }
