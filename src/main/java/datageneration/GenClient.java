@@ -1,5 +1,8 @@
 package datageneration;
 
+import static datageneration.UtilGen.parseGpsLat;
+import static datageneration.UtilGen.parseGpsLon;
+
 import com.github.javafaker.Faker;
 import java.io.IOException;
 import java.sql.Connection;
@@ -32,16 +35,8 @@ public class GenClient {
     for (int i = 0; i < nbClient; i++) {
       Faker faker = new Faker();
 
-      Random random = new Random();
-
-      double minLon = parseGpsLon(GpsProducteur) -0.00002;
-      double minLat = parseGpsLat(GpsProducteur) -0.00002;
-
-
-      double randomLon = minLon + 0.0004 * random.nextDouble();
-      double randomLat = minLat + 0.0004 * random.nextDouble();
-
-      GenAdresse genAdresse = new GenAdresse(randomLon, randomLat);
+      GenAdresseClient genAdresse =
+          new GenAdresseClient(parseGpsLon(GpsProducteur), parseGpsLat(GpsProducteur));
       Adresse adresse = genAdresse.genAdresse();
       String gps = genAdresse.getGps();
 
@@ -59,15 +54,5 @@ public class GenClient {
     new ClientDao(singleConnection).insert(client);
     }
     return listClient;
-  }
-
-  private static double parseGpsLon(String gps) {
-    String[] gpsSplit = gps.split(",");
-    return Double.parseDouble(gpsSplit[0]);
-  }
-
-  private static double parseGpsLat(String gps) {
-    String[] gpsSplit = gps.split(",");
-    return Double.parseDouble(gpsSplit[1]);
   }
 }

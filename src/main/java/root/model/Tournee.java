@@ -303,6 +303,8 @@ public class Tournee {
   public boolean valideHeure() {
     commandes.sort(Comparator.comparing(Commande::getOrdreTournee));
 
+    boolean valide = false;
+
     Time tempsTournee = new Time(0);
     for (int i = 0; i < commandes.size() - 1; i++) {
       Commande com = commandes.get(i);
@@ -310,10 +312,11 @@ public class Tournee {
       String gpsClient = com.getClient().getGps();
       String gpsClientNP = comNP.getClient().getGps();
       tempsTournee = new Time(tempsTournee.getTime() + getTempsTrajet(gpsClient, gpsClientNP).getTime());
+      valide = tempsTournee.after(heureMin) && tempsTournee.before(heureMax);
     }
     tempsTotal = tempsTournee;
 
-    return false;
+    return valide;
   }
 
   /**

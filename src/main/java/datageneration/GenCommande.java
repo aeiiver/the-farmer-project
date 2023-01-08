@@ -28,7 +28,7 @@ public class GenCommande {
   public static void generate(int nb, Producteur producteur, ArrayList<Client> clients) {
     Faker faker = new Faker();
     ArrayList<Commande> commandes = new ArrayList<>();
-    Date date = Date.valueOf(faker.number().numberBetween(2020, 2023) + "-"
+    Date date = Date.valueOf(faker.number().numberBetween(2022, 2023) + "-"
         + faker.number().numberBetween(1, 12) + "-" + faker.number().numberBetween(1, 28));
     for (int i = 0; i < nb; i++) {
       Time min = Time.valueOf(faker.date().future(1, TimeUnit.DAYS).toString().split(" ")[3]);

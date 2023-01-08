@@ -1,5 +1,6 @@
 package datageneration;
 
+import com.github.javafaker.Faker;
 import java.io.IOException;
 import java.util.ArrayList;
 import root.data.ProducteurDao;
@@ -20,19 +21,29 @@ public class Main {
    */
   public static void main(String[] args) throws IOException {
     int nbProducteurs = 50;
+    Faker faker = new Faker();
 
-    ArrayList<Producteur> producteurs = GenProducteur.generate(nbProducteurs);
+    ArrayList<Producteur> producteurs = new ArrayList<>();
     Producteur base = new ProducteurDao(SingleConnection.getInstance()).get("12345678901234");
-    base.setGps("48.856614, 2.3522219");
-    producteurs.add(base);
+    base.setGps("47.266899, -0.074186");
+    //producteurs.add(base);
+    producteurs.addAll(GenProducteur.generate(nbProducteurs));
+
     System.out.println("Génération des producteurs terminée");
 
+    int i = 0;
+
     for (Producteur producteur : producteurs) {
-      int nbCommandes = 50;
-      int nbCommandesParTournee = 10;
-      ArrayList<Client> clients = GenClient.generate(nbCommandesParTournee, producteur);
-      for (int j = 0; j < nbCommandes / nbCommandesParTournee; j++) {
+      int nbClient = faker.number().numberBetween(5, 10);
+      int nbCommandesParTournee = faker.number().numberBetween(5, 10);
+      int temp = Math.min(nbClient, nbCommandesParTournee);
+      nbClient = Math.max(nbClient, nbCommandesParTournee);
+      nbCommandesParTournee= temp;
+      ArrayList<Client> clients = GenClient.generate(nbClient, producteur);
+      for (int j = 0; j < nbClient; j++) {
         GenCommande.generate(nbCommandesParTournee, producteur, clients);
+        System.out.println("Génération de la commande " + i + "/" + producteurs.size() * 10 + " terminée");
+        i++;
       }
     }
     System.out.println("Génération des tournées terminée");
