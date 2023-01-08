@@ -45,13 +45,18 @@ public class Producteur extends Utilisateur {
   private String numTel;
   
   /**
-   * Coordonnés GPS du producteur.
+   * Adresse du producteur.
    *
    * @see Producteur#Producteur(String, String, String, String, String, String, Adresse)  Producteur
    * @see Producteur#getAdresse() 
    * @see Producteur#setAdresse(Adresse) 
    */
   private Adresse adresse;
+
+  /**
+   * Coordonnés GPS du producteur.
+   */
+  private String Gps;
 
   /**
    * Constructeur.
@@ -128,6 +133,10 @@ public class Producteur extends Utilisateur {
     return adresse;
   }
 
+  public String getGPS() {
+    return this.Gps;
+  }
+
   /**
    * Setter du numéro Siret du producteur.
    *
@@ -171,6 +180,10 @@ public class Producteur extends Utilisateur {
    */
   public void setAdresse(Adresse adresse) {
     this.adresse = adresse;
+  }
+
+  public void setGps(String gps) {
+    this.Gps = gps;
   }
 
   /**

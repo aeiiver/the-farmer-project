@@ -25,9 +25,8 @@ public class GenCommande {
    *
    * @param nb Nombre de commandes à générer.
    */
-  public static void generate(int nb, Producteur producteur) {
+  public static void generate(int nb, Producteur producteur, ArrayList<Client> clients) {
     Faker faker = new Faker();
-    ArrayList<Client> clients = new ClientDao(SingleConnection.getInstance()).getAll();
     ArrayList<Commande> commandes = new ArrayList<>();
     Date date = Date.valueOf(faker.number().numberBetween(2020, 2023) + "-"
         + faker.number().numberBetween(1, 12) + "-" + faker.number().numberBetween(1, 28));
@@ -52,7 +51,7 @@ public class GenCommande {
       if (producteur == null) {
         System.out.println();
       } else {
-        Client client = clients.get(faker.number().numberBetween(0, clients.size() - 1));
+        Client client = clients.get(i);
         if (client == null) {
           System.out.println();
         } else {

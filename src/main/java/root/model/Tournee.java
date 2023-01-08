@@ -301,8 +301,6 @@ public class Tournee {
   }
 
   public boolean valideHeure() {
-    //TODO avec itinéraire.
-    String adresseProducteur = producteur.getAdresse().toString();
     commandes.sort(Comparator.comparing(Commande::getOrdreTournee));
 
     Time tempsTournee = new Time(0);
@@ -343,7 +341,7 @@ public class Tournee {
    */
   public String toString() {
     String tempsTournee = Objects.equals(tempsTotal, new Time(0)) ? tempsTotal.toString() : "";
-    return libelle + "\n" + heureMin + "/" + heureMax + "\n" + vehicule + "\n" + tempsTournee;
+    return libelle + "\n" + heureMin + "/" + heureMax + ":" + tempsTournee + "\n" + vehicule + "\n";
   }
 
   private Time getTempsTrajet(String depart, String arrivee) {
@@ -351,13 +349,7 @@ public class Tournee {
       Time temps = new Time(0);
       String retour = "";
       depart.replace(" ", "");
-      String temp = depart.substring(0, depart.indexOf(","));
-      String temp2 = depart.substring(depart.indexOf(",") + 1);
-      depart = temp2 + "," + temp;
       arrivee.replace(" ", "");
-      temp = arrivee.substring(0, arrivee.indexOf(","));
-      temp2 = arrivee.substring(arrivee.indexOf(",") + 1);
-      arrivee = temp2 + "," + temp;
       URL url = new URL(
           "https://wxs.ign.fr/calcul/geoportail/itineraire/rest/1.0.0/route?resource=bdtopo-osrm&start=" +
               depart + "&end=" + arrivee);

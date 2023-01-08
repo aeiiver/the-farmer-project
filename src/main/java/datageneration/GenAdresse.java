@@ -31,6 +31,17 @@ public class GenAdresse {
    */
   private double longitude;
 
+/**
+   * Constructeur de la classe.
+   *
+   * @param longitude Longitude de l'adresse.
+   * @param latitude Latitude de l'adresse.
+   */
+  public GenAdresse(double longitude, double latitude) {
+    this.longitude = longitude;
+    this.latitude = latitude;
+  }
+
   /**
    * Constructeur générant des coordonnées GPS aléatoires.
    */
@@ -81,8 +92,6 @@ public class GenAdresse {
         numero,
         "", ""
     );
-    Connection connection = SingleConnection.getInstance();
-    new AdresseDao(connection).insert(adresse);
     return adresse;
   }
 
@@ -121,12 +130,12 @@ public class GenAdresse {
    */
   private void newCoords() {
     Faker faker = new Faker();
-    latitude = (faker.number().randomDouble(5, 43, 48));
-    longitude = (faker.number().randomDouble(5, -2, 6));
+    latitude = (faker.number().randomDouble(5, 42, 51));
+    longitude = (faker.number().randomDouble(5, -5, 6));
   }
 
 
   public String getGps() {
-    return this.latitude + "," + this.longitude;
+    return this.longitude + "," + this.latitude;
   }
 }

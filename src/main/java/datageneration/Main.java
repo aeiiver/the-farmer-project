@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import root.data.ProducteurDao;
 import root.data.SingleConnection;
+import root.model.Client;
 import root.model.Producteur;
 
 /**
@@ -19,20 +20,19 @@ public class Main {
    */
   public static void main(String[] args) throws IOException {
     int nbProducteurs = 50;
-    int nbClients = nbProducteurs * 4;
-
-    GenClient.generate(nbClients);
-    System.out.println("Génération des clients terminée");
 
     ArrayList<Producteur> producteurs = GenProducteur.generate(nbProducteurs);
-    producteurs.add(new ProducteurDao(SingleConnection.getInstance()).get("12345678901234"));
+    Producteur base = new ProducteurDao(SingleConnection.getInstance()).get("12345678901234");
+    base.setGps("48.856614, 2.3522219");
+    producteurs.add(base);
     System.out.println("Génération des producteurs terminée");
 
     for (Producteur producteur : producteurs) {
       int nbCommandes = 50;
       int nbCommandesParTournee = 10;
+      ArrayList<Client> clients = GenClient.generate(nbCommandesParTournee, producteur);
       for (int j = 0; j < nbCommandes / nbCommandesParTournee; j++) {
-        GenCommande.generate(nbCommandesParTournee, producteur);
+        GenCommande.generate(nbCommandesParTournee, producteur, clients);
       }
     }
     System.out.println("Génération des tournées terminée");

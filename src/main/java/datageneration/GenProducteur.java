@@ -3,8 +3,10 @@ package datageneration;
 import com.github.javafaker.Faker;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.ArrayList;
 import org.mindrot.jbcrypt.BCrypt;
+import root.data.AdresseDao;
 import root.data.ProducteurDao;
 import root.data.SingleConnection;
 import root.model.Adresse;
@@ -56,7 +58,10 @@ public class GenProducteur {
           mail, nom,
           prenom, num,
           mdp, adresse);
+      producteur.setGps(genAdresse.getGps());
       listSiret.add(producteur);
+
+      new AdresseDao(SingleConnection.getInstance()).insert(adresse);
       new ProducteurDao(SingleConnection.getInstance()).insert(producteur);
 
 
