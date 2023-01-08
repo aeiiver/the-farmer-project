@@ -50,7 +50,7 @@ public class ProducteursFormCtrl {
       messageErreur += "La mention doit faire entre 3 et 17 characters "
           + "et ne comporte pas de majuscule.\n";
     }
-    if (Validateur.validerTypeVoie(typeVoie)) {
+    if (!Validateur.validerTypeVoie(typeVoie)) {
       messageErreur += "Le type de voie doit faire entre 4 et 11 characters "
           + "et commence par une majuscule.\n";
     }
@@ -59,7 +59,7 @@ public class ProducteursFormCtrl {
         messageErreur += "Le complément doit faire maximum 100 characters.\n";
       }
     }
-    if (Validateur.validerNomPropre(nomVoie)) {
+    if (!Validateur.validerNomPropre(nomVoie)) {
       messageErreur += "Le Nom de la voie doit commencer par une majuscule et ne doit"
               + " pas contenir plusieurs tiret ou espace d'affiler\n";
     }
@@ -69,30 +69,30 @@ public class ProducteursFormCtrl {
     if (!Validateur.validerSiret(siretSaisi)) {
       messageErreur += "Le Siret doit être composer de 14 chiffres.\n";
     }
-    if (Validateur.validerNomPropre(villeSaisi) && !villeSaisi.isEmpty()) {
+    if (!Validateur.validerNomPropre(villeSaisi) && !villeSaisi.isEmpty()) {
       //Todo revoir le regex de la ville et adapter le message d'erreur
       messageErreur += "La ville doit faire entre 2 et 100 characters,"
               + " commencer par une majuscule\n";
     }
-    if (Validateur.validerNomPropre(nomSaisi)) {
+    if (!Validateur.validerNomPropre(nomSaisi)) {
       //Todo revoir le regex du nom et adapter le message d'erreur
       messageErreur += "Le nom doit commencer par une majuscule et ne doit "
               + "pas contenir plusieurs tiret ou espace d'affiler\n";
     }
-    if (Validateur.validerNomPropre(prenomSaisi)) {
+    if (!Validateur.validerNomPropre(prenomSaisi)) {
       //Todo revoir le regex du prénom et adapter le message d'erreur
       messageErreur += "Le prénom doit commencer par une majuscule et ne doit "
               + "pas contenir plusieurs tiret ou espace d'affilé\n";
     }
-    if (Validateur.validerNumTel(numTelSaisi)) {
+    if (!Validateur.validerNumTel(numTelSaisi)) {
       messageErreur += "Le numéro de téléphone doit faire 10 chiffres"
               + " dont les 2 premier vont de 01 à 09 \n";
     }
-    if (Validateur.validerCodePostal(codePostSaisi)) {
+    if (!Validateur.validerCodePostal(codePostSaisi)) {
       messageErreur += "Seul les département de la France métropolitaine"
               + " + corse sont autoriser.\n";
     }
-    if (Validateur.validerPays(paysSaisi)) {
+    if (!Validateur.validerPays(paysSaisi)) {
       messageErreur += "La France est le seul pays autoriser pour le moment.\n";
     }
     if (!Validateur.validerMdp(mdpSaisi)) {

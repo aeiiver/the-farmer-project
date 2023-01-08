@@ -74,7 +74,7 @@ public class Validateur {
    * @return true si le texte respecte les critères pour un Nom Propre, false sinon
    */
   public static boolean validerNomPropre(String texte) {
-    return !texte.matches("[A-Za-zèéàù' -]+$");
+    return texte.matches("[A-Za-zèéàù' -]+$");
   }
 
   /**
@@ -84,7 +84,7 @@ public class Validateur {
    * @return true si le texte respecte les critères pour un numéro de téléphone, false sinon
    */
   public static boolean validerNumTel(String texte) {
-    return !texte.matches("^0[1-9]( ?[0-9]{2}){4}$")
+    return texte.matches("^0[1-9]( ?[0-9]{2}){4}$")
         || texte.matches("^0[1-9]( ?[0-9]{8})$");
   }
 
@@ -95,7 +95,7 @@ public class Validateur {
    * @return true si le texte respecte les critères pour un code postal, false sinon
    */
   public static boolean validerCodePostal(String texte) {
-    return !texte.matches("^([12][AB])$|^([0-9]{5})$");
+    return texte.matches("^([12][AB])$|^([0-9]{5})$");
   }
 
   /**
@@ -117,7 +117,7 @@ public class Validateur {
    * @return true si le pays est bien la France, false sinon
    */
   public static boolean validerPays(String texte) {
-    return !texte.matches("^France$");
+    return texte.matches("^France$");
   }
 
   /**
@@ -137,7 +137,7 @@ public class Validateur {
    * @return true si le texte est un type de voie, false sinon
    */
   public static boolean validerTypeVoie(String texte) {
-    return texte != null && !texte.matches("^[A-Za-z]([ -]?[A-Za-zé0-9]){3,10}$|^$");
+    return texte == null || texte.matches("^[A-Za-z]([ -]?[A-Za-zé0-9]){3,10}$|^$");
   }
 
   /**
