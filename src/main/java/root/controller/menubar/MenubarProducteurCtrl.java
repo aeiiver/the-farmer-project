@@ -113,11 +113,6 @@ public class MenubarProducteurCtrl {
    * Déconnecte le producteur connecté et affiche la page de connexion.
    */
   public void deconnexion() {
-    new ListeClients().clear();
-    new ListeCommandes().clear();
-    new ListeProducteurs().clear();
-    new ListeTournees().clear();
-    new ListeVehicules().clear();
     SingleSession.fermeSession();
     SceneChanger.voirConnexion(fenetre);
   }
