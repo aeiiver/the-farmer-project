@@ -170,7 +170,7 @@ public class Validateur {
    * @return true si le texte sont des coordonnées GPS, false sinon
    */
   public static boolean validerGPS(String texte) {
-    return texte.matches("^-?[0-9]+\\.-?[0-9]+,-?[0-9]+\\.-?[0-9]+$");
+    return texte.matches("^-?[0-9]+\\.[0-9]+,-?[0-9]+\\.[0-9]+$");
   }
 
 }
