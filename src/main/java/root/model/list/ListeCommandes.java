@@ -90,4 +90,8 @@ public class ListeCommandes {
     commandeDao.update(commande);
   }
 
+  public void clear() {
+    commandes.clear();
+  }
+
 }

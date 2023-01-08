@@ -3,6 +3,11 @@ package root.controller.menubar;
 import javafx.stage.Stage;
 import root.SceneChanger;
 import root.model.Producteur;
+import root.model.list.ListeClients;
+import root.model.list.ListeCommandes;
+import root.model.list.ListeProducteurs;
+import root.model.list.ListeTournees;
+import root.model.list.ListeVehicules;
 import root.model.session.SingleSession;
 import root.view.form.ProducteursFormView;
 
@@ -108,6 +113,11 @@ public class MenubarProducteurCtrl {
    * Déconnecte le producteur connecté et affiche la page de connexion.
    */
   public void deconnexion() {
+    new ListeClients().clear();
+    new ListeCommandes().clear();
+    new ListeProducteurs().clear();
+    new ListeTournees().clear();
+    new ListeVehicules().clear();
     SingleSession.fermeSession();
     SceneChanger.voirConnexion(fenetre);
   }

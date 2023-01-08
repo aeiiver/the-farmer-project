@@ -110,4 +110,8 @@ public class ListeTournees {
     tourneeDao.update(tournee);
   }
 
+  public void clear() {
+    tournees.clear();
+  }
+
 }

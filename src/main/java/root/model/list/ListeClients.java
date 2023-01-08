@@ -88,4 +88,8 @@ public class ListeClients {
     clientDao.update(client);
   }
 
+  public void clear() {
+    clients.clear();
+  }
+
 }

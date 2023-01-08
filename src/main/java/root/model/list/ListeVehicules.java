@@ -82,4 +82,8 @@ public class ListeVehicules {
     vehiculeDao.update(vehicule);
   }
 
+  public void clear() {
+    vehicules.clear();
+  }
+
 }
