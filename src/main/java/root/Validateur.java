@@ -163,4 +163,14 @@ public class Validateur {
     return texte.matches("^[A-Za-z '-éè]+$");
   }
 
+  /**
+   * Valide si le texte sont des coordonnées GPS.
+   *
+   * @param texte le texte à valider
+   * @return true si le texte sont des coordonnées GPS, false sinon
+   */
+  public static boolean validerGPS(String texte) {
+    return texte.matches("^[0-9]+\\.[0-9]+,[0-9]+\\.[0-9]+$");
+  }
+
 }

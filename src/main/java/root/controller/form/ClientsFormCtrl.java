@@ -47,17 +47,19 @@ public class ClientsFormCtrl {
     if (!Validateur.validerPseudo(prenom)) {
       messageErreur += "Le prénom indiqué n'est pas valide.\n";
     }
-    if (Validateur.validerNumTel(numTel)) {
+    if (!Validateur.validerNumTel(numTel)) {
       messageErreur += "Le numéro de téléphone indiqué n'est pas valide.\n";
     }
-    // TODO gps
-    if (Validateur.validerPays(pays)) {
+    if (!Validateur.validerGPS(gps)) {
+      messageErreur += "Les coordonnées GPS indiquées ne sont pas valides.\n";
+    }
+    if (!Validateur.validerPays(pays)) {
       messageErreur += "Le pays indiqué n'est pas valide.\n";
     }
     if (!Validateur.validerVille(ville)) {
       messageErreur += "La ville indiqué n'est pas valide.\n";
     }
-    if (Validateur.validerCodePostal(codePostal)) {
+    if (!Validateur.validerCodePostal(codePostal)) {
       messageErreur += "Le code postal indiqué n'est pas valide.\n";
     }
     if (!mention.isEmpty() && !Validateur.validerMention(mention)) {
