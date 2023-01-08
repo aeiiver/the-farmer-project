@@ -233,7 +233,7 @@ public class TourneeDao extends Dao<Tournee, Integer> {
   }
 
   @Override
-  public void disconect() {
+  public void discnonect() {
     super.connexion = null;
   }
 

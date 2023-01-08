@@ -7,8 +7,6 @@ import com.github.javafaker.Faker;
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Random;
 import root.data.AdresseDao;
 import root.data.ClientDao;
 import root.data.SingleConnection;
@@ -31,27 +29,27 @@ public class GenClient {
    */
   public static ArrayList<Client> generate(int nbClient, Producteur producteur) throws IOException {
     ArrayList<Client> listClient = new ArrayList<>();
-    String GpsProducteur = producteur.getGPS();
+    String gpsProducteur = producteur.getGps();
     for (int i = 0; i < nbClient; i++) {
       Faker faker = new Faker();
 
       GenAdresseClient genAdresse =
-          new GenAdresseClient(parseGpsLon(GpsProducteur), parseGpsLat(GpsProducteur));
+          new GenAdresseClient(parseGpsLon(gpsProducteur), parseGpsLat(gpsProducteur));
       Adresse adresse = genAdresse.genAdresse();
       String gps = genAdresse.getGps();
 
-    Connection singleConnection = SingleConnection.getInstance();
-    String num = "0" + faker.phoneNumber().cellPhone().replace(".", "")
-        .replace("-", "").substring(1, 10).replace(" ", "6")
-        .replace(")", "7");
+      Connection singleConnection = SingleConnection.getInstance();
+      String num = "0" + faker.phoneNumber().cellPhone().replace(".", "")
+          .replace("-", "").substring(1, 10).replace(" ", "6")
+          .replace(")", "7");
 
 
-    Client client = new Client(faker.name().lastName(),
-        faker.name().firstName(), num,
-        gps, adresse);
-    listClient.add(client);
-    new AdresseDao(SingleConnection.getInstance()).insert(adresse);
-    new ClientDao(singleConnection).insert(client);
+      Client client = new Client(faker.name().lastName(),
+          faker.name().firstName(), num,
+          gps, adresse);
+      listClient.add(client);
+      new AdresseDao(SingleConnection.getInstance()).insert(adresse);
+      new ClientDao(singleConnection).insert(client);
     }
     return listClient;
   }

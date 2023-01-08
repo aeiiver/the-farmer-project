@@ -56,7 +56,7 @@ public class Producteur extends Utilisateur {
   /**
    * Coordonnés GPS du producteur.
    */
-  private String Gps;
+  private String gps;
 
   /**
    * Constructeur.
@@ -133,8 +133,8 @@ public class Producteur extends Utilisateur {
     return adresse;
   }
 
-  public String getGPS() {
-    return this.Gps;
+  public String getGps() {
+    return this.gps;
   }
 
   /**
@@ -183,7 +183,7 @@ public class Producteur extends Utilisateur {
   }
 
   public void setGps(String gps) {
-    this.Gps = gps;
+    this.gps = gps;
   }
 
   /**

@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+/**
+ * Classe utilitaire.
+ */
 public class Utils {
   /**
    * Lit un InputStream.

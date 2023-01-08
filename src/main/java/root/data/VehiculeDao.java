@@ -150,7 +150,7 @@ public class VehiculeDao extends Dao<Vehicule, String> {
   }
 
   @Override
-  public void disconect() {
+  public void discnonect() {
     super.connexion = null;
   }
 

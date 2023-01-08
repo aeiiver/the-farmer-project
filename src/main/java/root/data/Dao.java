@@ -66,9 +66,8 @@ public abstract class Dao<T, U> {
    */
   public abstract boolean delete(T t);
 
-  public void disconect(){
+  public void discnonect() {
     connexion = null;
-  };
-
+  }
   
 }

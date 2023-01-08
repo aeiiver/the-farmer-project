@@ -202,7 +202,6 @@ public class TableaudebordView implements Initializable {
               } else {
                 dropIndex = (int) (event.getX() / listeCommandes.getFixedCellSize());
               }
-              System.out.println(draggedIndex + " " + dropIndex+ " " + db.getString());
               for (int i = 0; i < listeCommandes.getItems().size(); i++) {
                 Commande commande = listeCommandes.getItems().get(i);
                 int ordreTournee = commande.getOrdreTournee();
@@ -220,13 +219,14 @@ public class TableaudebordView implements Initializable {
                 commande.setOrdreTournee(ordreTournee);
                 new CommandeDao(SingleConnection.getInstance()).update(commande);
               }
-              listeCommandes.setItems(commandesTournee.sorted(Comparator.comparing(Commande::getOrdreTournee)));
+              listeCommandes.setItems(commandesTournee.sorted(
+                  Comparator.comparing(Commande::getOrdreTournee)));
               event.setDropCompleted(true);
             }
             event.consume();
           });
-          listeCommandes.setItems(commandesTournee.sorted(Comparator.comparing(Commande::getOrdreTournee)));
-          //.sorted(Comparator.comparing(Commande::getOrdreTournee))
+          listeCommandes.setItems(commandesTournee.sorted(
+              Comparator.comparing(Commande::getOrdreTournee)));
 
           // Met à jour les marqueurs sur la carte
           coucheMarqueur.effacerMarqueurs();

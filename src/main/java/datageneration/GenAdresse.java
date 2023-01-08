@@ -23,7 +23,7 @@ public class GenAdresse {
    */
   private double longitude;
 
-/**
+  /**
    * Constructeur de la classe.
    *
    * @param longitude Longitude de l'adresse.

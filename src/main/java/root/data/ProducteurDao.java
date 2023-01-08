@@ -164,7 +164,7 @@ public class ProducteurDao extends Dao<Producteur, String> {
   }
 
   @Override
-  public void disconect() {
+  public void discnonect() {
     super.connexion = null;
   }
 

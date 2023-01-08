@@ -31,19 +31,15 @@ public class Main {
 
     System.out.println("Génération des producteurs terminée");
 
-    int i = 0;
-
     for (Producteur producteur : producteurs) {
       int nbClient = faker.number().numberBetween(5, 10);
       int nbCommandesParTournee = faker.number().numberBetween(5, 10);
       int temp = Math.min(nbClient, nbCommandesParTournee);
       nbClient = Math.max(nbClient, nbCommandesParTournee);
-      nbCommandesParTournee= temp;
+      nbCommandesParTournee = temp;
       ArrayList<Client> clients = GenClient.generate(nbClient, producteur);
       for (int j = 0; j < nbClient; j++) {
         GenCommande.generate(nbCommandesParTournee, producteur, clients);
-        System.out.println("Génération de la commande " + i + "/" + producteurs.size() * 10 + " terminée");
-        i++;
       }
     }
     System.out.println("Génération des tournées terminée");

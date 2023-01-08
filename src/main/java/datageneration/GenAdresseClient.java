@@ -3,13 +3,15 @@ package datageneration;
 import static datageneration.UtilGen.parseGpsLat;
 import static datageneration.UtilGen.parseGpsLon;
 import static root.Utils.readInputStream;
+
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import root.model.Adresse;
 
+/**
+ * Génère une adresse aléatoire pour les clients.
+ */
 public class GenAdresseClient {
   private double longitudeProducteur;
   private double latitudeProducteur;
