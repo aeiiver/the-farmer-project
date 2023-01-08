@@ -50,10 +50,6 @@ public class TableaudebordView implements Initializable {
   @FXML
   private MapView carte;
 
-  private static Object temp = null;
-
-  private final CalendrierView calendrierView = new CalendrierView();
-
   /**
    * Le contrôleur de la vue.
    */
@@ -197,7 +193,6 @@ public class TableaudebordView implements Initializable {
                   new CommandeDao(SingleConnection.getInstance())
                       .get(Integer.parseInt(db.getString()))
               );
-              System.out.println(draggedIndex);
               int dropIndex;
               if (listeCommandes.getSelectionModel().isSelected(draggedIndex)) {
                 listeCommandes.getSelectionModel().clearSelection();
@@ -207,15 +202,30 @@ public class TableaudebordView implements Initializable {
               } else {
                 dropIndex = (int) (event.getX() / listeCommandes.getFixedCellSize());
               }
-              listeCommandes.getItems().remove(draggedIndex);
-              listeCommandes.getItems().add(dropIndex,
-                  new CommandeDao(SingleConnection.getInstance())
-                      .get(Integer.parseInt(db.getString())));
+              System.out.println(draggedIndex + " " + dropIndex+ " " + db.getString());
+              for (int i = 0; i < listeCommandes.getItems().size(); i++) {
+                Commande commande = listeCommandes.getItems().get(i);
+                int ordreTournee = commande.getOrdreTournee();
+                if (ordreTournee == draggedIndex) {
+                  ordreTournee = dropIndex;
+                } else if (draggedIndex < dropIndex) {
+                  if (ordreTournee > draggedIndex && ordreTournee <= dropIndex) {
+                    ordreTournee--;
+                  }
+                } else {
+                  if (ordreTournee < draggedIndex && ordreTournee >= dropIndex) {
+                    ordreTournee++;
+                  }
+                }
+                commande.setOrdreTournee(ordreTournee);
+              }
+              listeCommandes.setItems(commandesTournee.sorted(Comparator.comparing(Commande::getOrdreTournee)));
               event.setDropCompleted(true);
             }
             event.consume();
           });
           listeCommandes.setItems(commandesTournee.sorted(Comparator.comparing(Commande::getOrdreTournee)));
+          //.sorted(Comparator.comparing(Commande::getOrdreTournee))
 
           // Met à jour les marqueurs sur la carte
           coucheMarqueur.effacerMarqueurs();
@@ -237,11 +247,20 @@ public class TableaudebordView implements Initializable {
 
   }
 
+  /**
+   * Classe permettant de gérer l'affichage des commandes dans la liste.
+   */
   private static class CommandeCell extends ListCell<Commande> {
+    /**
+     * Méthode permettant de gérer la mise à jour des cellules de la liste.
+     *
+     * @param item Commande à afficher
+     * @param empty Booléen indiquant si la cellule est vide
+     */
     protected void updateItems(Commande item, boolean empty) {
       super.updateItem(item, empty);
       if (empty || item == null) {
-        setText(null);
+        setText("");
       } else {
         setText(item.toString());
       }
