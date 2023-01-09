@@ -19,9 +19,16 @@ public class Validateur {
     if (!texte.matches("^\\d{1,2}(:\\d{1,2})?$")) {
       return false;
     }
-    int nombre = Integer.parseInt(texte);
+    String[] result = texte.split(":");
+    int nombre;
+    for(String elem : result){
+      nombre = Integer.parseInt(elem);
+      if(nombre < 0 && nombre >= 23){
+        return false;
+      }
+    }
 
-    return 0 <= nombre && nombre <= 23;
+    return true;
   }
 
   /**

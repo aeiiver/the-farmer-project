@@ -60,8 +60,21 @@ public class CommandesFormCtrl {
     // Tous les types de valeur sont corrects
     int poidsValide = Integer.parseInt(poidsSaisi);
     Date dateValide = Date.valueOf(dateChoisie);
-    Time heureDebValide = Time.valueOf(heureDebSaisie + ":00:00");
-    Time heureFinValide = Time.valueOf(heureFinSaisie + ":00:00");
+    Time heureDebValide = null;
+    Time heureFinValide = null;
+    if (heureDebSaisie.split(":").length > 1) {
+      heureDebValide = Time.valueOf(heureDebSaisie + ":00");
+    }
+    else {
+      heureDebValide = Time.valueOf(heureDebSaisie + ":00:00");
+    }
+    if (heureFinSaisie.split(":").length > 1) {
+      heureFinValide = Time.valueOf(heureFinSaisie + ":00");
+    }
+    else {
+      heureFinValide = Time.valueOf(heureFinSaisie + ":00:00");
+    }
+
 
     if (heureDebValide.equals(heureFinValide) || heureDebValide.after(heureFinValide)) {
       StageUtil.afficheAlerte("L'heure de départ est égale ou supérieure à l'heure de fin.",
