@@ -16,7 +16,7 @@ public class Validateur {
    * @return true si le texte est une heure, false sinon
    */
   public static boolean validerHeure(String texte) {
-    if (!texte.matches("^\\d{1,2}$")) {
+    if (!texte.matches("^\\d{1,2}(:\\d{1,2})?$")) {
       return false;
     }
     int nombre = Integer.parseInt(texte);
