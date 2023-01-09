@@ -3,6 +3,7 @@ package root.view;
 import com.gluonhq.maps.MapPoint;
 import com.gluonhq.maps.MapView;
 import java.net.URL;
+import java.sql.Time;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.ResourceBundle;
@@ -123,28 +124,36 @@ public class TableaudebordView implements Initializable {
     listeTourneesCourantes.setItems(tournees);
     listeCommandes.setItems(FXCollections.observableArrayList());
 
-    listeTourneesCourantes.setCellFactory(lv -> {
-      ListCell<Tournee> cell = new ListCell<>();
-      cell.textProperty().bind(cell.itemProperty().asString());
-      cell.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
-      StackPane stackPane = new StackPane();
-      Label label = new Label();
-      label.textProperty().bind(cell.itemProperty().asString());
-      stackPane.getChildren().add(label);
-      cell.setGraphic(stackPane);
-      cell.itemProperty().addListener((observable, oldValue, newValue)
-          -> {
-            if (newValue != null && newValue.estValide()) {
-              stackPane.setStyle("-fx-border-color: green; "
-                  + "-fx-border-width: 2px; "
-                  + "-fx-border-radius: 5px");
-            } else {
-              stackPane.setStyle("-fx-border-color: red; "
-                    + "-fx-border-width: 2px; "
-                    + "-fx-border-radius: 5px;");
-            }
-          });
-      return cell;
+    listeTourneesCourantes.setCellFactory(tourneeListView -> new ListCell<>() {
+      @Override
+      protected void updateItem(Tournee tournee, boolean b) {
+        super.updateItem(tournee, b);
+
+        // Ne rien afficher si cellule vide
+        if (tournee == null) {
+          return;
+        }
+
+        textProperty().bind(itemProperty().asString());
+        setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+        StackPane stackPane = new StackPane();
+        Label label = new Label();
+
+        label.textProperty().bind(itemProperty().asString());
+        stackPane.getChildren().add(label);
+        setGraphic(stackPane);
+
+        // Indicateur visuel sur la validité de la tournée
+        if (tournee.estValide()) {
+          stackPane.setStyle("-fx-border-color: green; "
+              + "-fx-border-width: 2px; "
+              + "-fx-border-radius: 5px");
+        } else {
+          stackPane.setStyle("-fx-border-color: red; "
+              + "-fx-border-width: 2px; "
+              + "-fx-border-radius: 5px;");
+        }
+      }
     });
 
     // Détecte quand une tournée est sélectionnée
