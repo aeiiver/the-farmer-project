@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.Time;
+import java.time.LocalTime;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -309,19 +310,24 @@ public class Tournee {
   public boolean valideHeure() {
     commandes.sort(Comparator.comparing(Commande::getOrdreTournee));
 
-    boolean valide = false;
+    boolean valide = true;
 
-    Time tempsTournee = new Time(commandes.get(commandes.size() - 1).getHeureDeb().getTime());
+    Time tempsTournee = new Time(commandes.get(0).getHeureDeb().getTime());
+    System.out.println("tempsTournee : " + tempsTournee);
     for (int i = 0; i < commandes.size() - 1; i++) {
       Commande com = commandes.get(i);
       Commande comNp = commandes.get(i + 1);
       String gpsClient = com.getClient().getGps();
       String gpsClientNp = comNp.getClient().getGps();
-      tempsTournee = new Time(tempsTournee.getTime()
-          + getTempsTrajet(gpsClient, gpsClientNp).getTime());
+      Time tempsTrajet = getTempsTrajet(gpsClient, gpsClientNp);
+      LocalTime time1 = tempsTournee.toLocalTime();
+      LocalTime time2 = tempsTrajet.toLocalTime();
+
+      LocalTime sum = time1.plusHours(time2.getHour()).plusMinutes(time2.getMinute()).plusSeconds(time2.getSecond());
+      tempsTournee = Time.valueOf(sum);
+      System.out.println("tempsTournee : " + tempsTournee);
       valide = tempsTournee.after(heureMin) && tempsTournee.before(heureMax);
     }
-    Time tempsTotal = tempsTournee;
 
     return valide;
   }
