@@ -315,7 +315,7 @@ public class Tournee {
 
     boolean valide = false;
 
-    Time tempsTournee = new Time(0);
+    Time tempsTournee = new Time(commandes.get(commandes.size() - 1).getHeureDeb().getTime());
     for (int i = 0; i < commandes.size() - 1; i++) {
       Commande com = commandes.get(i);
       Commande comNp = commandes.get(i + 1);

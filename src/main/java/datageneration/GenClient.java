@@ -27,7 +27,7 @@ public class GenClient {
    * @param nbClient Nombre de clients à générer.
    * @throws IOException Si le client n'a pas pu être généré.
    */
-  public static ArrayList<Client> generate(int nbClient, Producteur producteur) throws IOException {
+  public static ArrayList<Client> generate(int nbClient, Producteur producteur) {
     ArrayList<Client> listClient = new ArrayList<>();
     String gpsProducteur = producteur.getGps();
     for (int i = 0; i < nbClient; i++) {

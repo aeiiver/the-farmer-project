@@ -57,32 +57,35 @@ public class GenAdresseClient {
     this.latitudeClient = parseGpsLat(coordonnees);
     String retour = "";
     try {
-      URL url = new URL("https://api-adresse.data.gouv.fr/reverse/?lon=" + longitudeClient + "&lat=" + latitudeClient);
-      HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-      connection.setRequestMethod("GET");
-      connection.setRequestProperty("Content-Type", "application/json");
-      connection.setRequestProperty("Accept", "application/json");
-      connection.setDoOutput(true);
-      int responseCode = connection.getResponseCode();
-      if (responseCode >= 200 && responseCode < 300) {
-        InputStream inputStream = connection.getInputStream();
-        String responseBody = readInputStream(inputStream);
-        if (responseBody.contains("properties")) {
-          retour = responseBody.substring(responseBody.indexOf("properties") + 13);
+      while (retour.equals("")) {
+        URL url = new URL(
+            "https://api-adresse.data.gouv.fr/reverse/?lon=" + longitudeClient + "&lat=" +
+                latitudeClient);
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("GET");
+        connection.setRequestProperty("Content-Type", "application/json");
+        connection.setRequestProperty("Accept", "application/json");
+        connection.setDoOutput(true);
+        int responseCode = connection.getResponseCode();
+        if (responseCode >= 200 && responseCode < 300) {
+          InputStream inputStream = connection.getInputStream();
+          String responseBody = readInputStream(inputStream);
+          if (responseBody.contains("properties")) {
+            retour = responseBody.substring(responseBody.indexOf("properties") + 13);
+          } else {
+            retour = "";
+          }
+        }
+        if (retour.equals("")) {
+          coordonnees = calcCoord();
+          this.longitudeClient = parseGpsLon(coordonnees);
+          this.latitudeClient = parseGpsLat(coordonnees);
         }
       }
     } catch (Exception e) {
       e.printStackTrace();
     }
-    if (retour.equals("")) {
-      longitudeProducteur += 0.1;
-      latitudeProducteur -= 0.1;
-      return getAddressJson(calcCoord());
-
-    } else {
-
-      return retour;
-    }
+    return retour;
   }
 
   private String calcCoord() {

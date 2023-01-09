@@ -24,21 +24,15 @@ public class Main {
     Faker faker = new Faker();
 
     ArrayList<Producteur> producteurs = new ArrayList<>();
-    Producteur base = new ProducteurDao(SingleConnection.getInstance()).get("12345678901234");
-    base.setGps("47.266899, -0.074186");
-    //producteurs.add(base);
     producteurs.addAll(GenProducteur.generate(nbProducteurs));
 
-    System.out.println("Génération des producteurs terminée");
+    System.out.println("Génération des producteurs et véhicules terminés.");
 
     for (Producteur producteur : producteurs) {
-      int nbClient = faker.number().numberBetween(5, 10);
+      int nbClient = faker.number().numberBetween(5, 15);
       int nbCommandesParTournee = faker.number().numberBetween(5, 10);
-      int temp = Math.min(nbClient, nbCommandesParTournee);
-      nbClient = Math.max(nbClient, nbCommandesParTournee);
-      nbCommandesParTournee = temp;
       ArrayList<Client> clients = GenClient.generate(nbClient, producteur);
-      for (int j = 0; j < nbClient; j++) {
+      for (int j = 0; j < nbCommandesParTournee; j++) {
         GenCommande.generate(nbCommandesParTournee, producteur, clients);
       }
     }

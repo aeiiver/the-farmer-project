@@ -33,11 +33,11 @@ public class GenCommande {
     for (int i = 0; i < nb; i++) {
       Time min = Time.valueOf(faker.date().future(1, TimeUnit.DAYS).toString().split(" ")[3]);
       Time max = Time.valueOf(faker.date().future(1, TimeUnit.DAYS).toString().split(" ")[3]);
-      while (min.after(Time.valueOf("21:00:00")) && min.before(Time.valueOf("06:00:00"))) {
+      while (min.after(Time.valueOf("21:00:00")) || min.before(Time.valueOf("06:00:00"))) {
         min = Time.valueOf(faker.date().future(1, TimeUnit.DAYS).toString().split(" ")[3]);
 
       }
-      while (max.after(Time.valueOf("21:00:00")) && max.before(Time.valueOf("06:00:00"))) {
+      while (max.after(Time.valueOf("21:00:00")) || max.before(Time.valueOf("06:00:00"))) {
         max = Time.valueOf(faker.date().future(1, TimeUnit.DAYS).toString().split(" ")[3]);
       }
 
@@ -47,22 +47,16 @@ public class GenCommande {
         max = temp;
       }
       Connection singleConnection = SingleConnection.getInstance();
+      Client client = clients.get(faker.number().numberBetween(0, clients.size() - 1));
 
-      if (producteur == null) {
-        System.out.println();
-      } else {
-        Client client = clients.get(i);
-        if (client == null) {
-          System.out.println();
-        } else {
-          String libelle = faker.lorem().sentence();
-          Commande commande = new Commande(
-              libelle.substring(0, min(20, libelle.length() - 1)),
-              faker.number().numberBetween(1, 80), date, min, max,
-              producteur, client);
-          new CommandeDao(singleConnection).insert(commande);
-          commandes.add(commande);
-        }
+      if (!(producteur == null) ||!(clients == null)) {
+        String libelle = faker.lorem().sentence();
+        Commande commande = new Commande(
+            libelle.substring(0, min(20, libelle.length() - 1)),
+            faker.number().numberBetween(1, 80), date, min, max,
+            producteur, client);
+        new CommandeDao(singleConnection).insert(commande);
+        commandes.add(commande);
       }
     }
     GenTournee.generate(commandes, producteur);
