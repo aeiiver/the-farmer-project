@@ -173,6 +173,7 @@ public class TourneesFormView implements Initializable, FormView<Tournee> {
 
     // Commandes de la tournée
     ObservableList<Commande> itemsFromListView = commandes.getItems();
+    itemsFromListView.addAll(tournee.getCommandes());
 
     int[] indices = IntStream.range(0, itemsFromListView.size()).filter(i -> {
       List<Commande> commandesStockees = tournee.getCommandes();
