@@ -11,6 +11,10 @@ import java.sql.SQLException;
  */
 public class SingleConnection {
 
+  public static final String DB_URL = "jdbc:mysql://les-roseaux.dev:3306/the-farmer-project";
+  public static final String DB_USER = "farmer";
+  public static final String DB_PASSWORD = "vgeGm3tZ2t2JEWE";
+
   private static Connection connexion = null;
 
   /**
@@ -29,8 +33,7 @@ public class SingleConnection {
       try {
         Class.forName("com.mysql.cj.jdbc.Driver");
         System.out.println("Driver loaded");
-        connexion = DriverManager.getConnection("jdbc:mysql://les-roseaux.dev:3306"
-            + "/the-farmer-project",  "farmer", "vgeGm3tZ2t2JEWE");
+        connexion = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
         System.out.println("Connection established");
       } catch (Exception e) {
         e.printStackTrace();
