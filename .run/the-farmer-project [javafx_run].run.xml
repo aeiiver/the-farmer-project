@@ -25,7 +25,7 @@
           </option>
           <option name="goals">
             <list>
-              <option value="javafx:run" />
+              <option value="javafx:deploy" />
             </list>
           </option>
           <option name="pomFileName" />

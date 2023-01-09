@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Main-Class: root.Main
+Class-Path: javafx-web-19-win.jar javafx-web-19.jar javafx-base-19-win.j
+ ar javafx-media-19-win.jar javafx-graphics-19-win.jar automaton-1.11-8.
+ jar maps-2.0.0-ea+6.jar util-4.0.11.jar generex-1.0.2.jar storage-4.0.1
+ 1.jar javafaker-1.0.2.jar javafx-fxml-19.jar javafx-fxml-19-win.jar jav
+ afx-controls-19-win.jar jbcrypt-0.4.jar mysql-connector-j-8.0.31.jar ja
+ vafx-controls-19.jar protobuf-java-3.19.4.jar javafx-base-19.jar javafx
+ -media-19.jar commons-lang3-3.5.jar javafx-graphics-19.jar snakeyaml-1.
+ 23-android.jar
+
