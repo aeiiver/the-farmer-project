@@ -14,9 +14,9 @@ import root.view.form.ProducteursFormView;
  */
 public class ProducteursCtrl {
 
-  private Stage fenetre;
+  private final Stage fenetre;
 
-  private ListeProducteurs model;
+  private final ListeProducteurs model;
 
   /**
    * Constructeur.

@@ -5,14 +5,12 @@ import static root.Utils.readInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Objects;
+
 import root.model.list.ListeCommandes;
 
 /**
@@ -85,8 +83,6 @@ public class Tournee {
    * @see ListeCommandes
    */
   private ArrayList<Commande> commandes;
-
-  private Time tempsTotal;
 
   /**
    * Constructeur de classe d'une tournée insérée dans la base.
@@ -325,7 +321,7 @@ public class Tournee {
           + getTempsTrajet(gpsClient, gpsClientNp).getTime());
       valide = tempsTournee.after(heureMin) && tempsTournee.before(heureMax);
     }
-    tempsTotal = tempsTournee;
+    Time tempsTotal = tempsTournee;
 
     return valide;
   }
@@ -368,8 +364,8 @@ public class Tournee {
     try {
       Time temps = new Time(0);
       String retour = "";
-      depart.replace(" ", "");
-      arrivee.replace(" ", "");
+      depart = depart.replace(" ", "");
+      arrivee = arrivee.replace(" ", "");
       URL url = new URL(
           "https://wxs.ign.fr/calcul/geoportail/itineraire/rest/1.0.0/route?resource=bdtopo-osrm&start="
               + depart + "&end=" + arrivee);

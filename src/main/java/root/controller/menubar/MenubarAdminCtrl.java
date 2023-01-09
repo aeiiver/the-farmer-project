@@ -10,7 +10,7 @@ import root.view.form.AdminFormView;
  * Contrôleur associé à la barre de menus administrateur.
  */
 public class MenubarAdminCtrl {
-  private Stage fenetre;
+  private final Stage fenetre;
 
   /**
    * Constructeur.

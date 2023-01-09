@@ -12,8 +12,8 @@ import root.view.form.TourneesFormView;
  */
 public class TourneesCtrl {
 
-  private Stage fenetre;
-  private ListeTournees modele;
+  private final Stage fenetre;
+  private final ListeTournees modele;
 
   /**
    * Constructeur.

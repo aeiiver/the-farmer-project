@@ -29,9 +29,6 @@ public class AdminFormView implements Initializable, FormView<Admin> {
   private TextField pseudo;
 
 
-  private Admin admin;
-
-
   private AdminFormCtrl ctrl;
 
   /**
@@ -79,7 +76,6 @@ public class AdminFormView implements Initializable, FormView<Admin> {
    */
   @Override
   public void chargeChamps(Admin modele) {
-    this.admin = modele;
     pseudo.setText(modele.getPseudo());
     mail.setText(modele.getMail());
   }

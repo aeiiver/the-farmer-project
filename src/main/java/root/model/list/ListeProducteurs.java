@@ -27,9 +27,9 @@ public class ListeProducteurs {
   /**
    * Le DAO qui permet au modèle d'interagir avec la base de données.
    */
-  private ProducteurDao producteurDao;
+  private final ProducteurDao producteurDao;
 
-  private AdresseDao adresseDao;
+  private final AdresseDao adresseDao;
 
   /**
    * Constructeur.

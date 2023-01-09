@@ -21,7 +21,7 @@ import root.model.session.SingleSession;
  */
 public class ConnexionCtrl {
 
-  private Stage fenetre;
+  private final Stage fenetre;
 
   public ConnexionCtrl(Stage fenetre) {
     this.fenetre = fenetre;

@@ -4,7 +4,6 @@ import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
 import javafx.stage.Stage;
-import root.SceneChanger;
 import root.StageUtil;
 import root.Validateur;
 import root.model.Client;
@@ -20,7 +19,7 @@ import root.model.session.SingleSession;
  */
 public class CommandesFormCtrl {
 
-  private Stage fenetre;
+  private final Stage fenetre;
 
   public CommandesFormCtrl(Stage fenetre) {
     this.fenetre = fenetre;

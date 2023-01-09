@@ -1,6 +1,5 @@
 package root.controller.list;
 
-import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import root.SceneChanger;
 import root.StageUtil;
@@ -13,8 +12,8 @@ import root.view.form.CommandesFormView;
  */
 public class CommandesCtrl {
 
-  private Stage fenetre;
-  private ListeCommandes modele;
+  private final Stage fenetre;
+  private final ListeCommandes modele;
 
   /**
    * Constructeur.

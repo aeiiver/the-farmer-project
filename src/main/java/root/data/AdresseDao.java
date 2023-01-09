@@ -118,7 +118,6 @@ public class AdresseDao extends Dao<Adresse, Integer> {
       }
       return adresses.isEmpty() ? null : adresses;
     } catch (Exception e) {
-      System.out.println("aaaaaaaaaaaaaaaaaaaa");
       e.printStackTrace();
       return null;
     }
@@ -173,7 +172,6 @@ public class AdresseDao extends Dao<Adresse, Integer> {
         return false;
       }
       int idInsere = key.getInt(1);
-      System.out.println(idInsere);
       adresse.setIdAdresse(idInsere);
 
       return true;

@@ -26,7 +26,7 @@ public class ListeCommandes {
   /**
    * Le DAO qui permet au modèle d'interagir avec la base de données.
    */
-  private CommandeDao commandeDao;
+  private final CommandeDao commandeDao;
 
   /**
    * Constructeur avec une liste vide.

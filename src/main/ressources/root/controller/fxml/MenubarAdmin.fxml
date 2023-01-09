@@ -18,10 +18,6 @@
             <MenuItem mnemonicParsing="false" onAction="#gotoFormClient" text="Nouveau client" />
         </items>
     </Menu>
-    <Menu mnemonicParsing="false" text="Client">
-        <MenuItem mnemonicParsing="false" onAction="#gotoListeClients" text="Clients"/>
-        <MenuItem mnemonicParsing="false" onAction="#gotoFormClient" text="Nouveau client"/>
-    </Menu>
     <Menu mnemonicParsing="false" text="Compte">
         <MenuItem mnemonicParsing="false" onAction="#gotoCompte" text="Mon compte" />
         <MenuItem mnemonicParsing="false" onAction="#deconnexion" text="Déconnexion" />

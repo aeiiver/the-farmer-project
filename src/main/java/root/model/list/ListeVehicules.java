@@ -27,7 +27,7 @@ public class ListeVehicules {
   /**
    * Le DAO qui permet au modèle d'interagir avec la base de données.
    */
-  private VehiculeDao vehiculeDao;
+  private final VehiculeDao vehiculeDao;
 
   /**
    * Constructeur.

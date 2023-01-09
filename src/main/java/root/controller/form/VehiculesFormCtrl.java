@@ -19,7 +19,7 @@ import root.model.session.SingleSession;
  */
 public class VehiculesFormCtrl {
 
-  private Stage fenetre;
+  private final Stage fenetre;
 
   public VehiculesFormCtrl(Stage fenetre) {
     this.fenetre = fenetre;
@@ -53,7 +53,7 @@ public class VehiculesFormCtrl {
       immatriculation = immat.substring(0, 2) + "-" + immat.substring(2, 5) + "-"
               + immat.substring(5, 7);
     }
-    immatriculation.replace(" ", "-");
+    immatriculation = immatriculation.replace(" ", "-");
 
     SessionUtilisateur session = SingleSession.getSession();
     Producteur producteur = (Producteur) session.getUtilisateur();

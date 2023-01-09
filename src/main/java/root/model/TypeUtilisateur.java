@@ -5,5 +5,5 @@ package root.model;
  */
 public enum TypeUtilisateur {
   Producteur,
-  Admin;
+  Admin
 }

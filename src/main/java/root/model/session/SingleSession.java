@@ -1,10 +1,8 @@
 package root.model.session;
 
 import root.data.AdminDao;
-import root.data.Dao;
 import root.data.ProducteurDao;
 import root.data.SingleConnection;
-import root.model.Producteur;
 
 /**
  * Singleton représentant la session utilisateur.

@@ -6,7 +6,6 @@ import javafx.collections.ObservableList;
 import root.data.AdresseDao;
 import root.data.ClientDao;
 import root.data.SingleConnection;
-import root.model.Adresse;
 import root.model.Client;
 
 /**
@@ -27,9 +26,9 @@ public class ListeClients {
   /**
    * Le DAO qui permet au modèle d'interagir avec la base de données.
    */
-  private ClientDao clientDao;
+  private final ClientDao clientDao;
 
-  private AdresseDao adresseDao;
+  private final AdresseDao adresseDao;
 
   /**
    * Constructeur.

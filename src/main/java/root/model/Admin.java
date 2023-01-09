@@ -40,12 +40,6 @@ public class Admin extends Utilisateur {
     this.pseudo = pseudo;
   }
 
-  /*
-  public Admin(String mail, String pseudo, String mdp) {
-    super(mail, mdp);
-    this.pseudo = pseudo;
-  }*/
-
   /**
    * Getter de l'identifiant de l'administrateur.
    *

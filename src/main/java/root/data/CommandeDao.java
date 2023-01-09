@@ -273,7 +273,6 @@ public class CommandeDao extends Dao<Commande, Integer> {
   public ArrayList<Commande> getCommandeCourante(Producteur producteur) {
     try {
       String query = "SELECT * FROM Commande WHERE SIRET = ? AND dateCom = CURDATE() - 1";
-      ;
       PreparedStatement preparedStatement = connexion.prepareStatement(query);
       preparedStatement.setString(1, producteur.getSiret());
       ResultSet resultat = preparedStatement.executeQuery();

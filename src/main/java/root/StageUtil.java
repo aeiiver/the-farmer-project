@@ -33,8 +33,6 @@ public class StageUtil {
       newRoot = loader.load();
 
     } catch (IOException e) {
-      System.out.println("Quelque chose de très fondamentale vient de casser...");
-      System.out.println("Voir : MenubarProducteur.changeScene()");
       throw new RuntimeException(e);
     }
 

@@ -18,7 +18,7 @@ import root.model.session.SingleSession;
  */
 public class AdminFormCtrl {
 
-  private Stage fenetre;
+  private final Stage fenetre;
 
   public AdminFormCtrl(Stage fenetre) {
     this.fenetre = fenetre;

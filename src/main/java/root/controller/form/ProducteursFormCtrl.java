@@ -18,7 +18,7 @@ import root.model.list.ListeProducteurs;
  */
 public class ProducteursFormCtrl {
 
-  private Stage fenetre;
+  private final Stage fenetre;
 
   public ProducteursFormCtrl(Stage fenetre) {
     this.fenetre = fenetre;

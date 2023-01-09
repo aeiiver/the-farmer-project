@@ -15,7 +15,7 @@ import root.model.list.ListeClients;
  */
 public class ClientsFormCtrl {
 
-  private Stage fenetre;
+  private final Stage fenetre;
 
   public ClientsFormCtrl(Stage fenetre) {
     this.fenetre = fenetre;

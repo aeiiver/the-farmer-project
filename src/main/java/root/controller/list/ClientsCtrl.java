@@ -11,8 +11,8 @@ import root.view.form.ClientsFormView;
  */
 public class ClientsCtrl {
 
-  private Stage fenetre;
-  private ListeClients modele;
+  private final Stage fenetre;
+  private final ListeClients modele;
 
   /**
    * Constructeur.

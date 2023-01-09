@@ -31,7 +31,7 @@ public class ListeTournees {
   /**
    * Le DAO qui permet au modèle d'interagir avec la base de données.
    */
-  private TourneeDao tourneeDao;
+  private final TourneeDao tourneeDao;
 
   /**
    * Constructeur avec une liste vide.

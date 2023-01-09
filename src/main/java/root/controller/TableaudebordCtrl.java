@@ -1,6 +1,5 @@
 package root.controller;
 
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import root.SceneChanger;
 import root.StageUtil;
@@ -13,9 +12,9 @@ import root.view.form.TourneesFormView;
  */
 public class TableaudebordCtrl {
 
-  private Stage fenetre;
+  private final Stage fenetre;
 
-  private ListeTournees modele;
+  private final ListeTournees modele;
 
   /**
    * Constructeur.

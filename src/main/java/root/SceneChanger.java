@@ -155,7 +155,6 @@ public class SceneChanger {
       root = loader.load();
 
     } catch (IOException e) {
-      System.out.println("Quelque chose de très fondamental vient de casser...");
       throw new RuntimeException(e);
     }
 

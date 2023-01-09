@@ -14,8 +14,8 @@ import root.view.form.VehiculesFormView;
  */
 public class VehiculesCtrl {
 
-  private Stage fenetre;
-  private  ListeVehicules modele;
+  private final Stage fenetre;
+  private final ListeVehicules modele;
 
   /**
    * Constructeur.
@@ -44,7 +44,6 @@ public class VehiculesCtrl {
     VehiculeDao dao = new VehiculeDao(SingleConnection.getInstance());
 
     boolean reponse = StageUtil.afficheConfirmation(fenetre);
-    System.out.println(reponse);
     if (reponse) {
       dao.delete(vehicule);
       modele.supprimer(vehicule);
