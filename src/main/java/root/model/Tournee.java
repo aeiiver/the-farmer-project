@@ -354,10 +354,16 @@ public class Tournee {
    * @return les informations de la tournée
    */
   public String toString() {
-    String tempsTournee = Objects.equals(tempsTotal, new Time(0)) ? tempsTotal.toString() : "";
-    return libelle + "\n" + heureMin + "/" + heureMax + ":" + tempsTournee + "\n" + vehicule + "\n";
+    return libelle + "\n" + heureMin + "/" + heureMax + "\n" + vehicule + "\n";
   }
 
+  /**
+   * Méthode pour calculer le temps de trajet entre deux points.
+   *
+   * @param depart Coordonnés GPS du départ
+   * @param arrivee Coordonnés GPS de l'arrivée
+   * @return le temps de trajet entre les deux points
+   */
   private Time getTempsTrajet(String depart, String arrivee) {
     try {
       Time temps = new Time(0);
