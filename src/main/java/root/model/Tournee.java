@@ -313,7 +313,6 @@ public class Tournee {
     boolean valide = true;
 
     Time tempsTournee = new Time(commandes.get(0).getHeureDeb().getTime());
-    System.out.println("tempsTournee : " + tempsTournee);
     for (int i = 0; i < commandes.size() - 1; i++) {
       Commande com = commandes.get(i);
       Commande comNp = commandes.get(i + 1);
@@ -325,7 +324,6 @@ public class Tournee {
 
       LocalTime sum = time1.plusHours(time2.getHour()).plusMinutes(time2.getMinute()).plusSeconds(time2.getSecond());
       tempsTournee = Time.valueOf(sum);
-      System.out.println("tempsTournee : " + tempsTournee);
       valide = tempsTournee.after(heureMin) && tempsTournee.before(heureMax);
     }
 
