@@ -311,6 +311,13 @@ public class Adresse {
   }
 
   /**
+   * Méthode permettant d'afficher une partie de l'adresse
+   */
+  public String toStringPartiel() {
+    return ville + " " + numero + " " + voie + " " + nom;
+  }
+
+  /**
    * Méthode ??.
    *
    * @return 0.

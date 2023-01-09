@@ -159,10 +159,13 @@ public class TableaudebordView implements Initializable {
               FXCollections.observableArrayList(tourneeSelectionnee.getCommandes());
 
           listeCommandes.setFixedCellSize(120);
+          listeCommandes.clipProperty().set(null);
 
           listeCommandes.setCellFactory(lv -> {
             ListCell<Commande> cell = new CommandeCell();
             cell.textProperty().bind(cell.itemProperty().asString());
+            cell.setMaxWidth(120);
+            cell.setPrefWidth(120);
 
             cell.setOnDragDetected(event -> {
               if (cell.getItem() == null) {
@@ -261,7 +264,7 @@ public class TableaudebordView implements Initializable {
     protected void updateItems(Commande item, boolean empty) {
       super.updateItem(item, empty);
       if (empty || item == null) {
-        setText("");
+        setGraphic(null);
       } else {
         setText(item.toString());
       }

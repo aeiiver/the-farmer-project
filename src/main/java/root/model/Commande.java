@@ -393,7 +393,7 @@ public class Commande {
   public String toString() {
     return this.libelle + "\n" + this.client
         + "\n" + this.dateCom + "\n(" + this.heureDeb
-        + "/" + this.heureFin + ")" + "\n" + this.client.getAdresse();
+        + "/" + this.heureFin + ")" + "\n" + this.client.getAdresse().toStringPartiel();
   }
 
 }
